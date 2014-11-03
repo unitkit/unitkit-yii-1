@@ -26,4 +26,4 @@ Required Yii Framework 1.1.15
 	$ bower install
 	```
 	- Create a new vhost from public/backend
-	- Generate a new application ID with and update config file "unitkit/modules/backend/config/main.php" with new ID
+	- Generate a new application ID and update config file "unitkit/modules/backend/config/main.php" with new ID

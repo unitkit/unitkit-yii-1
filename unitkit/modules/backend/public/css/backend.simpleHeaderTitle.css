@@ -1,0 +1,54 @@
+/**
+ * @version 1.0
+ */
+body {
+    padding:0;
+    background-color: white;
+}
+
+#content {
+    width: auto;
+    padding: 0;
+}
+
+#content .inner-container {
+    clear: both;
+    margin: 70px 20px;
+}
+
+#content .header-title {
+    background-color: #FCFCFC;
+    height: 60px;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+#content .header-title>h1 {
+    float: left;
+}
+
+#content .header-title .actions {
+    float: right;
+}
+
+.header-title>h1 {
+    border-right: 1px solid #CCCCD6;
+    float: left;
+    font-family: arial;
+    font-size: 23px;
+    font-weight: normal;
+    padding: 5px 30px 5px 0;
+    text-transform: uppercase;
+}
+
+.list .header-title>.actions {
+    float: right;
+    margin: 5px 0 10px;
+}
+
+.list .inner-container>.grid {
+    clear: both;
+}

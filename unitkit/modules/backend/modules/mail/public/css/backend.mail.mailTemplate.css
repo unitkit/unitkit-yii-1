@@ -1,0 +1,17 @@
+/**
+ * Kevin Walter <walkev13@gmail.com>
+ */
+ 
+.list .grid .td-action {
+    width: 150px;
+}
+
+.list tr .container-sending-role {
+    background-color: #e9f2f7;
+    border: 1px solid #333333;
+}
+
+.edit textarea {
+    width: 700px;
+    height: 100px;
+}

@@ -1,0 +1,314 @@
+/**
+ * @version 1.0
+ */
+body {
+    font-family: "Arial", "Verdana", "sans-serif";
+    font-size: 12px;
+    background-color: #FCFCFC;
+}
+
+@media ( max-width : 1023px) {
+    body {
+        background-image: none;
+    }
+}
+
+.btn-add {
+    text-transform: uppercase;
+}
+
+a[rel=tooltip] {
+    display: inline-block;
+}
+
+.tooltip.in {
+    opacity: 1;
+    filter: alpha(opacity = 100);
+}
+
+.table {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid #E5E5E5;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    padding: 0;
+    width: 100%;
+}
+
+.table .tr-sort {
+    background-color: #F1F1F1;
+}
+
+.table .tr-sort a {
+    color: #333333;
+}
+
+.form-inline .form-control {
+    width: 90%;
+}
+
+input.form-control[type=checkbox] {
+    width: auto;
+}
+
+.alert .errorSummary p {
+    font-weight: bold;
+}
+
+.alert-flash-plugin-error {
+    display: none;
+    font-size: 14pt;
+    text-align: center;
+}
+
+.alert-flash-plugin-error a {
+    font-size: 12pt;
+}
+
+.alert-error a {
+    color: black;
+    text-decoration: underline;
+}
+
+.alert h4:only-child {
+    margin: 0;
+}
+
+.alert p {
+    margin: 10px 0;
+}
+
+.modal-footer {
+    padding: 7px 15px;
+    margin-top: -1px;
+}
+
+.modal-header {
+    padding: 5px 15px;
+}
+
+.modal-header h5 {
+    font-weight: bold;
+}
+
+.modal-body .header-title h1 {
+    border: none;
+    float: none;
+}
+
+.breadcrumb {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.move {
+    cursor: move;
+}
+
+input.date-range {
+    width: 90px !important;
+}
+
+.ui-datepicker {
+    z-index: 1031 !important;
+}
+
+.container-small {
+    background: white;
+    border: 1px solid #E5E5E5;
+    border-radius: 5px 5px 5px 5px;
+    padding: 20px 30px 20px;
+    width: 500px;
+    margin: auto;
+}
+
+.container-small table {
+    text-align: left;
+    padding: 10px;
+    border-collapse: separate;
+    border-spacing: 2px;
+    width: 100%;
+}
+
+.container-small table th {
+    width: 40%;
+}
+
+.captcha {
+    margin: 0 0 5px 0;
+}
+
+.captcha a {
+    display: block;
+    margin-top: 5px;
+}
+
+.captcha img {
+    border: 1px solid #CCCCCC;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 25px;
+    margin: 3px 0 10px;
+}
+
+h2 {
+    font-size: 24px;
+    line-height: 24px;
+    margin: 3px 0 10px 0;
+    font-weight: bold;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.alert-success .action-success {
+    margin-top: 10px;
+}
+
+.edit th,.edit td {
+    vertical-align: middle;
+}
+
+.list>h1 {
+    float: left;
+}
+
+.list>.actions {
+    float: right;
+    margin: 5px 0 10px;
+}
+
+.list .adv-search {
+    display: none;
+    background-color: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    margin: 0 auto 15px auto;
+    padding: 10px 20px 5px;
+    width: 500px;
+}
+
+.list .adv-search h4 {
+    margin-bottom: 15px;
+}
+
+.list a.current-sort {
+    color: #c12f2b;
+    text-decoration: underline;
+}
+
+.select2-container .select2-choice {
+    height: 30px;
+    line-height: 30px;
+}
+
+.has-error .select2-container .select2-choice {
+    border-color: #B94A48;
+}
+
+.select2-add {
+    margin: 5px 0 5px 10px;
+}
+
+.select2-add a {
+    font-weight: bold;
+    display: block;
+}
+
+.select2-add a:hover {
+    text-decoration: none;
+}
+
+.select2-container {
+    width: 100%;
+}
+
+.translate tbody input[type=text],.translate tbody textarea,.translate tbody .select2-container,.grid thead input[type=text],.grid thead .select2-container,.grid tbody input[type=text],.grid tbody textarea,.grid tbody .select2-container
+    {
+    width: 90%;
+}
+
+.grid tbody tr.row-selected td {
+    background-color: #c4ddf6 !important;
+    border-top: 1px solid #97bee6;
+}
+
+.grid .td-search {
+    text-align: center;
+}
+
+.grid .th-quick-action,.grid .td-inline-action {
+    width: 61px;
+    text-align: center;
+}
+
+.grid .td-action {
+    width: 86px;
+    text-align: center;
+}
+
+.grid .th-action {
+    width: 85px;
+    text-align: center;
+}
+
+.grid .td-action a {
+    margin-left: 2px;
+    margin-top: 2px;
+}
+
+.grid tbody td {
+    vertical-align: middle !important;
+}
+
+.grid tbody td .control-label {
+    margin-top: 5px;
+}
+
+.upload-file {
+    position: relative;
+}
+
+.upload-file .upload-file-progress-container .upload-file-progress {
+    border: 1px solid #CCCCCC;
+    margin: 3px 0;
+    padding: 5px;
+    display: inline-block;
+}
+
+.upload-file .btn-upload {
+    height: 35px;
+    width: 130px;
+}
+
+.upload-file .swfupload {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.upload-file .upload-file-progress-container .upload-file-progress-details>*
+    {
+    display: inline-block;
+}
+
+.upload-file .upload-file-progress-container .upload-file-progress-details-file
+    {
+    margin-left: 5px;
+}
+
+.upload-file .upload-file-progress-container .upload-file-progress .progress
+    {
+    margin: 5px 0 5px 0;
+}

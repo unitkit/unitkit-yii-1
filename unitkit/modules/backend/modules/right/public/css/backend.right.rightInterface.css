@@ -1,0 +1,18 @@
+#content.container-header-title .interfaces .inner-container {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#bRightRightInterfaceMain .interfaces .input-ajax-select {
+    width: 600px;
+}
+
+#content.container-header-title .rights .inner-container {
+    margin-top: 15px;
+}
+
+#bRightRightInterfaceMain .header-title {
+    position: static;
+    top: auto;
+    z-index: 1;
+}

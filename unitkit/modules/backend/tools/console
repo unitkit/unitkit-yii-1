@@ -1,0 +1,68 @@
+#!/usr/bin/env php
+<?php
+require(__DIR__.'/../../../../yiiFramework/yii.php');
+
+$projectName = basename(realpath(__DIR__.'/..'));
+
+/**
+ * Copy public components
+ * @param string $directory Source path
+ * @param string $dest Destination path
+ * @param bool $createName
+ */
+function copyPublicComponents($directory, $dest, $createName = true){
+    $dirs = scandir($directory);
+    foreach($dirs as $dir) {
+        if( in_array($dir, array('.', '..'))) {
+            continue;
+        }
+
+        if($dir == 'public' && is_dir($directory.'/'.$dir)) {
+            CFileHelper::copyDirectory(
+                $directory.'/'.$dir,
+                $createName ? $dest.'/'.basename(realpath($directory)) : $dest
+            );
+        }
+        else {
+            $subModule = $directory.'/'.$dir;
+            if( is_dir($subModule)) {
+                copyPublicComponents($subModule, $dest);
+            }
+        }
+    }
+}
+
+$publicDir = __DIR__.'/../../../../public/'.$projectName;
+
+if($argv[1] == 'install') {
+	// cache directory
+	CFileHelper::removeDirectory($publicDir.'/cache');
+	$old = umask(0);
+	mkdir($publicDir.'/cache', 0777, true);
+	mkdir($publicDir.'/cache/css', 0777, true);
+	mkdir($publicDir.'/cache/images', 0777, true);
+	mkdir($publicDir.'/cache/js', 0777, true);
+	umask($old);
+	mkdir($publicDir.'/datas', 0777, true);
+	
+	// install public components
+	CFileHelper::removeDirectory($publicDir.'/modules');
+	CFileHelper::removeDirectory($publicDir.'/vendor');
+	copyPublicComponents(__DIR__.'/../modules', $publicDir.'/modules/');
+	CFileHelper::copyDirectory(__DIR__.'/../public', $publicDir.'/');
+	CFileHelper::copyDirectory(__DIR__.'/../../../public', $publicDir.'/b');
+	copyPublicComponents(__DIR__.'/../vendor', $publicDir.'/vendor', false);
+} elseif($argv[1] == 'install:components') {
+	copyPublicComponents(__DIR__.'/../modules', $publicDir.'/modules/');
+	CFileHelper::copyDirectory(__DIR__.'/../public', $publicDir.'/');
+	CFileHelper::copyDirectory(__DIR__.'/../../../public', $publicDir.'/b');
+	copyPublicComponents(__DIR__.'/../vendor', $publicDir.'/vendor', false);
+} elseif($argv[1] == 'clear:cache') {
+	CFileHelper::removeDirectory($publicDir.'/cache');
+	$old = umask(0);
+	mkdir($publicDir.'/cache', 0777, true);
+	mkdir($publicDir.'/cache/css', 0777, true);
+	mkdir($publicDir.'/cache/images', 0777, true);
+	mkdir($publicDir.'/cache/js', 0777, true);
+	umask($old);
+}

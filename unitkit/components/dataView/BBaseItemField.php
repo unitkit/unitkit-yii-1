@@ -1,0 +1,97 @@
+<?php
+
+/**
+ * @author Kévin Walter <walkev13@gmail.com>
+ * @version 1.0
+ */
+class BBaseItemField extends CComponent
+{
+    /**
+     * Model
+     *
+     * @var CModel
+     */
+    public $model;
+
+    /**
+     * Attribute name
+     *
+     * @var string
+     */
+    public $attribute;
+
+    /**
+     * Label value
+     *
+     * @var string
+     */
+    public $label;
+
+    /**
+     * Display attribute
+     *
+     * @var string
+     */
+    public $displayAttribute;
+
+    /**
+     * Type of field
+     *
+     * @var string
+     */
+    public $type;
+
+    /**
+     * Field value
+     *
+     * @var string
+     */
+    public $value;
+
+    /**
+     * Datas
+     *
+     * @var mixed
+     */
+    public $datas;
+
+    /**
+     * Html options
+     *
+     * @var array
+     */
+    public $htmlOptions;
+
+    /**
+     * Constructor
+     *
+     * @param array $datas Arguments
+     */
+    public function __construct($args)
+    {
+        if (isset($args['model'])) {
+            $this->model = $args['model'];
+        }
+        if (isset($args['attribute'])) {
+            $this->attribute = $args['attribute'];
+        }
+        if (isset($args['label'])) {
+            $this->label = $args['label'];
+        }
+        if (isset($args['displayAttribute'])) {
+            $this->displayAttribute = $args['displayAttribute'];
+        }
+        if (isset($args['datas'])) {
+            $this->datas = $args['datas'];
+        }
+        if (isset($args['value'])) {
+            $this->value = $args['value'];
+        }
+        if (isset($args['type'])) {
+            $this->type = $args['type'];
+        }
+        if (isset($args['htmlOptions'])) {
+            $this->htmlOptions = $args['htmlOptions'];
+        }
+    }
+}

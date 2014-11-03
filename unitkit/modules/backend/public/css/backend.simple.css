@@ -1,0 +1,12 @@
+/**
+ * @version 1.0
+ */
+body {
+    padding: 10px;
+    background-color: white;
+}
+
+#content {
+    width: auto;
+    padding: 0;
+}

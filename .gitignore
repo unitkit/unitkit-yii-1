@@ -1,5 +1,5 @@
-./public/*
-./generator/results/*
+./public/
+./generator/results/
 *.iml
 *.ipr
 *.iws

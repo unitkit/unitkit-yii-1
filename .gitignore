@@ -1,4 +1,5 @@
-./public/
+public/backend
+public/frontend
 ./generator/results/
 *.iml
 *.ipr

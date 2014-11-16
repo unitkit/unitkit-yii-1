@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Authentifaction module
+ * Authentication module
  *
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
@@ -26,7 +26,8 @@ class AuthModule extends CWebModule
             // this method is called before any module controller action is performed
             // you may place customized code here
             return true;
-        } else
+        } else {
             return false;
+        }
     }
 }

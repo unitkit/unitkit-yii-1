@@ -87,9 +87,11 @@ class BBaseSettingsDataView extends CComponent
         $this->isSaved = $isSaved;
 
         // error status
-        foreach ($datas as $data)
-            if ($this->hasErrors = $data->hasErrors())
+        foreach ($datas as $data) {
+            if ($this->hasErrors = $data->hasErrors()) {
                 break;
+            }
+        }
 
             // items
         $this->items = array(

@@ -29,7 +29,7 @@
     /**
      * Bind popstate event
      */
-    $.b.app.bindPopstate = function()
+    $.b.app.bindPopstate = function ()
     {
         $(window).bind('popstate', function(e) {
             $.b.app.loadAjaxContent(window.location, '', $('#content'));
@@ -39,7 +39,7 @@
     /**
      * Destroy CKEDITOR instances
      */
-    $.b.app.destroyCKEDITOR = function()
+    $.b.app.destroyCKEDITOR = function ()
     {
         for(name in CKEDITOR.instances) {
             CKEDITOR.instances[name].destroy();
@@ -224,7 +224,7 @@
                         return {results: data};
                     }
                 }
-            },
+            }
         };
         
         if(object.attr('data-addAction') !== undefined) {
@@ -258,9 +258,9 @@
     /**
      * Instanciate ajax form
      */
-    $.b.app.initAjaxForm = function()
+    $.b.app.initAjaxForm = function ()
     {
-        $(document).on('submit', 'form.ajax', function(){
+        $(document).on('submit', 'form.ajax', function (){
             var form = $(this);
             var dataTarget = form.attr('data-ajaxTarget');
             var target = form;
@@ -297,9 +297,9 @@
     /**
      * Init dynamic page button
      */
-    $.b.app.initDynamicPageBtn = function()
+    $.b.app.initDynamicPageBtn = function ()
     {
-        $(document).on('click', '.btn-dyn-page', function() {
+        $(document).on('click', '.btn-dyn-page', function () {
             $.b.app.loadAjaxContent($(this).attr('href'), '', $('#content'));
             return false;
         });
@@ -308,9 +308,9 @@
     /**
      * Init quick ajax button
      */
-    $.b.app.initQuickAjaxBtn = function()
+    $.b.app.initQuickAjaxBtn = function ()
     {
-        $(document).on('click', '.btn-quick-ajax', function() {
+        $(document).on('click', '.btn-quick-ajax', function () {
             var $this = $(this);
             var loadContainer = null;
             var targetContainer = null;
@@ -362,9 +362,9 @@
     /**
      * Attach csrf token to a form
      */
-    $.b.app.initCsrfForm = function()
+    $.b.app.initCsrfForm = function ()
     {
-        $(document).on('submit', 'form.csrf', function() {
+        $(document).on('submit', 'form.csrf', function () {
             var $csrf = $('meta[name=b_csrf_token]');
             $('<input>').attr({
                 'type': 'hidden',

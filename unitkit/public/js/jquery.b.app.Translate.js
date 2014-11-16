@@ -3,7 +3,7 @@
  * @version 1.0
  */
 ;
-(function($) 
+(function ($) 
 {
 	$.b = $.b || {};
 	$.b.app = $.b.app || {};
@@ -11,7 +11,7 @@
 	/**
 	 * Translate component
 	 */
-	$.b.app.Translate = function(args)
+	$.b.app.Translate = function (args)
 	{
 		this.args = args;
 		this.appList = this.args.list;
@@ -29,24 +29,24 @@
 	 * @param data
 	 * @param type
 	 */
-	$.b.app.Translate.prototype.submit = function(url, data, type)
+	$.b.app.Translate.prototype.submit = function (url, data, type)
 	{
 		var self = this;
 
 		self.main.block(this.blockUIOptions);
 
-		var ajaxRequest = function(async) {
+		var ajaxRequest = function (async) {
 			$.b.app.ajax(
 			    url, 
-			    function(json) {
-					if(json.loginReload) {
-						if($.b.app.loginReload(json))
+			    function (json) {
+					if (json.loginReload) {
+						if ($.b.app.loginReload(json))
 							ajaxRequest(false);
 					} else {
 						self.main.unblock();
 						self.main.html($.parseHTML(json.html));
 						self.initEvents();
-						if(self.activeAutoScroll) {
+						if (self.activeAutoScroll) {
 						    $.b.app.scrollTop();
 						}
 					}
@@ -64,7 +64,7 @@
 	/**
 	 * Init events
 	 */
-	$.b.app.Translate.prototype.initEvents = function()
+	$.b.app.Translate.prototype.initEvents = function ()
 	{
 		this.main = $(this.args.main);
 		this.initSubmitActionEvent();
@@ -78,20 +78,20 @@
     /**
      * Init extend events (main)
      */
-    $.b.app.Translate.prototype.initExtendEvents = function(){};
+    $.b.app.Translate.prototype.initExtendEvents = function (){};
 	
 	/**
 	 * Init external events
 	 */
-    $.b.app.Translate.prototype.initAdvancedTextarea = function()
+    $.b.app.Translate.prototype.initAdvancedTextarea = function ()
 	{
-		this.main.find('.advanced-textarea').each(function() {
+		this.main.find('.advanced-textarea').each(function () {
             var $this = $(this);
             var options = {};
-            if((url = $this.attr('data-ckeditorFilebrowserBrowseUrl')) !== undefined) {
+            if ((url = $this.attr('data-ckeditorFilebrowserBrowseUrl')) !== undefined) {
                 options.filebrowserBrowseUrl = url;
             }
-            if((language = $this.attr('data-ckeditorLanguage')) !== undefined) {
+            if ((language = $this.attr('data-ckeditorLanguage')) !== undefined) {
                 options.language = language;
             }
             $this.ckeditor(options);
@@ -101,10 +101,10 @@
 	/**
 	 * Submit event
 	 */
-	$.b.app.Translate.prototype.initSubmitActionEvent = function()
+	$.b.app.Translate.prototype.initSubmitActionEvent = function ()
 	{
 		var self = this;
-		this.main.find('form').on('submit', function() {
+		this.main.find('form').on('submit', function () {
 			self.submit(self.main.find('form').attr('action'), self.main.find('input, textarea').serialize(), 
 			        self.main.find('form').attr('method'));
 			return false;
@@ -114,10 +114,10 @@
 	/**
 	 * Update event
 	 */
-	$.b.app.Translate.prototype.initUpdateActionEvent = function()
+	$.b.app.Translate.prototype.initUpdateActionEvent = function ()
 	{
 		var self = this;
-		this.main.find('.btn-update').on('click', function() {
+		this.main.find('.btn-update').on('click', function () {
 		    self.main.find('form').submit();
 			return false;
 		});
@@ -126,11 +126,11 @@
 	/**
 	 * Input key press event
 	 */
-	$.b.app.Translate.prototype.initInputKeyPressActionEvent = function()
+	$.b.app.Translate.prototype.initInputKeyPressActionEvent = function ()
 	{
 		var self = this;
-		this.main.find('form input').on('keypress', function(e) {
-			if(e.keyCode == 13) {
+		this.main.find('form input').on('keypress', function (e) {
+			if (e.keyCode == 13) {
 			    self.main.find('form').submit();
 				return false;
 			}
@@ -140,12 +140,12 @@
 	/**
 	 * Close event
 	 */
-	$.b.app.Translate.prototype.initCloseActionEvent = function()
+	$.b.app.Translate.prototype.initCloseActionEvent = function ()
 	{
 		var self = this;
 		
-		this.main.find('.btn-close').on('click', function() {
-		    if($.isEmptyObject(self.appList)) {
+		this.main.find('.btn-close').on('click', function () {
+		    if ($.isEmptyObject(self.appList)) {
 		        return true;
 		    }
 

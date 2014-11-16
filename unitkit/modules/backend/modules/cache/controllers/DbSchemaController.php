@@ -9,8 +9,6 @@ class DbSchemaController extends BController
 {
 
     /**
-     * (non-PHPdoc)
-     *
      * @see BController::init()
      */
     public function init()
@@ -19,8 +17,6 @@ class DbSchemaController extends BController
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see CController::filters()
      */
     public function filters()
@@ -29,8 +25,6 @@ class DbSchemaController extends BController
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see CController::accessRules()
      */
     public function accessRules()

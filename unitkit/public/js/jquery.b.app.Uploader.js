@@ -3,7 +3,7 @@
  * @version 1.0
  */
 ;
-(function($) 
+(function ($) 
 {
 	$.b = $.b || {};
 	$.b.app = $.b.app || {};
@@ -15,7 +15,7 @@
 	 * @param settings SWFUpload settings
 	 * @returns {SWFUpload}
 	 */
-	$.b.app.Uploader = function(upload, settings)
+	$.b.app.Uploader = function (upload, settings)
 	{
 		this.upload = upload;
 		this.button = upload.children('.btn-upload');
@@ -46,8 +46,8 @@
 		this.swfUpload = new SWFUpload(localSettings);
 
 		// init button action
-		if(this.swfUpload.customSettings.maxFiles > 1 && this.swfUpload.customSettings.countFiles == swfUpload.customSettings.maxFiles)
-		{
+		if (this.swfUpload.customSettings.maxFiles > 1 &&
+                this.swfUpload.customSettings.countFiles == swfUpload.customSettings.maxFiles) {
 			this.button.addClass('disabled');
 			$('#' + this.swfUpload.movieName).css('left','-99999px');
 		}
@@ -56,7 +56,7 @@
 	/**
 	 * Init events
 	 */
-	$.b.app.Uploader.prototype.initEvents = function()
+	$.b.app.Uploader.prototype.initEvents = function ()
 	{
 		this.initDeleteActionEvent();
 	};
@@ -64,47 +64,44 @@
 	/**
 	 * Init delete event
 	 */
-	$.b.app.Uploader.prototype.initDeleteActionEvent = function()
+	$.b.app.Uploader.prototype.initDeleteActionEvent = function ()
 	{
 		$this = this;
-		
+
 		// delete action
-		this.upload.find('.remove').on('click', function(){
+		this.upload.find('.remove').on('click', function (){
 			var progress = $(this).parents('.upload-file-progress');
 			var input = progress.find('.upload-file-input');
 			var dataId = input.attr('data-id');
 
-			if(dataId != undefined)
-				$this.swfUpload.cancelUpload(dataId);
-			
+			if (dataId != undefined) {
+                $this.swfUpload.cancelUpload(dataId);
+            }
+
 			$this.swfUpload.customSettings.countFiles--;
 			
 			// style
-			if($this.swfUpload.customSettings.maxFiles > 1)
-			{
+			if ($this.swfUpload.customSettings.maxFiles > 1) {
 				$this.button.removeClass('disabled');
 				$('#' + $this.swfUpload.movieName).css('left','0');
 			}
 
-			if( progress.hasClass('insert'))
-			{
-				if($this.swfUpload.customSettings.maxFiles == 1)
-				{
+			if ( progress.hasClass('insert')) {
+				if ($this.swfUpload.customSettings.maxFiles == 1) {
 					var tmp = $this.swfUpload.customSettings.upload.find('.upload-file-progress.original');
-					if( tmp.length > 0 )
-					{
+					if ( tmp.length > 0 ) {
 						tmp.find('.upload-file-input').attr('disabled', false);
-						if( ! tmp.hasClass('delete'))
-							tmp.show();
+						if ( ! tmp.hasClass('delete')) {
+                            tmp.show();
+                        }
 					}
 				}
 				progress.remove();
-			}
-			else if( progress.hasClass('original'))
-			{
+			} else if ( progress.hasClass('original')) {
 				var array = input.val().split('?');
-				if( array.length > 0)
-					input.val(array[0] + '?delete');
+				if ( array.length > 0) {
+                    input.val(array[0] + '?delete');
+                }
 				progress.addClass('delete');
 				progress.hide();
 			}
@@ -116,24 +113,16 @@
 	/**
 	 * Default settings
 	 */
-	$.b.app.uploaderSettings = function()
+	$.b.app.uploaderSettings = function ()
 	{ 
-	   	this.flash_url =  '/vendor/manual/swfupload/Flash/swfupload.swf'; 
-	   	
-	   	this.file_types = '*.*';   	
-	   	
+	   	this.flash_url =  '/vendor/manual/swfupload/Flash/swfupload.swf';
+	   	this.file_types = '*.*';
 	   	this.button_image_url = "/vendor/manual/swfupload/images/image.png";
-	   	
 	   	this.button_cursor = SWFUpload.CURSOR.HAND;
-	   	
 	   	this.button_width = '154';
-	   	
 	   	this.button_height = '35';
-	   	
 	   	this.button_text_left_padding = 0;
-	   	
 	   	this.button_text_top_padding = 0;
-	   	
 	   	this.button_window_mode = SWFUpload.WINDOW_MODE.TRANSPARENT;
 	   	
 	   	this.custom_settings = {
@@ -144,9 +133,9 @@
 			upload:{}
 		};
 	   	
-	   	this.file_queued_handler = function(file) 
+	   	this.file_queued_handler = function (file) 
 		{
-			if(this.customSettings.maxFiles == 1)
+			if (this.customSettings.maxFiles == 1)
 			{
 				this.customSettings.countFiles++;
 				this.customSettings.upload.find('.upload-file-progress:not(.original)').remove();
@@ -154,7 +143,7 @@
 				var progress = new $.b.app.UploaderFileProgress(file, this);
 				progress.addFileQueue();
 			}
-			else if(this.customSettings.countFiles < this.customSettings.maxFiles)
+			else if (this.customSettings.countFiles < this.customSettings.maxFiles)
 			{
 				this.customSettings.countFiles++;
 				var progress = new $.b.app.UploaderFileProgress(file, this);
@@ -164,44 +153,41 @@
 				this.cancelUpload(file.id);
 		};
 		
-		this.file_queue_error_handler = function(file, errorCode, message) {};
+		this.file_queue_error_handler = function (file, errorCode, message) {};
 		
-		this.file_dialog_complete_handler = function(numFilesSelected, numFilesQueued) 
-		{
+		this.file_dialog_complete_handler = function (numFilesSelected, numFilesQueued) {
 			this.startUpload();
 		};
 		
-		this.upload_start_handler= function(file) 
-		{
+		this.upload_start_handler = function (file) {
 			return true;
 		};
 		
-		this.upload_progress_handler = function(file, bytesLoaded, bytesTotal) 
-		{
+		this.upload_progress_handler = function (file, bytesLoaded, bytesTotal) {
 			var progress = new $.b.app.UploaderFileProgress(file, this);
 			progress.setProgress(Math.ceil((bytesLoaded / bytesTotal) * 100));
 		};
 		
-		this.upload_error_handler = function(file, errorCode, message) 
-		{
+		this.upload_error_handler = function (file, errorCode, message) {
 			var progress = new $.b.app.UploaderFileProgress(file, this);
 			progress.setError(message);
 		};
 		
-		this.upload_success_handler = function(file, serverData) 
-	    {
+		this.upload_success_handler = function (file, serverData) {
 			var progress = new $.b.app.UploaderFileProgress(file, this);
 			progress.setComplete(serverData);
 
 			var tmp = this.customSettings.upload.find('.upload-file-progress.original');
-			if( tmp.length > 0)
-				tmp.find('.upload-file-input').attr('disabled', true);
+			if ( tmp.length > 0) {
+                tmp.find('.upload-file-input').attr('disabled', true);
+            }
 		};
 		
-		this.upload_complete_handler = function(file) 
+		this.upload_complete_handler = function (file) 
 		{
-			if(this.getStats().files_queued !== 0)
-				this.startUpload();
+			if (this.getStats().files_queued !== 0) {
+                this.startUpload();
+            }
 		};
 	}; 
 	
@@ -210,14 +196,13 @@
 	 * @param file
 	 * @param swfUpload
 	 */
-	$.b.app.UploaderFileProgress = function(file, swfUpload)
+	$.b.app.UploaderFileProgress = function (file, swfUpload)
 	{
 		this.swfUpload = swfUpload;
 		this.id = file.id;
 		this.progress = $('#' + this.id);
 		
-		if(this.progress.length == 0)
-		{
+		if (this.progress.length == 0) {
 			this.progress = this.getTemplate();
 			this.swfUpload.customSettings.progressTarget.append(this.progress);
 			this.fileNameContainer = this.progress.find('.upload-file-progress-details-file');
@@ -225,9 +210,7 @@
 			this.fileInfoContainer = this.progress.find('.upload-file-progress-details-info');
 			this.progressBarContainer = this.progress.find('.progress');
 			this.progressBar = this.progressBarContainer.find('.progress-bar');
-		}
-		else
-		{
+		} else {
 			this.fileNameContainer = this.progress.find('.upload-file-progress-details-file');
 			this.fileInfoContainer = this.progress.find('.upload-file-progress-details-info');
 			this.progressBarContainer = this.progress.find('.progress');
@@ -238,22 +221,21 @@
 	/**
 	 * Reduce file name
 	 */
-	$.b.app.UploaderFileProgress.prototype.reduceFileName = function(fileName, length)
+	$.b.app.UploaderFileProgress.prototype.reduceFileName = function (fileName, length)
 	{
 		var parts = fileName.split('.');	
-		if(parts[0 /* filename */].length > length)
-			fileName = fileName.substr(0, length - 5) + '(...).' + parts[1];
-		
+		if (parts[0 /* filename */].length > length) {
+            fileName = fileName.substr(0, length - 5) + '(...).' + parts[1];
+        }
 		return fileName;
 	};
 	
 	/**
 	 * Template
 	 */
-	$.b.app.UploaderFileProgress.prototype.getTemplate = function()
+	$.b.app.UploaderFileProgress.prototype.getTemplate = function ()
 	{
-		return $
-		(
+		return $ (
 			'<div class="upload-file-progress insert" id="' + this.id + '">' +
 				'<div class="upload-file-progress-details">' +
 					'<div class="upload-file-progress-details-action">' +
@@ -274,10 +256,10 @@
 	/**
 	 * Add file in queue
 	 */
-	$.b.app.UploaderFileProgress.prototype.addFileQueue = function()
+	$.b.app.UploaderFileProgress.prototype.addFileQueue = function ()
 	{
-		if(this.swfUpload.customSettings.maxFiles > 1 && this.swfUpload.customSettings.countFiles == this.swfUpload.customSettings.maxFiles)
-		{
+		if (this.swfUpload.customSettings.maxFiles > 1 &&
+                this.swfUpload.customSettings.countFiles == this.swfUpload.customSettings.maxFiles) {
 			this.swfUpload.customSettings.upload.children('.btn-upload').addClass('disabled');
 			$('#' + this.swfUpload.movieName).css('left','-99999px');
 		}
@@ -286,7 +268,7 @@
 	/**
 	 * Set error
 	 */
-	$.b.app.UploaderFileProgress.prototype.setError = function(error) 
+	$.b.app.UploaderFileProgress.prototype.setError = function (error) 
 	{
 		this.fileInfoContainer.html(error);
 	};
@@ -294,7 +276,7 @@
 	/**
 	 * Set progress
 	 */
-	$.b.app.UploaderFileProgress.prototype.setProgress = function(percentage) 
+	$.b.app.UploaderFileProgress.prototype.setProgress = function (percentage) 
 	{
 		this.progressBar.width(percentage + '%').html(percentage + '%');
 	};
@@ -302,7 +284,7 @@
 	/**
 	 * Set complete
 	 */
-	$.b.app.UploaderFileProgress.prototype.setComplete = function(json) 
+	$.b.app.UploaderFileProgress.prototype.setComplete = function (json) 
 	{
 		// get datas
 		var data = jQuery.parseJSON(json);
@@ -315,8 +297,8 @@
 		
 		// remove progress bar
 		var $this = this;
-		setTimeout(function(){ 
+		setTimeout(function (){ 
 		}, 500); 
-		setTimeout(function(){ $this.progressBarContainer.hide(); }, 1000); 
+		setTimeout(function (){ $this.progressBarContainer.hide(); }, 1000); 
 	};
 })(jQuery);

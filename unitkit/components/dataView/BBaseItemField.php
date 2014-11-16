@@ -65,7 +65,7 @@ class BBaseItemField extends CComponent
     /**
      * Constructor
      *
-     * @param array $datas Arguments
+     * @param array $args Arguments
      */
     public function __construct($args)
     {

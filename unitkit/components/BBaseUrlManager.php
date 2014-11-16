@@ -17,8 +17,6 @@ class BBaseUrlManager extends CUrlManager
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see CUrlManager::processRules()
      */
     protected function processRules()
@@ -28,8 +26,6 @@ class BBaseUrlManager extends CUrlManager
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see CUrlManager::createUrl()
      */
     public function createUrl($route, $params = array(), $ampersand = '&')

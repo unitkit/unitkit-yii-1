@@ -20,7 +20,8 @@ class ProfileModule extends CWebModule
     {
         if (parent::beforeControllerAction($controller, $action)) {
             return true;
-        } else
+        } else {
             return false;
+        }
     }
 }

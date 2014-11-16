@@ -17,12 +17,14 @@ class BBaseTools
     public static function ip()
     {
         $ip = '';
-        if (isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+        if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
             $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        elseif (isset($_SERVER['HTTP_CLIENT_IP']))
+        } elseif (isset($_SERVER['HTTP_CLIENT_IP'])) {
             $ip = $_SERVER['HTTP_CLIENT_IP'];
-        else
+        } else {
             $ip = $_SERVER['REMOTE_ADDR'];
+        }
+
         return $ip;
     }
 
@@ -30,6 +32,7 @@ class BBaseTools
      * Calculate the sha512 hash of a string
      *
      * @param string $string the input string
+     * @return string
      */
     public static function sha512($string)
     {
@@ -40,6 +43,7 @@ class BBaseTools
      * Calculate the sha256 hash of a string
      *
      * @param string $string the input string
+     * @return string
      */
     public static function sha256($string)
     {
@@ -73,6 +77,7 @@ class BBaseTools
      * Utf8 decode
      *
      * @param string $string
+     * @return string
      */
     public static function utf8Decode($string)
     {
@@ -90,14 +95,16 @@ class BBaseTools
     public static function arrayToXml($array, $rootElement = null, $xml = null)
     {
         $_xml = $xml;
-        if ($_xml === null)
+        if ($_xml === null) {
             $_xml = new SimpleXMLElement($rootElement !== null ? $rootElement : '<root/>');
+        }
 
         foreach ($array as $k => $v) {
-            if (is_array($v))
+            if (is_array($v)) {
                 arrayToXml($v, $k, $_xml->addChild($k));
-            else
+            } else {
                 $_xml->addChild($k, $v);
+            }
         }
 
         return $_xml->asXML();

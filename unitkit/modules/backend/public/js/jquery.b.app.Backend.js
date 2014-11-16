@@ -16,7 +16,7 @@
     /**
      * Init events
      */
-    $.b.app.Backend.prototype.initEvents = function()
+    $.b.app.Backend.prototype.initEvents = function ()
     {
         $.b.app.initAjaxForm();
         $.b.app.initQuickAjaxBtn();
@@ -31,7 +31,7 @@
     
     $.b.app.Backend.prototype.initMenu = function()
     {
-        $('body').on('click', '.navbar a[href!=#]:not(.static)', function(){
+        $('body').on('click', '.navbar a[href!=#]:not(.static)', function () {
             var me = $(this);
             var href = me.attr('href');
             var content = $('#content');
@@ -71,7 +71,7 @@
     /**
      * Change language action
      */
-    $.b.app.Backend.prototype.initChangeLanguageActionEvent = function()
+    $.b.app.Backend.prototype.initChangeLanguageActionEvent = function ()
     {
         $('form.current-language').on('change', 'select.language-selector', function() {
             $(this).parents('form').submit();

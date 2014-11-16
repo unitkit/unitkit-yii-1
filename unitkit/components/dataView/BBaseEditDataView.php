@@ -131,7 +131,7 @@ class BBaseEditDataView extends CComponent
     /**
      * Set closeAction attribute
      *
-     * @param string $title
+     * @param string $action
      */
     public function setCloseAction($action)
     {
@@ -154,7 +154,7 @@ class BBaseEditDataView extends CComponent
     /**
      * Set action attribute
      *
-     * @param string $title
+     * @param string $action
      */
     public function setAction($action)
     {

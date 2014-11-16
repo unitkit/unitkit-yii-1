@@ -164,17 +164,19 @@ class ProfileController extends BController
     /**
      * Load models
      *
-     * @param mixed $models array of models
+     * @return array of Models
+     * @throws CHttpException
      */
     protected function loadEditModels()
     {
         $PersonProfile = new PersonProfile();
         $models['PersonProfile'] = $PersonProfile->findByPk(Yii::app()->user->id);
 
-        if ($models['PersonProfile'] === null)
+        if ($models['PersonProfile'] === null) {
             throw new CHttpException(403);
-        else
+        } else {
             $models['PersonProfile']->setScenario('update');
+        }
 
         return $models;
     }

@@ -26,7 +26,7 @@
 	$.backend.mail.mailSendingRole.List.prototype = Object.create($.b.app.List.prototype);
 	
 	
-	$.backend.mail.mailSendingRole.List.prototype.initGridEvents = function()
+	$.backend.mail.mailSendingRole.List.prototype.initGridEvents = function ()
 	{
 		this.initEditActionEvent(this.grid);
 		this.initTranslateActionEvent(this.grid);
@@ -38,7 +38,7 @@
 		this.initPagerEvent();
 	};
 	
-	$.backend.mail.mailSendingRole.List.prototype.initCloseActionEvent = function()
+	$.backend.mail.mailSendingRole.List.prototype.initCloseActionEvent = function ()
 	{
 		this.actions.find('.btn-close').on('click', function(){
 			var row = $(this).parents('tr');

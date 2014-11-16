@@ -107,8 +107,9 @@ class BBaseListDataView extends CComponent
      */
     public function getTitle()
     {
-        if ($this->_title === null)
+        if ($this->_title === null) {
             $this->title = B::t('unitkit', 'translate_title');
+        }
         return $this->_title;
     }
 }

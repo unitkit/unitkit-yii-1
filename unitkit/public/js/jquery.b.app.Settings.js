@@ -3,7 +3,7 @@
  * @version 1.0
  */
 ;
-(function($) 
+(function ($) 
 {
 	$.b = $.b || {};
 	$.b.app = $.b.app || {};
@@ -11,7 +11,7 @@
 	/**
 	 * Settings component
 	 */
-	$.b.app.Settings = function(args)
+	$.b.app.Settings = function (args)
 	{
 		this.args = args;
 		this.appList = this.args.list || {};
@@ -19,31 +19,31 @@
 	};
 
 	/**
-	 * Sumbit form
+	 * Submit form
 	 * 
 	 * @param url
 	 * @param data
 	 * @param type
 	 */
-	$.b.app.Settings.prototype.submit = function(url, data, type)
+	$.b.app.Settings.prototype.submit = function (url, data, type)
 	{
 		var self = this;
 
 		this.main.block(this.blockUIOptions);
 
-		var ajaxRequest = function(async) {
+		var ajaxRequest = function (async) {
 			$.b.app.ajax(
 			    url, 
-			    function(json) {
-					if(json.loginReload) {
-						if($.b.app.loginReload(json)) {
+			    function (json) {
+					if (json.loginReload) {
+						if ($.b.app.loginReload(json)) {
 							ajaxRequest(false);
 						}
 					} else {
 						self.main.unblock();
 						self.main.html($.parseHTML(json.html));
 						self.initEvents();
-						if(self.activeAutoScroll) {
+						if (self.activeAutoScroll) {
 						    $.b.app.scrollTop();
 						}
 					}
@@ -60,7 +60,7 @@
 	/**
 	 * Init events
 	 */
-	$.b.app.Settings.prototype.initEvents = function()
+	$.b.app.Settings.prototype.initEvents = function ()
 	{
 		this.main = $(this.args.main);
 		this.initAjaxSelect();
@@ -78,11 +78,11 @@
 	/**
 	 * Close
 	 */
-	$.b.app.Settings.prototype.initCloseActionEvent = function()
+	$.b.app.Settings.prototype.initCloseActionEvent = function ()
 	{
 		var self = this;
-		this.main.find('.btn-close').on('click', function() {
-		    if($.isEmptyObject(self.appList)) {
+		this.main.find('.btn-close').on('click', function () {
+		    if ($.isEmptyObject(self.appList)) {
 		        return true;
 		    }
 		    
@@ -95,7 +95,7 @@
                 self.appList.requestSaved.type
             );
 
-            if(self.activeAutoScroll) {
+            if (self.activeAutoScroll) {
                 $.b.app.scrollTop();
             }
 
@@ -106,9 +106,9 @@
 	/**
 	 * Ajax select
 	 */
-	$.b.app.Settings.prototype.initAjaxSelect = function()
+	$.b.app.Settings.prototype.initAjaxSelect = function ()
 	{
-		this.main.find('.input-ajax-select').each(function() {
+		this.main.find('.input-ajax-select').each(function () {
 			$.b.app.select2Ajax($(this), {allowClear: false});
 		});
 	};
@@ -116,10 +116,10 @@
 	/**
 	 * Update
 	 */
-	$.b.app.Settings.prototype.initUpdateActionEvent = function()
+	$.b.app.Settings.prototype.initUpdateActionEvent = function ()
 	{
 		var self = this;
-		this.main.find('.btn-update').on('click', function() {
+		this.main.find('.btn-update').on('click', function () {
 			self.main.find('form').submit();
 			return false;
 		});
@@ -128,11 +128,11 @@
 	/**
 	 * Input key press
 	 */
-	$.b.app.Settings.prototype.initInputKeyPressActionEvent = function()
+	$.b.app.Settings.prototype.initInputKeyPressActionEvent = function ()
 	{
 		var self = this;
-		this.main.find('form input').on('keypress', function(e) {
-			if(e.keyCode == 13) {
+		this.main.find('form input').on('keypress', function (e) {
+			if (e.keyCode == 13) {
 				self.main.find('form').submit();
 				return false;
 			}
@@ -142,10 +142,10 @@
 	/**
 	 * Submit
 	 */
-	$.b.app.Settings.prototype.initSubmitActionEvent = function()
+	$.b.app.Settings.prototype.initSubmitActionEvent = function ()
 	{
 	    var self = this;
-	    this.main.find('form').on('submit', function() {
+	    this.main.find('form').on('submit', function () {
 	        self.submit(
 	            self.main.find('form').attr('action'),
 	            self.main.find('input, select, textarea').serialize(), 

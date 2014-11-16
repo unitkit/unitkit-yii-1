@@ -102,10 +102,11 @@ class MailSendingRoleController extends BAutoController
     {
         // datas to update
         $postDatas = array();
-        if (isset($_POST['BMailSendingRole']))
+        if (isset($_POST['BMailSendingRole'])) {
             $postDatas['BMailSendingRole'] = $_POST['BMailSendingRole'];
+        }
 
-            // primary key
+        // primary key
         $pk = array();
         $pk['b_person_id'] = $_GET['b_person_id'];
         $pk['b_mail_template_id'] = $_GET['b_mail_template_id'];
@@ -150,10 +151,11 @@ class MailSendingRoleController extends BAutoController
     {
         // datas to update
         $postDatas = array();
-        if (isset($_POST['BMailSendingRole']))
+        if (isset($_POST['BMailSendingRole'])) {
             $postDatas['BMailSendingRole'] = $_POST['BMailSendingRole'];
+        }
 
-            // primary key
+        // primary key
         $pk['b_person_id'] = $_GET['b_person_id'];
         $pk['b_mail_template_id'] = $_GET['b_mail_template_id'];
         $pk['b_mail_send_role_id'] = $_GET['b_mail_send_role_id'];

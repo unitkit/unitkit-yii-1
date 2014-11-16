@@ -35,7 +35,7 @@
 	/**
 	 * Overread
 	 */
-	$.backend.mail.mailTemplate.List.prototype.initExtendRowEvents = function(row)
+	$.backend.mail.mailTemplate.List.prototype.initExtendRowEvents = function (row)
 	{
 		this.initListSendingRoleActionEvent(row);
 	};
@@ -43,7 +43,7 @@
 	/**
 	 * Overread
 	 */
-	$.backend.mail.mailTemplate.List.prototype.initExtendGridEvents = function(grid)
+	$.backend.mail.mailTemplate.List.prototype.initExtendGridEvents = function (grid)
 	{
 		this.initListSendingRoleActionEvent(grid);
 	};
@@ -51,7 +51,7 @@
 	/**
 	 * List sending role event
 	 */
-	$.backend.mail.mailTemplate.List.prototype.initListSendingRoleActionEvent = function(container)
+	$.backend.mail.mailTemplate.List.prototype.initListSendingRoleActionEvent = function (container)
 	{
 		var $this = this;
 		container.find('.btn-list-sending-role').on('click', function(){
@@ -67,19 +67,18 @@
 			row.parents('table').removeClass('table-hover');
 			
 			// container already exist
-			if(container.length > 0)
-				container.show();
-			else // in other case
-			{
+			if(container.length > 0) {
+                container.show();
+            } else { // in other case
 				// block UI
 				$this.grid.block(this.blockUI);
 				// ajax request
-				var ajaxRequest = function(async)
-				{
-					$.b.app.ajax(button.attr('href'), function(json){
-						if(json.loginReload) {
-							if($.b.app.loginReload(json))
-								ajaxRequest(true);
+				var ajaxRequest = function(async) {
+					$.b.app.ajax(button.attr('href'), function(json) {
+						if (json.loginReload) {
+							if ($.b.app.loginReload(json)) {
+                                ajaxRequest(true);
+                            }
 						} else {
 							var container = $('<tr class="tr-sending-role">' +
 											  	'<td class="container-sending-role" colspan="'+ row.find('td').length +'">' + 

@@ -55,12 +55,13 @@ class LoginForm extends CFormModel
         if (! $this->hasErrors()) {
             $this->_identity = new BUserIdentity($this->username, $this->password);
             if (! $this->_identity->authenticate()) {
-                if ($this->_identity->errorCode === BUserIdentity::ERR_USER_NOT_ACTIVATED)
+                if ($this->_identity->errorCode === BUserIdentity::ERR_USER_NOT_ACTIVATED) {
                     $this->addError('password', B::t('backend', 'account_not_activated'));
-                elseif ($this->_identity->errorCode === BUserIdentity::ERR_USER_NOT_VALIDATED)
+                } elseif ($this->_identity->errorCode === BUserIdentity::ERR_USER_NOT_VALIDATED) {
                     $this->addError('password', B::t('backend', 'account_not_validated'));
-                else
+                } else {
                     $this->addError('password', B::t('backend', 'bad_login_password'));
+                }
             }
         }
     }
@@ -82,7 +83,8 @@ class LoginForm extends CFormModel
                 return false;
             }
             return true;
-        } else
+        } else {
             return false;
+        }
     }
 }

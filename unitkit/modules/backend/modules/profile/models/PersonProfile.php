@@ -18,8 +18,6 @@ class PersonProfile extends CActiveRecord
     public $v_updated_at_end;
 
     /**
-     * (non-PHPdoc)
-     *
      * @see CActiveRecord::scopes()
      */
     public function scopes()
@@ -39,8 +37,7 @@ class PersonProfile extends CActiveRecord
     }
 
     /**
-     *
-     * @return string the associated database table name
+     * @see CActiveRecord::tableName()
      */
     public function tableName()
     {
@@ -48,8 +45,6 @@ class PersonProfile extends CActiveRecord
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see BPerson::rules()
      */
     public function rules()
@@ -182,8 +177,7 @@ class PersonProfile extends CActiveRecord
     }
 
     /**
-     *
-     * @return array relational rules.
+     * @see CActiveRecord::relations()
      */
     public function relations()
     {
@@ -191,8 +185,7 @@ class PersonProfile extends CActiveRecord
     }
 
     /**
-     *
-     * @return array customized attribute labels (name=>label)
+     * @see CModel::attributeLabels()
      */
     public function attributeLabels()
     {
@@ -238,8 +231,6 @@ class PersonProfile extends CActiveRecord
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see BPerson::beforeSave()
      */
     public function beforeSave()

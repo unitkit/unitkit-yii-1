@@ -86,8 +86,9 @@ class BMessage extends CActiveRecord
             )
         );
 
-        if ($cmsPage !== null)
+        if ($cmsPage !== null) {
             $this->addError('name', B::t('unitkit', 'b_message_source_exist'));
+        }
     }
 
     /**

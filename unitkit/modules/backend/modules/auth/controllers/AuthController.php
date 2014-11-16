@@ -40,15 +40,17 @@ class AuthController extends BController
 
             if (Yii::app()->request->isPostRequest && isset($_POST['LoginForm'])) {
                 $models['LoginForm']->attributes = $_POST['LoginForm'];
-                if ($models['LoginForm']->validate() && $models['LoginForm']->login())
+                if ($models['LoginForm']->validate() && $models['LoginForm']->login()) {
                     $this->redirect(Yii::app()->user->returnUrl);
+                }
             }
 
             $this->dynamicRender('login', array(
                 'models' => $models
             ));
-        } else
+        } else {
             $this->redirect($this->_redirectRoute);
+        }
     }
 
     /**

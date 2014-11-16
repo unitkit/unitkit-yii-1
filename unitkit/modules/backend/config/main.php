@@ -4,7 +4,7 @@ Yii::setPathOfAlias('application', dirname(__FILE__) . '/../../..');
 
 return array(
     // application ID (should be unique)
-    'id' => '',
+    'id' => 'ezdezdezdezd',
     'name' => 'Backend',
     'basePath' => Yii::getPathOfAlias('application'),
     'preload' => array(

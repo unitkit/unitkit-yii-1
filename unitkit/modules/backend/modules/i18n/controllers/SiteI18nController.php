@@ -11,8 +11,6 @@ class SiteI18nController extends BAutoController
     protected $_model = 'BSiteI18n';
 
     /**
-     * (non-PHPdoc)
-     *
      * @see BBaseAutoController::advancedConbobox()
      */
     protected function _advancedConbobox()
@@ -39,8 +37,6 @@ class SiteI18nController extends BAutoController
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see BBaseAutoController::afterDeleteModels()
      */
     protected function _afterDeleteModels()
@@ -50,8 +46,6 @@ class SiteI18nController extends BAutoController
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see BBaseAutoController::afterSaveEditModels()
      */
     protected function _afterSaveEditModels(&$models)

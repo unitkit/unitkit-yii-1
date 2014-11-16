@@ -3,7 +3,7 @@
  * @version 1.0
  */
 ;
-(function($) 
+(function ($) 
 {
 	$.b = $.b || {};
 	$.b.tools = $.b.tools || {};
@@ -13,9 +13,9 @@
 	 * 
 	 * @param path File path to include
 	 */
-	$.b.tools.includeScriptFile = function(path)
+	$.b.tools.includeScriptFile = function (path)
 	{
-		if($('script[src="' + path + '"]').length == 0) {
+		if ($('script[src="' + path + '"]').length == 0) {
 			$('body').append('<script src="' + path + '" type="text/javascript"></script>');
 		}
 	};
@@ -25,9 +25,9 @@
 	 * 
 	 * @param path File path to include
 	 */
-	$.b.tools.includeCssFile = function(path)
+	$.b.tools.includeCssFile = function (path)
 	{
-		if($('link[href="' + path + '"]').length == 0) {
+		if ($('link[href="' + path + '"]').length == 0) {
 			$('head').append('<link rel="stylesheet" href="' + path +'" type="text/css" />');
 		}
 	};
@@ -35,7 +35,7 @@
 	/**
 	 * Read the session id from cookie
 	 */
-	$.b.tools.getSessId = function()
+	$.b.tools.getSessId = function ()
 	{
 		return $.b.tools.getCookie('PHPSESSID');
 	};
@@ -43,14 +43,14 @@
 	/**
 	 * Read a cookie
 	 */
-	$.b.tools.getCookie = function(name)
+	$.b.tools.getCookie = function (name)
 	{
 		var i, x, y, ARRcookies = document.cookie.split(";");
 		for(i = 0; i < ARRcookies.length; i++) {
 			x = ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
 			y = ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
 			x = x.replace(/^\s+|\s+$/g,"");
-			if(x == name) {
+			if (x == name) {
 				return unescape(y);
 			}
 		}
@@ -61,11 +61,11 @@
 	 * @param string to transform
 	 * @return string
 	 */
-	$.b.tools.removeEmptyStrSeria = function(string)
+	$.b.tools.removeEmptyStrSeria = function (string)
 	{
 	    string = string.replace(/[^&]+=\.?(?:&|$)/g, '');
 		var iLastChar = string.length - 1;
-		if(string[iLastChar] == '&') {
+		if (string[iLastChar] == '&') {
 			string = string.substring(0, iLastChar);
 		}
 		
@@ -75,7 +75,7 @@
 	/**
 	 * Parse query string
 	 */
-	$.b.tools.parseQueryString = function(queryString) 
+	$.b.tools.parseQueryString = function (queryString) 
 	{
 	    var params = {}, queries, temp, i, l;
 	    // split into key/value pairs
@@ -92,7 +92,7 @@
 	/**
 	 * Extended
 	 */
-	$.fn.outerHTML = function() 
+	$.fn.outerHTML = function () 
 	{
 		return $(this).clone().wrap('<div></div>').parent().html();
 	};
@@ -112,14 +112,14 @@
     /**
      * Set a maximum length to a textarea
      */
-    $.b.tools.initMaxlengthTextarea = function()
+    $.b.tools.initMaxlengthTextarea = function ()
     {
-        $(document).on('keyup', 'textarea', function(){ 
+        $(document).on('keyup', 'textarea', function (){ 
             var $this = $(this);
             var limit = parseInt($(this).attr('maxlength'));  
             var text = $this.val();
 
-            if(text.length > limit) {
+            if (text.length > limit) {
                 $this.val(text.substr(0, limit));
             }
         });  
@@ -129,7 +129,7 @@
     /**
      * Init tooltip
      */
-    $.b.tools.initTooltip = function(delay)
+    $.b.tools.initTooltip = function (delay)
     {
         delay = $.isEmptyObject(delay) ? { show: 500, hide: 100 } : delay;
         $('body').tooltip({

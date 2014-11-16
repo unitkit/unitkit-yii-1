@@ -29,7 +29,7 @@
 	/**
 	 * Destroy swf Upload
 	 */
-	$.b.app.Edit.prototype.destroySwfUpload = function()
+	$.b.app.Edit.prototype.destroySwfUpload = function ()
 	{
 		for(var i = 0; i < this.swfUpload.length; ++i) {
 			this.swfUpload[i].destroy();
@@ -53,8 +53,8 @@
 			$.b.app.ajax(
 			    url, 
 			    function(json) {
-					if(json.loginReload) {
-						if($.b.app.loginReload(json)) {
+					if (json.loginReload) {
+						if ($.b.app.loginReload(json)) {
 							ajaxRequest(false);
 						}
 					} else {
@@ -62,7 +62,7 @@
 						self.main.unblock();
 						self.main.html($.parseHTML(json.html));
 						self.initEvents();
-						if(self.activeAutoScroll) {
+						if (self.activeAutoScroll) {
 						    $.b.app.scrollTop();
 						}
 					}
@@ -79,7 +79,7 @@
 	/**
 	 * Init events
 	 */
-	$.b.app.Edit.prototype.initEvents = function()
+	$.b.app.Edit.prototype.initEvents = function ()
 	{
 		this.main = $(this.args.main);
 		this.initAjaxSelect();
@@ -97,17 +97,17 @@
 	/**
 	 * Init extend events
 	 */
-	$.b.app.Edit.prototype.initExtendEvents = function() {};
+	$.b.app.Edit.prototype.initExtendEvents = function () {};
 	
 	/**
 	 * Init advanced textarea
 	 */
-	$.b.app.Edit.prototype.initAdvancedTextarea = function()
+	$.b.app.Edit.prototype.initAdvancedTextarea = function ()
 	{
-		this.main.find('.advanced-textarea').each(function() {
+		this.main.find('.advanced-textarea').each(function () {
 		    var $this = $(this);
 		    var options = {};
-		    if((url = $this.attr('data-ckeditorFilebrowserBrowseUrl')) !== undefined) {
+		    if ((url = $this.attr('data-ckeditorFilebrowserBrowseUrl')) !== undefined) {
 		        options.filebrowserBrowseUrl = url;
 		    }
 		    if((language = $this.attr('data-ckeditorLanguage')) !== undefined) {
@@ -120,7 +120,7 @@
 	/**
 	 * Date picker
 	 */
-	$.b.app.Edit.prototype.initDatePicker = function()
+	$.b.app.Edit.prototype.initDatePicker = function ()
 	{
 		this.main.find('.jui-datePicker').datepicker({
 			dateFormat:'yy-mm-dd'
@@ -130,10 +130,10 @@
 	/**
 	 * Upload file
 	 */
-	$.b.app.Edit.prototype.initUploadFile = function()
+	$.b.app.Edit.prototype.initUploadFile = function ()
 	{
 		var self = this;
-		this.main.find('.upload-file').each(function() {
+		this.main.find('.upload-file').each(function () {
 			var uploader = new $.b.app.Uploader($(this));
 			uploader.initEvents();
 			self.swfUpload[self.swfUpload.length] = uploader.swfUpload;
@@ -143,10 +143,10 @@
 	/**
 	 * Add again
 	 */
-	$.b.app.Edit.prototype.initAddAgainActionEvent = function()
+	$.b.app.Edit.prototype.initAddAgainActionEvent = function ()
 	{
 		var self = this;
-		this.main.find('.btn-add-again').on('click', function(){
+		this.main.find('.btn-add-again').on('click', function (){
 			var link = $(this);
 			self.main.block(self.blockUIOptions);
 			
@@ -154,8 +154,8 @@
 				$.b.app.ajax(
 				    link.attr('href'), 
 				    function(json) {
-						if(json.loginReload) {
-							if($.b.app.loginReload(json)) {
+						if (json.loginReload) {
+							if ($.b.app.loginReload(json)) {
 								ajaxRequest(false);
 							}
 						} else {					
@@ -163,7 +163,7 @@
 							self.main.unblock();
 							self.main.html($.parseHTML(json.html));
 							self.initEvents();
-							if(self.activeAutoScroll) {
+							if (self.activeAutoScroll) {
 							    $.b.app.scrollTop();
 							}
 						}
@@ -183,10 +183,10 @@
 	/**
 	 * Update
 	 */
-	$.b.app.Edit.prototype.initUpdateActionEvent = function()
+	$.b.app.Edit.prototype.initUpdateActionEvent = function ()
 	{
 		var self = this;
-		this.main.find('.btn-update').on('click', function() {
+		this.main.find('.btn-update').on('click', function () {
 			self.main.find('form').submit();
 			return false;
 		});
@@ -195,11 +195,11 @@
 	/**
 	 * Input key press
 	 */
-	$.b.app.Edit.prototype.initInputKeyPressActionEvent = function()
+	$.b.app.Edit.prototype.initInputKeyPressActionEvent = function ()
 	{
 		var self = this;
 		this.main.find('form input').on('keypress', function(e) {
-			if(e.keyCode == 13) {
+			if (e.keyCode == 13) {
 				self.main.find('form').submit();
 				return false;
 			}
@@ -209,10 +209,10 @@
 	/**
 	 * Submit
 	 */
-	$.b.app.Edit.prototype.initSubmitActionEvent = function()
+	$.b.app.Edit.prototype.initSubmitActionEvent = function ()
 	{
 		var self = this;
-		this.main.find('form').on('submit', function() {
+		this.main.find('form').on('submit', function () {
 			self.submit(
 			    self.main.find('form').attr('action'),
 			    self.main.find('input, select, textarea').serialize(), 
@@ -225,9 +225,9 @@
 	/**
 	 * Ajax select
 	 */
-	$.b.app.Edit.prototype.initAjaxSelect = function()
+	$.b.app.Edit.prototype.initAjaxSelect = function ()
 	{
-		this.main.find('.input-ajax-select').each(function() {
+		this.main.find('.input-ajax-select').each(function () {
 			$.b.app.select2Ajax($(this));
 		});
 	};
@@ -235,11 +235,11 @@
 	/**
 	 * Close
 	 */
-	$.b.app.Edit.prototype.initCloseActionEvent = function()
+	$.b.app.Edit.prototype.initCloseActionEvent = function ()
 	{
 		var self = this;
-		this.main.find('.btn-close').on('click', function() {
-		    if($.isEmptyObject(self.appList)) {
+		this.main.find('.btn-close').on('click', function () {
+		    if ($.isEmptyObject(self.appList)) {
                 return true;
 		    }
 		   
@@ -252,7 +252,7 @@
 			);			
 			self.main.html('');
 
-			if(self.activeAutoScroll) {
+			if (self.activeAutoScroll) {
 			    $.b.app.scrollTop();
 			}
 			

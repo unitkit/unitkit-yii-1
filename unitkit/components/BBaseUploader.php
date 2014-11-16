@@ -106,12 +106,13 @@ class BBaseUploader extends CComponent
     }
 
     /**
-     * Save a tempory file
+     * Save a temporary file
      *
      * @param string $model name of model
      * @param string $attribute name of attribute
      * @param mixed $overview array('type' => , ..)
      * @param int $cache duration of tempory data
+     * @return mixed
      */
     public function saveTmpFile($modelName, $attributeName, $overview = array(), $cache = 86400 /* 24h */)
     {
@@ -159,10 +160,11 @@ class BBaseUploader extends CComponent
     /**
      * Generate overview of temporary file
      *
-     * @param string $tmpKey tempory key
+     * @param string $tmpKey temporary key
      * @param CModel $overview overview option
      * @param mixed $model instance of model
      * @param string $attribute name of attribute
+     * @reutn string
      */
     public function tmpFileOverviewSelector($tmpKey, $overview, $model, $attribute)
     {
@@ -186,6 +188,7 @@ class BBaseUploader extends CComponent
      * @param CModel $model instance of model
      * @param string $attribute name of attribute
      * @param mixed $overviewOptions array of options array('type' => , 'route' => , 'html_options' => array())
+     * @return string
      */
     public function htmlOverview(&$model, $attribute, $overviewOptions = array())
     {
@@ -245,6 +248,7 @@ class BBaseUploader extends CComponent
      * @param string $attribute name of attribute
      * @param string $uploaderUrl uploader url
      * @param mixed $overviewOptions array of options array('type' => , 'route' => , 'html_options' => array())
+     * @return string
      */
     public function htmlUploader(&$model, $attribute, $uploaderUrl, $overviewOptions = array())
     {

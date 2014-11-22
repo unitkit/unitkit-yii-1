@@ -1,6 +1,8 @@
 UNITKIT
 ========
 
+UNITKIT is a backend application. UNITKIT allow to create simple i18n module to manage your website. Easy to configure and very fast. You can mange user/groups/roles for each module, translations, languages, mail templates, pages, menu. 
+
 Required Yii Framework 1.1.15
 
 - Installing php lib :
@@ -26,4 +28,4 @@ Required Yii Framework 1.1.15
 	$ bower install
 	```
 	- Create a new vhost from public/backend
-	- Generate a new application ID and update config file "unitkit/modules/backend/config/main.php" with new ID
+	- Generate a new application ID (should be unique) and update config file "unitkit/modules/backend/config/main.php" with new ID

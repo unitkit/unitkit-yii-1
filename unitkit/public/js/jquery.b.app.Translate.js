@@ -40,10 +40,12 @@
 			    url, 
 			    function (json) {
 					if (json.loginReload) {
-						if ($.b.app.loginReload(json))
-							ajaxRequest(false);
+						if ($.b.app.loginReload(json)) {
+                            ajaxRequest(false);
+                        }
 					} else {
 						self.main.unblock();
+                        $.b.app.destroyCKEDITOR();
 						self.main.html($.parseHTML(json.html));
 						self.initEvents();
 						if (self.activeAutoScroll) {
@@ -148,7 +150,7 @@
 		    if ($.isEmptyObject(self.appList)) {
 		        return true;
 		    }
-
+            $.b.app.destroyCKEDITOR();
 		    self.appList.main.show();
 		    self.appList.loadDataGrid(
 		        self.appList.requestSaved.url, 

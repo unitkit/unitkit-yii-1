@@ -57,6 +57,11 @@ class PageContainerEditDataView extends BEditDataView
         // items
         $this->items = array(
             new BItemField(array(
+                'model' => $datas['BCmsPage'],
+                'attribute' => 'id',
+                'type' => 'resolveValue'
+            )),
+            new BItemField(array(
                 'model' => $datas['BCmsPageI18n'],
                 'attribute' => 'title',
                 'type' => 'activeTextField',

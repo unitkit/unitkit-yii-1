@@ -12,8 +12,6 @@ class AlbumPhotoController extends BAutoController
     protected $_modelI18n = 'BCmsAlbumPhotoI18n';
 
     /**
-     * (non-PHPdoc)
-     *
      * @see CController::filters()
      */
     public function filters()
@@ -38,8 +36,6 @@ class AlbumPhotoController extends BAutoController
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see BBaseAutoController::uploader()
      */
     protected function _uploader()
@@ -54,8 +50,6 @@ class AlbumPhotoController extends BAutoController
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see BBaseAutoController::advancedConbobox()
      */
     protected function _advancedConbobox()

@@ -1,11 +1,11 @@
-<div id="bCache-dbSchema-main">
+<div id="bCache-main">
     <div class="header-title">
-        <h1><?= B::t('backend', 'db_shema_refresh_title'); ?></h1>
+        <h1><?= $title; ?></h1>
     </div>
 
     <div class="inner-container">
         <p class="alert-info alert text-center">
-            <b><?= B::t('backend', 'db_schema_is_refreshed'); ?></b>
+            <b><?= $content; ?></b>
         </p>
     </div>
 </div>

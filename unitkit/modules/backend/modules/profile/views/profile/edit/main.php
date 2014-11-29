@@ -5,12 +5,12 @@ Yii::app()
         'bProfileProfilMain',
         Yii::app()->clientScript->getAppCrudMessages() . "
     	var edit = new $.b.app.Edit({
-    		main: '#bProfileProfilMain .inner-container'
+    		main: '#bProfileProfileMain .inner-container'
     	});
     	edit.initEvents();"
     );
 ?>
-<div id="bProfilProfileMain">
+<div id="bProfileProfileMain">
     <div class="header-title">
         <h1><?= B::t('backend', 'profile_edit_title') ?></h1>
     </div>

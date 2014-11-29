@@ -59,30 +59,23 @@ class NewsEditRowDataView extends BEditRowItemDataView
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BCmsNewsI18n'],
-                'attribute' => 'content',
-                'type' => 'activeTextArea',
+                'model' => $datas['BCmsNews'],
+                'attribute' => 'activated',
+                'type' => 'activeCheckBox',
                 'htmlOptions' => array(
                     'id' => false,
-                    'class' => 'form-control input-sm advanced-textarea',
-                    'placeholder' => $datas['BCmsNewsI18n']->getAttributeLabel('content'),
-                    'data-ckeditorFilebrowserBrowseUrl' => Yii::app()->controller->createUrl('/cms/image'),
-                    'data-ckeditorLanguage' => Yii::app()->language
+                    'class' => 'form-control input-sm'
                 )
             )),
             new BItemField(array(
                 'model' => $datas['BCmsNews'],
-                'attribute' => 'created_at',
-                'value' => Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse(
-                    $datas['BCmsNews']->created_at, 'yyyy-MM-dd hh:mm:ss'
-                ))
-            )),
-            new BItemField(array(
-                'model' => $datas['BCmsNews'],
-                'attribute' => 'updated_at',
-                'value' => Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse(
-                    $datas['BCmsNews']->updated_at, 'yyyy-MM-dd hh:mm:ss'
-                ))
+                'attribute' => 'published_at',
+                'type' => 'activeTextField',
+                'htmlOptions' => array(
+                    'id' => false,
+                    'class' => 'form-control input-sm date-picker',
+                    'placeholder' => $datas['BCmsNews']->getAttributeLabel('published_at'),
+                )
             )),
         );
     }

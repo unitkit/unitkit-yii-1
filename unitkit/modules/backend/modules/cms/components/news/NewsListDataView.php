@@ -38,9 +38,8 @@ class NewsListDataView extends BListDataView
         $this->sortAttributes = array(
             'bCmsNewsGroupI18ns.name',
             'bCmsNewsI18ns.title',
-            'bCmsNewsI18ns.content',
-            'bCmsNews.created_at',
-            'bCmsNews.updated_at',
+            'bCmsNews.activated',
+            'bCmsNews.published_at',
         );
 
         // controller
@@ -86,59 +85,38 @@ class NewsListDataView extends BListDataView
             )),
             new BItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_cms_news_i18ns_content',
-                'type' => 'activeTextField',
+                'attribute' => 'activated',
+                'type' => 'activeDropDownList',
+                'datas' => array(
+                    '' => B::t('unitkit', 'input_drop_down_list_all'),
+                    '1' => B::t('unitkit', 'input_drop_down_list_checked'),
+                    '0' => B::t('unitkit', 'input_drop_down_list_unchecked')
+                ),
                 'htmlOptions' => array(
-                    'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => false
+                    'class' => 'form-control input-sm'
                 )
             )),
             new BDateRangeItemField(
                 $model,
-                'created_at',
+                'published_at',
                 new BItemField(array(
                     'model' => $model,
-                    'attribute' => 'v_created_at_start',
+                    'attribute' => 'v_published_at_start',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
                         'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsNewsVCreatedAtStartGridSearch'
+                        'id' => 'bCmsNewsVPublishedAtStartGridSearch'
                     )
                 )),
                 new BItemField(array(
                     'model' => $model,
-                    'attribute' => 'v_created_at_end',
+                    'attribute' => 'v_published_at_end',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
                         'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsNewsVCreatedAtEndGridSearch'
-                    )
-                ))
-            ),
-            new BDateRangeItemField(
-                $model,
-                'updated_at',
-                new BItemField(array(
-                    'model' => $model,
-                    'attribute' => 'v_updated_at_start',
-                    'type' => 'activeTextField',
-                    'htmlOptions' => array(
-                        'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsNewsVUpdatedAtStartGridSearch'
-                    )
-                )),
-                new BItemField(array(
-                    'model' => $model,
-                    'attribute' => 'v_updated_at_end',
-                    'type' => 'activeTextField',
-                    'htmlOptions' => array(
-                        'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsNewsVUpdatedAtEndGridSearch'
+                        'id' => 'bCmsNewsVPublishedAtEndGridSearch'
                     )
                 ))
             ),
@@ -192,6 +170,43 @@ class NewsListDataView extends BListDataView
                     'id' => false
                 )
             )),
+            new BItemField(array(
+                'model' => $model,
+                'attribute' => 'activated',
+                'type' => 'activeDropDownList',
+                'datas' => array(
+                    '' => B::t('unitkit', 'input_drop_down_list_all'),
+                    '1' => B::t('unitkit', 'input_drop_down_list_checked'),
+                    '0' => B::t('unitkit', 'input_drop_down_list_unchecked')
+                ),
+                'htmlOptions' => array(
+                    'class' => 'form-control input-sm'
+                )
+            )),
+            new BDateRangeItemField(
+                $model,
+                'published_at',
+                new BItemField(array(
+                    'model' => $model,
+                    'attribute' => 'v_published_at_start',
+                    'type' => 'activeTextField',
+                    'htmlOptions' => array(
+                        'class' => 'form-control input-sm date-picker date-range',
+                        'placeholder' => B::t('unitkit', 'input_search'),
+                        'id' => 'bCmsNewsVPublishedAtStartAdvSearch'
+                    )
+                )),
+                new BItemField(array(
+                    'model' => $model,
+                    'attribute' => 'v_published_at_end',
+                    'type' => 'activeTextField',
+                    'htmlOptions' => array(
+                        'class' => 'form-control input-sm date-picker date-range',
+                        'placeholder' => B::t('unitkit', 'input_search'),
+                        'id' => 'bCmsNewsVPublishedAtEndAdvSearch'
+                    )
+                ))
+            ),
         	new BDateRangeItemField(
                 $model,
                 'created_at',

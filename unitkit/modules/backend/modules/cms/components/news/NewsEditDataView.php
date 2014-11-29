@@ -63,9 +63,9 @@ class NewsEditDataView extends BEditDataView
                     ),
                     'data-placeholder' => B::t('unitkit', 'input_select'),
                     'data-text' => ! empty($datas['BCmsNews']->b_cms_news_group_id) ? BCmsNewsGroupI18n::model()->findByPk(array(
-                                    'b_cms_news_group_id' => $datas['BCmsNews']->b_cms_news_group_id,
-                                    'i18n_id' => Yii::app()->language
-                                ))->name : '',
+                        'b_cms_news_group_id' => $datas['BCmsNews']->b_cms_news_group_id,
+                        'i18n_id' => Yii::app()->language
+                    ))->name : '',
                     'data-addAction' => $this->controller->createUrl('newsGroup/create'),
                     'data-updateAction' => $this->controller->createUrl('newsGroup/update'),
                 )
@@ -90,6 +90,26 @@ class NewsEditDataView extends BEditDataView
                     'placeholder' => $datas['BCmsNewsI18n']->getAttributeLabel('content'),
                     'data-ckeditorFilebrowserBrowseUrl' => Yii::app()->controller->createUrl('/cms/image'),
                     'data-ckeditorLanguage' => Yii::app()->language
+                )
+            )),
+            new BItemField(array(
+                'model' => $datas['BCmsNews'],
+                'attribute' => 'activated',
+                'type' => 'activeTextField',
+                'htmlOptions' => array(
+                    'id' => false,
+                    'class' => 'form-control input-sm',
+                    'placeholder' => $datas['BCmsNews']->getAttributeLabel('activated'),
+                )
+            )),
+            new BItemField(array(
+                'model' => $datas['BCmsNews'],
+                'attribute' => 'published_at',
+                'type' => 'activeTextField',
+                'htmlOptions' => array(
+                    'id' => 'bCmsNewsPublishedAtEdit',
+                    'class' => 'form-control input-sm jui-datePicker',
+                    'placeholder' => $datas['BCmsNews']->getAttributeLabel('published_at'),
                 )
             )),
         );

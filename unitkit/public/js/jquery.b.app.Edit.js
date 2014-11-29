@@ -59,6 +59,7 @@
 						}
 					} else {
 						self.destroySwfUpload();
+                        $.b.app.destroyCKEDITOR();
 						self.main.unblock();
 						self.main.html($.parseHTML(json.html));
 						self.initEvents();
@@ -160,6 +161,7 @@
 							}
 						} else {					
 							self.destroySwfUpload();
+                            $.b.app.destroyCKEDITOR();
 							self.main.unblock();
 							self.main.html($.parseHTML(json.html));
 							self.initEvents();
@@ -242,7 +244,7 @@
 		    if ($.isEmptyObject(self.appList)) {
                 return true;
 		    }
-		   
+            $.b.app.destroyCKEDITOR();
 			self.destroySwfUpload();
 			self.appList.main.show();
 			self.appList.loadDataGrid(

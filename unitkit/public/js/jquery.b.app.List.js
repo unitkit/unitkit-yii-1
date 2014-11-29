@@ -95,14 +95,17 @@
                             ajaxRequest(false);
                         }
                     } else {
+                        $.b.app.destroyCKEDITOR();
                         self.destroyAllSwfUpload();
                         self.grid.unblock();
-                        if(json.filters)
-                            self.filters = json.filters;                    
+                        if(json.filters) {
+                            self.filters = json.filters;
+                        }
                         $.b.app.loadDynamicPage(self.activeLocationUpdate ? url : false, self.grid, json);
                         self.initGridEvents();
-                        if(self.activeAutoScroll)
+                        if(self.activeAutoScroll) {
                             $.b.app.scrollTop();
+                        }
                     }
                 }, 
                 (data != '' && data != undefined ? data + '&' : '') + 'partial=1' , 
@@ -172,7 +175,8 @@
                         if($.b.app.loginReload(json)) {
                             ajaxRequest(false);
                         }
-                    } else {               
+                    } else {
+                        $.b.app.destroyCKEDITOR();
                         self.destroyAllSwfUpload(row.index());
                         self.grid.unblock();
                         $row = $($.parseHTML(json.html));
@@ -211,6 +215,7 @@
                         if($.b.app.loginReload(json))
                             ajaxRequest(false);
                     } else {
+                        $.b.app.destroyCKEDITOR();
                         self.destroyAllSwfUpload(row.index());
                         self.grid.unblock();
                         $row = $($.parseHTML(json.html));

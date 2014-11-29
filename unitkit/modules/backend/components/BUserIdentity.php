@@ -43,13 +43,13 @@ class BUserIdentity extends BBaseUserIdentity
     public function authenticate()
     {
         $model = BPerson::model()->findByEmail($this->_username);
-        if ($model === null || ! CPasswordHelper::verifyPassword($this->_password, $model->password))
+        if ($model === null || ! CPasswordHelper::verifyPassword($this->_password, $model->password)) {
             $this->errorCode = self::ERROR_UNKNOWN_IDENTITY;
-        elseif ($model->activated == 0)
+        } elseif ($model->activated == 0) {
             $this->errorCode = self::ERR_USER_NOT_ACTIVATED;
-        elseif ($model->validated == 0)
+        } elseif ($model->validated == 0) {
             $this->errorCode = self::ERR_USER_NOT_VALIDATED;
-        else {
+        } else {
             $this->_id = $model->id;
             $this->errorCode = self::ERROR_NONE;
             return true;
@@ -58,8 +58,6 @@ class BUserIdentity extends BBaseUserIdentity
     }
 
     /**
-     * Get user id
-     *
      * @see CUserIdentity::getId()
      */
     public function getId()

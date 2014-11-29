@@ -12,8 +12,6 @@ class PageContainerController extends BAutoController
     protected $_modelI18n = 'BCmsPageI18n';
 
     /**
-     * (non-PHPdoc)
-     *
      * @see CController::accessRules()
      */
     public function accessRules()
@@ -46,8 +44,6 @@ class PageContainerController extends BAutoController
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see BBaseAutoController::advancedConbobox()
      */
     protected function _advancedConbobox()
@@ -201,9 +197,7 @@ class PageContainerController extends BAutoController
             }
         }
 
-
-        foreach($models['BCmsPageContents'] as $i => &$BCmsPageContent)
-        {
+        foreach($models['BCmsPageContents'] as $i => &$BCmsPageContent) {
             if($i < 1 || $i > $maxContainer) {
                 $models['BCmsPageContents'][$i]->delete();
                 unset($models['BCmsPageContents'][$i]);
@@ -302,7 +296,7 @@ class PageContainerController extends BAutoController
                         array('select' => 'max_container')
                     );
                     if ($layout !== null) {
-                        $models = array_merge($models, $this->_loadCmsPageContentModels(null, $layout->max_container));
+                        $models = array_merge($models, $this->_loadCmsPageContentModels($models[$this->_model]->id, $layout->max_container));
                     }
                 }
 
@@ -330,6 +324,7 @@ class PageContainerController extends BAutoController
             }
             $validModel[$this->_model] = $models[$this->_model]->validate();
 
+
             if (isset($models['BCmsPageContents'])) {
                 foreach($models['BCmsPageContents'] as $i => &$BCmsPageContent) {
                     if (! $BCmsPageContent->bCmsPageContentI18n->validate()) {
@@ -339,7 +334,6 @@ class PageContainerController extends BAutoController
                     }
                 }
             }
-
 
             // save the model
             if ($validModel[$this->_model] && $models[$this->_model]->save(false) && (! isset($models['BCmsPageContents']) || $validModel['BCmsPageContents'] === null) &&
@@ -405,13 +399,23 @@ class PageContainerController extends BAutoController
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see BBaseAutoController::_afterSaveEditModels()
      */
     protected function _afterSaveEditModels(&$models)
     {
         BCmsPageFilter::removePrefixPage($models[$this->_modelI18n]->slug);
+        Yii::app()->urlManager->clearAllCache();
+    }
+
+    /**
+     * @see BBaseAutoController::_afterSaveTranslationModels()
+     */
+    protected function _afterSaveTranslationModels(&$models)
+    {
+        foreach($models as $model) {
+            BCmsPageFilter::removePrefixPage($model[$this->_modelI18n]->slug);
+        }
+        Yii::app()->urlManager->clearAllCache();
     }
 
     /**
@@ -468,7 +472,7 @@ class PageContainerController extends BAutoController
             // commit
             if ($isSaved) {
                 $transaction->commit();
-                $this->_afterSaveTranslationModels();
+                $this->_afterSaveTranslationModels($models);
             }
         } catch (Exception $e) {
             // roll back

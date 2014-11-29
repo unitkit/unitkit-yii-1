@@ -37,11 +37,14 @@ class BBaseHtml extends CHtml
     /**
      * Get i18n label from id
      *
-     * @param string $id i18n ID
+     * @param string $id I18n ID
+     * @param bool $flag Display flag
+     * @param bool $test Display text
+     * @return string HTML
      */
-    public static function labelI18n($id)
+    public static function labelI18n($id, $flag = true, $text = true)
     {
-        return '<span class="label-i18n"><img src="' . Yii::app()->baseUrl . '/b/images/i18n/' . $id . '.png" alt="" /> ' . BI18n::labelI18n($id) . '</span>';
+        return '<span class="label-i18n">'.($flag ? '<img src="' . Yii::app()->baseUrl . '/b/images/i18n/' . $id . '.png" alt="" /> ' : '') .($text ? BI18n::labelI18n($id) : ''). '</span>';
     }
 
     /**

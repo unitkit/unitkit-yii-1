@@ -42,7 +42,10 @@ class SiteI18nController extends BAutoController
     protected function _afterDeleteModels()
     {
         // refresh cache
-        BSiteI18n::model()->getI18nIds(true /* refresh */);
+        $model = BSiteI18n::model();
+        $model->getI18nIds(true /* refresh */, true);
+        $model->getI18nIds(true /* refresh */, false);
+        $model->getI18nIds(true /* refresh */, null);
     }
 
     /**
@@ -51,6 +54,8 @@ class SiteI18nController extends BAutoController
     protected function _afterSaveEditModels(&$models)
     {
         // refresh cache
-        $models['BSiteI18n']->getI18nIds(true /* refresh */);
+        $models['BSiteI18n']->getI18nIds(true /* refresh */, true);
+        $models['BSiteI18n']->getI18nIds(true /* refresh */, false);
+        $models['BSiteI18n']->getI18nIds(true /* refresh */, null);
     }
 }

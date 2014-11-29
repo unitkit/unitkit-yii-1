@@ -170,16 +170,15 @@ class BBaseCmsPageFilter extends CFilter
 	}
 
 	/**
-	 * (non-PHPdoc)
-	 *
 	 * @see CFilter::preFilter()
 	 */
     protected function preFilter($filterChain)
     {
     	$rules = $this->getRules();
+
     	if (empty($rules['actions']) || in_array($filterChain->action->id, $rules['actions'])) {
     		if (empty($rules['slug'])) {
-    			return false;
+                throw new CHttpException(404);
     		}
 
             $cache = Yii::app()->cmsCache->get(self::getPageCacheKey($rules['slug'], Yii::app()->language));
@@ -254,15 +253,15 @@ class BBaseCmsPageFilter extends CFilter
 
                 if (! empty($cache['containers'])) {
         			foreach ($cache['containers'] as $index => $container) {
-        				$filterChain->controller->cmsContents[$index] = $container;
+        				$filterChain->controller->cmsPageContents[$index] = $container;
         			}
                 }
+
+                return true;
     		}
     		else {
     			throw new CHttpException(404);
     		}
     	}
-
-        return true;
     }
 }

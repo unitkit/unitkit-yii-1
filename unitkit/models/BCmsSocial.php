@@ -131,8 +131,8 @@ class BCmsSocial extends CActiveRecord
                 $criteria->addCondition('bCmsSocial.updated_at >= :v_updated_at_start');
                 $criteria->params += array(':v_updated_at_start' => $this->v_updated_at_start);
             }
-            if($this->v_created_at_end != '') {
-                $criteria->addCondition('bCmsSocial.created_at <= DATE_ADD(:v_updated_at_end, INTERVAL 1 DAY)');
+            if($this->v_updated_at_end != '') {
+                $criteria->addCondition('bCmsSocial.updated_at <= DATE_ADD(:v_updated_at_end, INTERVAL 1 DAY)');
                 $criteria->params += array(':v_updated_at_end' => $this->v_updated_at_end);
             }
             $criteria->compare('bCmsSocialI18ns.url', $this->lk_b_cms_social_i18ns_url, true);

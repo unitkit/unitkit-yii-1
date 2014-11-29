@@ -10,12 +10,10 @@
 		<a class="btn btn-default btn-sm btn-close" href="#"> <span><?= B::t('unitkit', 'btn_close'); ?></span>
         </a>
     </div>
-    <!-- actions -->
 </div>
 
 <div class="inner-container">
-    <div class="grid">
+    <div class="grid table-condensed">
 		<?php $this->bRenderPartial('list/_table', array('dataView' => $dataView)); ?>
 	</div>
-    <!-- grid container -->
 </div>

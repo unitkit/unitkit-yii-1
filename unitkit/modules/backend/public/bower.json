@@ -2,13 +2,13 @@
 	"name":"backend.unitkit.local",
 	"version":"1.0.0",
 	"authors":[
-		"Kevin <walkev13@gmail.com>"
+		"Kevin Walter <walkev13@gmail.com>"
 	],
 	"dependencies":{
 		"jquery":"1.x",
 		"jqueryui":"1.x",
 		"jqueryui-timepicker-addon":"1.4.4",
-		"bootstrap":"3.3.0",
+		"bootstrap":"3.3.x",
 		"blockui":"v2.65",
 		"browser":"0.7.2"
 	},

@@ -4,7 +4,7 @@ Yii::setPathOfAlias('application', dirname(__FILE__) . '/../../..');
 
 return array(
     // application ID (should be unique)
-    'id' => 'ezdezdezdezd',
+    'id' => '',
     'name' => 'Backend',
     'basePath' => Yii::getPathOfAlias('application'),
     'preload' => array(
@@ -22,7 +22,7 @@ return array(
     'defaultController' => 'backend/auth/auth',
     'sourceLanguage' => '?',
     // default language
-    'language' => 'en',
+    'language' => 'fr',
     // list of activated modules
     'modules' => array(
         'backend' => array(
@@ -107,7 +107,9 @@ return array(
             'class' => 'application.modules.backend.vendor.mailer.EMailer',
             'pathViews' => 'application.views.email',
             'pathLayouts' => 'application.views.email.layouts',
-            'Mailer' => 'smtp'
+            // See phpmailer documentation
+            'Mailer' => 'smtp',
+            //'Host' => ''
         ),
         'urlManager' => array(
             'class' => 'application.modules.backend.components.BUrlManager',
@@ -115,18 +117,15 @@ return array(
             'showScriptName' => false,
             'cacheID' => 'urlCache'
         ),
-        'contoller' => array(
-        	'class' => 'application.modules.backend.components.BController'
-        ),
         // generic cache
         'cache' => array(
             'class' => 'CMemCache',
             'keyPrefix' => 'b:app:backend:main',
             'useMemcached' => true,
-            'servers'=>array(
+            'servers' => array(
                 array(
-                    'host'=>'127.0.0.1',
-                    'port'=>11211
+                    'host'=> '127.0.0.1',
+                    'port'=> 11211
                 )
             )
         ),
@@ -135,10 +134,10 @@ return array(
             'class' => 'CMemCache',
             'keyPrefix' => 'b:app:cms',
             'useMemcached' => true,
-            'servers'=>array(
+            'servers' => array(
                 array(
-                    'host'=>'127.0.0.1',
-                    'port'=>11211
+                    'host'=> '127.0.0.1',
+                    'port'=> 11211
                 )
             )
         ),
@@ -147,10 +146,10 @@ return array(
             'class' => 'CMemCache',
             'keyPrefix' => 'b:app:var',
             'useMemcached' => true,
-            'servers'=>array(
+            'servers' => array(
                 array(
-                    'host'=>'127.0.0.1',
-                    'port'=>11211,
+                    'host'=> '127.0.0.1',
+                    'port'=> 11211,
                 )
             )
         ),
@@ -159,10 +158,10 @@ return array(
             'class' => 'CMemCache',
             'keyPrefix' => 'b:app:db',
             'useMemcached' => true,
-            'servers'=>array(
+            'servers' => array(
                 array(
-                    'host'=>'127.0.0.1',
-                    'port'=>11211
+                    'host' => '127.0.0.1',
+                    'port' => 11211
                 )
             )
         ),
@@ -171,10 +170,10 @@ return array(
             'class' => 'CMemCache',
             'keyPrefix' => 'b:app:backend:right',
             'useMemcached' => true,
-            'servers'=>array(
+            'servers' => array(
                 array(
-                    'host'=>'127.0.0.1',
-                    'port'=>11211,
+                    'host' => '127.0.0.1',
+                    'port' => 11211,
                 )
             )
         ),
@@ -183,10 +182,10 @@ return array(
             'class' => 'CMemCache',
             'keyPrefix' => 'b:app:message',
             'useMemcached' => true,
-            'servers'=>array(
+            'servers' => array(
                 array(
-                    'host'=>'127.0.0.1',
-                    'port'=>11211
+                    'host' => '127.0.0.1',
+                    'port' => 11211
                 )
             )
         ),
@@ -195,10 +194,10 @@ return array(
             'class' => 'CMemCache',
             'useMemcached' => true,
             'keyPrefix' => 'b:app:backend:url',
-            'servers'=>array(
+            'servers' => array(
                 array(
-                    'host'=>'127.0.0.1',
-                    'port'=>11211
+                    'host' => '127.0.0.1',
+                    'port' => 11211
                 )
             )
         ),
@@ -207,10 +206,10 @@ return array(
             'class' => 'CMemCache',
             'useMemcached' => true,
             'keyPrefix' => 'b:app:i18n',
-            'servers'=>array(
+            'servers' => array(
                 array(
-                    'host'=>'127.0.0.1',
-                    'port'=>11211
+                    'host' => '127.0.0.1',
+                    'port' => 11211
                 )
             )
         ),

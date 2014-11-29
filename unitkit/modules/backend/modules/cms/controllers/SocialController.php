@@ -12,8 +12,6 @@ class SocialController extends BAutoController
     protected $_modelI18n = 'BCmsSocialI18n';
 
     /**
-     * (non-PHPdoc)
-     *
      * @see BBaseController::setDefaultRoles()
      */
     public function setDefaultRoles()

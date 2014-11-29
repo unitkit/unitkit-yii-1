@@ -10,30 +10,32 @@
 <?php endif; ?>
 
 <form method="POST" action="<?= $dataView->action; ?>">
-    <table class="table table-condensed">
-        <thead>
-            <tr class="form-inline">
-                <th><i class="icon-th-list"></i></th>
-            	<?php foreach($dataView->relatedDatas['i18nIds'] as $i18nId): ?>
-            	<th><?= BHtml::labelI18n($i18nId); ?></th>
-            	<?php endforeach; ?>
-            </tr>
-        </thead>
-        <tbody>
-    		<?php $this->bRenderPartial('translate/_tbody', array('dataView' => $dataView)); ?>
-    	</tbody>
-        <tfoot>
-            <tr>
-                <td colspan="<?= count($dataView->relatedDatas['i18nIds']) + 2; ?>" class="text-center">
-                    <button class="btn btn-primary btn-update">
-                        <span class="glyphicon glyphicon-floppy-disk"></span>
-                        <span><?= B::t('unitkit', 'btn_save'); ?></span>
-                    </button>
-                    <a href="<?= $dataView->closeAction; ?>" class="btn btn-default btn-close">
-                        <span><?= B::t('unitkit', 'btn_close'); ?></span>
-                    </a>
-                </td>
-            </tr>
-        </tfoot>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-condensed">
+            <thead>
+                <tr class="form-inline">
+                    <th><i class="icon-th-list"></i></th>
+                    <?php foreach($dataView->relatedDatas['i18nIds'] as $i18nId): ?>
+                    <th><?= BHtml::labelI18n($i18nId); ?></th>
+                    <?php endforeach; ?>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $this->bRenderPartial('translate/_tbody', array('dataView' => $dataView)); ?>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="<?= count($dataView->relatedDatas['i18nIds']) + 2; ?>" class="text-center">
+                        <button class="btn btn-primary btn-update">
+                            <span class="glyphicon glyphicon-floppy-disk"></span>
+                            <span><?= B::t('unitkit', 'btn_save'); ?></span>
+                        </button>
+                        <a href="<?= $dataView->closeAction; ?>" class="btn btn-default btn-close">
+                            <span><?= B::t('unitkit', 'btn_close'); ?></span>
+                        </a>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 </form>

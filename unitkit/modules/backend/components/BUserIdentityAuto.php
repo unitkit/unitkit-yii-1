@@ -62,7 +62,6 @@ class BUserIdentityAuto extends BBaseUserIdentity
     /**
      * Authenticates a user based on keys
      *
-     * @param array $keys array of keys
      * @return bool
      */
     public function authenticate()

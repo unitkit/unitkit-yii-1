@@ -49,10 +49,10 @@ class BSiteI18n extends CActiveRecord
     {
         return array(
             // save
-            array('i18n_id', 'required', 'on' => array('insert', 'update')),
+            array('i18n_id, activated', 'required', 'on' => array('insert', 'update')),
             array('i18n_id', 'length', 'max' => 16),
             array('i18n_id', 'type', 'type' => 'string'),
-
+            array('activated', 'boolean', 'on' => array('insert', 'update')),
             // search
             array('i18n_id', 'safe', 'on' => 'search')
         );
@@ -76,6 +76,7 @@ class BSiteI18n extends CActiveRecord
     {
         return array(
             'i18n_id' => B::t('unitkit', 'b_site_i18n:i18n_id'),
+            'activated' => B::t('unitkit', 'b_site_i18n:activated'),
 
             // related attributes
             'lk_b_i18n_i18ns_name' => BI18nI18n::model()->getAttributeLabel('name')
@@ -95,15 +96,24 @@ class BSiteI18n extends CActiveRecord
     /**
      * Get the list of i18n ID
      *
-     * @param bool $refresh refresh cache
+     * @param bool $refresh Refresh cache
+     * @param int $activated If true get activated languages only. If null get all website languages. If false get disabled languages.
      * @return array
      */
-    public function getI18nIds($refresh = false)
+    public function getI18nIds($refresh = false, $activated = null)
     {
-        $key = self::getCacheKeyNameI18nIds();
+        $strActivated = 'null';
+        if ($activated === true) {
+            $strActivated = '1';
+        } elseif ($activated === false) {
+            $strActivated = '0';
+        }
+
+        $key = self::getCacheKeyNameI18nIds().':activated:'.$strActivated;
         $i18ns = $refresh ? false : Yii::app()->i18nCache->get($key);
         if ($i18ns === false) {
-            foreach ($this->findAll() as $model) {
+            $args = ($activated === null) ? array() : array('activated' => $activated);
+            foreach ($this->findAllByAttributes($args) as $model) {
                 $i18ns[$model->i18n_id] = $model->i18n_id;
             }
             Yii::app()->i18nCache->set($key, $i18ns, self::CACHE_DURATION);
@@ -133,6 +143,7 @@ class BSiteI18n extends CActiveRecord
 
         if ($this->validate()) {
             $criteria->compare('bSiteI18n.i18n_id', $this->i18n_id, true);
+            $criteria->compare('bPerson.activated', $this->activated);
         }
 
         return new CActiveDataProvider(
@@ -144,6 +155,7 @@ class BSiteI18n extends CActiveRecord
                     'defaultOrder' => array('bSiteI18n.i18n_id' => CSort::SORT_ASC),
                     'attributes' => array(
                         'bSiteI18n.i18n_id' => array('label' => $this->getAttributeLabel('i18n_id')),
+                        'bSiteI18n.activated' => array('label' => $this->getAttributeLabel('activated')),
                         'bI18nI18ns.name' => array('label' => $this->getAttributeLabel('lk_b_i18n_i18ns_name'))
                     )
                 ),

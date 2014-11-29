@@ -67,7 +67,16 @@ class SiteI18nEditDataView extends BEditDataView
                         'i18n_id' => Yii::app()->language
                     ))->name : ''
                 )
-            ))
+            )),
+            new BItemField(array(
+                'model' => $datas['BSiteI18n'],
+                'attribute' => 'activated',
+                'type' => 'activeCheckBox',
+                'htmlOptions' => array(
+                    'id' => false,
+                    'class' => 'form-control input-sm'
+                )
+            )),
         );
     }
 }

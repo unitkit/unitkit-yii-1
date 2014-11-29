@@ -9,8 +9,6 @@
 class DefaultController extends BController
 {
     /**
-     * (non-PHPdoc)
-     *
      * @see BController::init()
      */
     public function init()

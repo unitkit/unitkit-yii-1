@@ -12,8 +12,6 @@ class MenuController extends BAutoController
     protected $_modelI18n = 'BCmsMenuI18n';
 
     /**
-     * (non-PHPdoc)
-     *
      * @see BBaseAutoController::advancedConbobox()
      */
     protected function _advancedConbobox()
@@ -63,8 +61,6 @@ class MenuController extends BAutoController
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see BBaseAutoController::_afterSaveTranslationModels()
      */
     protected function _afterSaveTranslationModels(&$models)
@@ -77,8 +73,6 @@ class MenuController extends BAutoController
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see BBaseAutoController::_afterSaveEditModels()
      */
     protected function _afterSaveEditModels(&$models)

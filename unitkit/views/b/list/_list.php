@@ -6,7 +6,7 @@
     <div class="adv-search">
 		<?php $this->bRenderPartial('list/_search', array('dataView' => $dataView)); ?>
 	</div>
-    <div class="grid">
+    <div class="grid table-responsive">
 		<?php $this->bRenderPartial('list/_table', array('dataView' => $dataView)); ?>
 	</div>
 </div>

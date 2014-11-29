@@ -21,7 +21,6 @@
 			<?php endif; ?>
 		</div>
     </td>
-    <!-- actions -->
 	<?php foreach($dataView->items as $item): ?>
 	<td><?= $item; ?></td>
 	<?php endforeach; ?>

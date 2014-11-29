@@ -17,18 +17,9 @@ class LoginForm extends CFormModel
     public function rules()
     {
         return array(
-            array(
-                'username, password',
-                'required'
-            ),
-            array(
-                'password',
-                'authenticate'
-            ),
-            array(
-                'remember_me',
-                'boolean'
-            )
+            array('username, password', 'required'),
+            array('password', 'authenticate'),
+            array('remember_me', 'boolean')
         );
     }
 

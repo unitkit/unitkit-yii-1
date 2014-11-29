@@ -30,8 +30,6 @@ class BBaseHttpRequest extends CHttpRequest
     private $_csrfToken;
 
     /**
-     * (non-PHPdoc)
-     *
      * @see CHttpRequest::getCsrfToken()
      */
     public function getCsrfToken()
@@ -49,8 +47,6 @@ class BBaseHttpRequest extends CHttpRequest
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see CHttpRequest::normalizeRequest()
      */
     protected function normalizeRequest()
@@ -61,17 +57,16 @@ class BBaseHttpRequest extends CHttpRequest
         // remove the event handler CSRF if this is a route we want skipped
         if ($this->enableCsrfValidation) {
             $route = Yii::app()->getUrlManager()->parseUrl($this);
-            if ($this->enableCsrfValidation && false !== array_search($route, $this->noCsrfValidationRoutes))
+            if ($this->enableCsrfValidation && false !== array_search($route, $this->noCsrfValidationRoutes)) {
                 Yii::app()->detachEventHandler('onBeginRequest', array(
                     $this,
                     'validateCsrfToken'
                 ));
+            }
         }
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see CHttpRequest::validateCsrfToken()
      */
     public function validateCsrfToken($event)
@@ -87,8 +82,9 @@ class BBaseHttpRequest extends CHttpRequest
                 $valid = ($tokenFromSession === $tokenFromPost);
             }
 
-            if (! $valid)
-                Yii::app()->user->loginRequired();
+            if (! $valid) {;
+                throw new CHttpException(403);
+            }
         }
     }
 }

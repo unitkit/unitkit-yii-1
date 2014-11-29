@@ -19,7 +19,12 @@ class SiteI18nListRowDataView extends BListRowItemDataView
     {
         $this->pk = $pk;
         $this->items = array(
-            isset($data->bI18nI18ns[0]) ? $data->bI18nI18ns[0]->name : ''
+            isset($data->bI18nI18ns[0]) ? $data->bI18nI18ns[0]->name : '',
+            BHtml::activeCheckBox($data, 'activated', array(
+                'class' => 'form-control input-sm',
+                'disabled' => 'disabled',
+                'id' => false
+            )),
         );
     }
 }

@@ -133,8 +133,8 @@ class BVariableGroup extends CActiveRecord
                 $criteria->addCondition('bVariableGroup.updated_at >= :v_updated_at_start');
                 $criteria->params += array(':v_updated_at_start' => $this->v_updated_at_start);
             }
-            if ($this->v_created_at_end != '') {
-                $criteria->addCondition('bVariableGroup.created_at <= DATE_ADD(:v_updated_at_end, INTERVAL 1 DAY)');
+            if ($this->v_updated_at_end != '') {
+                $criteria->addCondition('bVariableGroup.updated_at <= DATE_ADD(:v_updated_at_end, INTERVAL 1 DAY)');
                 $criteria->params += array(':v_updated_at_end' => $this->v_updated_at_end);
             }
             $criteria->compare('bVariableGroupI18ns.name', $this->lk_b_variable_group_i18ns_name, true);

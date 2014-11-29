@@ -1,7 +1,10 @@
 UNITKIT
 ========
 
-UNITKIT is a backend application. UNITKIT allow to create simple i18n module to manage your website. Easy to configure and very fast. You can mange user/groups/roles for each module, translations, languages, mail templates, pages, menu. 
+UNITKIT CMS is a backend and frontend application.
+UNITKIT CMS allow to create simple i18n module to manage your website.
+Easy to configure and very fast.
+You can mange user/groups/roles for each module, translations, languages, mail templates, pages, menu.
 
 Required Yii Framework 1.1.15
 

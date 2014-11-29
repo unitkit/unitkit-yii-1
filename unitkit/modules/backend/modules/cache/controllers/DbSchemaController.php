@@ -47,6 +47,9 @@ class DbSchemaController extends BController
         // clear the cache of all loaded tables
         Yii::app()->db->schema->refresh();
 
-        $this->dynamicRender('/flush/main', array());
+        $this->dynamicRender('/flush/main', array(
+            'title' => B::t('backend', 'db_shema_refresh_title'),
+            'content' => B::t('backend', 'db_schema_is_refreshed')
+        ));
     }
 }

@@ -8,6 +8,11 @@
  */
 class BCmsPageContent extends CActiveRecord
 {
+    /**
+     * Maximum number of container
+     */
+    const MAX_CONTAINER = 20;
+
     // related attributes
 	public $lk_b_cms_page_content_i18ns_content;
 
@@ -49,7 +54,7 @@ class BCmsPageContent extends CActiveRecord
             array('id', 'unsafe', 'on' => array('insert', 'update')),
             array('id', 'type', 'type' => 'integer'),
             array('b_cms_page_id', 'type', 'type' => 'integer'),
-            array('index', 'numerical', 'integerOnly' => true, 'min' => 1, 'max' => 20),
+            array('index', 'numerical', 'integerOnly' => true, 'min' => 1, 'max' => self::MAX_CONTAINER),
             // search
             array('id, b_cms_page_id, b_cms_container_type_id, index, lk_b_cms_page_content_i18ns_content',
                 'safe', 'on' => 'search'),

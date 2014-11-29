@@ -37,8 +37,6 @@ class MenuGroupController extends BAutoController
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see BBaseAutoController::_afterSaveEditModels()
      */
     protected function _afterSaveEditModels(&$models)
@@ -47,8 +45,6 @@ class MenuGroupController extends BAutoController
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see BBaseAutoController::_afterSaveTranslationModels()
      */
     protected function _afterSaveTranslationModels(&$models)

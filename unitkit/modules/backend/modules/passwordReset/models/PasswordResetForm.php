@@ -12,8 +12,6 @@ class PasswordResetForm extends CFormModel
     public $isSent = false;
 
     /**
-     * (non-PHPdoc)
-     *
      * @see CModel::rules()
      */
     public function rules()
@@ -27,8 +25,6 @@ class PasswordResetForm extends CFormModel
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see CModel::attributeLabels()
      */
     public function attributeLabels()

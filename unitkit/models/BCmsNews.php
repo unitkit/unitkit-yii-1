@@ -9,14 +9,16 @@
 class BCmsNews extends CActiveRecord
 {
     // related attributes
-	public $lk_b_cms_news_i18ns_title;
-	public $lk_b_cms_news_i18ns_content;
+    public $lk_b_cms_news_i18ns_title;
+    public $lk_b_cms_news_i18ns_content;
 
     // virtual attributes
-	public $v_created_at_start;
-	public $v_created_at_end;
-	public $v_updated_at_start;
-	public $v_updated_at_end;
+    public $v_created_at_start;
+    public $v_created_at_end;
+    public $v_updated_at_start;
+    public $v_updated_at_end;
+    public $v_published_at_start;
+    public $v_published_at_end;
 
     /**
      * @see CActiveRecord::scopes()
@@ -52,15 +54,16 @@ class BCmsNews extends CActiveRecord
     {
         return array(
             //save
-            array('b_cms_news_group_id, created_at, updated_at', 'required', 'on' => array('insert', 'update')),
+            array('b_cms_news_group_id, created_at, updated_at, activated, published_at', 'required', 'on' => array('insert', 'update')),
             array('id', 'unsafe', 'on' => array('insert', 'update')),
             array('id', 'type', 'type' => 'integer'),
             array('b_cms_news_group_id', 'type', 'type' => 'integer'),
+            array('published_at', 'default', 'value' => BTools::now(), 'setOnEmpty' => false, 'on' => 'insert'),
             array('created_at', 'default', 'value' => BTools::now(), 'setOnEmpty' => false, 'on' => 'insert'),
             array('updated_at', 'default', 'value' => BTools::now(), 'setOnEmpty' => false, 'on' => array('update', 'insert')),
 
             // search
-            array('id, b_cms_news_group_id, v_created_at_start, v_created_at_end, v_updated_at_start, v_updated_at_end, lk_b_cms_news_i18ns_title, lk_b_cms_news_i18ns_content',
+            array('id, b_cms_news_group_id, v_created_at_start, v_created_at_end, v_updated_at_start, v_updated_at_end, activated, v_published_at_start, v_published_at_end, lk_b_cms_news_i18ns_title, lk_b_cms_news_i18ns_content',
                 'safe', 'on' => 'search'),
         );
     }
@@ -91,11 +94,12 @@ class BCmsNews extends CActiveRecord
             'b_cms_news_group_id' => B::t('unitkit', $this->tableName().':b_cms_news_group_id'),
             'created_at' => B::t('unitkit', 'model:created_at'),
             'updated_at' => B::t('unitkit', 'model:updated_at'),
+            'activated' => B::t('unitkit', 'model:activated'),
+            'published_at' => B::t('unitkit', $this->tableName().':published_at'),
 
             // related attributes
             'lk_b_cms_news_i18ns_title' => BCmsNewsI18n::model()->getAttributeLabel('title'),
             'lk_b_cms_news_i18ns_content' => BCmsNewsI18n::model()->getAttributeLabel('content'),
-            'lk_b_cms_news_group_i18ns_name' => BCmsNewsGroupI18n::model()->getAttributeLabel('name'),
         );
     }
 
@@ -110,42 +114,42 @@ class BCmsNews extends CActiveRecord
         $criteria = $this->getDbCriteria();
         $criteria->alias = 'bCmsNews';
         $criteria->with = array(
-            'bCmsNewsGroupI18ns' => array(
-                'select' => 'name',
-                'alias' => 'bCmsNewsGroupI18ns',
-                'joinType' => 'LEFT JOIN',
-                'together' => 'bCmsNews',
-                'on' => 'bCmsNewsGroupI18ns.i18n_id = :id18nId',
-                'params' => array(':id18nId' => $i18nId),
-            ),
-            'bCmsNewsI18ns' => array(
-                'select' => 'title,content',
-                'alias' => 'bCmsNewsI18ns',
-                'joinType' => 'LEFT JOIN',
-                'together' => 'bCmsNews',
-                'on' => 'bCmsNewsI18ns.i18n_id = :id18nId',
-                'params' => array(':id18nId' => $i18nId)
-            ),
+            'bCmsNewsI18n',
         );
 
         if ($this->validate()) {
             $criteria->compare('bCmsNews.id', $this->id);
             $criteria->compare('bCmsNews.b_cms_news_group_id', $this->b_cms_news_group_id);
-            if($this->v_created_at_start != '') {
+            if($this->v_created_at_start != '')
+            {
                 $criteria->addCondition('bCmsNews.created_at >= :v_created_at_start');
                 $criteria->params += array(':v_created_at_start' => $this->v_created_at_start);
             }
-            if($this->v_created_at_end != '') {
+            if($this->v_created_at_end != '')
+            {
                 $criteria->addCondition('bCmsNews.created_at <= DATE_ADD(:v_created_at_end, INTERVAL 1 DAY)');
                 $criteria->params += array(':v_created_at_end' => $this->v_created_at_end);
             }
-            if($this->v_updated_at_start != '') {
+            if($this->v_updated_at_start != '')
+            {
                 $criteria->addCondition('bCmsNews.updated_at >= :v_updated_at_start');
                 $criteria->params += array(':v_updated_at_start' => $this->v_updated_at_start);
             }
-            if($this->v_created_at_end != '') {
-                $criteria->addCondition('bCmsNews.created_at <= DATE_ADD(:v_updated_at_end, INTERVAL 1 DAY)');
+            if($this->v_updated_at_end != '')
+            {
+                $criteria->addCondition('bCmsNews.updated_at <= DATE_ADD(:v_updated_at_end, INTERVAL 1 DAY)');
                 $criteria->params += array(':v_updated_at_end' => $this->v_updated_at_end);
+            }
+            $criteria->compare('bCmsNews.activated', $this->activated);
+            if($this->v_published_at_start != '')
+            {
+                $criteria->addCondition('bCmsNews.published_at >= :v_published_at_start');
+                $criteria->params += array(':v_published_at_start' => $this->v_published_at_start);
+            }
+            if($this->v_published_at_end != '')
+            {
+                $criteria->addCondition('bCmsNews.published_at <= DATE_ADD(:v_published_at_end, INTERVAL 1 DAY)');
+                $criteria->params += array(':v_published_at_end' => $this->v_published_at_end);
             }
             $criteria->compare('bCmsNewsI18ns.title', $this->lk_b_cms_news_i18ns_title, true);
             $criteria->compare('bCmsNewsI18ns.content', $this->lk_b_cms_news_i18ns_content, true);
@@ -158,25 +162,28 @@ class BCmsNews extends CActiveRecord
                 'defaultOrder' => array('bCmsNews.id' => CSort::SORT_DESC),
                 'attributes' => array(
                     'bCmsNews.id' => array(
-                    	'label' => $this->getAttributeLabel('id'),
+                        'label' => $this->getAttributeLabel('id'),
                     ),
                     'bCmsNews.b_cms_news_group_id' => array(
-                    	'label' => $this->getAttributeLabel('b_cms_news_group_id'),
+                        'label' => $this->getAttributeLabel('b_cms_news_group_id'),
                     ),
                     'bCmsNews.created_at' => array(
-                    	'label' => $this->getAttributeLabel('created_at'),
+                        'label' => $this->getAttributeLabel('created_at'),
                     ),
                     'bCmsNews.updated_at' => array(
-                    	'label' => $this->getAttributeLabel('updated_at'),
+                        'label' => $this->getAttributeLabel('updated_at'),
+                    ),
+                    'bCmsNews.activated' => array(
+                        'label' => $this->getAttributeLabel('activated'),
+                    ),
+                    'bCmsNews.published_at' => array(
+                        'label' => $this->getAttributeLabel('published_at'),
                     ),
                     'bCmsNewsI18ns.title' => array(
-                    	'label' => $this->getAttributeLabel('lk_b_cms_news_i18ns_title'),
+                        'label' => $this->getAttributeLabel('lk_b_cms_news_i18ns_title'),
                     ),
                     'bCmsNewsI18ns.content' => array(
-                    	'label' => $this->getAttributeLabel('lk_b_cms_news_i18ns_content'),
-                    ),
-                    'bCmsNewsGroupI18ns.name' => array(
-                        'label' => $this->getAttributeLabel('lk_b_cms_news_group_i18ns_name'),
+                        'label' => $this->getAttributeLabel('lk_b_cms_news_i18ns_content'),
                     ),
                 ),
             ),

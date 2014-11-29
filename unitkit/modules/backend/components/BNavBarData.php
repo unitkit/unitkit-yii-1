@@ -59,7 +59,7 @@ class BNavBarData extends BBaseNavBarData
         return array(
             'brand' => array(
                 'label' => array(
-                    'value' => 'UNITKIT',
+                    'value' => 'UNITKIT CMS',
                     'url' => $this->_controller->createUrl(! Yii::app()->user->isGuest ? '/dashboard/default' : '/auth/auth/login'),
                     'type' => 'brand'
                 )
@@ -351,6 +351,13 @@ class BNavBarData extends BBaseNavBarData
                                                 'value' => B::t('backend', 'navbar_db_schema_flush'),
                                                 'url' => $this->_controller->createUrl('/cache/dbSchema/flush'),
                                                 'hasRight' => Yii::app()->user->checkMultiAccess(Yii::app()->rights->getDefaultRoles('dbSchema', 'cache', 'consult'))
+                                            )
+                                        ),
+                                        array(
+                                            'label' => array(
+                                                'value' => B::t('backend', 'url_manager_schema_flush'),
+                                                'url' => $this->_controller->createUrl('/cache/urlManager/flush'),
+                                                'hasRight' => Yii::app()->user->checkMultiAccess(Yii::app()->rights->getDefaultRoles('urlManager', 'cache', 'consult'))
                                             )
                                         )
                                     )

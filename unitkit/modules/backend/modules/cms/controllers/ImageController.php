@@ -21,8 +21,6 @@ class ImageController extends BAutoController
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see BBaseAutoController::uploader()
      */
     protected function _uploader()

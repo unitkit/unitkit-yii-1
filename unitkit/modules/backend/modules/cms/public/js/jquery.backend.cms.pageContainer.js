@@ -30,9 +30,10 @@
             {re:/[\xF1]/g, ch:'n'} 
         ];
    
-        for(var i=0, len=rExps.length; i<len; ++i)
+        for(var i=0, len=rExps.length; i<len; ++i) {
             value = value.replace(rExps[i].re, rExps[i].ch);
-   
+        }
+
         return value.toLowerCase()
             .replace(/\s+/g, '-')
             .replace(/[^a-z0-9-.]/g, '')
@@ -115,7 +116,7 @@
      */
 	$.backend.cms.pageContainer.Edit.prototype.initExtendEvents = function()
 	{
-	    var self = this;
+	    var $this = this;
 	    
 	    this.main.find('input[name="BCmsPageI18n[slug]"], input[name="BCmsPageI18n[title]"].active-slug').on('keyup', function(e) {
 	        if($.inArray(e.which, [37, 38, 39, 40, 46, 8]) === -1) {
@@ -124,23 +125,23 @@
 	    });
 
 	    this.main.find('.btn-refresh-cms-page').on('click', function(){
-	        var $this = $(this);
-	        self.main.block(self.blockUI);
+	        var self = $(this);
+            $this.main.block($this.blockUI);
 
 	        var ajaxRequest = function(async) {
                 $.b.app.ajax(
-                    $this.attr('href'), 
+                    self.attr('href'),
                     function(json){
                         if(json.loginReload) {
                             if($.b.app.loginReload(json)) {
                                 ajaxRequest(false);
                             }
-                        } else {                   
-                            self.main.unblock();
-                            $($this.attr('data-targetContainer')).html(json.html);
+                        } else {
+                            $this.main.unblock();
+                            $(self.attr('data-targetContainer')).html(json.html);
                         }
                     }, 
-                    'page_slug=' + self.main.find('input[name="BCmsPageI18n[slug]"]').val(), 
+                    'page_slug=' + $this.main.find('input[name="BCmsPageI18n[slug]"]').val(),
                     'POST', 
                     'JSON', 
                     async
@@ -154,12 +155,12 @@
 	    var pageContainer = $('#pageContainers');
 	    
 	    this.main.find('.input-ajax-select-layout').on('change', function(){
-	        var $this = $(this);
+	        var self = $(this);
 
-	        pageContainer.block(self.blockUI);
+	        pageContainer.block($this.blockUI);
 	        var ajaxRequest = function(async){
                 $.b.app.ajax(
-                    $this.attr('data-actionLoadContent'), 
+                    self.attr('data-actionLoadContent'),
                     function(json){
                         if(json.loginReload) {
                             if($.b.app.loginReload(json)) {
@@ -170,19 +171,19 @@
                             $.b.app.destroyCKEDITOR();
                             pageContainer.html($.parseHTML(json.html));
                             pageContainer.find('.advanced-textarea').each(function() {
-                                var $this = $(this);
+                                var textarea = $(this);
                                 var options = {};
-                                if((url = $this.attr('data-ckeditorFilebrowserBrowseUrl')) !== undefined) {
+                                if((url = textarea.attr('data-ckeditorFilebrowserBrowseUrl')) !== undefined) {
                                     options.filebrowserBrowseUrl = url;
                                 }
-                                if((language = $this.attr('data-ckeditorLanguage')) !== undefined) {
+                                if((language = textarea.attr('data-ckeditorLanguage')) !== undefined) {
                                     options.language = language;
                                 }
-                                $this.ckeditor(options);
+                                textarea.ckeditor(options);
                             });
                         }
                     }, 
-                    'layout_id=' + $this.val() + '&pageId=' + $this.attr('data-pageId'), 
+                    'layout_id=' + self.val() + '&pageId=' + self.attr('data-pageId'),
                     'GET', 
                     'JSON', 
                     async

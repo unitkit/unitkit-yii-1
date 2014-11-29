@@ -46,10 +46,13 @@ class BI18n extends CActiveRecord
         return array(
             // save
             array('id', 'required', 'on' => array('insert', 'update')),
-            array('id', 'unsafe', 'on' => array('insert', 'update')),
             array('id', 'length', 'max' => 16),
             array('id', 'type', 'type' => 'string'),
-
+            array('id', 'filter', 'filter' => function($string) {
+                    $string = preg_replace('/[^A-Za-z]+/', '', $string);
+                    return $string;
+                }, 'on' => array('insert', 'update')
+            ),
             // search
             array('id, lk_b_i18n_i18ns_name', 'safe', 'on' => 'search')
         );

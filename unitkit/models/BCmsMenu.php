@@ -230,8 +230,8 @@ class BCmsMenu extends CActiveRecord
                 $criteria->addCondition('bCmsMenu.updated_at >= :v_updated_at_start');
                 $criteria->params += array(':v_updated_at_start' => $this->v_updated_at_start);
             }
-            if($this->v_created_at_end != '') {
-                $criteria->addCondition('bCmsMenu.created_at <= DATE_ADD(:v_updated_at_end, INTERVAL 1 DAY)');
+            if($this->v_updated_at_end != '') {
+                $criteria->addCondition('bCmsMenu.updated_at <= DATE_ADD(:v_updated_at_end, INTERVAL 1 DAY)');
                 $criteria->params += array(':v_updated_at_end' => $this->v_updated_at_end);
             }
             $criteria->compare('bCmsMenuI18ns.name', $this->lk_b_cms_menu_i18ns_name, true);

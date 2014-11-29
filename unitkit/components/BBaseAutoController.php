@@ -177,9 +177,9 @@ abstract class BBaseAutoController extends BBaseController
     public function actionAdvCombobox()
     {
         if (isset($_GET['name'])) {
-            $datas = $this->_advancedConbobox();
-            if (! empty($datas[$_GET['name']])) {
-                echo CJSON::encode(BHtml::listDatasAdvCombobox($datas[$_GET['name']]['model'], $datas[$_GET['name']]['select'], $datas[$_GET['name']]['search'], $datas[$_GET['name']]['criteria'], $datas[$_GET['name']]['cache']));
+            $data = $this->_advancedConbobox();
+            if (! empty($data[$_GET['name']])) {
+                echo CJSON::encode(BHtml::listdatasAdvCombobox($data[$_GET['name']]['model'], $data[$_GET['name']]['select'], $data[$_GET['name']]['search'], $data[$_GET['name']]['criteria'], $data[$_GET['name']]['cache']));
             }
         }
         Yii::app()->end();
@@ -241,21 +241,21 @@ abstract class BBaseAutoController extends BBaseController
      */
     public function actionSettings()
     {
-        // datas to update
-        $postDatas = array();
+        // data to update
+        $postData = array();
         if (isset($_POST['BInterfaceSetting'])) {
-            $postDatas['BInterfaceSetting'] = $_POST['BInterfaceSetting'];
+            $postData['BInterfaceSetting'] = $_POST['BInterfaceSetting'];
         }
 
-        // load / save datas
-        $datas = $this->_loadSettingsModels();
-        $isSaved = ! empty($postDatas) ? $this->_saveSettingsModels($datas, $postDatas) : false;
+        // load / save data
+        $data = $this->_loadSettingsModels();
+        $isSaved = ! empty($postData) ? $this->_saveSettingsModels($data, $postData) : false;
 
-        // related datas
-        $relatedDatas = array();
+        // related data
+        $relatedData = array();
 
         $this->dynamicRender('settings/settings', array(
-            'dataView' => new $this->crudComponents['settingsDataView']($datas, $relatedDatas, $isSaved)
+            'dataView' => new $this->crudComponents['settingsDataView']($data, $relatedData, $isSaved)
         ), array(
             'isSaved' => $isSaved
         ));
@@ -288,11 +288,11 @@ abstract class BBaseAutoController extends BBaseController
         $pagination->pageSize = BInterfaceSetting::model()->getSettings($this->id . ':' . $this->module->id, Yii::app()->user->id)->page_size;
         $pagination->itemCount = $dataProvider->totalItemCount;
 
-        // datas
-        $datas = $dataProvider->getData();
+        // data
+        $data = $dataProvider->getData();
 
-        // related datas
-        $relatedDatas = $this->_loadRelatedDatas();
+        // related data
+        $relatedData = $this->_loadRelatedDatas();
 
         // template
         $template = isset($_REQUEST['partial']) ? 'list/_table' : 'list/main';
@@ -300,16 +300,16 @@ abstract class BBaseAutoController extends BBaseController
         $jsonParams = array();
         if (Yii::app()->request->isAjaxRequest) {
             // filters
-            $filtersDatas = array();
+            $filtersData = array();
             if (isset($_GET[$this->_model])) {
-                $filtersDatas[$this->_model] = $_GET[$this->_model];
+                $filtersData[$this->_model] = $_GET[$this->_model];
             }
             if (isset($_GET[$sort->sortVar])) {
-                $filtersDatas[$sort->sortVar] = $_GET[$sort->sortVar];
+                $filtersData[$sort->sortVar] = $_GET[$sort->sortVar];
             }
 
             $jsonParams = array(
-                'filters' => http_build_query($filtersDatas)
+                'filters' => http_build_query($filtersData)
             );
         }
 
@@ -317,7 +317,7 @@ abstract class BBaseAutoController extends BBaseController
             $template,
             array(
                 'dataView' => new $this->crudComponents['listDataView'](
-                    $datas, $relatedDatas, $model, $sort, $pagination, $this
+                    $data, $relatedData, $model, $sort, $pagination, $this
                 )
             ),
             $jsonParams
@@ -333,14 +333,14 @@ abstract class BBaseAutoController extends BBaseController
             throw new CHttpException(404);
         }
 
-        // related datas
-        $relatedDatas = array();
+        // related data
+        $relatedData = array();
 
         // list of i18n ID
-        $relatedDatas['i18nIds'] = BSiteI18n::model()->getI18nIds();
-        $relatedDatas['i18nIds'] = array(
-            Yii::app()->language => $relatedDatas['i18nIds'][Yii::app()->language]
-        ) + $relatedDatas['i18nIds'];
+        $relatedData['i18nIds'] = BSiteI18n::model()->getI18nIds();
+        $relatedData['i18nIds'] = array(
+            Yii::app()->language => $relatedData['i18nIds'][Yii::app()->language]
+        ) + $relatedData['i18nIds'];
 
         // model
         $model = $this->_model;
@@ -356,24 +356,24 @@ abstract class BBaseAutoController extends BBaseController
             }
         }
 
-        // datas
-        $datas = $this->_loadTranslationModels($relatedDatas['i18nIds'], $pk);
+        // data
+        $data = $this->_loadTranslationModels($relatedData['i18nIds'], $pk);
 
-        // datas to update
-        $postDatas = $_POST;
+        // data to update
+        $postData = $_POST;
 
-        // save datas
-        $isSaved = Yii::app()->request->isPostRequest && ! empty($postDatas) ? $this->_saveTranslationModels($datas, $postDatas) : false;
+        // save data
+        $isSaved = Yii::app()->request->isPostRequest && ! empty($postData) ? $this->_saveTranslationModels($data, $postData) : false;
 
-        $datas = array(
-            Yii::app()->language => $datas[Yii::app()->language]
-        ) + $datas;
+        $data = array(
+            Yii::app()->language => $data[Yii::app()->language]
+        ) + $data;
 
         $this->dynamicRender(
             'translate/translate',
             array(
                 'dataView' => new $this->crudComponents['translateDataView'](
-                    $datas, $relatedDatas, $pk, $isSaved, $this
+                    $data, $relatedData, $pk, $isSaved, $this
                 )
             )
         );
@@ -456,31 +456,31 @@ abstract class BBaseAutoController extends BBaseController
      */
     public function actionCreate()
     {
-        // datas to update
-        $postDatas = $_POST;
+        // data to update
+        $postData = $_POST;
 
         // model
         $model = $this->_model;
         $pkId = $model::model()->tableSchema->primaryKey;
 
-        // datas
-        $datas = $this->_loadEditModels();
+        // data
+        $data = $this->_loadEditModels();
 
-        // related datas
-        $relatedDatas = $this->_loadRelatedDatas();
+        // related data
+        $relatedData = $this->_loadRelatedDatas();
 
-        // save datas
-        $isSaved = Yii::app()->request->isPostRequest && ! empty($postDatas) ? $this->_saveEditModels($datas, $postDatas) : false;
+        // save data
+        $isSaved = Yii::app()->request->isPostRequest && ! empty($postData) ? $this->_saveEditModels($data, $postData) : false;
 
         $pk = array();
         if ($isSaved) {
             // set primary key
             $pk = array();
             if (is_string($pkId)) {
-                $pk[$pkId] = $datas[$this->_model]->$pkId;
+                $pk[$pkId] = $data[$this->_model]->$pkId;
             } else {
                 foreach ($pkId as $v) {
-                    $pk[$v] = $datas[$this->_model]->$v;
+                    $pk[$v] = $data[$this->_model]->$v;
                 }
             }
         }
@@ -489,7 +489,7 @@ abstract class BBaseAutoController extends BBaseController
             'edit/edit',
             array(
                 'dataView' => new $this->crudComponents['editDataView'](
-                    $datas, $this->_loadRelatedDatas(), $pk, $isSaved, $this
+                    $data, $this->_loadRelatedDatas(), $pk, $isSaved, $this
                 )
             )
         );
@@ -500,8 +500,8 @@ abstract class BBaseAutoController extends BBaseController
      */
     public function actionUpdate()
     {
-        // datas to update
-        $postDatas = $_POST;
+        // data to update
+        $postData = $_POST;
 
         // model
         $model = $this->_model;
@@ -517,22 +517,22 @@ abstract class BBaseAutoController extends BBaseController
             }
         }
 
-        // datas
-        $datas = $this->_loadEditModels($pk);
+        // data
+        $data = $this->_loadEditModels($pk);
 
-        // related datas
-        $relatedDatas = $this->_loadRelatedDatas();
+        // related data
+        $relatedData = $this->_loadRelatedDatas();
 
-        // save datas
-        $isSaved = Yii::app()->request->isPostRequest && ! empty($postDatas) ? $this->_saveEditModels($datas, $postDatas) : false;
+        // save data
+        $isSaved = Yii::app()->request->isPostRequest && ! empty($postData) ? $this->_saveEditModels($data, $postData) : false;
 
         // update the primary key
         if ($isSaved) {
             if (is_string($pkId)) {
-                $pk[$pkId] = $datas[$this->_model]->$pkId;
+                $pk[$pkId] = $data[$this->_model]->$pkId;
             } else {
                 foreach ($pkId as $v) {
-                    $pk[$v] = $datas[$this->_model]->$v;
+                    $pk[$v] = $data[$this->_model]->$v;
                 }
             }
         }
@@ -541,7 +541,7 @@ abstract class BBaseAutoController extends BBaseController
             'edit/edit',
             array(
                 'dataView' => new $this->crudComponents['editDataView'](
-                    $datas, $relatedDatas, $pk, $isSaved, $this
+                    $data, $relatedData, $pk, $isSaved, $this
                 )
             )
         );
@@ -554,8 +554,8 @@ abstract class BBaseAutoController extends BBaseController
      */
     public function actionEditRow()
     {
-        // datas to update
-        $postDatas = $_POST;
+        // data to update
+        $postData = $_POST;
 
         // model
         $model = $this->_model;
@@ -571,14 +571,14 @@ abstract class BBaseAutoController extends BBaseController
             }
         }
 
-        // datas
-        $datas = $this->_loadEditModels($pk);
+        // data
+        $data = $this->_loadEditModels($pk);
 
-        // related datas
-        $relatedDatas = $this->_loadRelatedDatas();
+        // related data
+        $relatedData = $this->_loadRelatedDatas();
 
         // save models
-        $isSaved = Yii::app()->request->isPostRequest && ! empty($postDatas) ? $this->_saveEditModels($datas, $postDatas) : false;
+        $isSaved = Yii::app()->request->isPostRequest && ! empty($postData) ? $this->_saveEditModels($data, $postData) : false;
 
         if (! $isSaved) {
             // render view
@@ -586,7 +586,7 @@ abstract class BBaseAutoController extends BBaseController
                 'list/_tbodyRowEdit',
                 array(
                     'dataView' => new $this->crudComponents['editRowDataView'](
-                        $datas, $relatedDatas, $pk, $isSaved
+                        $data, $relatedData, $pk, $isSaved
                     )
                 ),
                 true
@@ -594,10 +594,10 @@ abstract class BBaseAutoController extends BBaseController
         } else {
             // update the primary key
             if (is_string($pkId)) {
-                $pk[$pkId] = $datas[$this->_model]->$pkId;
+                $pk[$pkId] = $data[$this->_model]->$pkId;
             } else {
                 foreach ($pkId as $v) {
-                    $pk[$v] = $datas[$this->_model]->$v;
+                    $pk[$v] = $data[$this->_model]->$v;
                 }
             }
 
@@ -636,14 +636,14 @@ abstract class BBaseAutoController extends BBaseController
             }
         }
 
-        // get datas
-        $datas = $model->search(Yii::app()->language)->getData();
-        if (! isset($datas[0])) {
+        // get data
+        $data = $model->search(Yii::app()->language)->getData();
+        if (! isset($data[0])) {
             throw new CHttpException(500);
         }
 
         // data view
-        $dataView = new $this->crudComponents['listRowDataView']($datas[0], $pk);
+        $dataView = new $this->crudComponents['listRowDataView']($data[0], $pk);
 
         // render view
         return $this->bRenderPartial('list/_tbodyRow', array(
@@ -652,7 +652,7 @@ abstract class BBaseAutoController extends BBaseController
     }
 
     /**
-     * Load related datas used in data view
+     * Load related data used in data view
      *
      * @return array
      */
@@ -748,11 +748,11 @@ abstract class BBaseAutoController extends BBaseController
      * Save models
      *
      * @param mixed $models array of models
-     * @param mixed $postDatas array of datas (datas to update)
+     * @param mixed $postData array of data (data to update)
      * @return bool true on success and false in the other cases
      * @throws Exception
      */
-    protected function _saveEditModels(&$models, &$postDatas)
+    protected function _saveEditModels(&$models, &$postData)
     {
         $isSaved = false;
         $isNewRecord[$this->_model] = $models[$this->_model]->isNewRecord;
@@ -772,11 +772,11 @@ abstract class BBaseAutoController extends BBaseController
             }
 
             // set attributes
-            if (isset($postDatas[$this->_model])) {
-                $models[$this->_model]->attributes = $postDatas[$this->_model];
+            if (isset($postData[$this->_model])) {
+                $models[$this->_model]->attributes = $postData[$this->_model];
             }
-            if (isset($postDatas[$this->_modelI18n])) {
-                $models[$this->_modelI18n]->attributes = $postDatas[$this->_modelI18n];
+            if (isset($postData[$this->_modelI18n])) {
+                $models[$this->_modelI18n]->attributes = $postData[$this->_modelI18n];
                 $models[$this->_modelI18n]->i18n_id = Yii::app()->language;
             }
             // set files attributes and fetch array of operations
@@ -855,11 +855,11 @@ abstract class BBaseAutoController extends BBaseController
      * Save the translations
      *
      * @param array $models the list of models to be translated
-     * @param mixed $postDatas array of datas (datas to update)
+     * @param mixed $postData array of data (data to update)
      * @return bool true on success and false in the other cases
      * @throws Exception
      */
-    protected function _saveTranslationModels(&$models, &$postDatas)
+    protected function _saveTranslationModels(&$models, &$postData)
     {
         // status
         $isSaved = false;
@@ -870,8 +870,8 @@ abstract class BBaseAutoController extends BBaseController
         try {
             // validate models
             foreach ($models as $i18nId => $data) {
-                if (isset($postDatas[$this->_modelI18n][$i18nId])) {
-                    $models[$i18nId]->attributes = $postDatas[$this->_modelI18n][$i18nId];
+                if (isset($postData[$this->_modelI18n][$i18nId])) {
+                    $models[$i18nId]->attributes = $postData[$this->_modelI18n][$i18nId];
                 }
                 $models[$i18nId]->validate();
             }
@@ -914,11 +914,11 @@ abstract class BBaseAutoController extends BBaseController
      * Save settings
      *
      * @param mixed $models models to update
-     * @param mixed $postDatas array of datas (datas to update)
+     * @param mixed $postData array of data (data to update)
      * @return bool true on success and false in the other cases
      * @throws Exception
      */
-    protected function _saveSettingsModels(&$models, &$postDatas)
+    protected function _saveSettingsModels(&$models, &$postData)
     {
         // initialize the status
         $isSaved = false;
@@ -926,8 +926,8 @@ abstract class BBaseAutoController extends BBaseController
         $transaction = $models['BInterfaceSetting']->dbConnection->beginTransaction();
         try {
             // set attributes
-            if (isset($postDatas['BInterfaceSetting']))
-                $models['BInterfaceSetting']->attributes = $postDatas['BInterfaceSetting'];
+            if (isset($postData['BInterfaceSetting']))
+                $models['BInterfaceSetting']->attributes = $postData['BInterfaceSetting'];
 
                 // validate models
             $models['BInterfaceSetting']->validate();

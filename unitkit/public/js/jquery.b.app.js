@@ -128,6 +128,7 @@
         
         // update container
         if(data.html != '') {
+            $.b.app.destroyCKEDITOR();
             container.html(data.html);
         }
         

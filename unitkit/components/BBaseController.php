@@ -23,7 +23,7 @@ class BBaseController extends CController
     /**
      * @var array The value of this property will be assigned to fill view or layout
      */
-    public $cmsContents = array();
+    public $cmsPageContents = array();
 
     /**
      * @var string The CMS view
@@ -36,8 +36,6 @@ class BBaseController extends CController
     protected $_defaultRoles = array();
 
     /**
-     * (non-PHPdoc)
-     *
      * @see CController::init()
      */
     public function init()
@@ -46,21 +44,20 @@ class BBaseController extends CController
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see CController::createUrl()
      */
     public function createUrl($route, $params = array(), $ampersand = '&')
     {
-        if ($route === '')
+        if ($route === '') {
             $route = $this->getId() . '/' . $this->getAction()->getId();
-        elseif (strpos($route, '/') === false)
+        } elseif (strpos($route, '/') === false) {
             $route = $this->getId() . '/' . $route;
-
-        if ($route[0] !== '/' && ($module = $this->getModule()) !== null)
+        }
+        if ($route[0] !== '/' && ($module = $this->getModule()) !== null) {
             $route = $module->getId() . '/' . $route;
-        else
+        } else {
             $route = '/' . Yii::app()->params['baseModuleApplication'] . $route;
+        }
 
         return Yii::app()->createUrl(trim($route, '/'), $params, $ampersand);
     }
@@ -106,8 +103,7 @@ class BBaseController extends CController
     protected function initLanguage()
     {
         $i18nId = null;
-        if (isset($_POST['language']))         // update language
-        {
+        if (isset($_POST['language'])) { // update language
             $i18nId = BLanguagesApp::secureLanguage($_POST['language']);
             $this->redirect($_POST[$i18nId]);
         } elseif (isset($_GET['language'])) {

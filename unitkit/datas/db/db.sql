@@ -1,4 +1,14 @@
 set foreign_key_checks = 0;
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
 --
 -- Base de données :  `unitkit`
 --
@@ -19,13 +29,6 @@ CREATE TABLE IF NOT EXISTS `b_auto_login` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
---
--- Contenu de la table `b_auto_login`
---
-
-INSERT INTO `b_auto_login` (`uuid`, `b_person_id`, `key1`, `key2`, `duration`, `expired_at`, `created_at`) VALUES
-('31827f248c28c79ba9f783a38754e0b3717c11899aca5d99a9429ad45f3cdf7a', 1, '$2a$13$t8/48PznQHqOn0s5ZlXCTOireEc83eFkwK2jkPb9mtAFKyxbYcKI6', '$2a$13$kqSpv2kJUDBgPfYXqjhMFOiHBpFsNf3ce2AeIqNh7Ld5wHwfJTFby', 604800, '2014-11-07 18:32:14', '2014-10-31 17:32:14');
-
 -- --------------------------------------------------------
 
 --
@@ -36,14 +39,15 @@ CREATE TABLE IF NOT EXISTS `b_cms_album` (
 `id` int(10) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=50 ;
 
 --
 -- Contenu de la table `b_cms_album`
 --
 
 INSERT INTO `b_cms_album` (`id`, `created_at`, `updated_at`) VALUES
-(48, '2014-08-03 07:13:23', '2014-08-03 07:13:23');
+(48, '2014-08-03 07:13:23', '2014-08-03 07:13:23'),
+(49, '2014-11-29 13:00:45', '2014-11-29 13:10:08');
 
 -- --------------------------------------------------------
 
@@ -63,7 +67,9 @@ CREATE TABLE IF NOT EXISTS `b_cms_album_i18n` (
 
 INSERT INTO `b_cms_album_i18n` (`b_cms_album_id`, `i18n_id`, `title`) VALUES
 (48, 'en', 'Carousel'),
-(48, 'fr', 'Carousel');
+(48, 'fr', 'Carousel'),
+(49, 'en', 'Demo'),
+(49, 'fr', 'Demo');
 
 -- --------------------------------------------------------
 
@@ -77,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `b_cms_album_photo` (
   `file_path` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=55 ;
 
 --
 -- Contenu de la table `b_cms_album_photo`
@@ -86,7 +92,9 @@ CREATE TABLE IF NOT EXISTS `b_cms_album_photo` (
 INSERT INTO `b_cms_album_photo` (`id`, `b_cms_album_id`, `file_path`, `created_at`, `updated_at`) VALUES
 (50, 48, 's1_53dfaeb90a174.jpg', '2014-08-04 16:03:05', '2014-08-04 16:03:05'),
 (51, 48, 's2_53dfaec50f42f.jpg', '2014-08-04 16:03:17', '2014-08-04 16:03:17'),
-(52, 48, 's3_5409838f0f182.jpg', '2014-08-04 16:03:25', '2014-09-05 09:34:07');
+(52, 48, 's3_5409838f0f182.jpg', '2014-08-04 16:03:25', '2014-09-05 09:34:07'),
+(53, 49, 'picture-1_5479c66c32f72.jpg', '2014-11-29 13:00:53', '2014-11-29 13:13:16'),
+(54, 49, 'picture-2_5479c65f9065d.jpg', '2014-11-29 13:01:02', '2014-11-29 13:13:03');
 
 -- --------------------------------------------------------
 
@@ -105,12 +113,16 @@ CREATE TABLE IF NOT EXISTS `b_cms_album_photo_i18n` (
 --
 
 INSERT INTO `b_cms_album_photo_i18n` (`b_cms_album_photo_id`, `i18n_id`, `title`) VALUES
-(50, 'en', 's1'),
-(50, 'fr', 's1'),
-(51, 'en', 's2'),
-(51, 'fr', 's2'),
-(52, 'en', 's3'),
-(52, 'fr', 's3');
+(50, 'en', 'Slide 1'),
+(50, 'fr', 'Slide 1'),
+(51, 'en', 'Slide 2'),
+(51, 'fr', 'Slide 2'),
+(52, 'en', 'Slide 3'),
+(52, 'fr', 'Slide 3'),
+(53, 'en', 'Picture 1'),
+(53, 'fr', 'Photo 1'),
+(54, 'en', 'Picture 2'),
+(54, 'fr', 'Photo 2');
 
 -- --------------------------------------------------------
 
@@ -150,8 +162,10 @@ CREATE TABLE IF NOT EXISTS `b_cms_image_i18n` (
 --
 
 INSERT INTO `b_cms_image_i18n` (`b_cms_image_id`, `i18n_id`, `title`) VALUES
-(8, 'en', 'Image'),
-(11, 'en', 'Image2');
+(8, 'en', 'Image 1'),
+(8, 'fr', 'Image 1'),
+(11, 'en', 'Image 2'),
+(11, 'fr', 'Image 2');
 
 -- --------------------------------------------------------
 
@@ -166,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `b_cms_layout` (
   `view` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `b_cms_layout`
@@ -174,7 +188,10 @@ CREATE TABLE IF NOT EXISTS `b_cms_layout` (
 
 INSERT INTO `b_cms_layout` (`id`, `max_container`, `path`, `view`, `created_at`, `updated_at`) VALUES
 (1, 2, '//../modules/frontend/views/layouts/base', 'index', '2014-07-12 06:11:54', '2014-08-04 19:02:36'),
-(2, 2, '//../modules/frontend/views/layouts/base', 'contact', '2014-08-03 18:57:42', '2014-10-12 11:44:19');
+(2, 2, '//../modules/frontend/views/layouts/base', 'contact', '2014-08-03 18:57:42', '2014-10-12 11:44:19'),
+(3, 2, '//../modules/frontend/views/layouts/base', 'carousel', '2014-11-22 11:45:08', '2014-11-22 11:45:18'),
+(4, 1, '//../modules/frontend/views/layouts/base', 'news', '2014-11-29 11:21:19', '2014-11-29 12:18:41'),
+(5, 1, '//../modules/frontend/views/layouts/base', 'album', '2014-11-29 12:58:08', '2014-11-29 12:58:08');
 
 -- --------------------------------------------------------
 
@@ -195,7 +212,12 @@ CREATE TABLE IF NOT EXISTS `b_cms_layout_i18n` (
 INSERT INTO `b_cms_layout_i18n` (`b_cms_layout_id`, `i18n_id`, `name`) VALUES
 (1, 'en', 'Main'),
 (1, 'fr', 'Défaut'),
-(2, 'en', 'Contact');
+(2, 'en', 'Contact'),
+(2, 'fr', 'Contact'),
+(3, 'en', 'Carousel'),
+(4, 'en', 'News'),
+(5, 'en', 'Album'),
+(5, 'fr', 'Album');
 
 -- --------------------------------------------------------
 
@@ -216,10 +238,10 @@ CREATE TABLE IF NOT EXISTS `b_cms_menu` (
 --
 
 INSERT INTO `b_cms_menu` (`id`, `b_cms_menu_group_id`, `rank`, `created_at`, `updated_at`) VALUES
-(1, 1, 10, '2014-07-29 15:55:15', '2014-08-05 10:57:31'),
-(2, 1, 20, '2014-08-02 09:57:25', '2014-08-04 16:29:09'),
-(3, 1, 30, '2014-08-04 16:29:24', '2014-08-05 07:31:06'),
-(4, 1, 40, '2014-08-04 16:26:23', '2014-08-05 12:01:10');
+(1, 1, 10, '2014-07-29 15:55:15', '2014-11-22 14:12:11'),
+(2, 1, 20, '2014-08-02 09:57:25', '2014-11-22 11:32:17'),
+(3, 1, 30, '2014-08-04 16:29:24', '2014-11-22 11:32:20'),
+(4, 1, 40, '2014-08-04 16:26:23', '2014-11-22 11:32:23');
 
 -- --------------------------------------------------------
 
@@ -231,7 +253,7 @@ CREATE TABLE IF NOT EXISTS `b_cms_menu_group` (
 `id` int(10) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Contenu de la table `b_cms_menu_group`
@@ -278,10 +300,14 @@ CREATE TABLE IF NOT EXISTS `b_cms_menu_i18n` (
 --
 
 INSERT INTO `b_cms_menu_i18n` (`b_cms_menu_id`, `i18n_id`, `name`, `url`) VALUES
-(1, 'en', 'Home', '/'),
-(2, 'en', 'About', 'about'),
-(3, 'en', 'News', 'news'),
-(4, 'en', 'Contact', 'contact');
+(1, 'en', 'Home', '/en'),
+(1, 'fr', 'Accueil', '/fr'),
+(2, 'en', 'About', '/en/about'),
+(2, 'fr', 'A propos', '/fr/a-propos'),
+(3, 'en', 'News', '/en/news'),
+(3, 'fr', 'Actualités', '/fr/actualites'),
+(4, 'en', 'Contact', '/en/contact'),
+(4, 'fr', 'Contact', '/fr/contact');
 
 -- --------------------------------------------------------
 
@@ -293,16 +319,18 @@ CREATE TABLE IF NOT EXISTS `b_cms_news` (
 `id` int(10) unsigned NOT NULL,
   `b_cms_news_group_id` int(10) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `activated` tinyint(3) unsigned NOT NULL DEFAULT '1',
+  `published_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `b_cms_news`
 --
 
-INSERT INTO `b_cms_news` (`id`, `b_cms_news_group_id`, `created_at`, `updated_at`) VALUES
-(3, 15, '2014-08-03 07:32:43', '2014-10-31 15:23:14'),
-(4, 15, '2014-10-31 15:23:36', '2014-10-31 15:23:36');
+INSERT INTO `b_cms_news` (`id`, `b_cms_news_group_id`, `created_at`, `updated_at`, `activated`, `published_at`) VALUES
+(3, 15, '2014-08-03 07:32:43', '2014-11-27 19:55:13', 1, '2014-08-31 00:00:00'),
+(4, 15, '2014-10-31 15:23:36', '2014-11-27 19:55:48', 1, '2014-07-16 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -362,7 +390,9 @@ CREATE TABLE IF NOT EXISTS `b_cms_news_i18n` (
 
 INSERT INTO `b_cms_news_i18n` (`b_cms_news_id`, `i18n_id`, `title`, `content`) VALUES
 (3, 'en', 'News title 1', '<p><img alt="" src="//static.unitkit.local/cms/images/lg/image_53dfa4ecb66da.jpg" style="width: 800px; height: 382px;" /></p>\r\n\r\n<p>News content</p>\r\n\r\n<p>&nbsp;</p>\r\n'),
-(4, 'en', 'News title 2', '<p>News content 2</p>\r\n');
+(3, 'fr', 'Actualité titre 1', '<p><img alt="" src="//static.unitkit.local/cms/images/lg/image_53dfa4ecb66da.jpg" style="width: 800px; height: 382px;" /></p>\r\n\r\n<p>Actualité 1</p>\r\n\r\n<p>&nbsp;</p>'),
+(4, 'en', 'News title 2', '<p>News content 2</p>\r\n'),
+(4, 'fr', 'Actualité titre 2', '<p>Actualité 2</p>\r\n');
 
 -- --------------------------------------------------------
 
@@ -377,17 +407,18 @@ CREATE TABLE IF NOT EXISTS `b_cms_page` (
   `b_cms_layout_id` int(10) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=43 ;
 
 --
 -- Contenu de la table `b_cms_page`
 --
 
 INSERT INTO `b_cms_page` (`id`, `activated`, `cache_duration`, `b_cms_layout_id`, `created_at`, `updated_at`) VALUES
-(8, 1, 3600, 1, '2014-08-02 09:38:43', '2014-08-05 10:59:50'),
+(8, 1, 3600, 3, '2014-08-02 09:38:43', '2014-11-22 12:30:59'),
 (37, 1, 3600, 1, '2014-08-04 15:21:22', '2014-08-05 10:59:53'),
-(39, 1, 3600, 2, '2014-08-04 16:26:09', '2014-11-01 09:36:52'),
-(41, 1, 10, 1, '2014-08-04 16:32:00', '2014-10-31 15:24:24');
+(39, 1, 3600, 2, '2014-08-04 16:26:09', '2014-11-24 18:41:21'),
+(41, 1, 100, 4, '2014-08-04 16:32:00', '2014-11-29 12:51:13'),
+(42, 1, 3600, 5, '2014-11-29 12:59:22', '2014-11-29 13:06:17');
 
 -- --------------------------------------------------------
 
@@ -399,21 +430,21 @@ CREATE TABLE IF NOT EXISTS `b_cms_page_content` (
 `id` int(10) unsigned NOT NULL,
   `b_cms_page_id` int(10) unsigned NOT NULL,
   `index` smallint(5) unsigned NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=69 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=78 ;
 
 --
 -- Contenu de la table `b_cms_page_content`
 --
 
 INSERT INTO `b_cms_page_content` (`id`, `b_cms_page_id`, `index`) VALUES
-(45, 8, 1),
-(61, 8, 2),
+(75, 8, 1),
+(76, 8, 2),
 (62, 37, 1),
 (63, 37, 2),
 (64, 39, 1),
 (68, 39, 2),
 (66, 41, 1),
-(67, 41, 2);
+(77, 42, 1);
 
 -- --------------------------------------------------------
 
@@ -432,16 +463,22 @@ CREATE TABLE IF NOT EXISTS `b_cms_page_content_i18n` (
 --
 
 INSERT INTO `b_cms_page_content_i18n` (`b_cms_page_content_id`, `i18n_id`, `content`) VALUES
-(45, 'en', '<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12 text-center"><cms_widget id="5">CAROUSEL</cms_widget>\r\n<h2 class="brand-before"><small>Welcome to</small></h2>\r\n\r\n<h1 class="brand-name">Business Casual</h1>\r\n\r\n<hr class="tagline-divider" />\r\n<h2><small>By <strong>Start Bootstrap</strong> </small></h2>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">Build a website <strong>worth visiting</strong></h2>\r\n\r\n<hr /><img alt="" class="img-responsive img-border img-left" src="//static.unitkit.local/cms/images/lg/image2_53dfbb686a4c2.jpg" />\r\n<hr class="visible-xs" />\r\n<p>The boxes used in this template are nested inbetween a normal Bootstrap row and the start of your column layout. The boxes will be full-width boxes, so if you want to make them smaller then you will need to customize.</p>\r\n\r\n<p>A huge thanks to <a href="http://join.deathtothestockphoto.com/" target="_blank">Death to the Stock Photo</a> for allowing us to use the beautiful photos that make this template really come to life. When using this template, make sure your photos are decent. Also make sure that the file size on your photos is kept to a minumum to keep load times to a minimum.</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">Beautiful boxes <strong>to showcase your content</strong></h2>\r\n\r\n<hr />\r\n<p>Use as many boxes as you like, and put anything you want in them! They are great for just about anything, the sky''s the limit!</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n</div>\r\n</div>\r\n</div>\r\n'),
-(61, 'en', ''),
-(62, 'en', '<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">About <strong>business casual</strong></h2>\r\n\r\n<hr /></div>\r\n\r\n<div class="col-md-6"><img alt="" class="img-responsive img-border-left" src="//static.unitkit.local/cms/images/lg/image_53dfa4ecb66da.jpg" style="width: 800px; height: 382px;" /></div>\r\n\r\n<div class="col-md-6">\r\n<p>This is a great place to introduce your company or project and describe what you do.</p>\r\n\r\n<p>Lid est laborum dolo rumes fugats untras. Etharums ser quidem rerum facilis dolores nemis omnis fugats vitaes nemo minima rerums unsers sadips amets.</p>\r\n\r\n<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>\r\n</div>\r\n\r\n<div class="clearfix">&nbsp;</div>\r\n</div>\r\n</div>\r\n\r\n<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">Our <strong>Team</strong></h2>\r\n\r\n<hr /></div>\r\n\r\n<div class="col-sm-4 text-center"><img alt="" class="img-responsive" src="http://placehold.it/750x450" />\r\n<h3>John Smith <small>Job Title</small></h3>\r\n</div>\r\n\r\n<div class="col-sm-4 text-center"><img alt="" class="img-responsive" src="http://placehold.it/750x450" />\r\n<h3>John Smith <small>Job Title</small></h3>\r\n</div>\r\n\r\n<div class="col-sm-4 text-center"><img alt="" class="img-responsive" src="http://placehold.it/750x450" />\r\n<h3>John Smith <small>Job Title</small></h3>\r\n</div>\r\n\r\n<div class="clearfix">&nbsp;</div>\r\n</div>\r\n</div>\r\n'),
+(62, 'en', '<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">About-us</h2>\r\n\r\n<hr /></div>\r\n\r\n<div class="col-md-6"><img alt="" class="img-responsive img-border-left" src="//static.unitkit.local/cms/images/lg/image_53dfa4ecb66da.jpg" style="width: 800px; height: 382px;" /></div>\r\n\r\n<div class="col-md-6">\r\n<p>This is a great place to introduce your company or project and describe what you do.</p>\r\n\r\n<p>Lid est laborum dolo rumes fugats untras. Etharums ser quidem rerum facilis dolores nemis omnis fugats vitaes nemo minima rerums unsers sadips amets.</p>\r\n\r\n<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>\r\n</div>\r\n\r\n<div class="clearfix">&nbsp;</div>\r\n</div>\r\n</div>\r\n\r\n<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">Our <strong>Team</strong></h2>\r\n\r\n<hr /></div>\r\n\r\n<div class="col-sm-4 text-center"><img alt="" class="img-responsive" src="http://placehold.it/750x450" />\r\n<h3>John Smith <small>Job Title</small></h3>\r\n</div>\r\n\r\n<div class="col-sm-4 text-center"><img alt="" class="img-responsive" src="http://placehold.it/750x450" />\r\n<h3>John Smith <small>Job Title</small></h3>\r\n</div>\r\n\r\n<div class="col-sm-4 text-center"><img alt="" class="img-responsive" src="http://placehold.it/750x450" />\r\n<h3>John Smith <small>Job Title</small></h3>\r\n</div>\r\n\r\n<div class="clearfix">&nbsp;</div>\r\n</div>\r\n</div>\r\n'),
+(62, 'fr', '<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">A propos de nous</h2>\r\n\r\n<hr /></div>\r\n\r\n<div class="col-md-6"><img alt="" class="img-responsive img-border-left" src="//static.unitkit.local/cms/images/lg/image_53dfa4ecb66da.jpg" style="width: 800px; height: 382px;" /></div>\r\n\r\n<div class="col-md-6">&nbsp;</div>\r\n\r\n<div class="clearfix">&nbsp;</div>\r\n</div>\r\n</div>\r\n\r\n<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">Notre <strong>Equipe</strong></h2>\r\n\r\n<hr /></div>\r\n\r\n<div class="col-sm-4 text-center"><img alt="" class="img-responsive" src="http://placehold.it/750x450" />\r\n<h3>John Smith <small>Titre du job</small></h3>\r\n</div>\r\n\r\n<div class="col-sm-4 text-center"><img alt="" class="img-responsive" src="http://placehold.it/750x450" />\r\n<h3>John Smith <small>Titre du job</small></h3>\r\n</div>\r\n\r\n<div class="col-sm-4 text-center"><img alt="" class="img-responsive" src="http://placehold.it/750x450" />\r\n<h3>John Smith <small>Titre du job</small></h3>\r\n</div>\r\n\r\n<div class="clearfix">&nbsp;</div>\r\n</div>\r\n</div>\r\n'),
 (63, 'en', ''),
-(64, 'en', '<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">Contact <strong>business casual</strong></h2>\r\n\r\n<hr /></div>\r\n\r\n<div class="col-md-8"><!-- Embedded Google Map using an iframe - to select your location find it on Google maps and paste the link as the iframe src. If you want to use the Google Maps API instead then have at it! --><iframe frameborder="0" height="400" marginheight="0" marginwidth="0" scrolling="no" src="http://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=37.0625,-95.677068&amp;spn=56.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed" width="100%"></iframe></div>\r\n\r\n<div class="col-md-4">\r\n<p>Phone: <strong>123.456.7890</strong></p>\r\n\r\n<p>Email: <strong><a href="mailto:name@example.com">name@example.com</a></strong></p>\r\n\r\n<p>Address: <strong>3481 Melrose Place<br />\r\nBeverly Hills, CA 90210</strong></p>\r\n</div>\r\n\r\n<div class="clearfix">&nbsp;</div>\r\n</div>\r\n</div>\r\n'),
-(64, 'fr', '<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">Contact <strong>business casual</strong></h2>\r\n\r\n<hr /></div>\r\n\r\n<div class="col-md-8"><!-- Embedded Google Map using an iframe - to select your location find it on Google maps and paste the link as the iframe src. If you want to use the Google Maps API instead then have at it! --><iframe frameborder="0" height="400" marginheight="0" marginwidth="0" scrolling="no" src="http://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=37.0625,-95.677068&amp;spn=56.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed" width="100%"></iframe></div>\r\n\r\n<div class="col-md-4">\r\n<p>Téléphone : <strong>123.456.7890</strong></p>\r\n\r\n<p>Email: <strong><a href="mailto:name@example.com">name@example.com</a></strong></p>\r\n\r\n<p>Addresse: <strong>3481 Melrose Place<br />\r\nBeverly Hills, CA 90210</strong></p>\r\n</div>\r\n\r\n<div class="clearfix">&nbsp;</div>\r\n</div>\r\n</div>\r\n'),
-(66, 'en', '<cms_widget id="2">NEWS</cms_widget>'),
-(67, 'en', ''),
-(68, 'en', '<div class="row">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center"><strong>Form</strong></h2>\r\n\r\n<hr /></div>\r\n</div>\r\n'),
-(68, 'fr', '');
+(63, 'fr', ''),
+(64, 'en', '<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">Contact-us</h2>\r\n\r\n<hr /></div>\r\n\r\n<div class="col-md-8"><!-- Embedded Google Map using an iframe - to select your location find it on Google maps and paste the link as the iframe src. If you want to use the Google Maps API instead then have at it! --><iframe frameborder="0" height="400" marginheight="0" marginwidth="0" scrolling="no" src="http://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=37.0625,-95.677068&amp;spn=56.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed" width="100%"></iframe></div>\r\n\r\n<div class="col-md-4">\r\n<p>Phone: <strong>123.456.7890</strong></p>\r\n\r\n<p>Email: <strong><a href="mailto:name@example.com">name@example.com</a></strong></p>\r\n\r\n<p>Address: <strong>3481 Melrose Place<br />\r\nBeverly Hills, CA 90210</strong></p>\r\n</div>\r\n\r\n<div class="clearfix">&nbsp;</div>\r\n</div>\r\n</div>\r\n'),
+(64, 'fr', '<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center"><strong>Contactez-nous</strong></h2>\r\n\r\n<hr /></div>\r\n\r\n<div class="col-md-8"><!-- Embedded Google Map using an iframe - to select your location find it on Google maps and paste the link as the iframe src. If you want to use the Google Maps API instead then have at it! --><iframe frameborder="0" height="400" marginheight="0" marginwidth="0" scrolling="no" src="http://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=37.0625,-95.677068&amp;spn=56.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed" width="100%"></iframe></div>\r\n\r\n<div class="col-md-4">\r\n<p>Téléphone : <strong>123.456.7890</strong></p>\r\n\r\n<p>Email: <strong><a href="mailto:name@example.com">name@example.com</a></strong></p>\r\n\r\n<p>Addresse: <strong>3481 Melrose Place<br />\r\nBeverly Hills, CA 90210</strong></p>\r\n</div>\r\n\r\n<div class="clearfix">&nbsp;</div>\r\n</div>\r\n</div>\r\n'),
+(66, 'en', ''),
+(66, 'fr', ''),
+(68, 'en', ''),
+(68, 'fr', ''),
+(75, 'en', '<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12 text-center"><cms_widget id="5">CAROUSEL</cms_widget>\r\n<h2 class="brand-before"><small>Welcome to</small></h2>\r\n\r\n<h1 class="brand-name">Business Casual</h1>\r\n\r\n<hr class="tagline-divider" />\r\n<h2><small>By <strong>Start Bootstrap</strong> </small></h2>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">Build a website <strong>worth visiting</strong></h2>\r\n\r\n<hr /><img alt="" class="img-responsive img-border img-left" src="//static.unitkit.local/cms/images/lg/image2_53dfbb686a4c2.jpg" />\r\n<hr class="visible-xs" />\r\n<p>The boxes used in this template are nested inbetween a normal Bootstrap row and the start of your column layout. The boxes will be full-width boxes, so if you want to make them smaller then you will need to customize.</p>\r\n\r\n<p>A huge thanks to <a href="http://join.deathtothestockphoto.com/" target="_blank">Death to the Stock Photo</a> for allowing us to use the beautiful photos that make this template really come to life. When using this template, make sure your photos are decent. Also make sure that the file size on your photos is kept to a minumum to keep load times to a minimum.</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">Beautiful boxes <strong>to showcase your content</strong></h2>\r\n\r\n<hr />\r\n<p>Use as many boxes as you like, and put anything you want in them! They are great for just about anything, the sky''s the limit!</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>\r\n</div>\r\n</div>\r\n</div>\r\n'),
+(75, 'fr', '<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12 text-center"><cms_widget id="5">CAROUSEL</cms_widget>\r\n<h2 class="brand-before"><small>Bienvenue</small></h2>\r\n\r\n<h1 class="brand-name">Business Casual</h1>\r\n\r\n<hr class="tagline-divider" />\r\n<h2><small>By <strong>Start Bootstrap</strong> </small></h2>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">Titre <strong>numéro 1</strong></h2>\r\n\r\n<hr /><img alt="" class="img-responsive img-border img-left" src="//static.unitkit.local/cms/images/lg/image2_53dfbb686a4c2.jpg" />\r\n<hr class="visible-xs" />Zone de contenue 1</div>\r\n</div>\r\n</div>\r\n\r\n<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">Titre <strong>numero 2</strong></h2>\r\n\r\n<hr />\r\n<p>Zone de contenue 2</p>\r\n</div>\r\n</div>\r\n</div>\r\n'),
+(76, 'en', ''),
+(76, 'fr', ''),
+(77, 'en', '<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12 text-center">\r\n<hr />\r\n<h2 class="intro-text text-center">Album <strong>DEMO</strong></h2>\r\n\r\n<hr /><cms_widget id="6">WIDGET ALBUM HIVER</cms_widget></div>\r\n</div>\r\n</div>\r\n'),
+(77, 'fr', '<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12 text-center">\r\n<hr />\r\n<h2 class="intro-text text-center">Album <strong>DEMO</strong></h2>\r\n\r\n<hr /><cms_widget id="6">WIDGET ALBUM HIVER</cms_widget></div>\r\n</div>\r\n</div>\r\n');
 
 -- --------------------------------------------------------
 
@@ -464,11 +501,16 @@ CREATE TABLE IF NOT EXISTS `b_cms_page_i18n` (
 --
 
 INSERT INTO `b_cms_page_i18n` (`b_cms_page_id`, `i18n_id`, `title`, `slug`, `html_title`, `html_description`, `html_keywords`) VALUES
-(8, 'en', 'Accueil', 'home', 'Accueil', '', ''),
+(8, 'en', 'Home', 'home', 'Home', '', ''),
+(8, 'fr', 'Accueil', 'home', 'Accueil', '', ''),
 (37, 'en', 'About', 'about', 'About', '', ''),
+(37, 'fr', 'A propos', 'a-propos', 'A propos', '', ''),
 (39, 'en', 'Contact', 'contact', 'Contact', '', ''),
-(39, 'fr', 'Contact', 'contact-fr', 'Contact', '', ''),
-(41, 'en', 'News', 'news', 'News', '', '');
+(39, 'fr', 'Contact', 'contact', 'Contact', '', ''),
+(41, 'en', 'News', 'news', 'News', '', ''),
+(41, 'fr', 'Actualité', 'actualites', 'Actualité', '', ''),
+(42, 'en', 'Album', 'album', 'Album', '', ''),
+(42, 'fr', 'Album', 'album', 'Album', '', '');
 
 -- --------------------------------------------------------
 
@@ -523,17 +565,18 @@ CREATE TABLE IF NOT EXISTS `b_cms_widget` (
   `arg` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Contenu de la table `b_cms_widget`
 --
 
 INSERT INTO `b_cms_widget` (`id`, `path`, `arg`, `created_at`, `updated_at`) VALUES
-(2, 'application.modules.frontend.widgets.news.BWidgetCmsNews', '{id:15}', '2014-07-25 10:26:10', '2014-07-29 19:06:58'),
+(2, 'application.modules.frontend.widgets.news.BWidgetCmsNews', '{id:15, size:5}', '2014-07-25 10:26:10', '2014-11-29 11:31:24'),
 (3, 'application.modules.frontend.widgets.social.BWidgetCmsSocial', '', '2014-07-29 14:52:12', '2014-07-29 14:52:42'),
 (4, 'application.modules.frontend.widgets.menu.BWidgetCmsMenu', '{id:20,brand:"My website"}', '2014-07-29 15:55:57', '2014-08-04 17:03:52'),
-(5, 'application.modules.frontend.widgets.album.BWidgetCmsCarousel', '{album_id:48,container_id:"carousel"}', '2014-08-03 07:15:10', '2014-08-04 15:34:35');
+(5, 'application.modules.frontend.widgets.album.BWidgetCmsCarousel', '{album_id:48,container_id:"carousel"}', '2014-08-03 07:15:10', '2014-08-04 15:34:35'),
+(6, 'application.modules.frontend.widgets.album.BWidgetCmsAlbum', '{id:49, cols:4}', '2014-11-29 13:01:50', '2014-11-29 13:22:57');
 
 -- --------------------------------------------------------
 
@@ -559,7 +602,9 @@ INSERT INTO `b_cms_widget_i18n` (`b_cms_widget_id`, `i18n_id`, `name`) VALUES
 (4, 'en', 'Menu'),
 (4, 'fr', 'Menu'),
 (5, 'en', 'Carousel'),
-(5, 'fr', 'Carousel');
+(5, 'fr', 'Carousel'),
+(6, 'en', 'Album Demo'),
+(6, 'fr', 'Album Demo');
 
 -- --------------------------------------------------------
 
@@ -571,7 +616,7 @@ CREATE TABLE IF NOT EXISTS `b_group` (
 `id` int(10) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `b_group`
@@ -579,8 +624,7 @@ CREATE TABLE IF NOT EXISTS `b_group` (
 
 INSERT INTO `b_group` (`id`, `created_at`, `updated_at`) VALUES
 (2, '2012-12-05 16:34:39', '2014-01-27 09:17:28'),
-(3, '2014-03-29 12:11:59', '2014-10-31 16:15:50'),
-(4, '2014-10-12 11:54:01', '2014-10-31 16:16:10');
+(3, '2014-03-29 12:11:59', '2014-10-31 16:15:50');
 
 -- --------------------------------------------------------
 
@@ -592,19 +636,17 @@ CREATE TABLE IF NOT EXISTS `b_group_i18n` (
 `b_group_id` int(10) unsigned NOT NULL,
   `i18n_id` varchar(16) COLLATE utf8_bin NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `b_group_i18n`
 --
 
 INSERT INTO `b_group_i18n` (`b_group_id`, `i18n_id`, `name`) VALUES
-(2, 'de', 'Super administrateur'),
 (2, 'en', 'Super administrator'),
 (2, 'fr', 'Super administrateur'),
 (3, 'en', 'Backend users'),
-(3, 'fr', 'Backend'),
-(4, 'en', 'Backend translator users');
+(3, 'fr', 'Utilisateur du backend');
 
 -- --------------------------------------------------------
 
@@ -628,14 +670,8 @@ INSERT INTO `b_group_role` (`b_group_id`, `b_role_id`) VALUES
 (2, 4),
 (2, 6),
 (3, 6),
-(4, 6),
 (2, 7),
-(3, 8),
-(4, 8),
-(3, 57),
-(3, 58),
-(3, 59),
-(3, 96);
+(3, 8);
 
 -- --------------------------------------------------------
 
@@ -652,7 +688,6 @@ CREATE TABLE IF NOT EXISTS `b_i18n` (
 --
 
 INSERT INTO `b_i18n` (`id`) VALUES
-('de'),
 ('en'),
 ('es'),
 ('fr');
@@ -674,13 +709,10 @@ CREATE TABLE IF NOT EXISTS `b_i18n_i18n` (
 --
 
 INSERT INTO `b_i18n_i18n` (`b_i18n_id`, `i18n_id`, `name`) VALUES
-('de', 'en', 'German'),
-('de', 'fr', 'Allemand'),
 ('en', 'en', 'English'),
 ('en', 'fr', 'Anglais'),
 ('es', 'en', 'Spanish'),
 ('es', 'fr', 'Espagnol'),
-('fr', 'de', 'fr'),
 ('fr', 'en', 'French'),
 ('fr', 'fr', 'Français');
 
@@ -731,7 +763,8 @@ CREATE TABLE IF NOT EXISTS `b_mail_sending_role` (
 
 INSERT INTO `b_mail_sending_role` (`b_person_id`, `b_mail_template_id`, `b_mail_send_role_id`) VALUES
 (2, 2, 1),
-(2, 2, 4);
+(1, 3, 2),
+(2, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -795,14 +828,15 @@ CREATE TABLE IF NOT EXISTS `b_mail_template` (
   `sql_param` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `b_mail_template`
 --
 
 INSERT INTO `b_mail_template` (`id`, `b_mail_template_group_id`, `html_mode`, `sql_request`, `sql_param`, `created_at`, `updated_at`) VALUES
-(2, 2, 1, 'SELECT id, first_name, last_name, email as b_mt_email_to FROM b_person WHERE email = :email', '', '2014-06-22 15:42:45', '2014-10-28 19:12:33');
+(2, 2, 1, 'SELECT id, first_name, last_name, email as b_mt_email_to FROM b_person WHERE email = :email', '', '2014-06-22 15:42:45', '2014-10-28 19:12:33'),
+(3, 3, 1, '', '', '2014-11-24 19:39:02', '2014-11-25 16:32:53');
 
 -- --------------------------------------------------------
 
@@ -814,14 +848,15 @@ CREATE TABLE IF NOT EXISTS `b_mail_template_group` (
 `id` int(10) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `b_mail_template_group`
 --
 
 INSERT INTO `b_mail_template_group` (`id`, `created_at`, `updated_at`) VALUES
-(2, '2013-01-25 13:47:50', '2013-06-13 12:22:55');
+(2, '2013-01-25 13:47:50', '2013-06-13 12:22:55'),
+(3, '2014-11-24 19:37:54', '2014-11-24 19:37:54');
 
 -- --------------------------------------------------------
 
@@ -841,7 +876,9 @@ CREATE TABLE IF NOT EXISTS `b_mail_template_group_i18n` (
 
 INSERT INTO `b_mail_template_group_i18n` (`b_mail_template_group_id`, `i18n_id`, `name`) VALUES
 (2, 'en', 'Backend'),
-(2, 'fr', 'Backend');
+(2, 'fr', 'Backend'),
+(3, 'en', 'Frontend'),
+(3, 'fr', 'Frontend');
 
 -- --------------------------------------------------------
 
@@ -862,7 +899,9 @@ CREATE TABLE IF NOT EXISTS `b_mail_template_i18n` (
 
 INSERT INTO `b_mail_template_i18n` (`b_mail_template_id`, `i18n_id`, `object`, `message`) VALUES
 (2, 'en', 'Password reset', '<p>Hello {first_name}&nbsp; {last_name},</p>\r\n\r\n<p>To reset your password, please go to the following page :</p>\r\n\r\n<p>{createPasswordResetLink({id})}</p>\r\n\r\n<p>If you do not wish to reset your password, ignore this message. It will expire in {nb} hours.</p>\r\n\r\n<p>Regards</p>\r\n\r\n<p>&nbsp;</p>\r\n'),
-(2, 'fr', 'Réinitialisation du mot de passe', '<p>Bonjour {first_name} {last_name},</p>\r\n\r\n<p>Afin de r&eacute;initialiser votre mot de passe, merci de vous rendre &agrave; l&#39;adresse suivante :</p>\r\n\r\n<p>{createPasswordResetLink({id})}</p>\r\n\r\n<p>Si vous ne souhaitez pas r&eacute;initialiser votre mot de passe, ignorer ce message. Il expirera dans {nb} heures.</p>\r\n\r\n<p>Cordialement</p>\r\n\r\n<p>&nbsp;</p>\r\n');
+(2, 'fr', 'Réinitialisation du mot de passe', '<p>Bonjour {first_name} {last_name},</p>\r\n\r\n<p>Afin de r&eacute;initialiser votre mot de passe, merci de vous rendre &agrave; l&#39;adresse suivante :</p>\r\n\r\n<p>{createPasswordResetLink({id})}</p>\r\n\r\n<p>Si vous ne souhaitez pas r&eacute;initialiser votre mot de passe, ignorer ce message. Il expirera dans {nb} heures.</p>\r\n\r\n<p>Cordialement</p>\r\n\r\n<p>&nbsp;</p>\r\n'),
+(3, 'en', 'Contact', '<p>Hello,</p>\r\n\r\n<p>You have received a message from {firstName} {lastName}.</p>\r\n\r\n<p>Contact informations :</p>\r\n\r\n<ul>\r\n	<li>First name : {firstName}</li>\r\n	<li>Last name : {lastName}</li>\r\n	<li>Email : {email}</li>\r\n	<li>Phone : {phone}</li>\r\n</ul>\r\n\r\n<p>Message :</p>\r\n\r\n<p>{message}</p>\r\n\r\n<hr />\r\n<p>This message is automatically sent from contact page</p>\r\n'),
+(3, 'fr', 'Demande de contact', '<p>Bonjour,</p>\r\n\r\n<p>Vous avez reçu un message de {firstName} {lastName}.</p>\r\n\r\n<p>Informations du contact</p>\r\n\r\n<ul>\r\n	<li>Prénom: {firstName}</li>\r\n	<li>Nom : {lastName}</li>\r\n	<li>Email : {email}</li>\r\n	<li>Téléphone : {phone}</li>\r\n</ul>\r\n\r\n<p>Message :</p>\r\n\r\n<p>{message}</p>\r\n\r\n<hr />\r\n<p>Ce message est automatiquement envoyé depuis la page de contact</p>\r\n');
 
 -- --------------------------------------------------------
 
@@ -876,16 +915,16 @@ CREATE TABLE IF NOT EXISTS `b_message` (
   `source` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=516 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=529 ;
 
 --
 -- Contenu de la table `b_message`
 --
 
 INSERT INTO `b_message` (`id`, `b_message_group_id`, `source`, `created_at`, `updated_at`) VALUES
-(11, 1, 'b_i18n_fr', '2013-01-23 07:30:52', '2014-04-12 10:20:22'),
-(12, 1, 'b_i18n_en', '2013-01-23 07:31:31', '2014-04-12 10:20:22'),
-(13, 1, 'b_i18n_de', '2013-01-23 07:47:12', '2014-04-12 10:20:22'),
+(11, 1, 'b_i18n_fr', '2013-01-23 07:30:52', '2014-11-26 15:16:26'),
+(12, 1, 'b_i18n_en', '2013-01-23 07:31:31', '2014-11-26 15:16:26'),
+(13, 1, 'b_i18n_de', '2013-01-23 07:47:12', '2014-11-26 15:16:26'),
 (14, 2, 'navbar_parameter', '2013-01-23 08:07:53', '2014-04-12 10:20:22'),
 (15, 2, 'navbar_variable', '2013-01-23 08:10:33', '2014-04-12 10:20:22'),
 (17, 1, 'btn_save', '2013-01-23 08:11:33', '2014-04-12 10:20:22'),
@@ -921,16 +960,16 @@ INSERT INTO `b_message` (`id`, `b_message_group_id`, `source`, `created_at`, `up
 (65, 1, 'person_email_exist', '2013-01-30 19:33:01', '2014-06-28 11:13:22'),
 (66, 2, 'person_profile:password', '2013-01-30 19:33:35', '2014-06-27 10:05:17'),
 (71, 1, 'go_to_login', '2013-01-31 20:43:00', '2014-06-28 11:13:22'),
-(73, 2, 'login_form:username', '2013-01-31 21:06:48', '2014-06-22 15:08:40'),
-(74, 2, 'login_form:remember_me', '2013-01-31 21:07:11', '2014-06-22 15:08:40'),
-(76, 2, 'account_not_validated', '2013-01-31 21:28:41', '2014-06-27 09:18:31'),
-(81, 1, 'captcha_help', '2013-01-31 22:28:48', '2014-06-28 11:13:22'),
-(96, 1, 'update', '2013-02-05 08:13:03', '2014-04-13 15:48:13'),
-(99, 2, 'list_right_title', '2013-02-05 12:02:03', '2014-04-12 10:20:22'),
-(102, 2, 'select_interface_title', '2013-02-05 15:01:48', '2014-04-12 10:20:22'),
-(145, 1, 'edit_create_title', '2013-02-20 08:06:04', '2014-07-19 09:49:30'),
-(146, 1, 'edit_update_title', '2013-02-20 08:06:21', '2014-07-19 19:24:17'),
-(160, 2, 'navbar_media', '2013-02-20 14:00:45', '2014-04-12 10:20:22'),
+(73, 2, 'login_form:username', '2013-01-31 21:06:48', '2014-11-22 10:51:15'),
+(74, 2, 'login_form:remember_me', '2013-01-31 21:07:11', '2014-11-22 10:51:15'),
+(76, 2, 'account_not_validated', '2013-01-31 21:28:41', '2014-11-22 10:51:15'),
+(81, 1, 'captcha_help', '2013-01-31 22:28:48', '2014-11-22 10:51:15'),
+(96, 1, 'update', '2013-02-05 08:13:03', '2014-11-22 10:51:15'),
+(99, 2, 'list_right_title', '2013-02-05 12:02:03', '2014-11-22 10:51:15'),
+(102, 2, 'select_interface_title', '2013-02-05 15:01:48', '2014-11-22 10:51:15'),
+(145, 1, 'edit_create_title', '2013-02-20 08:06:04', '2014-11-22 10:51:15'),
+(146, 1, 'edit_update_title', '2013-02-20 08:06:21', '2014-11-22 10:51:15'),
+(160, 2, 'navbar_media', '2013-02-20 14:00:45', '2014-11-22 10:51:15'),
 (162, 2, 'navbar_message', '2013-02-20 14:01:18', '2014-07-05 09:38:04'),
 (163, 2, 'navbar_right', '2013-02-20 14:01:38', '2014-06-27 09:22:10'),
 (164, 2, 'navbar_language', '2013-02-20 14:01:52', '2014-06-27 09:22:10'),
@@ -1004,7 +1043,7 @@ INSERT INTO `b_message` (`id`, `b_message_group_id`, `source`, `created_at`, `up
 (283, 2, 'right_interface_list_title', '2013-06-20 07:17:15', '2014-05-04 09:33:12'),
 (285, 2, 'right_role_list_title', '2013-06-20 07:18:41', '2014-07-08 14:49:23'),
 (287, 2, 'right_action_list_title', '2013-06-20 07:20:22', '2014-05-04 09:33:11'),
-(290, 1, 'b_i18n_i18n:name', '2013-06-20 07:22:03', '2014-07-08 15:03:55'),
+(290, 1, 'b_i18n_i18n:name', '2013-06-20 07:22:03', '2014-11-26 15:16:26'),
 (291, 1, 'model:name', '2013-06-20 07:22:15', '2014-07-05 11:21:02'),
 (293, 2, 'person_profile:old_password', '2013-06-20 07:27:53', '2014-06-27 10:05:17'),
 (294, 2, 'person_profile:repeat_password', '2013-06-20 07:29:51', '2014-06-27 10:05:17'),
@@ -1021,7 +1060,7 @@ INSERT INTO `b_message` (`id`, `b_message_group_id`, `source`, `created_at`, `up
 (316, 2, 'person_group', '2014-05-04 16:25:07', '2014-06-27 11:02:07'),
 (318, 2, 'bad_login_password', '2014-06-19 16:30:27', '2014-06-28 11:32:23'),
 (320, 2, 'login_form:password', '2014-06-26 18:31:01', '2014-07-30 19:26:56'),
-(321, 2, 'account_not_activated', '2014-06-27 09:17:57', '2014-07-05 09:50:35'),
+(321, 2, 'account_not_activated', '2014-06-27 09:17:57', '2014-11-26 13:56:48'),
 (322, 2, 'b_person_email_not_exist', '2014-06-27 09:56:42', '2014-07-03 12:32:55'),
 (323, 2, 'password_reset_email_sent', '2014-06-27 10:01:11', '2014-07-04 18:36:53'),
 (324, 2, 'profile_old_password_not_valid', '2014-06-27 10:15:14', '2014-07-04 18:36:53'),
@@ -1040,7 +1079,7 @@ INSERT INTO `b_message` (`id`, `b_message_group_id`, `source`, `created_at`, `up
 (341, 2, 'navbar_cms_edito_group', '2014-07-05 09:43:00', '2014-07-12 05:48:52'),
 (342, 2, 'navbar_cms_widget', '2014-07-05 09:43:20', '2014-07-08 15:59:33'),
 (343, 2, 'navbar_cms_image', '2014-07-05 09:44:20', '2014-07-05 09:57:11'),
-(345, 1, 'model:activated', '2014-07-05 09:49:38', '2014-07-05 09:57:11'),
+(345, 1, 'model:activated', '2014-07-05 09:49:38', '2014-11-26 13:56:48'),
 (346, 1, 'model:validated', '2014-07-05 09:52:36', '2014-07-05 09:57:11'),
 (347, 1, 'b_cms_page:cache_duration', '2014-07-05 09:53:43', '2014-07-21 07:39:57'),
 (348, 1, 'b_cms_page_i18n:title', '2014-07-05 09:54:40', '2014-07-08 13:00:39'),
@@ -1156,31 +1195,43 @@ INSERT INTO `b_message` (`id`, `b_message_group_id`, `source`, `created_at`, `up
 (485, 2, 'btn_view_photos', '2014-07-21 14:46:01', '2014-07-25 11:42:23'),
 (486, 2, 'btn_cms_image_select_sm', '2014-07-23 14:44:43', '2014-07-28 16:10:01'),
 (487, 2, 'btn_cms_image_select_lg', '2014-07-23 14:45:02', '2014-07-28 16:10:54'),
-(488, 1, 'b_cms_news_group_i18n:name', '2014-07-28 16:08:45', '2014-07-28 16:24:18'),
+(488, 1, 'b_cms_news_group_i18n:name', '2014-07-28 16:08:45', '2014-11-22 10:57:36'),
 (489, 1, 'b_cms_news_i18n:title', '2014-07-28 16:09:09', '2014-07-28 16:24:18'),
 (490, 1, 'b_cms_news_i18n:content', '2014-07-28 16:09:37', '2014-07-28 16:24:18'),
 (491, 1, 'b_cms_news:b_cms_news_group_id', '2014-07-28 16:10:18', '2014-07-28 16:24:18'),
-(493, 2, 'cms_news_list_title', '2014-07-28 16:20:38', '2014-07-28 16:24:18'),
+(493, 2, 'cms_news_list_title', '2014-07-28 16:20:38', '2014-11-22 10:57:36'),
 (494, 2, 'cms_news_create_title', '2014-07-28 16:21:46', '2014-07-28 16:21:46'),
 (495, 2, 'cms_news_update_title', '2014-07-28 16:22:07', '2014-07-28 16:22:07'),
-(496, 2, 'cms_news_group_create_title', '2014-07-28 16:22:36', '2014-07-28 16:30:13'),
-(497, 2, 'cms_news_group_update_title', '2014-07-28 16:22:58', '2014-07-28 16:30:13'),
-(498, 2, 'cms_news_group_list_title', '2014-07-28 16:23:22', '2014-07-28 16:30:13'),
+(496, 2, 'cms_news_group_create_title', '2014-07-28 16:22:36', '2014-11-22 10:57:36'),
+(497, 2, 'cms_news_group_update_title', '2014-07-28 16:22:58', '2014-11-22 10:57:36'),
+(498, 2, 'cms_news_group_list_title', '2014-07-28 16:23:22', '2014-11-22 10:57:36'),
 (499, 2, 'cms_edito_group_list_title', '2014-07-28 16:27:47', '2014-07-28 16:30:13'),
-(500, 2, 'navbar_cms_news', '2014-07-28 16:29:51', '2014-07-28 16:30:13'),
-(503, 2, 'navbar_cms_news_group', '2014-07-28 16:40:33', '2014-07-28 16:40:33'),
+(500, 2, 'navbar_cms_news', '2014-07-28 16:29:51', '2014-11-22 10:57:36'),
+(503, 2, 'navbar_cms_news_group', '2014-07-28 16:40:33', '2014-11-22 10:57:36'),
 (504, 2, 'navbar_cms_menu', '2014-07-28 16:40:59', '2014-07-28 16:40:59'),
 (505, 2, 'navbar_cms_menu_group', '2014-07-28 16:41:18', '2014-07-28 16:41:18'),
 (506, 2, 'cms_menu_list_title', '2014-07-28 16:41:39', '2014-11-01 09:32:47'),
 (507, 2, 'cms_menu_create_title', '2014-07-28 16:42:05', '2014-11-01 09:32:47'),
-(508, 2, 'cms_menu_update_title', '2014-07-28 16:42:37', '2014-11-01 09:32:47'),
-(509, 2, 'cms_menu_group_list_title', '2014-07-28 16:43:23', '2014-11-01 09:32:47'),
-(510, 1, 'b_cms_menu_group_i18n:name', '2014-07-28 16:43:39', '2014-11-01 09:32:47'),
-(511, 2, 'cms_menu_group_create_title', '2014-07-28 16:44:34', '2014-11-01 09:32:47'),
-(512, 2, 'cms_menu_group_update_title', '2014-07-28 16:45:14', '2014-11-01 09:32:47'),
-(513, 1, 'b_cms_menu_i18n:name', '2014-07-28 16:45:47', '2014-11-01 09:32:47'),
-(514, 1, 'b_cms_menu_i18n:url', '2014-07-28 16:46:45', '2014-11-01 09:32:47'),
-(515, 1, 'b_cms_menu:b_cms_menu_group_id', '2014-07-29 13:13:19', '2014-11-01 09:32:47');
+(508, 2, 'cms_menu_update_title', '2014-07-28 16:42:37', '2014-11-24 18:30:39'),
+(509, 2, 'cms_menu_group_list_title', '2014-07-28 16:43:23', '2014-11-24 18:32:02'),
+(510, 1, 'b_cms_menu_group_i18n:name', '2014-07-28 16:43:39', '2014-11-24 18:32:02'),
+(511, 2, 'cms_menu_group_create_title', '2014-07-28 16:44:34', '2014-11-24 18:32:02'),
+(512, 2, 'cms_menu_group_update_title', '2014-07-28 16:45:14', '2014-11-24 18:32:02'),
+(513, 1, 'b_cms_menu_i18n:name', '2014-07-28 16:45:47', '2014-11-24 18:32:02'),
+(514, 1, 'b_cms_menu_i18n:url', '2014-07-28 16:46:45', '2014-11-24 18:32:02'),
+(515, 1, 'b_cms_menu:b_cms_menu_group_id', '2014-07-29 13:13:19', '2014-11-24 18:32:02'),
+(516, 2, 'url_manager_refresh_title', '2014-11-24 18:29:12', '2014-11-24 18:32:02'),
+(517, 2, 'url_manager_schema_flush', '2014-11-24 18:30:01', '2014-11-26 15:17:03'),
+(518, 2, 'url_is_refreshed', '2014-11-24 18:31:50', '2014-11-26 15:17:03'),
+(519, 3, 'contact_form:first_name', '2014-11-25 15:30:08', '2014-11-27 19:51:51'),
+(520, 3, 'contact_form:last_name', '2014-11-25 15:30:27', '2014-11-27 19:51:51'),
+(521, 3, 'contact_form:email', '2014-11-25 15:30:40', '2014-11-27 19:51:51'),
+(522, 3, 'contact_form:phone', '2014-11-25 15:31:03', '2014-11-27 19:51:51'),
+(523, 3, 'contact_form:message', '2014-11-25 15:32:47', '2014-11-27 19:51:51'),
+(524, 3, 'email_is_sent', '2014-11-25 16:03:35', '2014-11-27 19:51:51'),
+(525, 1, 'b_site_i18n:activated', '2014-11-26 13:56:28', '2014-11-27 19:51:51'),
+(526, 1, 'b_i18n_es', '2014-11-26 15:16:01', '2014-11-27 19:51:51'),
+(528, 1, 'b_cms_news:published_at', '2014-11-27 19:51:38', '2014-11-27 19:51:51');
 
 -- --------------------------------------------------------
 
@@ -1332,6 +1383,7 @@ INSERT INTO `b_message_i18n` (`b_message_id`, `i18n_id`, `translation`) VALUES
 (96, 'fr', 'Modifier'),
 (99, 'en', 'Rights'),
 (99, 'fr', 'Liste des droits'),
+(102, 'en', 'Select an interface'),
 (102, 'fr', 'Sélectionner une interface'),
 (145, 'en', 'Create'),
 (145, 'fr', 'Création'),
@@ -1792,7 +1844,7 @@ INSERT INTO `b_message_i18n` (`b_message_id`, `i18n_id`, `translation`) VALUES
 (487, 'en', 'Insert image (large)'),
 (487, 'fr', 'Insérer l''image (grande)'),
 (488, 'en', 'Newsgroup'),
-(488, 'fr', 'Groupe de nouvelles'),
+(488, 'fr', 'Groupe d''actualités'),
 (489, 'en', 'News title'),
 (489, 'fr', 'Titre de la nouvelle'),
 (490, 'en', 'News content'),
@@ -1800,23 +1852,23 @@ INSERT INTO `b_message_i18n` (`b_message_id`, `i18n_id`, `translation`) VALUES
 (491, 'en', '{@=b_cms_news_group_i18n:name}'),
 (491, 'fr', '{@=b_cms_news_group_i18n:name}'),
 (493, 'en', 'News'),
-(493, 'fr', 'Nouvelles'),
+(493, 'fr', 'Actualités'),
 (494, 'en', 'Add news'),
 (494, 'fr', 'Ajouter une nouvelle'),
 (495, 'en', 'Update the news'),
 (495, 'fr', 'Modifier la nouvelle'),
 (496, 'en', 'Add newsgroup'),
-(496, 'fr', 'Ajouter un groupe de nouvelles'),
+(496, 'fr', 'Ajouter un groupe d''actualités'),
 (497, 'en', 'Update the newsgroup'),
-(497, 'fr', 'Modifier le groupe de nouvelles'),
+(497, 'fr', 'Modifier le groupe d''actualités'),
 (498, 'en', 'Newsgroups'),
-(498, 'fr', 'Groupes de nouvelles'),
+(498, 'fr', 'Groupes  d''actualités'),
 (499, 'en', 'Groups of editorials'),
 (499, 'fr', 'Groupes d''éditoriaux'),
 (500, 'en', 'News'),
-(500, 'fr', 'Nouvelles'),
+(500, 'fr', 'Actualités'),
 (503, 'en', 'Newsgroups'),
-(503, 'fr', 'Groupes de nouvelles'),
+(503, 'fr', 'Groupes d''actualités'),
 (504, 'en', 'Menus'),
 (504, 'fr', 'Menus'),
 (505, 'en', 'Groups of menus'),
@@ -1840,7 +1892,31 @@ INSERT INTO `b_message_i18n` (`b_message_id`, `i18n_id`, `translation`) VALUES
 (514, 'en', 'Menu URL'),
 (514, 'fr', 'URL du menu'),
 (515, 'en', 'Group of menu'),
-(515, 'fr', 'Groupe du menu');
+(515, 'fr', 'Groupe du menu'),
+(516, 'en', 'Refresh urls cache'),
+(516, 'fr', 'Rafraichir le cache des urls'),
+(517, 'en', '{@=url_manager_refresh_title}'),
+(517, 'fr', '{@=url_manager_refresh_title}'),
+(518, 'en', 'Urls cache is refreshed'),
+(518, 'fr', 'Le cache des urls a été mise à jour'),
+(519, 'en', 'First name'),
+(519, 'fr', 'Prénom'),
+(520, 'en', 'Last name'),
+(520, 'fr', 'Nom'),
+(521, 'en', 'Email'),
+(521, 'fr', 'Email'),
+(522, 'en', 'Phone'),
+(522, 'fr', 'Téléphone'),
+(523, 'en', 'Message'),
+(523, 'fr', 'Message'),
+(524, 'en', 'Your email has been sent'),
+(524, 'fr', 'Votre email a bien été envoyé'),
+(525, 'en', '{@=model:activated}'),
+(525, 'fr', '{@=model:activated}'),
+(526, 'en', 'Spanish'),
+(526, 'fr', 'Espagnol'),
+(528, 'en', 'Published at'),
+(528, 'fr', 'Publié le');
 
 -- --------------------------------------------------------
 
@@ -1851,7 +1927,7 @@ INSERT INTO `b_message_i18n` (`b_message_id`, `i18n_id`, `translation`) VALUES
 CREATE TABLE IF NOT EXISTS `b_person` (
 `id` int(10) unsigned NOT NULL,
   `email` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `password` varchar(64) COLLATE utf8_bin NOT NULL,
+  `password` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
   `first_name` varchar(50) CHARACTER SET utf8 NOT NULL,
   `last_name` varchar(50) CHARACTER SET utf8 NOT NULL,
   `activated` tinyint(1) unsigned NOT NULL DEFAULT '1',
@@ -1860,14 +1936,14 @@ CREATE TABLE IF NOT EXISTS `b_person` (
   `default_language` varchar(16) COLLATE utf8_bin NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `b_person`
 --
 
 INSERT INTO `b_person` (`id`, `email`, `password`, `first_name`, `last_name`, `activated`, `validated`, `active_reset`, `default_language`, `created_at`, `updated_at`) VALUES
-(1, 'admin@unitkit.com', '$2a$13$wX7Nnt9jkr2MB9ZaLKtOgu9ZoppWTFl7hwIKV2LayqLwoghhlYiKm', 'Super', 'Admin', 1, 1, 0, 'en', '2012-12-20 12:40:50', '2014-10-31 15:17:25'),
+(1, 'admin@unitkit.com', '$2a$13$wX7Nnt9jkr2MB9ZaLKtOgu9ZoppWTFl7hwIKV2LayqLwoghhlYiKm', 'Super', 'Admin', 1, 1, 0, 'fr', '2012-12-20 12:40:50', '2014-11-29 14:44:46'),
 (2, 'noreply@unitkit.local', '', 'Sender', '', 0, 0, 0, 'en', '2013-04-25 10:07:58', '2014-06-22 12:06:57');
 
 -- --------------------------------------------------------
@@ -1924,108 +2000,106 @@ CREATE TABLE IF NOT EXISTS `b_role` (
 
 INSERT INTO `b_role` (`id`, `operation`, `business_rule`, `created_at`, `updated_at`) VALUES
 (1, 'consult:*', '', '2014-03-23 14:35:53', '2014-04-09 09:18:52'),
-(2, 'create:*', '', '2014-03-23 13:44:27', '2014-04-13 15:53:47'),
+(2, 'create:*', '', '2014-03-23 13:44:27', '2014-11-22 10:44:55'),
 (3, 'update:*', '', '2014-03-23 14:38:13', '2014-04-09 09:19:14'),
 (4, 'delete:*', '', '2014-03-23 14:38:28', '2014-04-15 04:36:48'),
 (6, 'consult:backend', '', '2013-01-09 20:08:33', '2014-04-13 15:56:01'),
 (7, 'administrate:backend/right', '', '2012-12-05 16:36:34', '2014-07-08 14:51:12'),
-(8, 'update:backend/profile/profile', '', '2014-06-26 18:01:57', '2014-11-01 09:30:00'),
-(9, 'create:backend/variable/variable', '', '2014-10-31 16:12:06', '2014-10-31 16:12:06'),
-(10, 'update:backend/variable/variable', '', '2014-10-31 16:12:06', '2014-10-31 16:12:06'),
-(11, 'consult:backend/variable/variable', '', '2014-10-31 16:12:06', '2014-10-31 16:12:06'),
-(12, 'delete:backend/variable/variable', '', '2014-10-31 16:12:06', '2014-10-31 16:12:06'),
-(13, 'create:backend/variable/variableGroup', '', '2014-10-31 16:14:51', '2014-10-31 16:14:51'),
-(14, 'update:backend/variable/variableGroup', '', '2014-10-31 16:14:51', '2014-10-31 16:14:51'),
-(15, 'consult:backend/variable/variableGroup', '', '2014-10-31 16:14:51', '2014-10-31 16:14:51'),
-(16, 'delete:backend/variable/variableGroup', '', '2014-10-31 16:14:51', '2014-10-31 16:14:51'),
-(17, 'create:backend/right/group', '', '2014-10-31 16:17:48', '2014-10-31 16:17:48'),
-(18, 'update:backend/right/group', '', '2014-10-31 16:17:48', '2014-10-31 16:17:48'),
-(19, 'consult:backend/right/group', '', '2014-10-31 16:17:48', '2014-10-31 16:17:48'),
-(20, 'delete:backend/right/group', '', '2014-10-31 16:17:48', '2014-10-31 16:17:48'),
-(21, 'create:backend/right/person', '', '2014-10-31 16:19:41', '2014-10-31 16:19:41'),
-(22, 'update:backend/right/person', '', '2014-10-31 16:19:41', '2014-10-31 16:19:41'),
-(23, 'consult:backend/right/person', '', '2014-10-31 16:19:41', '2014-10-31 16:19:41'),
-(24, 'delete:backend/right/person', '', '2014-10-31 16:19:41', '2014-10-31 16:19:41'),
-(25, 'create:backend/right/role', '', '2014-10-31 16:19:52', '2014-10-31 16:19:52'),
-(26, 'update:backend/right/role', '', '2014-10-31 16:19:52', '2014-10-31 16:19:52'),
-(27, 'consult:backend/right/role', '', '2014-10-31 16:19:52', '2014-10-31 16:19:52'),
-(28, 'delete:backend/right/role', '', '2014-10-31 16:19:52', '2014-10-31 16:19:52'),
-(29, 'create:backend/message/message', '', '2014-10-31 16:25:47', '2014-10-31 16:25:47'),
-(30, 'update:backend/message/message', '', '2014-10-31 16:25:47', '2014-10-31 16:25:47'),
-(31, 'consult:backend/message/message', '', '2014-10-31 16:25:47', '2014-10-31 16:25:47'),
-(32, 'delete:backend/message/message', '', '2014-10-31 16:25:47', '2014-10-31 16:25:47'),
-(33, 'create:backend/message/messageGroup', '', '2014-10-31 16:26:14', '2014-10-31 16:26:14'),
-(34, 'update:backend/message/messageGroup', '', '2014-10-31 16:26:14', '2014-10-31 16:26:14'),
-(35, 'consult:backend/message/messageGroup', '', '2014-10-31 16:26:14', '2014-10-31 16:26:14'),
-(36, 'delete:backend/message/messageGroup', '', '2014-10-31 16:26:14', '2014-10-31 16:26:14'),
-(37, 'create:backend/mail/mailSendingRole', '', '2014-10-31 16:35:00', '2014-10-31 16:35:00'),
-(38, 'update:backend/mail/mailSendingRole', '', '2014-10-31 16:35:00', '2014-10-31 16:35:00'),
-(39, 'consult:backend/mail/mailSendingRole', '', '2014-10-31 16:35:00', '2014-10-31 16:35:00'),
-(40, 'delete:backend/mail/mailSendingRole', '', '2014-10-31 16:35:00', '2014-10-31 16:35:00'),
-(41, 'create:backend/mail/mailTemplate', '', '2014-10-31 16:49:29', '2014-10-31 16:49:29'),
-(42, 'update:backend/mail/mailTemplate', '', '2014-10-31 16:49:29', '2014-10-31 16:49:29'),
-(43, 'consult:backend/mail/mailTemplate', '', '2014-10-31 16:49:29', '2014-10-31 16:49:29'),
-(44, 'delete:backend/mail/mailTemplate', '', '2014-10-31 16:49:29', '2014-10-31 16:49:29'),
-(45, 'create:backend/mail/mailTemplateGroup', '', '2014-10-31 16:57:02', '2014-10-31 16:57:02'),
-(46, 'update:backend/mail/mailTemplateGroup', '', '2014-10-31 16:57:02', '2014-10-31 16:57:02'),
-(47, 'consult:backend/mail/mailTemplateGroup', '', '2014-10-31 16:57:02', '2014-10-31 16:57:02'),
-(48, 'delete:backend/mail/mailTemplateGroup', '', '2014-10-31 16:57:02', '2014-10-31 16:57:02'),
-(49, 'create:backend/i18n/i18n', '', '2014-10-31 17:01:51', '2014-10-31 17:01:51'),
-(50, 'update:backend/i18n/i18n', '', '2014-10-31 17:01:51', '2014-10-31 17:01:51'),
-(51, 'consult:backend/i18n/i18n', '', '2014-10-31 17:01:51', '2014-10-31 17:01:51'),
-(52, 'delete:backend/i18n/i18n', '', '2014-10-31 17:01:51', '2014-10-31 17:01:51'),
-(53, 'create:backend/i18n/siteI18n', '', '2014-10-31 17:05:40', '2014-10-31 17:05:40'),
-(54, 'update:backend/i18n/siteI18n', '', '2014-10-31 17:05:40', '2014-10-31 17:05:40'),
-(55, 'consult:backend/i18n/siteI18n', '', '2014-10-31 17:05:40', '2014-10-31 17:05:40'),
-(56, 'delete:backend/i18n/siteI18n', '', '2014-10-31 17:05:40', '2014-10-31 17:05:40'),
-(57, 'create:backend/autoLogin/autoLogin', '', '2014-10-31 17:08:52', '2014-10-31 17:08:52'),
-(58, 'update:backend/autoLogin/autoLogin', '', '2014-10-31 17:08:52', '2014-10-31 17:08:52'),
-(59, 'consult:backend/autoLogin/autoLogin', '', '2014-10-31 17:08:52', '2014-10-31 17:08:52'),
-(60, 'delete:backend/autoLogin/autoLogin', '', '2014-10-31 17:08:52', '2014-10-31 17:08:52'),
-(61, 'update:backend/cache/dbSchema', '', '2014-10-31 17:23:29', '2014-10-31 17:24:18'),
-(62, 'create:backend/cms/albumPhoto', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(63, 'update:backend/cms/albumPhoto', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(64, 'consult:backend/cms/albumPhoto', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(65, 'delete:backend/cms/albumPhoto', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(66, 'create:backend/cms/album', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(67, 'update:backend/cms/album', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(68, 'consult:backend/cms/album', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(69, 'delete:backend/cms/album', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(70, 'create:backend/cms/image', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(71, 'update:backend/cms/image', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(72, 'consult:backend/cms/image', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(73, 'delete:backend/cms/image', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(74, 'create:backend/cms/layout', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(75, 'update:backend/cms/layout', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(76, 'consult:backend/cms/layout', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(77, 'delete:backend/cms/layout', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(78, 'create:backend/cms/menuGroup', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(79, 'update:backend/cms/menuGroup', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(80, 'consult:backend/cms/menuGroup', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(81, 'delete:backend/cms/menuGroup', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(82, 'create:backend/cms/menu', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(83, 'update:backend/cms/menu', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(84, 'consult:backend/cms/menu', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(85, 'delete:backend/cms/menu', '', '2014-10-31 17:29:03', '2014-10-31 17:29:03'),
-(86, 'create:backend/cms/newsGroup', '', '2014-10-31 17:29:38', '2014-10-31 17:29:38'),
-(87, 'update:backend/cms/newsGroup', '', '2014-10-31 17:29:38', '2014-10-31 17:29:38'),
-(88, 'consult:backend/cms/newsGroup', '', '2014-10-31 17:29:38', '2014-10-31 17:29:38'),
-(89, 'delete:backend/cms/newsGroup', '', '2014-10-31 17:29:38', '2014-10-31 17:29:38'),
-(90, 'create:backend/cms/news', '', '2014-10-31 17:29:38', '2014-10-31 17:29:38'),
-(91, 'update:backend/cms/news', '', '2014-10-31 17:29:38', '2014-10-31 17:29:38'),
-(92, 'consult:backend/cms/news', '', '2014-10-31 17:29:38', '2014-10-31 17:29:38'),
-(93, 'delete:backend/cms/news', '', '2014-10-31 17:29:38', '2014-10-31 17:29:38'),
-(94, 'create:backend/cms/pageContainer', '', '2014-10-31 17:29:38', '2014-10-31 17:29:38'),
-(95, 'update:backend/cms/pageContainer', '', '2014-10-31 17:29:38', '2014-10-31 17:29:38'),
-(96, 'consult:backend/cms/pageContainer', '', '2014-10-31 17:29:38', '2014-10-31 17:29:38'),
-(97, 'delete:backend/cms/pageContainer', '', '2014-10-31 17:29:38', '2014-10-31 17:29:38'),
-(98, 'create:backend/cms/social', '', '2014-10-31 17:29:38', '2014-10-31 17:29:38'),
-(99, 'update:backend/cms/social', '', '2014-10-31 17:29:38', '2014-10-31 17:29:38'),
-(100, 'consult:backend/cms/social', '', '2014-10-31 17:29:38', '2014-10-31 17:29:38'),
-(101, 'delete:backend/cms/social', '', '2014-10-31 17:29:38', '2014-10-31 17:29:38'),
-(102, 'create:backend/cms/widget', '', '2014-10-31 17:29:38', '2014-10-31 17:29:38'),
-(103, 'update:backend/cms/widget', '', '2014-10-31 17:29:38', '2014-10-31 17:29:38'),
-(104, 'consult:backend/cms/widget', '', '2014-10-31 17:29:38', '2014-10-31 17:29:38'),
+(8, 'update:backend/profile/profile', '', '2014-06-26 18:01:57', '2014-11-22 10:44:35'),
+(9, 'create:backend/variable/variable', '', '2014-10-31 16:12:06', '2014-11-22 10:44:19'),
+(10, 'update:backend/variable/variable', '', '2014-10-31 16:12:06', '2014-11-22 10:44:15'),
+(11, 'consult:backend/variable/variable', '', '2014-10-31 16:12:06', '2014-11-22 10:44:11'),
+(12, 'delete:backend/variable/variable', '', '2014-10-31 16:12:06', '2014-11-22 10:44:06'),
+(13, 'create:backend/variable/variableGroup', '', '2014-10-31 16:14:51', '2014-11-22 10:43:59'),
+(14, 'update:backend/variable/variableGroup', '', '2014-10-31 16:14:51', '2014-11-22 10:43:52'),
+(15, 'consult:backend/variable/variableGroup', '', '2014-10-31 16:14:51', '2014-11-22 10:43:47'),
+(16, 'delete:backend/variable/variableGroup', '', '2014-10-31 16:14:51', '2014-11-22 10:43:48'),
+(17, 'create:backend/right/group', '', '2014-10-31 16:17:48', '2014-11-22 10:43:33'),
+(18, 'update:backend/right/group', '', '2014-10-31 16:17:48', '2014-11-22 10:43:29'),
+(19, 'consult:backend/right/group', '', '2014-10-31 16:17:48', '2014-11-22 10:43:20'),
+(20, 'delete:backend/right/group', '', '2014-10-31 16:17:48', '2014-11-22 10:43:10'),
+(21, 'create:backend/right/person', '', '2014-10-31 16:19:41', '2014-11-22 10:43:02'),
+(22, 'update:backend/right/person', '', '2014-10-31 16:19:41', '2014-11-22 10:42:58'),
+(23, 'consult:backend/right/person', '', '2014-10-31 16:19:41', '2014-11-22 10:42:52'),
+(24, 'delete:backend/right/person', '', '2014-10-31 16:19:41', '2014-11-22 10:42:41'),
+(25, 'create:backend/right/role', '', '2014-10-31 16:19:52', '2014-11-22 10:42:34'),
+(26, 'update:backend/right/role', '', '2014-10-31 16:19:52', '2014-11-22 10:42:28'),
+(27, 'consult:backend/right/role', '', '2014-10-31 16:19:52', '2014-11-22 10:42:24'),
+(28, 'delete:backend/right/role', '', '2014-10-31 16:19:52', '2014-11-22 10:42:16'),
+(29, 'create:backend/message/message', '', '2014-10-31 16:25:47', '2014-11-22 10:41:48'),
+(30, 'update:backend/message/message', '', '2014-10-31 16:25:47', '2014-11-22 10:41:45'),
+(31, 'consult:backend/message/message', '', '2014-10-31 16:25:47', '2014-11-22 10:41:41'),
+(32, 'delete:backend/message/message', '', '2014-10-31 16:25:47', '2014-11-22 10:41:36'),
+(33, 'create:backend/message/messageGroup', '', '2014-10-31 16:26:14', '2014-11-22 10:41:30'),
+(34, 'update:backend/message/messageGroup', '', '2014-10-31 16:26:14', '2014-11-22 10:41:25'),
+(35, 'consult:backend/message/messageGroup', '', '2014-10-31 16:26:14', '2014-11-22 10:41:21'),
+(36, 'delete:backend/message/messageGroup', '', '2014-10-31 16:26:14', '2014-11-22 10:41:18'),
+(37, 'create:backend/mail/mailSendingRole', '', '2014-10-31 16:35:00', '2014-11-22 10:41:06'),
+(38, 'update:backend/mail/mailSendingRole', '', '2014-10-31 16:35:00', '2014-11-22 10:41:01'),
+(39, 'consult:backend/mail/mailSendingRole', '', '2014-10-31 16:35:00', '2014-11-22 10:40:57'),
+(40, 'delete:backend/mail/mailSendingRole', '', '2014-10-31 16:35:00', '2014-11-22 10:40:52'),
+(41, 'create:backend/mail/mailTemplate', '', '2014-10-31 16:49:29', '2014-11-22 10:40:11'),
+(42, 'update:backend/mail/mailTemplate', '', '2014-10-31 16:49:29', '2014-11-22 10:40:08'),
+(43, 'consult:backend/mail/mailTemplate', '', '2014-10-31 16:49:29', '2014-11-22 10:40:05'),
+(44, 'delete:backend/mail/mailTemplate', '', '2014-10-31 16:49:29', '2014-11-22 10:39:58'),
+(45, 'create:backend/mail/mailTemplateGroup', '', '2014-10-31 16:57:02', '2014-11-22 10:39:48'),
+(46, 'update:backend/mail/mailTemplateGroup', '', '2014-10-31 16:57:02', '2014-11-22 10:39:44'),
+(47, 'consult:backend/mail/mailTemplateGroup', '', '2014-10-31 16:57:02', '2014-11-22 10:39:38'),
+(48, 'delete:backend/mail/mailTemplateGroup', '', '2014-10-31 16:57:02', '2014-11-22 10:39:40'),
+(49, 'create:backend/i18n/i18n', '', '2014-10-31 17:01:51', '2014-11-22 10:39:00'),
+(50, 'update:backend/i18n/i18n', '', '2014-10-31 17:01:51', '2014-11-22 10:38:55'),
+(51, 'consult:backend/i18n/i18n', '', '2014-10-31 17:01:51', '2014-11-22 10:38:48'),
+(52, 'delete:backend/i18n/i18n', '', '2014-10-31 17:01:51', '2014-11-22 10:38:44'),
+(53, 'create:backend/i18n/siteI18n', '', '2014-10-31 17:05:40', '2014-11-22 10:38:28'),
+(54, 'update:backend/i18n/siteI18n', '', '2014-10-31 17:05:40', '2014-11-22 10:38:20'),
+(55, 'consult:backend/i18n/siteI18n', '', '2014-10-31 17:05:40', '2014-11-22 10:38:01'),
+(56, 'delete:backend/i18n/siteI18n', '', '2014-10-31 17:05:40', '2014-11-22 10:37:53'),
+(59, 'consult:backend/autoLogin/autoLogin', '', '2014-10-31 17:08:52', '2014-11-22 10:37:34'),
+(60, 'delete:backend/autoLogin/autoLogin', '', '2014-10-31 17:08:52', '2014-11-22 10:37:26'),
+(61, 'update:backend/cache/dbSchema', '', '2014-10-31 17:23:29', '2014-11-22 10:36:44'),
+(62, 'create:backend/cms/albumPhoto', '', '2014-10-31 17:29:03', '2014-11-22 10:36:13'),
+(63, 'update:backend/cms/albumPhoto', '', '2014-10-31 17:29:03', '2014-11-22 10:36:10'),
+(64, 'consult:backend/cms/albumPhoto', '', '2014-10-31 17:29:03', '2014-11-22 10:36:07'),
+(65, 'delete:backend/cms/albumPhoto', '', '2014-10-31 17:29:03', '2014-11-22 10:35:58'),
+(66, 'create:backend/cms/album', '', '2014-10-31 17:29:03', '2014-11-22 10:35:26'),
+(67, 'update:backend/cms/album', '', '2014-10-31 17:29:03', '2014-11-22 10:35:22'),
+(68, 'consult:backend/cms/album', '', '2014-10-31 17:29:03', '2014-11-22 10:35:18'),
+(69, 'delete:backend/cms/album', '', '2014-10-31 17:29:03', '2014-11-22 10:35:13'),
+(70, 'create:backend/cms/image', '', '2014-10-31 17:29:03', '2014-11-22 10:34:09'),
+(71, 'update:backend/cms/image', '', '2014-10-31 17:29:03', '2014-11-22 10:33:53'),
+(72, 'consult:backend/cms/image', '', '2014-10-31 17:29:03', '2014-11-22 10:33:49'),
+(73, 'delete:backend/cms/image', '', '2014-10-31 17:29:03', '2014-11-22 10:33:42'),
+(74, 'create:backend/cms/layout', '', '2014-10-31 17:29:03', '2014-11-22 10:35:03'),
+(75, 'update:backend/cms/layout', '', '2014-10-31 17:29:03', '2014-11-22 10:33:20'),
+(76, 'consult:backend/cms/layout', '', '2014-10-31 17:29:03', '2014-11-22 10:33:25'),
+(77, 'delete:backend/cms/layout', '', '2014-10-31 17:29:03', '2014-11-22 10:33:27'),
+(78, 'create:backend/cms/menuGroup', '', '2014-10-31 17:29:03', '2014-11-22 10:34:57'),
+(79, 'update:backend/cms/menuGroup', '', '2014-10-31 17:29:03', '2014-11-22 10:32:18'),
+(80, 'consult:backend/cms/menuGroup', '', '2014-10-31 17:29:03', '2014-11-22 10:32:12'),
+(81, 'delete:backend/cms/menuGroup', '', '2014-10-31 17:29:03', '2014-11-22 10:32:14'),
+(82, 'create:backend/cms/menu', '', '2014-10-31 17:29:03', '2014-11-22 10:34:51'),
+(83, 'update:backend/cms/menu', '', '2014-10-31 17:29:03', '2014-11-22 10:31:50'),
+(84, 'consult:backend/cms/menu', '', '2014-10-31 17:29:03', '2014-11-22 10:31:40'),
+(85, 'delete:backend/cms/menu', '', '2014-10-31 17:29:03', '2014-11-22 10:31:38'),
+(86, 'create:backend/cms/newsGroup', '', '2014-10-31 17:29:38', '2014-11-22 10:34:46'),
+(87, 'update:backend/cms/newsGroup', '', '2014-10-31 17:29:38', '2014-11-22 10:31:15'),
+(88, 'consult:backend/cms/newsGroup', '', '2014-10-31 17:29:38', '2014-11-22 10:31:11'),
+(89, 'delete:backend/cms/newsGroup', '', '2014-10-31 17:29:38', '2014-11-22 10:31:05'),
+(90, 'create:backend/cms/news', '', '2014-10-31 17:29:38', '2014-11-22 10:34:41'),
+(91, 'update:backend/cms/news', '', '2014-10-31 17:29:38', '2014-11-22 10:30:46'),
+(92, 'consult:backend/cms/news', '', '2014-10-31 17:29:38', '2014-11-22 10:30:42'),
+(93, 'delete:backend/cms/news', '', '2014-10-31 17:29:38', '2014-11-22 10:30:37'),
+(94, 'create:backend/cms/pageContainer', '', '2014-10-31 17:29:38', '2014-11-22 10:34:36'),
+(95, 'update:backend/cms/pageContainer', '', '2014-10-31 17:29:38', '2014-11-22 10:30:27'),
+(96, 'consult:backend/cms/pageContainer', '', '2014-10-31 17:29:38', '2014-11-22 10:30:12'),
+(97, 'delete:backend/cms/pageContainer', '', '2014-10-31 17:29:38', '2014-11-22 10:29:33'),
+(98, 'create:backend/cms/social', '', '2014-10-31 17:29:38', '2014-11-22 10:34:29'),
+(99, 'update:backend/cms/social', '', '2014-10-31 17:29:38', '2014-11-22 10:29:06'),
+(100, 'consult:backend/cms/social', '', '2014-10-31 17:29:38', '2014-11-22 10:29:04'),
+(101, 'delete:backend/cms/social', '', '2014-10-31 17:29:38', '2014-11-22 10:29:03'),
+(102, 'create:backend/cms/widget', '', '2014-10-31 17:29:38', '2014-11-22 10:34:23'),
+(103, 'update:backend/cms/widget', '', '2014-10-31 17:29:38', '2014-11-22 10:27:57'),
+(104, 'consult:backend/cms/widget', '', '2014-10-31 17:29:38', '2014-11-22 10:27:49'),
 (105, 'delete:backend/cms/widget', '', '2014-10-31 17:29:38', '2014-10-31 17:29:38');
 
 -- --------------------------------------------------------
@@ -2048,7 +2122,7 @@ INSERT INTO `b_role_i18n` (`b_role_id`, `i18n_id`, `name`) VALUES
 (1, 'en', 'Consult'),
 (1, 'fr', 'Consulter'),
 (2, 'en', 'Create'),
-(2, 'fr', 'Créer'),
+(2, 'fr', 'Ajouter'),
 (3, 'en', 'Update'),
 (3, 'fr', 'Modifier'),
 (4, 'en', 'Delete'),
@@ -2058,104 +2132,197 @@ INSERT INTO `b_role_i18n` (`b_role_id`, `i18n_id`, `name`) VALUES
 (7, 'en', 'Administrate rights'),
 (7, 'fr', 'Administrer les droits'),
 (8, 'en', 'Update profil informations'),
-(8, 'fr', 'Mise à jour du profil'),
+(8, 'fr', 'Modifier profil'),
 (9, 'en', 'Create variables'),
+(9, 'fr', 'Ajouter variables'),
 (10, 'en', 'Update variables'),
+(10, 'fr', 'Modifier variables'),
 (11, 'en', 'Consult variables'),
+(11, 'fr', 'Afficher variables'),
 (12, 'en', 'Delete variables'),
+(12, 'fr', 'Supprimer variables'),
 (13, 'en', 'Create variable groups'),
+(13, 'fr', 'Ajouter groupes de variables'),
 (14, 'en', 'Update variable groups'),
+(14, 'fr', 'Modifier groupes de variables'),
 (15, 'en', 'Consult variable groups'),
+(15, 'fr', 'Afficher groupes de variables'),
 (16, 'en', 'Delete variable groups'),
+(16, 'fr', 'Supprimer groupes de variables'),
 (17, 'en', 'Create groups'),
+(17, 'fr', 'Ajouter groupes d''utilisateurs'),
 (18, 'en', 'Update groups'),
+(18, 'fr', 'Modifier groupes d''utilisateurs'),
 (19, 'en', 'Consult groups'),
+(19, 'fr', 'Afficher groupes d''utilisateurs'),
 (20, 'en', 'Delete groups'),
+(20, 'fr', 'Supprimer groupes d''utilisateurs'),
 (21, 'en', 'Create persons'),
+(21, 'fr', 'Ajouter utilisateurs'),
 (22, 'en', 'Update persons'),
+(22, 'fr', 'Modifier utilisateurs'),
 (23, 'en', 'Consult persons'),
+(23, 'fr', 'Afficher utilisateurs'),
 (24, 'en', 'Delete persons'),
+(24, 'fr', 'Supprimer utilisateurs'),
 (25, 'en', 'Create roles'),
+(25, 'fr', 'Ajoutet rôles'),
 (26, 'en', 'Update roles'),
+(26, 'fr', 'Modifier rôles'),
 (27, 'en', 'Consult roles'),
+(27, 'fr', 'Afficher rôles'),
 (28, 'en', 'Delete roles'),
+(28, 'fr', 'Supprimer rôles'),
 (29, 'en', 'Create messages'),
+(29, 'fr', 'Ajouter messages'),
 (30, 'en', 'Update messages'),
+(30, 'fr', 'Modifier messages'),
 (31, 'en', 'Consult messages'),
+(31, 'fr', 'Afficher messages'),
 (32, 'en', 'Delete messages'),
+(32, 'fr', 'Supprimer messages'),
 (33, 'en', 'Create message groups'),
+(33, 'fr', 'Ajouter groupes de messages'),
 (34, 'en', 'Update message groups'),
+(34, 'fr', 'Modifier groupes de messages'),
 (35, 'en', 'Consult message groups'),
+(35, 'fr', 'Afficher groupes de messages'),
 (36, 'en', 'Delete message groups'),
+(36, 'fr', 'Supprimer groupes de messages'),
 (37, 'en', 'Create mail sending roles'),
+(37, 'fr', 'Ajouter rôles d''envoie de mails'),
 (38, 'en', 'Update mail sending roles'),
+(38, 'fr', 'Modifier rôles d''envoie de mails'),
 (39, 'en', 'Consult mail sending roles'),
+(39, 'fr', 'Afficher rôles d''envoie de mails'),
 (40, 'en', 'Delete mail sending roles'),
+(40, 'fr', 'Supprimer rôles d''envoie de mails'),
 (41, 'en', 'Create mail templates'),
+(41, 'fr', 'Ajouter modèles de mails'),
 (42, 'en', 'Update mail templates'),
+(42, 'fr', 'Modifier modèles de mails'),
 (43, 'en', 'Consult mail templates'),
+(43, 'fr', 'Afficher modèles de mails'),
 (44, 'en', 'Delete mail templates'),
+(44, 'fr', 'Supprimer modèles de mails'),
 (45, 'en', 'Create mail template groups'),
+(45, 'fr', 'Ajouter groupes de modèles de mails'),
 (46, 'en', 'Update mail template groups'),
+(46, 'fr', 'Modifier groupes de modèles de mails'),
 (47, 'en', 'Consult mail template groups'),
+(47, 'fr', 'Afficher groupes de modèles de mails'),
 (48, 'en', 'Delete mail template groups'),
+(48, 'fr', 'Supprimer groupes de modèles de mails'),
 (49, 'en', 'Create i18ns'),
+(49, 'fr', 'Ajouter langues'),
 (50, 'en', 'Update i18ns'),
+(50, 'fr', 'Modifier langues'),
 (51, 'en', 'Consult i18ns'),
+(51, 'fr', 'Afficher langues'),
 (52, 'en', 'Delete i18ns'),
+(52, 'fr', 'Supprimer langues'),
 (53, 'en', 'Create site i18ns'),
+(53, 'fr', 'Ajouter langues du site'),
 (54, 'en', 'Update site i18ns'),
+(54, 'fr', 'Modifier langues du site'),
 (55, 'en', 'Consult site i18ns'),
+(55, 'fr', 'Afficher langues du site'),
 (56, 'en', 'Delete site i18ns'),
-(57, 'en', 'Create auto logins'),
-(58, 'en', 'Update auto logins'),
+(56, 'fr', 'Supprimer langues du site'),
 (59, 'en', 'Consult auto logins'),
+(59, 'fr', 'Afficher connexions automatiques'),
 (60, 'en', 'Delete auto logins'),
+(60, 'fr', 'Supprimer connexions automatiques'),
 (61, 'en', 'Update cache database'),
+(61, 'fr', 'Modifier le cache de la base de données'),
 (62, 'en', 'Create album photos'),
+(62, 'fr', 'Ajouter photos des albums'),
 (63, 'en', 'Update album photos'),
+(63, 'fr', 'Modifier photos des albums'),
 (64, 'en', 'Consult album photos'),
+(64, 'fr', 'Afficher photos des albums'),
 (65, 'en', 'Delete album photos'),
+(65, 'fr', 'Supprimer photos des albums'),
 (66, 'en', 'Create albums'),
+(66, 'fr', 'Ajouter album'),
 (67, 'en', 'Update albums'),
+(67, 'fr', 'Modifier albums'),
 (68, 'en', 'Consult albums'),
+(68, 'fr', 'Afficher albums'),
 (69, 'en', 'Delete albums'),
+(69, 'fr', 'Supprimer albums'),
 (70, 'en', 'Create images'),
+(70, 'fr', 'Ajouter images'),
 (71, 'en', 'Update images'),
+(71, 'fr', 'Modifier images'),
 (72, 'en', 'Consult images'),
+(72, 'fr', 'Afficher images'),
 (73, 'en', 'Delete images'),
+(73, 'fr', 'Supprimer images'),
 (74, 'en', 'Create layouts'),
+(74, 'fr', 'Ajouter mises en pages'),
 (75, 'en', 'Update layouts'),
+(75, 'fr', 'Modifier mises en pages'),
 (76, 'en', 'Consult layouts'),
+(76, 'fr', 'Afficher mises en pages'),
 (77, 'en', 'Delete layouts'),
+(77, 'fr', 'Supprimer mises en pages'),
 (78, 'en', 'Create menu groups'),
+(78, 'fr', 'Ajouter groupes de menus'),
 (79, 'en', 'Update menu groups'),
+(79, 'fr', 'Modifier groupes de menus'),
 (80, 'en', 'Consult menu groups'),
+(80, 'fr', 'Afficher groupes de menus'),
 (81, 'en', 'Delete menu groups'),
+(81, 'fr', 'Supprimer groupes de menus'),
 (82, 'en', 'Create menus'),
+(82, 'fr', 'Ajouter menus'),
 (83, 'en', 'Update menus'),
+(83, 'fr', 'Modifier menus'),
 (84, 'en', 'Consult menus'),
+(84, 'fr', 'Afficher menus'),
 (85, 'en', 'Delete menus'),
+(85, 'fr', 'Supprimer menus'),
 (86, 'en', 'Create news groups'),
+(86, 'fr', 'Ajouter groupes de news'),
 (87, 'en', 'Update news groups'),
+(87, 'fr', 'Modifier groupes de news'),
 (88, 'en', 'Consult news groups'),
+(88, 'fr', 'Afficher groupes de news'),
 (89, 'en', 'Delete news groups'),
+(89, 'fr', 'Supprimer groupes de news'),
 (90, 'en', 'Create newss'),
+(90, 'fr', 'Ajouter news'),
 (91, 'en', 'Update newss'),
+(91, 'fr', 'Modifier news'),
 (92, 'en', 'Consult newss'),
+(92, 'fr', 'Afficher news'),
 (93, 'en', 'Delete newss'),
+(93, 'fr', 'Supprimer news'),
 (94, 'en', 'Create page containers'),
+(94, 'fr', 'Ajouter gabarits de pages'),
 (95, 'en', 'Update page containers'),
+(95, 'fr', 'Modifier gabarits de pages'),
 (96, 'en', 'Consult page containers'),
+(96, 'fr', 'Afficher gabarits de pages'),
 (97, 'en', 'Delete page containers'),
+(97, 'fr', 'Supprimer gabarits de pages'),
 (98, 'en', 'Create socials'),
+(98, 'fr', 'Ajouter réseaux sociaux'),
 (99, 'en', 'Update socials'),
+(99, 'fr', 'Modifier réseaux sociaux'),
 (100, 'en', 'Consult socials'),
+(100, 'fr', 'Afficher réseaux sociaux'),
 (101, 'en', 'Delete socials'),
+(101, 'fr', 'Supprimer réseaux sociaux'),
 (102, 'en', 'Create widgets'),
+(102, 'fr', 'Ajouter widgets'),
 (103, 'en', 'Update widgets'),
+(103, 'fr', 'Modifier widgets'),
 (104, 'en', 'Consult widgets'),
-(105, 'en', 'Delete widgets');
+(104, 'fr', 'Afficher widgets'),
+(105, 'en', 'Delete widgets'),
+(105, 'fr', 'Supprimer widgets');
 
 -- --------------------------------------------------------
 
@@ -2164,15 +2331,17 @@ INSERT INTO `b_role_i18n` (`b_role_id`, `i18n_id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `b_site_i18n` (
-  `i18n_id` varchar(16) COLLATE utf8_bin NOT NULL
+  `i18n_id` varchar(16) COLLATE utf8_bin NOT NULL,
+  `activated` tinyint(1) unsigned NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Contenu de la table `b_site_i18n`
 --
 
-INSERT INTO `b_site_i18n` (`i18n_id`) VALUES
-('en');
+INSERT INTO `b_site_i18n` (`i18n_id`, `activated`) VALUES
+('en', 0),
+('fr', 1);
 
 -- --------------------------------------------------------
 
@@ -2187,7 +2356,7 @@ CREATE TABLE IF NOT EXISTS `b_variable` (
   `val` text COLLATE utf8_bin NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=25 ;
 
 --
 -- Contenu de la table `b_variable`
@@ -2206,8 +2375,12 @@ INSERT INTO `b_variable` (`id`, `b_variable_group_id`, `param`, `val`, `created_
 (14, 2, 'b_person_token_action:resetPassword', 'backend:resetPassword', '2014-06-23 13:27:09', '2014-06-23 13:32:33'),
 (15, 2, 'b_person_token_expired_at:resetPassword', '12', '2014-06-23 13:34:14', '2014-07-02 14:02:34'),
 (18, 1, 'b_message_group_id:frontend', '3', '2014-08-02 09:29:56', '2014-08-02 09:30:37'),
-(19, 3, 'website_name', 'My Website', '2014-08-05 07:37:18', '2014-08-05 07:37:18'),
-(20, 3, 'main_menu_group', '1', '2014-08-05 09:23:31', '2014-08-05 12:12:21');
+(19, 3, 'website_name', 'Website', '2014-08-05 07:37:18', '2014-11-22 11:36:44'),
+(20, 3, 'b_cms_menu_group_id:main', '1', '2014-08-05 09:23:31', '2014-11-24 18:34:21'),
+(21, 3, 'b_cms_page_id:contact', '39', '2014-11-24 17:32:18', '2014-11-24 17:33:21'),
+(22, 3, 'mail_template_id:contact', ' 3', '2014-11-25 15:46:17', '2014-11-29 11:19:49'),
+(23, 3, 'b_cms_page_id:news', '41', '2014-11-29 11:19:14', '2014-11-29 11:19:57'),
+(24, 3, 'b_cms_news_group_id:main', '15', '2014-11-29 12:47:04', '2014-11-29 12:47:04');
 
 -- --------------------------------------------------------
 
@@ -2249,11 +2422,11 @@ CREATE TABLE IF NOT EXISTS `b_variable_group_i18n` (
 
 INSERT INTO `b_variable_group_i18n` (`b_variable_group_id`, `i18n_id`, `name`) VALUES
 (1, 'en', 'Unitkit'),
-(1, 'fr', 'UNITKIT'),
-(2, 'de', 'Back-end'),
+(1, 'fr', 'Unitkit'),
 (2, 'en', 'Backend'),
 (2, 'fr', 'Backend'),
-(3, 'en', 'Frontend');
+(3, 'en', 'Frontend'),
+(3, 'fr', 'Frontend');
 
 -- --------------------------------------------------------
 
@@ -2295,9 +2468,17 @@ INSERT INTO `b_variable_i18n` (`b_variable_id`, `i18n_id`, `description`) VALUES
 (15, 'en', 'Time during which the reset password action keep alive (in hours)'),
 (15, 'fr', 'Temps pendant lequel l''action de réinitialisation du mot de passe reste active (en heure)'),
 (18, 'en', 'ID of messages group used from frontend application'),
+(18, 'fr', 'Identifiant du groupe de message utilisé dans sur le frontend'),
 (19, 'en', 'Name of website'),
+(19, 'fr', 'Nom du site web'),
 (20, 'en', 'Group ID of main menu'),
-(20, 'fr', 'Identifiant du groupe du menu principal');
+(20, 'fr', 'Identifiant du groupe du menu principal'),
+(21, 'en', 'ID of cms page contact'),
+(21, 'fr', 'Identifiant de la page cms de contact'),
+(22, 'en', 'ID of contact mail template'),
+(22, 'fr', 'Identifiant du modèle de mail utilisé dans le module de contact'),
+(23, 'en', 'ID of cms page news'),
+(24, 'en', 'ID of main news group');
 
 --
 -- Index pour les tables exportées
@@ -2623,12 +2804,12 @@ ALTER TABLE `b_variable_i18n`
 -- AUTO_INCREMENT pour la table `b_cms_album`
 --
 ALTER TABLE `b_cms_album`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=49;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=50;
 --
 -- AUTO_INCREMENT pour la table `b_cms_album_photo`
 --
 ALTER TABLE `b_cms_album_photo`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=53;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=55;
 --
 -- AUTO_INCREMENT pour la table `b_cms_image`
 --
@@ -2638,7 +2819,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 -- AUTO_INCREMENT pour la table `b_cms_layout`
 --
 ALTER TABLE `b_cms_layout`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `b_cms_menu`
 --
@@ -2648,7 +2829,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT pour la table `b_cms_menu_group`
 --
 ALTER TABLE `b_cms_menu_group`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `b_cms_news`
 --
@@ -2663,12 +2844,12 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 -- AUTO_INCREMENT pour la table `b_cms_page`
 --
 ALTER TABLE `b_cms_page`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=42;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT pour la table `b_cms_page_content`
 --
 ALTER TABLE `b_cms_page_content`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=69;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=78;
 --
 -- AUTO_INCREMENT pour la table `b_cms_social`
 --
@@ -2678,17 +2859,17 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT pour la table `b_cms_widget`
 --
 ALTER TABLE `b_cms_widget`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT pour la table `b_group`
 --
 ALTER TABLE `b_group`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `b_group_i18n`
 --
 ALTER TABLE `b_group_i18n`
-MODIFY `b_group_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `b_group_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `b_mail_send_role`
 --
@@ -2698,17 +2879,17 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT pour la table `b_mail_template`
 --
 ALTER TABLE `b_mail_template`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `b_mail_template_group`
 --
 ALTER TABLE `b_mail_template_group`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `b_message`
 --
 ALTER TABLE `b_message`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=516;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=529;
 --
 -- AUTO_INCREMENT pour la table `b_message_group`
 --
@@ -2718,7 +2899,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT pour la table `b_person`
 --
 ALTER TABLE `b_person`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `b_role`
 --
@@ -2728,7 +2909,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=106;
 -- AUTO_INCREMENT pour la table `b_variable`
 --
 ALTER TABLE `b_variable`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT pour la table `b_variable_group`
 --

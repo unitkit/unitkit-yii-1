@@ -37,7 +37,8 @@ class SiteI18nListDataView extends BListDataView
 
         // sort attributes
         $this->sortAttributes = array(
-            'bI18nI18ns.name'
+            'bI18nI18ns.name',
+            'bSiteI18n.activated'
         );
 
         // search
@@ -59,7 +60,20 @@ class SiteI18nListDataView extends BListDataView
                         'i18n_id' => Yii::app()->language
                     ))->name : ''
                 )
-            ))
+            )),
+            new BItemField(array(
+                'model' => $model,
+                'attribute' => 'activated',
+                'type' => 'activeDropDownList',
+                'datas' => array(
+                    '' => B::t('unitkit', 'input_drop_down_list_all'),
+                    '1' => B::t('unitkit', 'input_drop_down_list_checked'),
+                    '0' => B::t('unitkit', 'input_drop_down_list_unchecked')
+                ),
+                'htmlOptions' => array(
+                    'class' => 'form-control input-sm'
+                )
+            )),
         );
 
         // advanced search
@@ -80,14 +94,28 @@ class SiteI18nListDataView extends BListDataView
                         'b_i18n_id' => $model->i18n_id,
                         'i18n_id' => Yii::app()->language
                     ))->name : ''
+                ),
+            )),
+            new BItemField(array(
+                'model' => $model,
+                'attribute' => 'activated',
+                'type' => 'activeDropDownList',
+                'datas' => array(
+                    '' => B::t('unitkit', 'input_drop_down_list_all'),
+                    '1' => B::t('unitkit', 'input_drop_down_list_checked'),
+                    '0' => B::t('unitkit', 'input_drop_down_list_unchecked')
+                ),
+                'htmlOptions' => array(
+                    'class' => 'form-control input-sm'
                 )
-            ))
+            )),
         );
 
         // rows
         foreach ($datas as $data)
             $this->rows[] = new SiteI18nListRowDataView($data, array(
-                'i18n_id' => $data->i18n_id
+                'i18n_id' => $data->i18n_id,
+                'activated' => $data->activated
             ));
 
         // pagination

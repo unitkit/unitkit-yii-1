@@ -12,19 +12,6 @@ class NewsController extends BAutoController
     protected $_modelI18n = 'BCmsNewsI18n';
 
     /**
-     * (non-PHPdoc)
-     *
-     * @see BBaseAutoController::uploader()
-     */
-    protected function _uploader()
-    {
-        return array(
-        );
-    }
-
-    /**
-     * (non-PHPdoc)
-     *
      * @see BBaseAutoController::advancedConbobox()
      */
     protected function _advancedConbobox()

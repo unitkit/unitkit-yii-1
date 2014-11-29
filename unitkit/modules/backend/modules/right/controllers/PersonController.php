@@ -161,8 +161,9 @@ class PersonController extends BAutoController
                 $isSaved = true;
 
                 $models['BPerson']->password = '';
-            } else
+            } else {
                 throw new Exception(500);
+            }
         } catch (Exception $e) {
             // roll back
             $transaction->rollback();

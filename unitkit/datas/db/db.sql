@@ -1,5 +1,6 @@
 set foreign_key_checks = 0;
 
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -215,7 +216,9 @@ INSERT INTO `b_cms_layout_i18n` (`b_cms_layout_id`, `i18n_id`, `name`) VALUES
 (2, 'en', 'Contact'),
 (2, 'fr', 'Contact'),
 (3, 'en', 'Carousel'),
+(3, 'fr', 'Carousel'),
 (4, 'en', 'News'),
+(4, 'fr', 'News'),
 (5, 'en', 'Album'),
 (5, 'fr', 'Album');
 
@@ -2478,7 +2481,9 @@ INSERT INTO `b_variable_i18n` (`b_variable_id`, `i18n_id`, `description`) VALUES
 (22, 'en', 'ID of contact mail template'),
 (22, 'fr', 'Identifiant du modèle de mail utilisé dans le module de contact'),
 (23, 'en', 'ID of cms page news'),
-(24, 'en', 'ID of main news group');
+(23, 'fr', 'Identifiant de la page news'),
+(24, 'en', 'ID of main news group'),
+(24, 'fr', 'Identifiant du groupe de news principale');
 
 --
 -- Index pour les tables exportées
@@ -3176,6 +3181,7 @@ ADD CONSTRAINT `b_variable_i18n_ibfk_5` FOREIGN KEY (`i18n_id`) REFERENCES `b_i1
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
 
 set foreign_key_checks = 1;
 

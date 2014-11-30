@@ -98,6 +98,10 @@ class BCmsAlbumPhoto extends CActiveRecord
         return array(
             'bCmsAlbum' => array(self::BELONGS_TO, 'BCmsAlbum', 'b_cms_album_id'),
             'bCmsAlbumI18ns' => array(self::HAS_MANY, 'BCmsAlbumI18n', array('b_cms_album_id' => 'b_cms_album_id')),
+            'bCmsAlbumI18n' => array(self::BELONGS_TO, 'BCmsAlbumI18n', array('b_cms_album_id' => 'b_cms_album_id'),
+                'on' => 'bCmsAlbumI18n.i18n_id = :i18n_id', 'params' => array(':i18n_id' => Yii::app()->language),
+                'joinType' => 'INNER JOIN'
+            ),
             'bCmsAlbumPhotoI18ns' => array(self::HAS_MANY, 'BCmsAlbumPhotoI18n', 'b_cms_album_photo_id'),
             'bCmsAlbumPhotoI18n' => array(self::BELONGS_TO, 'BCmsAlbumPhotoI18n', array('id' => 'b_cms_album_photo_id'),
                 'on' => 'i18n_id = :i18n_id', 'params' => array(':i18n_id' => Yii::app()->language),

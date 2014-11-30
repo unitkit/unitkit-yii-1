@@ -45,8 +45,6 @@ class BCmsAlbum extends CActiveRecord
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see CModel::rules()
      */
     public function rules()

@@ -1995,7 +1995,7 @@ CREATE TABLE IF NOT EXISTS `b_role` (
   `business_rule` text COLLATE utf8_bin NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=106 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=107 ;
 
 --
 -- Contenu de la table `b_role`
@@ -2103,7 +2103,8 @@ INSERT INTO `b_role` (`id`, `operation`, `business_rule`, `created_at`, `updated
 (102, 'create:backend/cms/widget', '', '2014-10-31 17:29:38', '2014-11-22 10:34:23'),
 (103, 'update:backend/cms/widget', '', '2014-10-31 17:29:38', '2014-11-22 10:27:57'),
 (104, 'consult:backend/cms/widget', '', '2014-10-31 17:29:38', '2014-11-22 10:27:49'),
-(105, 'delete:backend/cms/widget', '', '2014-10-31 17:29:38', '2014-10-31 17:29:38');
+(105, 'delete:backend/cms/widget', '', '2014-10-31 17:29:38', '2014-10-31 17:29:38'),
+(106, 'update:backend/cache/urlManager/flush', '', '2014-11-30 13:45:04', '2014-11-30 13:45:04');
 
 -- --------------------------------------------------------
 
@@ -2237,7 +2238,7 @@ INSERT INTO `b_role_i18n` (`b_role_id`, `i18n_id`, `name`) VALUES
 (60, 'en', 'Delete auto logins'),
 (60, 'fr', 'Supprimer connexions automatiques'),
 (61, 'en', 'Update cache database'),
-(61, 'fr', 'Modifier le cache de la base de données'),
+(61, 'fr', 'Mettre à jour le cache de la base de données'),
 (62, 'en', 'Create album photos'),
 (62, 'fr', 'Ajouter photos des albums'),
 (63, 'en', 'Update album photos'),
@@ -2302,14 +2303,14 @@ INSERT INTO `b_role_i18n` (`b_role_id`, `i18n_id`, `name`) VALUES
 (92, 'fr', 'Afficher news'),
 (93, 'en', 'Delete newss'),
 (93, 'fr', 'Supprimer news'),
-(94, 'en', 'Create page containers'),
-(94, 'fr', 'Ajouter gabarits de pages'),
-(95, 'en', 'Update page containers'),
-(95, 'fr', 'Modifier gabarits de pages'),
-(96, 'en', 'Consult page containers'),
-(96, 'fr', 'Afficher gabarits de pages'),
-(97, 'en', 'Delete page containers'),
-(97, 'fr', 'Supprimer gabarits de pages'),
+(94, 'en', 'Create containers'),
+(94, 'fr', 'Ajouter pages'),
+(95, 'en', 'Update pages'),
+(95, 'fr', 'Modifier pages'),
+(96, 'en', 'Consult pages'),
+(96, 'fr', 'Afficher pages'),
+(97, 'en', 'Delete pages'),
+(97, 'fr', 'Supprimer pages'),
 (98, 'en', 'Create socials'),
 (98, 'fr', 'Ajouter réseaux sociaux'),
 (99, 'en', 'Update socials'),
@@ -2325,7 +2326,9 @@ INSERT INTO `b_role_i18n` (`b_role_id`, `i18n_id`, `name`) VALUES
 (104, 'en', 'Consult widgets'),
 (104, 'fr', 'Afficher widgets'),
 (105, 'en', 'Delete widgets'),
-(105, 'fr', 'Supprimer widgets');
+(105, 'fr', 'Supprimer widgets'),
+(106, 'en', 'Update cache url'),
+(106, 'fr', 'Mettre à jour le cache des urls');
 
 -- --------------------------------------------------------
 
@@ -2909,7 +2912,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT pour la table `b_role`
 --
 ALTER TABLE `b_role`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=106;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=107;
 --
 -- AUTO_INCREMENT pour la table `b_variable`
 --

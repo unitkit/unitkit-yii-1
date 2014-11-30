@@ -41,9 +41,9 @@ class PageContainerListDataView extends BListDataView
             'bCmsPage.cache_duration',
             'bCmsPageI18ns.title',
             'bCmsLayoutI18ns.name',
-            'bCmsPageI18ns.html_title',
-            'bCmsPageI18ns.html_description',
-            'bCmsPageI18ns.html_keywords',
+            //'bCmsPageI18ns.html_title',
+            //'bCmsPageI18ns.html_description',
+            //'bCmsPageI18ns.html_keywords',
             //'bCmsPage.created_at',
             //'bCmsPage.updated_at',
         );
@@ -118,7 +118,7 @@ class PageContainerListDataView extends BListDataView
                         :
                         	''
                 )
-            )),
+            )),/*
             new BItemField(array(
                 'model' => $model,
                 'attribute' => 'lk_b_cms_page_i18ns_html_title',
@@ -148,7 +148,7 @@ class PageContainerListDataView extends BListDataView
                     'placeholder' => B::t('unitkit', 'input_search'),
                     'id' => false
                 )
-            )),/*
+            )),
             new BDateRangeItemField(
                 $model,
                 'created_at',

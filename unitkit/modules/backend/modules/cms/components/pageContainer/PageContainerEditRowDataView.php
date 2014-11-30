@@ -89,7 +89,7 @@ class PageContainerEditRowDataView extends BEditRowItemDataView
                                 ))->name : '',
                 )
             )),
-            new BItemField(array(
+            /*new BItemField(array(
                 'model' => $datas['BCmsPageI18n'],
                 'attribute' => 'html_title',
                 'type' => 'activeTextField',
@@ -119,7 +119,7 @@ class PageContainerEditRowDataView extends BEditRowItemDataView
                     'placeholder' => $datas['BCmsPageI18n']->getAttributeLabel('html_keywords'),
                 )
             )),
-           /* new BItemField(array(
+           new BItemField(array(
                 'model' => $datas['BCmsPage'],
                 'attribute' => 'created_at',
                 'value' => Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse(

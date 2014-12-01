@@ -65,8 +65,9 @@ class PasswordResetForm extends CFormModel
                 'email' => $this->email
             );
 
-            if ($mail->sendMailTemplate(B::v('backend', 'mail_template_id:resetPassword'), Yii::app()->language))
+            if ($mail->sendMailTemplate(B::v('backend', 'mail_template_id:resetPassword'), Yii::app()->language)) {
                 $this->isSent = true;
+            }
         }
 
         return $this->isSent;

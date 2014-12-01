@@ -35,8 +35,9 @@ class DefaultController extends BController
 
         if (Yii::app()->request->isPostRequest && isset($_POST['PasswordResetForm'])) {
             $models['PasswordResetForm']->attributes = $_POST['PasswordResetForm'];
-            if ($models['PasswordResetForm']->validate())
+            if ($models['PasswordResetForm']->validate()) {
                 $models['PasswordResetForm']->sendEmail();
+            }
         }
 
         $this->dynamicRender('reset', array(
@@ -84,8 +85,9 @@ class DefaultController extends BController
                                 }
                             } catch (Exception $e) {
                                 // roll back
-                                if ($transaction->active)
+                                if ($transaction->active) {
                                     $transaction->rollback();
+                                }
                             }
                         }
                     }

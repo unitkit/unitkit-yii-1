@@ -94,8 +94,8 @@ class BWidgetCmsAlbum extends CWidget
                     }
                     $html .= '
                     <div class="col-xs-6 col-md-3">
-                       <a href="' . Yii::app()->getModule('frontend')->albumPhotoUrlDest . '/lg/' . $photo->file_path . '" class="thumbnail">
-                           <img src="' . Yii::app()->getModule('frontend')->albumPhotoUrlDest . '/sm/' . $photo->file_path . '" alt="" />
+                       <a href="' . Yii::app()->getModule('frontend')->albumPhotoUrlDest . '/lg/' . $photo->file_path . '" class="thumbnail" title="'.htmlentities($photo->bCmsAlbumPhotoI18n->title, ENT_COMPAT | ENT_HTML401, 'UTF-8').'">
+                           <img src="' . Yii::app()->getModule('frontend')->albumPhotoUrlDest . '/sm/' . $photo->file_path . '" alt="'.htmlentities($photo->bCmsAlbumPhotoI18n->title, ENT_COMPAT | ENT_HTML401, 'UTF-8').'" style="border-radius:4px;"/>
                        </a>
                     </div>';
                     if ((($i + 1) % $this->cols == 0 && ($i != 0 || $this->cols == 1)) || $i == $countPrev) {

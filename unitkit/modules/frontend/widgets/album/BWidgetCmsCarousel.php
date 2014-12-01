@@ -25,21 +25,19 @@ class BWidgetCmsCarousel extends CWidget
     public function run()
     {
         $html = '
-            <div id="'.$this->container_id.'" class="carousel slide">
-                <!-- Indicators -->
-                <ol class="carousel-indicators hidden-xs">
+            <div id="'.$this->container_id.'" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
                     <li data-target="#'.$this->container_id.'" data-slide-to="0" class="active"></li>
                     <li data-target="#'.$this->container_id.'" data-slide-to="1"></li>
                     <li data-target="#'.$this->container_id.'" data-slide-to="2"></li>
                 </ol>
 
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner">';
+                <div class="carousel-inner" role="listbox">';
         $i = 0;
         foreach($this->_models as $photo) {
             $html .= '
                     <div class="item '.($i == 0 ? 'active' : '').'">
-                        <img class="img-responsive img-full" src="'.Yii::app()->getModule('frontend')->albumPhotoUrlDest.'/lg/'.$photo->file_path.'" />
+                        <img  src="'.Yii::app()->getModule('frontend')->albumPhotoUrlDest.'/lg/'.$photo->file_path.'" />
                     </div>';
             ++$i;
         }
@@ -47,10 +45,10 @@ class BWidgetCmsCarousel extends CWidget
                 </div>
 
                 <!-- Controls -->
-                <a class="left carousel-control" href="#'.$this->container_id.'" data-slide="prev">
+                <a class="left carousel-control" href="#'.$this->container_id.'" data-slide="prev" role="button">
                     <span class="icon-prev"></span>
                 </a>
-                <a class="right carousel-control" href="#'.$this->container_id.'" data-slide="next">
+                <a class="right carousel-control" href="#'.$this->container_id.'" data-slide="next" role="button">
                     <span class="icon-next"></span>
                 </a>
             </div>';

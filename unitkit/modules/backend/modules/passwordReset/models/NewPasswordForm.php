@@ -30,8 +30,8 @@ class NewPasswordForm extends CFormModel
     public function attributeLabels()
     {
         return array(
-            'password' => B::t('backend', 'person_profil:password'),
-            'repeat_password' => B::t('backend', 'person_profil:repeat_password')
+            'password' => B::t('backend', 'person_profile:password'),
+            'repeat_password' => B::t('backend', 'person_profile:repeat_password')
         );
     }
 

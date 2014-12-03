@@ -47,12 +47,12 @@ Required Yii Framework 1.1.15
 	```
 	- Create a new vhost pointing "public/frontend" directory (default : frontend.unitkit.local)
 	- Generate a new application ID (should be unique) and update config file "unitkit/modules/frontend/config/main.php" with new ID
-	- Update config file "unitkit/modules/backend/config/main.php" in order to change database information
+	- Update config file "unitkit/modules/frontend/config/main.php" in order to change database information
 
 - Installing static :
     - Create a new vhost pointing "public/static" directory (default : static.unitkit.local)
     - Update backend config file "unitkit/modules/backend/config/main.php" in order to change url of static medias
-    - Update frontend config file "unitkit/modules/backend/config/main.php" in order to change url of static medias
+    - Update frontend config file "unitkit/modules/frontend/config/main.php" in order to change url of static medias
 
 
 UNITKIT SUR OVH MUTUALISE

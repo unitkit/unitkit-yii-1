@@ -10,14 +10,15 @@ class MailSendingRoleListDataView extends BListDataView
 {
 
     /**
+     * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param CModel $model Current model
      * @param CSort $sort CSort component
      * @param CPagination $pagination CPagination component
      */
-    public function __construct(&$datas, &$relatedDatas, &$model, &$sort, &$pagination)
+    public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
         $this->id = 'bMailSendingRoleMailSendingRoleMain';
@@ -25,11 +26,11 @@ class MailSendingRoleListDataView extends BListDataView
         // title
         $this->title = B::t('backend', 'mail_mail_sending_role_list_title');
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // sort
         $this->sort = $sort;
@@ -43,7 +44,7 @@ class MailSendingRoleListDataView extends BListDataView
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
                     'id' => 'bMailSendRoleI18nNameGridSearch',
-                    'data-action' => $this->controller->createUrl($this->controller->id . '/advCombobox/', array(
+                    'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
                         'name' => 'BMailSendRoleI18n[name]',
                         'language' => Yii::app()->language
                     )),
@@ -61,7 +62,7 @@ class MailSendingRoleListDataView extends BListDataView
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
                     'id' => 'bPersonFirstNameGridSearch',
-                    'data-action' => $this->controller->createUrl($this->controller->id . '/advCombobox/', array(
+                    'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
                         'name' => 'BPerson[first_name]'
                     )),
                     'data-placeholder' => B::t('unitkit', 'input_select'),
@@ -71,14 +72,15 @@ class MailSendingRoleListDataView extends BListDataView
         );
 
         // rows
-        foreach ($datas as $data)
-            $this->rows[] = new MailSendingRoleListRowDataView($data, array(
-                'b_person_id' => $data->b_person_id,
-                'b_mail_template_id' => $data->b_mail_template_id,
-                'b_mail_send_role_id' => $data->b_mail_send_role_id
+        foreach ($data as $d) {
+            $this->rows[] = new MailSendingRoleListRowDataView($d, array(
+                'b_person_id' => $d->b_person_id,
+                'b_mail_template_id' => $d->b_mail_template_id,
+                'b_mail_send_role_id' => $d->b_mail_send_role_id
             ));
+        }
 
-            // pagination
+        // pagination
         $this->pagination = $pagination;
     }
 }

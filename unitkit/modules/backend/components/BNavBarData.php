@@ -59,7 +59,7 @@ class BNavBarData extends BBaseNavBarData
         return array(
             'brand' => array(
                 'label' => array(
-                    'value' => 'UNITKIT CMS',
+                    'value' => 'UNITKIT',
                     'url' => $this->_controller->createUrl(! Yii::app()->user->isGuest ? '/dashboard/default' : '/auth/auth/login'),
                     'type' => 'brand'
                 )

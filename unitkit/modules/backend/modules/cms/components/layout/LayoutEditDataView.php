@@ -11,12 +11,12 @@ class LayoutEditDataView extends BEditDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param array $pk Primary key
-     * @param bool $isSaved Saved satus
+     * @param bool $isSaved Saved status
      */
-    public function __construct($datas, $relatedDatas, $pk, $isSaved)
+    public function __construct($data, $relatedData, $pk, $isSaved)
     {
         // data view id
         $this->id = 'bCmsLayoutLayoutEdit';
@@ -28,22 +28,24 @@ class LayoutEditDataView extends BEditDataView
         // primary key
         $this->pk = $pk;
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // saved status
         $this->isSaved = $isSaved;
 
         // error status
-        foreach($datas as $data)
-        	if($this->hasErrors = $data->hasErrors())
-        		break;
+        foreach($data as $d) {
+            if ($this->hasErrors = $d->hasErrors()) {
+                break;
+            }
+        }
 
         // new record status
-        $this->isNewRecord = $datas['BCmsLayout']->isNewRecord;
+        $this->isNewRecord = $data['BCmsLayout']->isNewRecord;
 
         // page title
         $this->refreshPageTitle();
@@ -51,57 +53,57 @@ class LayoutEditDataView extends BEditDataView
         // items
         $this->items = array(
             new BItemField(array(
-                'model' => $datas['BCmsLayoutI18n'],
+                'model' => $data['BCmsLayoutI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsLayoutI18n']->getAttributeLabel('name'),
+                    'placeholder' => $data['BCmsLayoutI18n']->getAttributeLabel('name'),
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BCmsLayout'],
+                'model' => $data['BCmsLayout'],
                 'attribute' => 'max_container',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsLayout']->getAttributeLabel('max_container'),
+                    'placeholder' => $data['BCmsLayout']->getAttributeLabel('max_container'),
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BCmsLayout'],
+                'model' => $data['BCmsLayout'],
                 'attribute' => 'path',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsLayout']->getAttributeLabel('path'),
+                    'placeholder' => $data['BCmsLayout']->getAttributeLabel('path'),
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BCmsLayout'],
+                'model' => $data['BCmsLayout'],
                 'attribute' => 'view',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsLayout']->getAttributeLabel('views'),
+                    'placeholder' => $data['BCmsLayout']->getAttributeLabel('views'),
                 )
             )),
         );
 
-        if (! $datas['BCmsLayout']->isNewRecord) {
+        if (! $data['BCmsLayout']->isNewRecord) {
             $this->items[] = new BItemField(array(
-                'model' => $datas['BCmsLayout'],
+                'model' => $data['BCmsLayout'],
                 'attribute' => 'created_at',
-                'value' =>  $datas['BCmsLayout']->created_at
+                'value' =>  $data['BCmsLayout']->created_at
             ));
             $this->items[] = new BItemField(array(
-                'model' => $datas['BCmsLayout'],
+                'model' => $data['BCmsLayout'],
                 'attribute' => 'updated_at',
-                'value' =>  $datas['BCmsLayout']->updated_at
+                'value' =>  $data['BCmsLayout']->updated_at
             ));
         }
     }

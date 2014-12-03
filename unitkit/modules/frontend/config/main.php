@@ -24,7 +24,7 @@ return array(
     'language' => 'fr',
     // list of activated modules
     // !! module order is very important because url rules of modules are evaluated in statement order) !!
-    // !! cms module should be declared at the end!!
+    // !! cms module should be declared at the end !!
     'modules' => array(
         'frontend' => array(
             'albumPhotoUrlDest' => '//static.unitkit.local/cms/albums',
@@ -69,7 +69,7 @@ return array(
             'pathViews' => 'application.views.email',
             'pathLayouts' => 'application.views.email.layouts',
             // See phpmailer documentation
-            'Mailer' => 'smtp',
+            //'Mailer' => 'smtp',
             //'Host' => ''
         ),
         'urlManager' => array(
@@ -80,14 +80,12 @@ return array(
         ),
         // generic cache
         'cache' => array(
-            'class' => 'CMemCache',
-            'useMemcached' => true,
+            'class' => 'CFileCache',
             'keyPrefix' => 'b:app:frontend:main'
         ),
         // cms cache
         'cmsCache' => array(
-            'class' => 'CMemCache',
-            'useMemcached' => true,
+            'class' => 'CFileCache',
             'keyPrefix' => 'b:app:cms'
         ),
         // variable cache
@@ -104,20 +102,17 @@ return array(
         ),
         // messages cache
         'messCache' => array(
-            'class' => 'CMemCache',
-            'useMemcached' => true,
+            'class' => 'CFileCache',
             'keyPrefix' => 'b:app:message'
         ),
         // url rules cache
         'urlCache' => array(
-            'class' => 'CMemCache',
-            'useMemcached' => true,
+            'class' => 'CFileCache',
             'keyPrefix' => 'b:app:frontend:url'
         ),
         // url rules cache
         'i18nCache' => array(
-            'class' => 'CMemCache',
-            'useMemcached' => true,
+            'class' => 'CFileCache',
             'keyPrefix' => 'b:app:i18n'
         ),
         // db connector

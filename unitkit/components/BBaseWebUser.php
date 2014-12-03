@@ -16,14 +16,6 @@
  */
 class BBaseWebUser extends CWebUser
 {
-
-    /**
-     * List of rights
-     *
-     * @var array
-     */
-    private $_rights = array();
-
     /**
      * List of roles
      *
@@ -67,11 +59,11 @@ class BBaseWebUser extends CWebUser
     protected $_autoLoginDuration;
 
     /**
-     * Array of datas used to auto login
+     * Array of data used to auto login
      *
      * @var mixed
      */
-    protected $_autologinDatas;
+    protected $_autoLoginData;
 
     public function init()
     {
@@ -184,9 +176,9 @@ class BBaseWebUser extends CWebUser
      */
     protected function getGroups()
     {
-        if (! $this->getIsGuest() && empty($this->_groups))
+        if (! $this->getIsGuest() && empty($this->_groups)) {
             $this->_groups = Yii::app()->rights->getPersonGroup($this->getId());
-
+        }
         return $this->_groups;
     }
 
@@ -278,21 +270,21 @@ class BBaseWebUser extends CWebUser
         $transaction = $model->dbConnection->beginTransaction();
         try {
             // generate uuid and keys
-            $this->_autologinDatas[0 /* uuid */] = BTools::sha256(uniqid(mt_rand(), true) . ':' . BTools::password(500));
-            $this->_autologinDatas[1 /* key 1 */] = BTools::sha512(uniqid(mt_rand(), true) . ':' . BTools::password(500));
-            $this->_autologinDatas[2 /* key 2 */] = BTools::sha512(uniqid(mt_rand(), true) . ':' . BTools::password(500));
+            $this->_autoLoginData[0 /* uuid */] = BTools::sha256(uniqid(mt_rand(), true) . ':' . BTools::password(500));
+            $this->_autoLoginData[1 /* key 1 */] = BTools::sha512(uniqid(mt_rand(), true) . ':' . BTools::password(500));
+            $this->_autoLoginData[2 /* key 2 */] = BTools::sha512(uniqid(mt_rand(), true) . ':' . BTools::password(500));
 
             // hash keys in database
             $hashKeys = array(
-                CPasswordHelper::hashPassword($this->_autologinDatas[1 /* key 1 */], 13),
-                CPasswordHelper::hashPassword($this->_autologinDatas[2 /* key 2 */], 13)
+                CPasswordHelper::hashPassword($this->_autoLoginData[1 /* key 1 */], 13),
+                CPasswordHelper::hashPassword($this->_autoLoginData[2 /* key 2 */], 13)
             );
 
-            // calcul duration in second
+            // duration in second
             $duration = 3600 * 24 * $this->_autoLoginDuration;
 
             // set attributes
-            $model->uuid = $this->_autologinDatas[0 /* uuid */];
+            $model->uuid = $this->_autoLoginData[0 /* uuid */];
             $model->key1 = $hashKeys[0];
             $model->key2 = $hashKeys[1];
             $model->b_person_id = $this->getId();
@@ -303,16 +295,17 @@ class BBaseWebUser extends CWebUser
             // save
             if ($model->save()) {
                 // delete previous auto login instance
-                if ($prevUUID !== null)
+                if ($prevUUID !== null) {
                     $model->deleteAllByAttributes(array(
                         'uuid' => $prevUUID
                     ));
+                }
 
-                    // commit
+                // commit
                 $transaction->commit();
 
                 // save uuid in session in order to reuse them for logout process
-                $this->setState('bAutoLogin:uuid', $this->_autologinDatas[0 /* uuid */]);
+                $this->setState('bAutoLogin:uuid', $this->_autoLoginData[0 /* uuid */]);
 
                 // save keys on cookie
                 $this->saveToCookie($duration);
@@ -338,24 +331,24 @@ class BBaseWebUser extends CWebUser
      *
      * @param integer $duration number of seconds that the user can remain in logged-in status. Defaults to 0, meaning login till the user closes the browser.
      * @see restoreFromCookie
+     * @throws Exception
      */
     protected function saveToCookie($duration)
     {
-        if (! empty($this->_autologinDatas)) {
+        if (! empty($this->_autoLoginData)) {
             $app = Yii::app();
             $cookie = $this->createIdentityCookie($this->getStateKeyPrefix());
             $cookie->expire = time() + $duration;
-            $cookie->value = $app->getSecurityManager()->hashData(serialize($this->_autologinDatas));
+            $cookie->value = $app->getSecurityManager()->hashData(serialize($this->_autoLoginData));
             $app->getRequest()
                 ->getCookies()
                 ->add($cookie->name, $cookie);
-        } else
+        } else {
             throw new Exception();
+        }
     }
 
     /**
-     * (non-PHPdoc)
-     *
      * @see CWebUser::loginRequired()
      */
     public function loginRequired()
@@ -369,6 +362,7 @@ class BBaseWebUser extends CWebUser
                 'url' => $app->createUrl($app->user->loginUrl[0])
             ));
         }
+
         parent::loginRequired();
     }
 
@@ -379,8 +373,9 @@ class BBaseWebUser extends CWebUser
      */
     protected function getRoles()
     {
-        if (empty($this->_roles))
+        if (empty($this->_roles)) {
             $this->_roles = Yii::app()->rights->getPersonRoles($this->getId());
+        }
 
         return $this->_roles;
     }
@@ -395,13 +390,11 @@ class BBaseWebUser extends CWebUser
      */
     public function checkMultiAccess($operations, $params = array(), $allowCaching = true)
     {
-
-            foreach ($operations as $operation) {
-                if ($this->checkAccess($operation, $params, $allowCaching)) {
-                    return true;
-                }
+        foreach ($operations as $operation) {
+            if ($this->checkAccess($operation, $params, $allowCaching)) {
+                return true;
             }
-
+        }
 
         return false;
     }

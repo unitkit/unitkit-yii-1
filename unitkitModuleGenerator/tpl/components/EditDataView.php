@@ -11,15 +11,14 @@ class ' . $datas['controller'] . 'EditDataView extends BEditDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param array $pk Primary key
-     * @param bool $isSaved Saved satus
      */
-    public function __construct($datas, $relatedDatas, $pk, $isSaved)
+    public function __construct($data, $relatedData, $pk, $isSaved)
     {
         // data view id
-        $this->id = \'' . lcfirst($datas['class']) . $datas['controller'] . 'Edit\';
+        $this->id = \'' . lcfirst($data['class']) . $datas['controller'] . 'Edit\';
 
         // component title
         $this->createTitle = B::t(\'unitkit\', \'create_title\');
@@ -28,22 +27,24 @@ class ' . $datas['controller'] . 'EditDataView extends BEditDataView
         // primary key
         $this->pk = $pk;
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // saved status
         $this->isSaved = $isSaved;
 
         // error status
-        foreach($datas as $data)
-        	if($this->hasErrors = $data->hasErrors())
+        foreach($data as $d) {
+        	if($this->hasErrors = $d->hasErrors()) {
         		break;
+            }
+        }
 
         // new record status
-        $this->isNewRecord = $datas[\'' . $datas['class'] . '\']->isNewRecord;
+        $this->isNewRecord = $data[\'' . $datas['class'] . '\']->isNewRecord;
 
         // page title
         $this->refreshPageTitle();
@@ -60,22 +61,22 @@ foreach ($datas['allColumns'] as $k => $v) {
         if ($v['BB_TYPE'] == unitkitGenerator::TYPE_TEXT_INPUT) {
             $html .= '
             new BItemField(array(
-                \'model\' => $datas[\'' . $class . '\'],
+                \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'type\' => \'activeTextField\',
                 \'htmlOptions\' => array(
                     \'id\' => false,
                     \'class\' => \'form-control input-sm\',
-                    \'placeholder\' => $datas[\'' . $class . '\']->getAttributeLabel(\'' . $v['COLUMN_NAME'] . '\'),
+                    \'placeholder\' => $data[\'' . $class . '\']->getAttributeLabel(\'' . $v['COLUMN_NAME'] . '\'),
                 )
             )),';
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_ADV_INPUT_FILE) {
             $html .= '
             new BItemField(array(
-                \'model\' => $datas[\'' . $class . '\'],
+                \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'value\' => Yii::app()->uploader->htmlUploader(
-                    $datas[\'' . $class . '\'],
+                    $data[\'' . $class . '\'],
                     \'' . $v['COLUMN_NAME'] . '\',
                     $this->controller->getUploader(\'' . $class . '[' . $v['COLUMN_NAME'] . ']\')[\'uploader\']->createUrl($this->controller->id.\'/upload\'),
                     array(
@@ -88,37 +89,37 @@ foreach ($datas['allColumns'] as $k => $v) {
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_DATE_INPUT) {
             $html .= '
             new BItemField(array(
-                \'model\' => $datas[\'' . $class . '\'],
+                \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'type\' => \'activeTextField\',
                 \'htmlOptions\' => array(
                     \'id\' => \'' . unitkitGenerator::underscoredToLowerCamelcase($class . '_' . $v['COLUMN_NAME'] . '_edit') . '\',
                     \'class\' => \'form-control input-sm jui-datePicker\',
-                    \'placeholder\' => $datas[\'' . $class . '\']->getAttributeLabel(\'' . $v['COLUMN_NAME'] . '\'),
+                    \'placeholder\' => $data[\'' . $class . '\']->getAttributeLabel(\'' . $v['COLUMN_NAME'] . '\'),
                 )
             )),';
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_CHECK_INPUT) {
             $html .= '
             new BItemField(array(
-                \'model\' => $datas[\'' . $class . '\'],
+                \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'type\' => \'activeCheckBox\',
                 \'htmlOptions\' => array(
                     \'id\' => false,
                     \'class\' => \'form-control input-sm\',
-                    \'placeholder\' => $datas[\'' . $class . '\']->getAttributeLabel(\'' . $v['COLUMN_NAME'] . '\'),
+                    \'placeholder\' => $data[\'' . $class . '\']->getAttributeLabel(\'' . $v['COLUMN_NAME'] . '\'),
                 )
             )),';
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_TEXTAREA || $v['BB_TYPE'] == unitkitGenerator::TYPE_ADV_TEXTAREA) {
             $html .= '
             new BItemField(array(
-                \'model\' => $datas[\'' . $class . '\'],
+                \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'type\' => \'activeTextArea\',
                 \'htmlOptions\' => array(
                     \'id\' => false,
                     \'class\' => \'form-control input-sm' . ($v['BB_TYPE'] == unitkitGenerator::TYPE_ADV_TEXTAREA ? ' advanced-textarea' : '') . '\',
-                    \'placeholder\' => $datas[\'' . $class . '\']->getAttributeLabel(\'' . $v['COLUMN_NAME'] . '\'),
+                    \'placeholder\' => $data[\'' . $class . '\']->getAttributeLabel(\'' . $v['COLUMN_NAME'] . '\'),
                 )
             )),';
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_SELECT && isset($datas['relations'][$k]['BB_REF'])) {
@@ -127,10 +128,10 @@ foreach ($datas['allColumns'] as $k => $v) {
             $classR = unitkitGenerator::underscoredToUpperCamelcase(($info[0][strlen($info[0]) - 1] == 's') ? substr($info[0], 0, - 1) : $info[0]);
             $html .= '
             new BItemField(array(
-                \'model\' => $datas[\'' . $class . '\'],
+                \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'type\' => \'activeDropDownList\',
-                \'datas\' => $relatedDatas[\'' . $classR . '[' . $info[1] . ']\'],
+                \'data\' => $relatedData[\'' . $classR . '[' . $info[1] . ']\'],
                 \'htmlOptions\' => array(
                     \'id\' => false,
                     \'class\' => \'form-control input-sm' . ($v['BB_TYPE'] == unitkitGenerator::TYPE_ADV_TEXTAREA ? ' advanced-textarea' : '') . '\',
@@ -142,13 +143,13 @@ foreach ($datas['allColumns'] as $k => $v) {
             $classR = unitkitGenerator::underscoredToUpperCamelcase(($info[0][strlen($info[0]) - 1] == 's') ? substr($info[0], 0, - 1) : $info[0]);
 
             $dataText = $classR . '::model()->findByPk(' . ($isI18nTable ? 'array(
-                                    \'' . $datas['relations'][$k]['REFERENCED_TABLE_NAME'] . '_' . $datas['relations'][$k]['REFERENCED_COLUMN_NAME'] . '\' => $datas[\'' . $class . '\']->' . $v['COLUMN_NAME'] . ',
+                                    \'' . $datas['relations'][$k]['REFERENCED_TABLE_NAME'] . '_' . $datas['relations'][$k]['REFERENCED_COLUMN_NAME'] . '\' => $data[\'' . $class . '\']->' . $v['COLUMN_NAME'] . ',
                                     \'i18n_id\' => Yii::app()->language
-                                )' : '$datas[\'' . $class . '\']->' . $v['COLUMN_NAME'] . '') . ')->' . $info[1];
+                                )' : '$data[\'' . $class . '\']->' . $v['COLUMN_NAME'] . '') . ')->' . $info[1];
 
             $html .= '
             new BItemField(array(
-                \'model\' => $datas[\'' . $class . '\'],
+                \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'type\' => \'activeHiddenField\',
                 \'htmlOptions\' => array(
@@ -159,7 +160,7 @@ foreach ($datas['allColumns'] as $k => $v) {
                         array(\'name\' => \'' . $classR . '[' . $info[1] . ']\'' . ($isI18nTable ? ', \'language\' => Yii::app()->language' : '') . ')
                     ),
                     \'data-placeholder\' => B::t(\'unitkit\', \'input_select\'),
-                    \'data-text\' => ! empty($datas[\'' . $class . '\']->' . $v['COLUMN_NAME'] . ') ? ' . $dataText . ' : \'\',
+                    \'data-text\' => ! empty($data[\'' . $class . '\']->' . $v['COLUMN_NAME'] . ') ? ' . $dataText . ' : \'\',
                 )
             )),';
         }
@@ -175,9 +176,9 @@ foreach ($datas['allColumns'] as $k => $v) {
 
         $htmlDateAuto .= '
             $this->items[] = new BItemField(array(
-                \'model\' => $datas[\'' . $class . '\'],
+                \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
-                \'value\' =>  $datas[\'' . $class . '\']->' . $v['COLUMN_NAME'] . '
+                \'value\' =>  $data[\'' . $class . '\']->' . $v['COLUMN_NAME'] . '
             ));';
     }
 }
@@ -185,7 +186,7 @@ foreach ($datas['allColumns'] as $k => $v) {
 if ($htmlDateAuto) {
     $html .= '
 
-        if (! $datas[\'' . $class . '\']->isNewRecord) {' . $htmlDateAuto . '
+        if (! $data[\'' . $class . '\']->isNewRecord) {' . $htmlDateAuto . '
         }';
 }
 $html .= '

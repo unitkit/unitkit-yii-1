@@ -11,15 +11,15 @@ class ' . $datas['controller'] . 'SettingsDataView extends BSettingsDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Related data
      * @param bool $isSaved Saved satus
      */
-    public function __construct($datas, $relatedDatas, $isSaved)
+    public function __construct($data, $relatedData, $isSaved)
     {
         // data view id
         $this->id = \'' . lcfirst($datas['class']) . $datas['controller'] . 'Settings\';
-        parent::__construct($datas, $relatedDatas, $isSaved);
+        parent::__construct($data, $relatedData, $isSaved);
     }
 }';
 

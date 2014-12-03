@@ -34,9 +34,6 @@ class PersonListRowDataView extends BListRowItemDataView
             )),
             isset($data->bI18nI18ns[0]) ? $data->bI18nI18ns[0]->name : '',
             Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse($data->created_at, 'yyyy-MM-dd hh:mm:ss'))
-        // Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse(
-        // $data->updated_at, 'yyyy-MM-dd hh:mm:ss'
-        // )),
         );
     }
 }

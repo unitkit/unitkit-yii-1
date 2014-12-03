@@ -39,8 +39,9 @@ class BBase extends Yii
             $args = explode(',', $translation);
             if (count($args) == 2) {
                 return self::t(trim($args[0]), trim($args[1]), $params, $source, $language);
-            } else
+            } else {
                 return self::t($category, trim($args[0]), $params, $source, $language);
+            }
         }
         return $temp;
     }

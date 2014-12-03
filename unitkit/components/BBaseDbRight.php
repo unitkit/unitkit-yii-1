@@ -41,6 +41,7 @@ class BBaseDbRight extends CApplicationComponent
      * @param string $action Action name
      * @param string $controllerId Controller Id
      * @param string $moduleId Module Id
+     * @return string
      */
     public function getRoleName($action, $controllerId, $moduleId)
     {
@@ -52,6 +53,7 @@ class BBaseDbRight extends CApplicationComponent
      *
      * @param string $controllerId Controller Id
      * @param string $moduleId Module Id
+     * @return string
      */
     protected function getRoleSuffix($controllerId, $moduleId)
     {
@@ -70,6 +72,7 @@ class BBaseDbRight extends CApplicationComponent
      * @param string $controllerId Controller Id
      * @param string $moduleId Module Id
      * @param string $filter Ex: consult, create, update, delete, translate
+     * @return array
      */
     public function getDefaultRoles($controllerId, $moduleId, $filter = null)
     {
@@ -94,8 +97,9 @@ class BBaseDbRight extends CApplicationComponent
             ),
         );
 
-        if ($filter !== null && isset($array[$filter]))
+        if ($filter !== null && isset($array[$filter])) {
             return $array[$filter];
+        }
 
         return $array;
     }
@@ -112,6 +116,7 @@ class BBaseDbRight extends CApplicationComponent
      * Get rights dynamic key from cache
      *
      * @param bool $refresh force refresh
+     * @return string
      */
     public function getCacheRightsDynKey($refresh = false)
     {
@@ -121,6 +126,8 @@ class BBaseDbRight extends CApplicationComponent
 
     /**
      * Delete rights dynamic key cache in cache
+     *
+     * @return bool
      */
     public function deleteCacheRightsDynKey()
     {
@@ -129,6 +136,8 @@ class BBaseDbRight extends CApplicationComponent
 
     /**
      * Refresh rights dynamic key in cache
+     *
+     * @return bool
      */
     public function refreshCacheRightsDynKey()
     {
@@ -143,10 +152,12 @@ class BBaseDbRight extends CApplicationComponent
      *
      * @param int $person BPerson ID
      * @param string $operation BRole operation
+     * @return bool
      */
     public function hasRole($person, $operation)
     {
         $personRoles = $this->getPersonRoles($person);
+
         return isset($personRoles[$operation]);
     }
 
@@ -155,6 +166,7 @@ class BBaseDbRight extends CApplicationComponent
      *
      * @param int $id BPerson ID
      * @param bool $refresh
+     * @return array
      */
     public function getPersonRoles($id, $refresh = false)
     {
@@ -208,6 +220,9 @@ class BBaseDbRight extends CApplicationComponent
 
     /**
      * Get name of dynamic key
+     *
+     * @param $id BPerson ID
+     * @return string
      */
     protected static function getCachePersonDynKeyName($id)
     {
@@ -219,6 +234,7 @@ class BBaseDbRight extends CApplicationComponent
      *
      * @param $id BPerson ID
      * @param bool $refresh force refresh
+     * @return string
      */
     public function getCachePersonDynKey($id, $refresh = false)
     {
@@ -228,6 +244,9 @@ class BBaseDbRight extends CApplicationComponent
 
     /**
      * Delete dynamic key cache in cache
+     *
+     * @param $id BPerson ID
+     * @return bool
      */
     public function deleteCachePersonDynKey($id)
     {
@@ -236,6 +255,9 @@ class BBaseDbRight extends CApplicationComponent
 
     /**
      * Refresh dynamic key in cache
+     *
+     * @param $id BPerson ID
+     * @return bool
      */
     public function refreshCachePersonDynKey($id)
     {
@@ -249,6 +271,7 @@ class BBaseDbRight extends CApplicationComponent
      * Get BPerson by ID
      *
      * @param int $id BPerson ID
+     * @return CModel
      */
     public function getPerson($id)
     {
@@ -258,6 +281,7 @@ class BBaseDbRight extends CApplicationComponent
             $model = BPerson::model()->findByPk($id);
             $this->cache->set($key, $model, 10800/* 3h */);
         }
+
         return $model;
     }
 
@@ -266,6 +290,7 @@ class BBaseDbRight extends CApplicationComponent
      *
      * @param int $person BPerson ID
      * @param int $group BGroup ID
+     * @return bool
      */
     public function hasGroup($person, $group)
     {
@@ -277,6 +302,7 @@ class BBaseDbRight extends CApplicationComponent
      *
      * @param int $id BPerson ID
      * @param bool $refresh
+     * @return array
      */
     public function getPersonGroup($id, $refresh = false)
     {

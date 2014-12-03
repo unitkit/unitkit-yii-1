@@ -39,9 +39,9 @@ $html .= '
     }
 
     /**
-     * @see BBaseAutoController::advancedConbobox()
+     * @see BBaseAutoController::_advancedComboBox()
      */
-    protected function _advancedConbobox()
+    protected function _advancedComboBox()
     {
         return array(';
 foreach ($datas['columns'] as $k => $c) {
@@ -98,13 +98,13 @@ if($htmlRelated != '')
 $html .= '
 
     /**
-     * @see BBaseAutoController::_loadRelatedDatas()
+     * @see BBaseAutoController::_loadRelatedData()
      */
-    protected function _loadRelatedDatas()
+    protected function _loadRelatedData()
     {
-        $relatedDatas = array();
+        $relatedData = array();
 '.$htmlRelated.'
-        return $relatedDatas;
+        return $relatedData;
     }';
 }
 

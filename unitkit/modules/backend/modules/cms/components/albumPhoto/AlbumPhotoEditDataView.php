@@ -11,43 +11,45 @@ class AlbumPhotoEditDataView extends BEditDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param array $pk Primary key
-     * @param bool $isSaved Saved satus
+     * @param bool $isSaved Saved status
      */
-    public function __construct($datas, $relatedDatas, $pk, $isSaved)
+    public function __construct($data, $relatedData, $pk, $isSaved)
     {
         // data view id
         $this->id = 'bCmsAlbumPhotoAlbumPhotoEdit';
 
         // component title
         $this->createTitle = B::t('backend', 'cms_album_photo_create_title', array(
-            '{name}' => BHtml::textReduce($relatedDatas['BCmsAlbumI18n']->title, 30)
+            '{name}' => BHtml::textReduce($relatedData['BCmsAlbumI18n']->title, 30)
         ));
         $this->updateTitle = B::t('backend', 'cms_album_photo_update_title', array(
-            '{name}' => BHtml::textReduce($relatedDatas['BCmsAlbumI18n']->title, 30)
+            '{name}' => BHtml::textReduce($relatedData['BCmsAlbumI18n']->title, 30)
         ));
 
         // primary key
         $this->pk = $pk;
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // saved status
         $this->isSaved = $isSaved;
 
         // error status
-        foreach($datas as $data)
-        	if($this->hasErrors = $data->hasErrors())
-        		break;
+        foreach($data as $d) {
+            if ($this->hasErrors = $d->hasErrors()) {
+                break;
+            }
+        }
 
         // new record status
-        $this->isNewRecord = $datas['BCmsAlbumPhoto']->isNewRecord;
+        $this->isNewRecord = $data['BCmsAlbumPhoto']->isNewRecord;
 
         $this->setAction($this->controller->createUrl(
             $this->controller->id . '/' . ($this->isNewRecord ? 'create' : 'update'),
@@ -65,20 +67,20 @@ class AlbumPhotoEditDataView extends BEditDataView
         // items
         $this->items = array(
             new BItemField(array(
-                'model' => $datas['BCmsAlbumPhotoI18n'],
+                'model' => $data['BCmsAlbumPhotoI18n'],
                 'attribute' => 'title',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsAlbumPhotoI18n']->getAttributeLabel('title'),
+                    'placeholder' => $data['BCmsAlbumPhotoI18n']->getAttributeLabel('title'),
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BCmsAlbumPhoto'],
+                'model' => $data['BCmsAlbumPhoto'],
                 'attribute' => 'file_path',
                 'value' => $this->controller->getUploader('BCmsAlbumPhoto[file_path]')['uploader']->htmlUploader(
-                    $datas['BCmsAlbumPhoto'],
+                    $data['BCmsAlbumPhoto'],
                     'file_path',
                     $this->controller->createUrl($this->controller->id.'/upload'),
                     array(
@@ -90,16 +92,16 @@ class AlbumPhotoEditDataView extends BEditDataView
             )),
         );
 
-        if (! $datas['BCmsAlbumPhoto']->isNewRecord) {
+        if (! $data['BCmsAlbumPhoto']->isNewRecord) {
             $this->items[] = new BItemField(array(
-                'model' => $datas['BCmsAlbumPhoto'],
+                'model' => $data['BCmsAlbumPhoto'],
                 'attribute' => 'created_at',
-                'value' =>  $datas['BCmsAlbumPhoto']->created_at
+                'value' =>  $data['BCmsAlbumPhoto']->created_at
             ));
             $this->items[] = new BItemField(array(
-                'model' => $datas['BCmsAlbumPhoto'],
+                'model' => $data['BCmsAlbumPhoto'],
                 'attribute' => 'updated_at',
-                'value' =>  $datas['BCmsAlbumPhoto']->updated_at
+                'value' =>  $data['BCmsAlbumPhoto']->updated_at
             ));
         }
     }

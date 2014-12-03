@@ -12,13 +12,13 @@ class AutoLoginListDataView extends BListDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param CModel $model Current model
      * @param CSort $sort CSort component
      * @param CPagination $pagination CPagination component
      */
-    public function __construct(&$datas, &$relatedDatas, &$model, &$sort, &$pagination)
+    public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
         $this->id = 'bAutoLoginAutoLoginMain';
@@ -26,11 +26,11 @@ class AutoLoginListDataView extends BListDataView
         // component title
         $this->title = B::t('backend', 'auto_login_auto_login_list_title');
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // sort
         $this->sort = $sort;
@@ -52,7 +52,7 @@ class AutoLoginListDataView extends BListDataView
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
                     'id' => 'bPersonEmailGridSearch',
-                    'data-action' => $this->controller->createUrl($this->controller->id . '/advCombobox/', array(
+                    'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
                         'name' => 'BPerson[fullname]'
                     )),
                     'data-placeholder' => B::t('unitkit', 'input_select'),
@@ -119,7 +119,7 @@ class AutoLoginListDataView extends BListDataView
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
                     'id' => 'bPersonEmailAdvSearch',
-                    'data-action' => $this->controller->createUrl($this->controller->id . '/advCombobox/', array(
+                    'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
                         'name' => 'BPerson[fullname]'
                     )),
                     'data-placeholder' => B::t('unitkit', 'input_select'),
@@ -177,12 +177,13 @@ class AutoLoginListDataView extends BListDataView
         );
 
         // rows
-        foreach ($datas as $data)
-            $this->rows[] = new AutoLoginListRowDataView($data, array(
-                'uuid' => $data->uuid
+        foreach ($data as $d) {
+            $this->rows[] = new AutoLoginListRowDataView($d, array(
+                'uuid' => $d->uuid
             ));
+        }
 
-            // pagination
+        // pagination
         $this->pagination = $pagination;
     }
 }

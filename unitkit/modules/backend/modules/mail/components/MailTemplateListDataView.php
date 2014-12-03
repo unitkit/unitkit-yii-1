@@ -12,13 +12,13 @@ class MailTemplateListDataView extends BListDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param CModel $model Current model
      * @param CSort $sort CSort component
      * @param CPagination $pagination CPagination component
      */
-    public function __construct(&$datas, &$relatedDatas, &$model, &$sort, &$pagination)
+    public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
         $this->id = 'bMailTemplateMailTemplateMain';
@@ -26,11 +26,11 @@ class MailTemplateListDataView extends BListDataView
         // component title
         $this->title = B::t('backend', 'mail_mail_template_list_title');
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // sort
         $this->sort = $sort;
@@ -39,12 +39,8 @@ class MailTemplateListDataView extends BListDataView
         $this->sortAttributes = array(
             'bMailTemplateGroupI18ns.name',
             'bMailTemplate.html_mode',
-        // 'bMailTemplate.sql_request',
-        // 'bMailTemplate.sql_param',
             'bMailTemplateI18ns.object',
             'bMailTemplateI18ns.message'
-        // 'bMailTemplate.created_at',
-        // 'bMailTemplate.updated_at',
         );
 
         // search
@@ -56,7 +52,7 @@ class MailTemplateListDataView extends BListDataView
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
                     'id' => 'bMailTemplateGroupI18nNameGridSearch',
-                    'data-action' => $this->controller->createUrl($this->controller->id . '/advCombobox/', array(
+                    'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
                         'name' => 'BMailTemplateGroupI18n[name]',
                         'language' => Yii::app()->language
                     )),
@@ -69,7 +65,7 @@ class MailTemplateListDataView extends BListDataView
             )),
             new BItemField(array(
                 'model' => $model,
-                'datas' => array(
+                'data' => array(
                     '' => B::t('unitkit', 'input_drop_down_list_all'),
                     '1' => B::t('unitkit', 'input_drop_down_list_checked'),
                     '0' => B::t('unitkit', 'input_drop_down_list_unchecked')
@@ -80,26 +76,6 @@ class MailTemplateListDataView extends BListDataView
                     'class' => 'form-control input-sm'
                 )
             )),
-            // new BItemField(array(
-            // 'model' => $model,
-            // 'attribute' => 'sql_request',
-            // 'type' => 'activeTextField',
-            // 'htmlOptions' => array(
-            // 'class' => 'form-control input-sm',
-            // 'placeholder' => B::t('unitkit', 'input_search'),
-            // 'id' => false
-            // )
-            // )),
-            // new BItemField(array(
-            // 'model' => $model,
-            // 'attribute' => 'sql_param',
-            // 'type' => 'activeTextField',
-            // 'htmlOptions' => array(
-            // 'class' => 'form-control input-sm',
-            // 'placeholder' => B::t('unitkit', 'input_search'),
-            // 'id' => false
-            // )
-            // )),
             new BItemField(array(
                 'model' => $model,
                 'attribute' => 'lk_b_mail_template_i18ns_object',
@@ -120,55 +96,7 @@ class MailTemplateListDataView extends BListDataView
                     'id' => false
                 )
             ))
-        // new BDateRangeItemField(
-        // $model,
-        // 'created_at',
-        // new BItemField(array(
-        // 'model' => $model,
-        // 'attribute' => 'v_created_at_start',
-        // 'type' => 'activeTextField',
-        // 'htmlOptions' => array(
-        // 'class' => 'form-control input-sm date-picker date-range',
-        // 'placeholder' => B::t('unitkit', 'input_search'),
-        // 'id' => 'bMailTemplateVCreatedAtStartGridSearch'
-        // )
-        // )),
-        // new BItemField(array(
-        // 'model' => $model,
-        // 'attribute' => 'v_created_at_end',
-        // 'type' => 'activeTextField',
-        // 'htmlOptions' => array(
-        // 'class' => 'form-control input-sm date-picker date-range',
-        // 'placeholder' => B::t('unitkit', 'input_search'),
-        // 'id' => 'bMailTemplateVCreatedAtEndGridSearch'
-        // )
-        // ))
-        // ),
-        // new BDateRangeItemField(
-        // $model,
-        // 'updated_at',
-        // new BItemField(array(
-        // 'model' => $model,
-        // 'attribute' => 'v_updated_at_start',
-        // 'type' => 'activeTextField',
-        // 'htmlOptions' => array(
-        // 'class' => 'form-control input-sm date-picker date-range',
-        // 'placeholder' => B::t('unitkit', 'input_search'),
-        // 'id' => 'bMailTemplateVUpdatedAtStartGridSearch'
-        // )
-        // )),
-        // new BItemField(array(
-        // 'model' => $model,
-        // 'attribute' => 'v_updated_at_end',
-        // 'type' => 'activeTextField',
-        // 'htmlOptions' => array(
-        // 'class' => 'form-control input-sm date-picker date-range',
-        // 'placeholder' => B::t('unitkit', 'input_search'),
-        // 'id' => 'bMailTemplateVUpdatedAtEndGridSearch'
-        // )
-        // ))
-        // ),
-                );
+        );
 
         // advanced search
         $this->advancedSearch = array(
@@ -179,7 +107,7 @@ class MailTemplateListDataView extends BListDataView
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
                     'id' => 'bMailTemplateGroupI18nNameAdvSearch',
-                    'data-action' => $this->controller->createUrl($this->controller->id . '/advCombobox/', array(
+                    'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
                         'name' => 'BMailTemplateGroupI18n[name]',
                         'language' => Yii::app()->language
                     )),
@@ -192,7 +120,7 @@ class MailTemplateListDataView extends BListDataView
             )),
             new BItemField(array(
                 'model' => $model,
-                'datas' => array(
+                'data' => array(
                     '' => B::t('unitkit', 'input_drop_down_list_all'),
                     '1' => B::t('unitkit', 'input_drop_down_list_checked'),
                     '0' => B::t('unitkit', 'input_drop_down_list_unchecked')
@@ -284,12 +212,13 @@ class MailTemplateListDataView extends BListDataView
         );
 
         // rows
-        foreach ($datas as $data)
-            $this->rows[] = new MailTemplateListRowDataView($data, array(
-                'id' => $data->id
+        foreach ($data as $d) {
+            $this->rows[] = new MailTemplateListRowDataView($d, array(
+                'id' => $d->id
             ));
+        }
 
-            // pagination
+        // pagination
         $this->pagination = $pagination;
     }
 }

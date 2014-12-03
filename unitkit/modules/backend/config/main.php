@@ -4,7 +4,7 @@ Yii::setPathOfAlias('application', dirname(__FILE__) . '/../../..');
 
 return array(
     // application ID (should be unique)
-    'id' => '',
+    'id' => '78e4058baedbfec12462e63af3ff3a9d4a33aca0d7fff6bf002c562db7c73f6a',
     'name' => 'Backend',
     'basePath' => Yii::getPathOfAlias('application'),
     'preload' => array(
@@ -108,7 +108,7 @@ return array(
             'pathViews' => 'application.views.email',
             'pathLayouts' => 'application.views.email.layouts',
             // See phpmailer documentation
-            'Mailer' => 'smtp',
+            //'Mailer' => 'smtp',
             //'Host' => ''
         ),
         'urlManager' => array(
@@ -119,99 +119,43 @@ return array(
         ),
         // generic cache
         'cache' => array(
-            'class' => 'CMemCache',
+            'class' => 'CFileCache',
             'keyPrefix' => 'b:app:backend:main',
-            'useMemcached' => true,
-            'servers' => array(
-                array(
-                    'host'=> '127.0.0.1',
-                    'port'=> 11211
-                )
-            )
         ),
         // cms cache
         'cmsCache' => array(
-            'class' => 'CMemCache',
+            'class' => 'CFileCache',
             'keyPrefix' => 'b:app:cms',
-            'useMemcached' => true,
-            'servers' => array(
-                array(
-                    'host'=> '127.0.0.1',
-                    'port'=> 11211
-                )
-            )
         ),
         // variable cache
         'varCache' => array(
-            'class' => 'CMemCache',
+            'class' => 'CFileCache',
             'keyPrefix' => 'b:app:var',
-            'useMemcached' => true,
-            'servers' => array(
-                array(
-                    'host'=> '127.0.0.1',
-                    'port'=> 11211,
-                )
-            )
         ),
         // database cache
         'DBCache' => array(
-            'class' => 'CMemCache',
+            'class' => 'CFileCache',
             'keyPrefix' => 'b:app:db',
-            'useMemcached' => true,
-            'servers' => array(
-                array(
-                    'host' => '127.0.0.1',
-                    'port' => 11211
-                )
-            )
         ),
         // rights cache
         'rightCache' => array(
-            'class' => 'CMemCache',
+            'class' => 'CFileCache',
             'keyPrefix' => 'b:app:backend:right',
-            'useMemcached' => true,
-            'servers' => array(
-                array(
-                    'host' => '127.0.0.1',
-                    'port' => 11211,
-                )
-            )
         ),
         // messages cache
         'messCache' => array(
-            'class' => 'CMemCache',
+            'class' => 'CFileCache',
             'keyPrefix' => 'b:app:message',
-            'useMemcached' => true,
-            'servers' => array(
-                array(
-                    'host' => '127.0.0.1',
-                    'port' => 11211
-                )
-            )
         ),
         // url rules cache
         'urlCache' => array(
-            'class' => 'CMemCache',
-            'useMemcached' => true,
+            'class' => 'CFileCache',
             'keyPrefix' => 'b:app:backend:url',
-            'servers' => array(
-                array(
-                    'host' => '127.0.0.1',
-                    'port' => 11211
-                )
-            )
         ),
         // url rules cache
         'i18nCache' => array(
-            'class' => 'CMemCache',
-            'useMemcached' => true,
+            'class' => 'CFileCache',
             'keyPrefix' => 'b:app:i18n',
-            'servers' => array(
-                array(
-                    'host' => '127.0.0.1',
-                    'port' => 11211
-                )
-            )
         ),
         // db connector
         'db' => array(

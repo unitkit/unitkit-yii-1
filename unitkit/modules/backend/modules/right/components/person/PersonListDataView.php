@@ -12,13 +12,13 @@ class PersonListDataView extends BListDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param CModel $model Current model
      * @param CSort $sort CSort component
      * @param CPagination $pagination CPagination component
      */
-    public function __construct(&$datas, &$relatedDatas, &$model, &$sort, &$pagination)
+    public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
         $this->id = 'bPersonPersonMain';
@@ -26,11 +26,11 @@ class PersonListDataView extends BListDataView
         // title
         $this->title = B::t('backend', 'right_person_list_title');
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // sort
         $this->sort = $sort;
@@ -44,7 +44,6 @@ class PersonListDataView extends BListDataView
             'bPerson.validated',
             'bI18nI18ns.name',
             'bPerson.created_at'
-        // 'bPerson.updated_at',
         );
 
         // search
@@ -112,7 +111,7 @@ class PersonListDataView extends BListDataView
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
                     'id' => 'bI18nI18nNameGridSearch',
-                    'data-action' => $this->controller->createUrl($this->controller->id . '/advCombobox/', array(
+                    'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
                         'name' => 'BI18nI18n[name]',
                         'language' => Yii::app()->language
                     )),
@@ -142,31 +141,7 @@ class PersonListDataView extends BListDataView
                     'id' => 'bPersonVCreatedAtEndGridSearch'
                 )
             )))
-        // new BDateRangeItemField(
-        // $model,
-        // 'updated_at',
-        // new BItemField(array(
-        // 'model' => $model,
-        // 'attribute' => 'v_updated_at_start',
-        // 'type' => 'activeTextField',
-        // 'htmlOptions' => array(
-        // 'class' => 'form-control input-sm date-picker date-range',
-        // 'placeholder' => B::t('unitkit', 'input_search'),
-        // 'id' => 'bPersonVUpdatedAtStartGridSearch'
-        // )
-        // )),
-        // new BItemField(array(
-        // 'model' => $model,
-        // 'attribute' => 'v_updated_at_end',
-        // 'type' => 'activeTextField',
-        // 'htmlOptions' => array(
-        // 'class' => 'form-control input-sm date-picker date-range',
-        // 'placeholder' => B::t('unitkit', 'input_search'),
-        // 'id' => 'bPersonVUpdatedAtEndGridSearch'
-        // )
-        // ))
-        // ),
-                );
+        );
 
         // advanced search
         $this->advancedSearch = array(
@@ -227,7 +202,7 @@ class PersonListDataView extends BListDataView
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
                     'id' => 'bI18nI18nNameAdvSearch',
-                    'data-action' => $this->controller->createUrl($this->controller->id . '/advCombobox/', array(
+                    'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
                         'name' => 'BI18nI18n[name]',
                         'language' => Yii::app()->language
                     )),
@@ -279,12 +254,13 @@ class PersonListDataView extends BListDataView
         );
 
         // rows
-        foreach ($datas as $data)
-            $this->rows[] = new PersonListRowDataView($data, array(
-                'id' => $data->id
+        foreach ($data as $d) {
+            $this->rows[] = new PersonListRowDataView($d, array(
+                'id' => $d->id
             ));
+        }
 
-            // pagination
+        // pagination
         $this->pagination = $pagination;
     }
 }

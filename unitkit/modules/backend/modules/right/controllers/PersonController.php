@@ -15,7 +15,7 @@ class PersonController extends BAutoController
      *
      * @return multitype
      */
-    protected function _advancedConbobox()
+    protected function _advancedComboBox()
     {
         return array(
             'BI18nI18n[name]' => array(
@@ -96,10 +96,10 @@ class PersonController extends BAutoController
      * Save models
      *
      * @param mixed $models array of models
-     * @param mixed $postDatas array of datas (datas to update)
+     * @param mixed $postData array of datas (datas to update)
      * @return bool true on success and false in the other cases
      */
-    protected function _saveEditModels(&$models, &$postDatas)
+    protected function _saveEditModels(&$models, &$postData)
     {
         // initialize the status
         $isSaved = false;
@@ -108,19 +108,19 @@ class PersonController extends BAutoController
         $transaction = $models['BPerson']->dbConnection->beginTransaction();
         try {
             // set attributes
-            if (isset($postDatas['BPerson']))
-                $models['BPerson']->attributes = $postDatas['BPerson'];
+            if (isset($postData['BPerson']))
+                $models['BPerson']->attributes = $postData['BPerson'];
 
             if (isset($models['BPersonGroups'])) {
                 foreach ($models['BPersonGroups'] as $bGroupId => &$BPersonGroup) {
-                    if (isset($postDatas['BPersonGroups'][$bGroupId])) {
+                    if (isset($postData['BPersonGroups'][$bGroupId])) {
                         // get current scenario
                         $scenario = $BPersonGroup->getScenario();
                         // set and validate attributes
-                        if ($scenario == 'insert' && $postDatas['BPersonGroups'][$bGroupId] == 1) {
+                        if ($scenario == 'insert' && $postData['BPersonGroups'][$bGroupId] == 1) {
                             $BPersonGroup->b_group_id = $bGroupId;
                             $BPersonGroup->validate();
-                        } elseif ($scenario == 'update' && $postDatas['BPersonGroups'][$bGroupId] == 0) {
+                        } elseif ($scenario == 'update' && $postData['BPersonGroups'][$bGroupId] == 0) {
                             $BPersonGroup->b_group_id = null;
                             $BPersonGroup->setScenario('delete');
                         }

@@ -11,36 +11,36 @@ class SocialEditRowDataView extends BEditRowItemDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param array $pk Primary key
      */
-    public function __construct($datas, $relatedDatas, $pk)
+    public function __construct($data, $relatedData, $pk)
     {
         // primary key
         $this->pk = $pk;
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $datas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // items
         $this->items = array(
             new BItemField(array(
-                'model' => $datas['BCmsSocial'],
+                'model' => $data['BCmsSocial'],
                 'attribute' => 'name',
-                'value' => $datas['BCmsSocial']->name,
+                'value' => $data['BCmsSocial']->name,
             )),
             new BItemField(array(
-                'model' => $datas['BCmsSocialI18n'],
+                'model' => $data['BCmsSocialI18n'],
                 'attribute' => 'url',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsSocialI18n']->getAttributeLabel('url'),
+                    'placeholder' => $data['BCmsSocialI18n']->getAttributeLabel('url'),
                 )
             )),
         );

@@ -14,7 +14,7 @@ class MessageController extends BAutoController
     /**
      * @see BBaseAutoController::advancedConbobox()
      */
-    protected function _advancedConbobox()
+    protected function _advancedComboBox()
     {
         return array(
             'BMessageGroupI18n[name]' => array(
@@ -42,19 +42,19 @@ class MessageController extends BAutoController
      */
     public function actionList()
     {
-        // related datas
-        $relatedDatas = array();
+        // related data
+        $relatedData = array();
 
         // get list of i18n ID
-        $relatedDatas['i18nIds'] = BSiteI18n::model()->getI18nIds();
+        $relatedData['i18nIds'] = BSiteI18n::model()->getI18nIds();
         // set the current language at first
         $tmp = array(
             'curI18nId' => array(
-                Yii::app()->language => $relatedDatas['i18nIds'][Yii::app()->language]
+                Yii::app()->language => $relatedData['i18nIds'][Yii::app()->language]
             )
         );
-        unset($relatedDatas['i18nIds'][Yii::app()->language]);
-        $relatedDatas['i18nIds'] = $tmp['curI18nId'] + $relatedDatas['i18nIds'];
+        unset($relatedData['i18nIds'][Yii::app()->language]);
+        $relatedData['i18nIds'] = $tmp['curI18nId'] + $relatedData['i18nIds'];
         unset($tmp);
 
         $model = new BMessage('search');
@@ -76,20 +76,22 @@ class MessageController extends BAutoController
         $pagination->itemCount = $dataProvider->totalItemCount;
 
         // load models
-        $models = $this->_loadTranslationModels($dataProvider->getData(), $relatedDatas['i18nIds']);
+        $models = $this->_loadTranslationModels($dataProvider->getData(), $relatedData['i18nIds']);
 
-        // datas to update
-        $postDatas = array();
-        if (isset($_POST['bMessages']))
-            $postDatas['bMessages'] = $_POST['bMessages'];
-        if (isset($_POST['bMessageI18ns']))
-            $postDatas['bMessageI18ns'] = $_POST['bMessageI18ns'];
+        // data to update
+        $postData = array();
+        if (isset($_POST['bMessages'])) {
+            $postData['bMessages'] = $_POST['bMessages'];
+        }
+        if (isset($_POST['bMessageI18ns'])) {
+            $postData['bMessageI18ns'] = $_POST['bMessageI18ns'];
+        }
 
-            // update models
-        $isSaved = ! empty($_POST) ? $this->_saveTranslationModels($models, $postDatas) : false;
+        // update models
+        $isSaved = ! empty($_POST) ? $this->_saveTranslationModels($models, $postData) : false;
 
-        // set related datas
-        $relatedDatas['BMessageGroupI18n[name]'] = BHtml::listDatasCombobox('BMessageGroupI18n', array(
+        // set related data
+        $relatedData['BMessageGroupI18n[name]'] = BHtml::listDatasCombobox('BMessageGroupI18n', array(
             'b_message_group_id',
             'name'
         ), array(
@@ -101,7 +103,6 @@ class MessageController extends BAutoController
 
         // set view
         $view = 'list/main';
-
         if (isset($_REQUEST['partial'])) {
             $view = 'list/_table';
         }
@@ -113,7 +114,7 @@ class MessageController extends BAutoController
             'models' => $models,
             'sort' => $dataProvider->getSort(),
             'model' => $model,
-            'relatedDatas' => $relatedDatas,
+            'relatedData' => $relatedData,
             'isSaved' => $isSaved
         ));
     }
@@ -124,25 +125,25 @@ class MessageController extends BAutoController
      * @param mixed $i18nIds list of i18n ID
      * @return mixed array of models
      */
-    protected function _loadTranslationModels($datas, $i18nIds)
+    protected function _loadTranslationModels($data, $i18nIds)
     {
         $models = array();
-        foreach ($datas as $data) {
-            $models[$data->id]['BMessage'] = $data;
-            $models[$data->id]['BMessage']->setScenario('update');
+        foreach ($data as $d) {
+            $models[$d->id]['BMessage'] = $d;
+            $models[$d->id]['BMessage']->setScenario('update');
 
             foreach ($i18nIds as $i18nId) {
-                foreach ($data->{'bMessageI18n_' . $i18nId} as $bMessageI18n)
-                    $models[$data->id]['bMessageI18ns'][$bMessageI18n->i18n_id] = $bMessageI18n;
+                foreach ($d->{'bMessageI18n_' . $i18nId} as $bMessageI18n)
+                    $models[$d->id]['bMessageI18ns'][$bMessageI18n->i18n_id] = $bMessageI18n;
             }
 
             foreach ($i18nIds as $i18nId) {
-                if (! isset($models[$data->id]['bMessageI18ns'][$i18nId])) {
-                    $models[$data->id]['bMessageI18ns'][$i18nId] = new BMessageI18n('insert');
-                    $models[$data->id]['bMessageI18ns'][$i18nId]->i18n_id = $i18nId;
-                    $models[$data->id]['bMessageI18ns'][$i18nId]->b_message_id = $data->id;
+                if (! isset($models[$d->id]['bMessageI18ns'][$i18nId])) {
+                    $models[$d->id]['bMessageI18ns'][$i18nId] = new BMessageI18n('insert');
+                    $models[$d->id]['bMessageI18ns'][$i18nId]->i18n_id = $i18nId;
+                    $models[$d->id]['bMessageI18ns'][$i18nId]->b_message_id = $d->id;
                 } else
-                    $models[$data->id]['bMessageI18ns'][$i18nId]->setScenario('translate');
+                    $models[$d->id]['bMessageI18ns'][$i18nId]->setScenario('translate');
             }
         }
         return $models;
@@ -162,29 +163,29 @@ class MessageController extends BAutoController
      */
     public function actionCreate()
     {
-        // set related datas
-        $relatedDatas = array();
+        // set related data
+        $relatedData = array();
 
         // get list of i18n ID
-        $relatedDatas['i18nIds'] = BSiteI18n::model()->getI18nIds();
+        $relatedData['i18nIds'] = BSiteI18n::model()->getI18nIds();
         // set the current language at first
         $tmp = array(
             'curI18nId' => array(
-                Yii::app()->language => $relatedDatas['i18nIds'][Yii::app()->language]
+                Yii::app()->language => $relatedData['i18nIds'][Yii::app()->language]
             )
         );
-        unset($relatedDatas['i18nIds'][Yii::app()->language]);
-        $relatedDatas['i18nIds'] = $tmp['curI18nId'] + $relatedDatas['i18nIds'];
+        unset($relatedData['i18nIds'][Yii::app()->language]);
+        $relatedData['i18nIds'] = $tmp['curI18nId'] + $relatedData['i18nIds'];
         unset($tmp);
 
-        // datas to update
-        $postDatas = $_POST;
+        // data to update
+        $postData = $_POST;
 
         // get models
-        $models = $this->loadAdvancedEditModels(null, $relatedDatas['i18nIds']);
+        $models = $this->loadAdvancedEditModels(null, $relatedData['i18nIds']);
 
         // save models
-        $isSaved = Yii::app()->request->isPostRequest && ! empty($_POST) ? $this->_saveEditModels($models, $postDatas) : false;
+        $isSaved = Yii::app()->request->isPostRequest && ! empty($_POST) ? $this->_saveEditModels($models, $postData) : false;
 
         $this->pageTitle = B::t('backend', 'message_message_create_title');
 
@@ -198,7 +199,7 @@ class MessageController extends BAutoController
                 $html = $this->renderPartial('edit/edit', array(
                     'tpl' => '_update',
                     'models' => $models,
-                    'relatedDatas' => $relatedDatas,
+                    'relatedData' => $relatedData,
                     'isSaved' => $isSaved,
                     'pk' => $pk
                 ), true);
@@ -206,7 +207,7 @@ class MessageController extends BAutoController
                 $html = $this->renderPartial('edit/edit', array(
                     'tpl' => '_create',
                     'models' => $models,
-                    'relatedDatas' => $relatedDatas,
+                    'relatedData' => $relatedData,
                     'isSaved' => $isSaved,
                     'pk' => null
                 ), true);
@@ -222,7 +223,7 @@ class MessageController extends BAutoController
             $this->render('edit/edit', array(
                 'tpl' => '_create',
                 'models' => $models,
-                'relatedDatas' => $relatedDatas,
+                'relatedData' => $relatedData,
                 'isSaved' => $isSaved,
                 'pk' => null
             ));
@@ -234,46 +235,47 @@ class MessageController extends BAutoController
      */
     public function actionUpdate()
     {
-        // set related datas
-        $relatedDatas = array();
+        // set related data
+        $relatedData = array();
 
         // get list of i18n ID
-        $relatedDatas['i18nIds'] = BSiteI18n::model()->getI18nIds();
+        $relatedData['i18nIds'] = BSiteI18n::model()->getI18nIds();
         // set the current language at first
         $tmp = array(
             'curI18nId' => array(
-                Yii::app()->language => $relatedDatas['i18nIds'][Yii::app()->language]
+                Yii::app()->language => $relatedData['i18nIds'][Yii::app()->language]
             )
         );
-        unset($relatedDatas['i18nIds'][Yii::app()->language]);
-        $relatedDatas['i18nIds'] = $tmp['curI18nId'] + $relatedDatas['i18nIds'];
+        unset($relatedData['i18nIds'][Yii::app()->language]);
+        $relatedData['i18nIds'] = $tmp['curI18nId'] + $relatedData['i18nIds'];
         unset($tmp);
 
         // set primary key
         $pk = array();
         $pk['id'] = $_GET['id'];
 
-        // datas to update
-        $postDatas = $_POST;
+        // data to update
+        $postData = $_POST;
 
         // get models
-        $models = $this->loadAdvancedEditModels($pk, $relatedDatas['i18nIds']);
+        $models = $this->loadAdvancedEditModels($pk, $relatedData['i18nIds']);
 
         // save models
-        $isSaved = Yii::app()->request->isPostRequest && ! empty($_POST) ? $this->_saveEditModels($models, $postDatas) : false;
+        $isSaved = Yii::app()->request->isPostRequest && ! empty($_POST) ? $this->_saveEditModels($models, $postData) : false;
 
         $this->pageTitle = B::t('backend', 'message_message_update_title');
 
         // update the primary key
-        if ($isSaved)
+        if ($isSaved) {
             $pk['id'] = $models['BMessage']->id;
+        }
 
         $this->dynamicRender(
             'edit/edit',
             array(
                 'tpl' => '_update',
                 'models' => $models,
-                'relatedDatas' => $relatedDatas,
+                'relatedData' => $relatedData,
                 'isSaved' => $isSaved,
                 'pk' => $pk
             ),
@@ -285,7 +287,7 @@ class MessageController extends BAutoController
      * Load models
      *
      * @param mixed $pk the primary key of the model
-     * @param midex $i18nIds array of i18n ID
+     * @param mided $i18nIds array of i18n ID
      * @return mixed array of models
      */
     protected function loadAdvancedEditModels($pk = null, $i18nIds)
@@ -295,11 +297,13 @@ class MessageController extends BAutoController
 
         $models['BMessage'] = ($pk !== null) ? BMessage::model()->findByPk(count($pk) == 1 ? reset($pk) : $pk) : null;
         if ($models['BMessage'] === null) {
-            if ($pk !== null)
+            if ($pk !== null) {
                 throw new CHttpException(403);
+            }
             $models['BMessage'] = new BMessage('insert');
-        } else
+        } else {
             $models['BMessage']->setScenario('update');
+        }
 
         $tmp = array();
         foreach ($i18nIds as $i18nId)
@@ -315,13 +319,15 @@ class MessageController extends BAutoController
         }
 
         foreach ($i18nIds as $i18nId) {
-            if (! isset($models['bMessageI18ns'][$i18nId]))
+            if (! isset($models['bMessageI18ns'][$i18nId])) {
                 $models['bMessageI18ns'][$i18nId] = null;
+            }
 
-            if ($models['bMessageI18ns'][$i18nId] === null)
+            if ($models['bMessageI18ns'][$i18nId] === null) {
                 $models['bMessageI18ns'][$i18nId] = new BMessageI18n('preInsert');
-            else
+            } else {
                 $models['bMessageI18ns'][$i18nId]->setScenario('update');
+            }
         }
 
         return $models;
@@ -331,10 +337,10 @@ class MessageController extends BAutoController
      * Save models
      *
      * @param mixed $models array of models
-     * @param mixed $postDatas array of datas (datas to update)
+     * @param mixed $postData array of data (data to update)
      * @return bool true on success and false in the other cases
      */
-    protected function _saveEditModels(&$models, &$postDatas)
+    protected function _saveEditModels(&$models, &$postData)
     {
         // initialize the status
         $isSaved = false;
@@ -343,12 +349,12 @@ class MessageController extends BAutoController
         $transaction = $models['BMessage']->dbConnection->beginTransaction();
         try {
             // set attributes
-            if (isset($postDatas['BMessage']))
-                $models['BMessage']->attributes = $postDatas['BMessage'];
-            if (isset($postDatas['bMessageI18ns'])) {
+            if (isset($postData['BMessage']))
+                $models['BMessage']->attributes = $postData['BMessage'];
+            if (isset($postData['bMessageI18ns'])) {
                 foreach ($models['bMessageI18ns'] as $i18nId => &$modelI18n) {
-                    if (isset($postDatas['bMessageI18ns'][$i18nId]['translation']) && $postDatas['bMessageI18ns'][$i18nId]['translation'] != '') {
-                        $modelI18n->attributes = $postDatas['bMessageI18ns'][$i18nId];
+                    if (isset($postData['bMessageI18ns'][$i18nId]['translation']) && $postData['bMessageI18ns'][$i18nId]['translation'] != '') {
+                        $modelI18n->attributes = $postData['bMessageI18ns'][$i18nId];
                         $modelI18n->i18n_id = $i18nId;
                         $modelI18n->validate();
                     }
@@ -386,10 +392,10 @@ class MessageController extends BAutoController
      * Save the translations
      *
      * @param mixed $models the list of models to be translated
-     * @param mixed $postDatas array of datas (datas to update)
+     * @param mixed $postData array of data (data to update)
      * @return bool true on success and false in the other cases
      */
-    protected function _saveTranslationModels(&$models, &$postDatas)
+    protected function _saveTranslationModels(&$models, &$postData)
     {
         // status
         $isSaved = false;
@@ -399,14 +405,14 @@ class MessageController extends BAutoController
         try {
             // validate models
             foreach ($models as $id => &$model) {
-                if (isset($postDatas['bMessages'][$id])) {
-                    $model['BMessage']->attributes = $postDatas['bMessages'][$id];
+                if (isset($postData['bMessages'][$id])) {
+                    $model['BMessage']->attributes = $postData['bMessages'][$id];
                     $model['BMessage']->validate();
                 }
 
                 foreach ($model['bMessageI18ns'] as $i18nId => &$BMessageI18n) {
-                    if (isset($postDatas['bMessageI18ns'][$id][$i18nId])) {
-                        $BMessageI18n->attributes = $postDatas['bMessageI18ns'][$id][$i18nId];
+                    if (isset($postData['bMessageI18ns'][$id][$i18nId])) {
+                        $BMessageI18n->attributes = $postData['bMessageI18ns'][$id][$i18nId];
                         $BMessageI18n->validate();
                     }
                 }

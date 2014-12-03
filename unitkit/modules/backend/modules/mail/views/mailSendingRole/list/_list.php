@@ -2,8 +2,7 @@
     <h1><?= $dataView->title; ?></h1>
     <div class="actions">
 		<?php if(Yii::app()->user->checkMultiAccess($this->defaultRoles['create'])): ?>
-	    <a
-            href="<?=$this->createUrl($this->id.'/create', array('BMailSendingRole[b_mail_template_id]' => $_GET['BMailSendingRole']['b_mail_template_id'])); ?>"
+	    <a href="<?=$this->createUrl($this->id.'/create', array('BMailSendingRole[b_mail_template_id]' => $_GET['BMailSendingRole']['b_mail_template_id'])); ?>"
             class="btn btn-sm btn-danger btn-add"> <span class="glyphicon glyphicon-plus-sign"></span> <b><?= B::t('unitkit', 'btn_add'); ?></b>
         </a>
 	    <?php endif ?>

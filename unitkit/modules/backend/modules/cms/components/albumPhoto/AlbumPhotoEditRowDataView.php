@@ -11,38 +11,38 @@ class AlbumPhotoEditRowDataView extends BEditRowItemDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param array $pk Primary key
      */
-    public function __construct($datas, $relatedDatas, $pk)
+    public function __construct($data, $relatedData, $pk)
     {
         // primary key
         $this->pk = $pk;
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $datas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // items
         $this->items = array(
             new BItemField(array(
-                'model' => $datas['BCmsAlbumPhotoI18n'],
+                'model' => $data['BCmsAlbumPhotoI18n'],
                 'attribute' => 'title',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsAlbumPhotoI18n']->getAttributeLabel('title'),
+                    'placeholder' => $data['BCmsAlbumPhotoI18n']->getAttributeLabel('title'),
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BCmsAlbumPhoto'],
+                'model' => $data['BCmsAlbumPhoto'],
                 'attribute' => 'file_path',
                 'value' => $this->controller->getUploader('BCmsAlbumPhoto[file_path]')['uploader']->htmlUploader(
-                    $datas['BCmsAlbumPhoto'],
+                    $data['BCmsAlbumPhoto'],
                     'file_path',
                     $this->controller->createUrl($this->controller->id.'/upload'),
                     array(

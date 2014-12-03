@@ -226,8 +226,9 @@ class PersonProfile extends CActiveRecord
             )
         ));
 
-        if ($model !== null)
+        if ($model !== null) {
             $this->addError('email', B::t('backend', 'b_person_email_exist'));
+        }
     }
 
     /**
@@ -236,10 +237,11 @@ class PersonProfile extends CActiveRecord
     public function beforeSave()
     {
         if (parent::beforeSave()) {
-            if ($this->old_password == '' || $this->repeat_password == '' || $this->password == '')
+            if ($this->old_password == '' || $this->repeat_password == '' || $this->password == '') {
                 unset($this->password);
-            else
+            } else {
                 $this->password = CPasswordHelper::hashPassword($this->password, 13);
+            }
 
             return true;
         } else
@@ -280,10 +282,11 @@ class PersonProfile extends CActiveRecord
     {
         if ($this->old_password != '' || $this->repeat_password != '' || $this->password != '') {
             $model = $this->findByPk($this->id);
-            if ($model === null)
+            if ($model === null) {
                 throw new Exception();
-            elseif (! CPasswordHelper::verifyPassword($this->old_password, $model->password))
+            } elseif (! CPasswordHelper::verifyPassword($this->old_password, $model->password)) {
                 $this->addError('old_password', B::t('backend', 'profile_old_password_not_valid'));
+            }
         }
     }
 }

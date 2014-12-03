@@ -12,12 +12,12 @@ class SiteI18nEditDataView extends BEditDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param array $pk Primary key
-     * @param bool $isSaved Saved satus
+     * @param bool $isSaved Saved status
      */
-    public function __construct($datas, $relatedDatas, $pk, $isSaved)
+    public function __construct($data, $relatedData, $pk, $isSaved)
     {
         $this->id = 'bSiteI18nSiteI18nEdit';
 
@@ -28,22 +28,24 @@ class SiteI18nEditDataView extends BEditDataView
         // primary key
         $this->pk = $pk;
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // saved status
         $this->isSaved = $isSaved;
 
         // error status
-        foreach ($datas as $data)
-            if ($this->hasErrors = $data->hasErrors())
+        foreach ($data as $d) {
+            if ($this->hasErrors = $d->hasErrors()) {
                 break;
+            }
+        }
 
             // new record status
-        $this->isNewRecord = $datas['BSiteI18n']->isNewRecord;
+        $this->isNewRecord = $data['BSiteI18n']->isNewRecord;
 
         // page title
         $this->refreshPageTitle();
@@ -51,25 +53,25 @@ class SiteI18nEditDataView extends BEditDataView
         // items
         $this->items = array(
             new BItemField(array(
-                'model' => $datas['BSiteI18n'],
+                'model' => $data['BSiteI18n'],
                 'attribute' => 'i18n_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm input-ajax-select',
-                    'data-action' => $this->controller->createUrl($this->controller->id . '/advCombobox/', array(
+                    'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
                         'name' => 'BI18nI18n[name]',
                         'language' => Yii::app()->language
                     )),
                     'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($datas['BSiteI18n']->i18n_id) ? BI18nI18n::model()->findByPk(array(
-                        'b_i18n_id' => $datas['BSiteI18n']->i18n_id,
+                    'data-text' => ! empty($data['BSiteI18n']->i18n_id) ? BI18nI18n::model()->findByPk(array(
+                        'b_i18n_id' => $data['BSiteI18n']->i18n_id,
                         'i18n_id' => Yii::app()->language
                     ))->name : ''
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BSiteI18n'],
+                'model' => $data['BSiteI18n'],
                 'attribute' => 'activated',
                 'type' => 'activeCheckBox',
                 'htmlOptions' => array(

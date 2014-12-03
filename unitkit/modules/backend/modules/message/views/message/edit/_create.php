@@ -7,7 +7,7 @@
     $this->renderPartial('edit/_form', array(
         'action' => 'create',
         'models' => $models,
-        'relatedDatas' => $relatedDatas,
+        'relatedData' => $relatedData,
         'isSaved' => false,
         'pk' => $pk
     ));

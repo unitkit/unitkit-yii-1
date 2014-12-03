@@ -12,12 +12,12 @@ class MessageGroupTranslateDataView extends BTranslateDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModels
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModels
+     * @param array $relatedData Array of related data
      * @param array $pk Primary key
-     * @param bool $isSaved Saved satus
+     * @param bool $isSaved Saved status
      */
-    public function __construct($datas, $relatedDatas, $pk, $isSaved)
+    public function __construct($data, $relatedData, $pk, $isSaved)
     {
         // id
         $this->id = 'bMessageGroupMessageGroupTranslate';
@@ -28,11 +28,11 @@ class MessageGroupTranslateDataView extends BTranslateDataView
         // I18n model
         $this->model = BMessageGroupI18n::model();
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // saved status
         $this->isSaved = $isSaved;

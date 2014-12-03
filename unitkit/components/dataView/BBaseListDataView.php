@@ -48,14 +48,14 @@ class BBaseListDataView extends CComponent
     public $advancedSearch;
 
     /**
-     * @var mixed Related datas
+     * @var mixed Related data
      */
-    public $relatedDatas;
+    public $relatedData;
 
     /**
-     * @var mixed Datas
+     * @var mixed Data
      */
-    public $datas;
+    public $data;
 
     /**
      * Controller
@@ -67,13 +67,13 @@ class BBaseListDataView extends CComponent
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param CModel $model Current model
      * @param CSort $sort CSort component
      * @param CPagination $pagination CPagination component
      */
-    public function __construct(&$datas, &$relatedDatas, &$model, &$sort, &$pagination)
+    public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {}
 
     /**

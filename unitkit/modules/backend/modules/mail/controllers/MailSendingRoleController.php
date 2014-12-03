@@ -13,7 +13,7 @@ class MailSendingRoleController extends BAutoController
     /**
      * @see BBaseAutoController::advancedConbobox()
      */
-    protected function _advancedConbobox()
+    protected function _advancedComboBox()
     {
         return array(
             'BPerson[fullName]' => array(
@@ -60,37 +60,39 @@ class MailSendingRoleController extends BAutoController
      */
     public function actionCreate()
     {
-        // datas to update
-        $postDatas = array();
-        if (isset($_POST['BMailSendingRole']))
-            $postDatas['BMailSendingRole'] = $_POST['BMailSendingRole'];
+        // data to update
+        $postData = array();
+        if (isset($_POST['BMailSendingRole'])) {
+            $postData['BMailSendingRole'] = $_POST['BMailSendingRole'];
+        }
 
-            // datas
-        $datas = $this->_loadEditModels();
+        // data
+        $data = $this->_loadEditModels();
 
-        if (isset($_GET['BMailSendingRole']['b_mail_template_id']))
-            $datas['BMailSendingRole']->b_mail_template_id = $_GET['BMailSendingRole']['b_mail_template_id'];
+        if (isset($_GET['BMailSendingRole']['b_mail_template_id'])) {
+            $data['BMailSendingRole']->b_mail_template_id = $_GET['BMailSendingRole']['b_mail_template_id'];
+        }
 
-        // related datas
-        $relatedDatas = array();
+        // related data
+        $relatedData = array();
 
-        // save datas
-        $isSaved = Yii::app()->request->isPostRequest && ! empty($postDatas) ? $this->_saveEditModels($datas, $postDatas) : false;
+        // save data
+        $isSaved = Yii::app()->request->isPostRequest && ! empty($postData) ? $this->_saveEditModels($data, $postData) : false;
 
         $pk = array();
         if ($isSaved) {
             // set primary key
             $pk = array(
-                'b_person_id' => $datas['BMailSendingRole']->b_person_id,
-                'b_mail_template_id' => $datas['BMailSendingRole']->b_mail_template_id,
-                'b_mail_send_role_id' => $datas['BMailSendingRole']->b_mail_send_role_id
+                'b_person_id' => $data['BMailSendingRole']->b_person_id,
+                'b_mail_template_id' => $data['BMailSendingRole']->b_mail_template_id,
+                'b_mail_send_role_id' => $data['BMailSendingRole']->b_mail_send_role_id
             );
         }
 
         $this->dynamicRender(
             'edit/edit',
             array(
-                'dataView' => new MailSendingRoleEditDataView($datas, $relatedDatas, $pk, $isSaved)
+                'dataView' => new MailSendingRoleEditDataView($data, $relatedData, $pk, $isSaved)
             )
         );
     }
@@ -100,10 +102,10 @@ class MailSendingRoleController extends BAutoController
      */
     public function actionUpdate()
     {
-        // datas to update
-        $postDatas = array();
+        // data to update
+        $postData = array();
         if (isset($_POST['BMailSendingRole'])) {
-            $postDatas['BMailSendingRole'] = $_POST['BMailSendingRole'];
+            $postData['BMailSendingRole'] = $_POST['BMailSendingRole'];
         }
 
         // primary key
@@ -112,47 +114,45 @@ class MailSendingRoleController extends BAutoController
         $pk['b_mail_template_id'] = $_GET['b_mail_template_id'];
         $pk['b_mail_send_role_id'] = $_GET['b_mail_send_role_id'];
 
-        // datas
-        $datas = $this->_loadEditModels($pk);
+        // data
+        $data = $this->_loadEditModels($pk);
 
-        // related datas
-        $relatedDatas = array();
-        $relatedDatas['BMailTemplate[id]'] = array(
+        // related data
+        $relatedData = array();
+        $relatedData['BMailTemplate[id]'] = array(
             '' => B::t('unitkit', 'input_select')
         ) + BHtml::listDatasCombobox('BMailTemplate', array(
             'id',
             'id'
         ));
 
-        // save datas
-        $isSaved = Yii::app()->request->isPostRequest && ! empty($postDatas) ? $this->_saveEditModels($datas, $postDatas) : false;
+        // save data
+        $isSaved = Yii::app()->request->isPostRequest && ! empty($postData) ? $this->_saveEditModels($data, $postData) : false;
 
         // update the primary key
         if ($isSaved) {
-            $pk['b_person_id'] = $datas['BMailSendingRole']->b_person_id;
-            $pk['b_mail_template_id'] = $datas['BMailSendingRole']->b_mail_template_id;
-            $pk['b_mail_send_role_id'] = $datas['BMailSendingRole']->b_mail_send_role_id;
+            $pk['b_person_id'] = $data['BMailSendingRole']->b_person_id;
+            $pk['b_mail_template_id'] = $data['BMailSendingRole']->b_mail_template_id;
+            $pk['b_mail_send_role_id'] = $data['BMailSendingRole']->b_mail_send_role_id;
         }
 
         $this->dynamicRender(
             'edit/edit',
             array(
-                'dataView' => new MailSendingRoleEditDataView($datas, $relatedDatas, $pk, $isSaved)
+                'dataView' => new MailSendingRoleEditDataView($data, $relatedData, $pk, $isSaved)
             )
         );
     }
 
     /**
      * Edit a row (Action)
-     *
-     * @throws Exception
      */
     public function actionEditRow()
     {
-        // datas to update
-        $postDatas = array();
+        // data to update
+        $postData = array();
         if (isset($_POST['BMailSendingRole'])) {
-            $postDatas['BMailSendingRole'] = $_POST['BMailSendingRole'];
+            $postData['BMailSendingRole'] = $_POST['BMailSendingRole'];
         }
 
         // primary key
@@ -160,12 +160,12 @@ class MailSendingRoleController extends BAutoController
         $pk['b_mail_template_id'] = $_GET['b_mail_template_id'];
         $pk['b_mail_send_role_id'] = $_GET['b_mail_send_role_id'];
 
-        // datas
-        $datas = $this->_loadEditModels($pk);
+        // data
+        $data = $this->_loadEditModels($pk);
 
-        // related datas;
-        $relatedDatas = array();
-        $relatedDatas['BMailTemplate[id]'] = array(
+        // related data
+        $relatedData = array();
+        $relatedData['BMailTemplate[id]'] = array(
             '' => B::t('unitkit', 'input_select')
         ) + BHtml::listDatasCombobox('BMailTemplate', array(
             'id',
@@ -173,18 +173,18 @@ class MailSendingRoleController extends BAutoController
         ));
 
         // save models
-        $isSaved = ! empty($postDatas) ? $this->_saveEditModels($datas, $postDatas) : false;
+        $isSaved = ! empty($postData) ? $this->_saveEditModels($data, $postData) : false;
 
         if (! $isSaved) {
             // render view
             $html = $this->bRenderPartial('list/_tbodyRowEdit', array(
-                'dataView' => new MailSendingRoleEditRowDataView($datas, $relatedDatas, $pk, $isSaved)
+                'dataView' => new MailSendingRoleEditRowDataView($data, $relatedData, $pk, $isSaved)
             ), true);
         } else {
             // update the primary key
-            $pk['b_person_id'] = $datas['BMailSendingRole']->b_person_id;
-            $pk['b_mail_template_id'] = $datas['BMailSendingRole']->b_mail_template_id;
-            $pk['b_mail_send_role_id'] = $datas['BMailSendingRole']->b_mail_send_role_id;
+            $pk['b_person_id'] = $data['BMailSendingRole']->b_person_id;
+            $pk['b_mail_template_id'] = $data['BMailSendingRole']->b_mail_template_id;
+            $pk['b_mail_send_role_id'] = $data['BMailSendingRole']->b_mail_send_role_id;
 
             // refresh the row
             $html = $this->_refreshRow($pk);

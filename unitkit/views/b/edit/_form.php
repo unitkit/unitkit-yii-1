@@ -1,6 +1,6 @@
 <?php if($dataView->hasErrors): ?>
 <div class="alert alert-danger">
-	<?= BHtml::errorSummary($dataView->datas); ?>
+	<?= BHtml::errorSummary($dataView->data); ?>
 </div>
 <?php endif; ?>
 

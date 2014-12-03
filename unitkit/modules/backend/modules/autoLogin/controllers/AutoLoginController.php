@@ -22,7 +22,7 @@ class AutoLoginController extends BAutoController
         unset($this->_defaultRoles['update']);
     }
 
-    protected function _advancedConbobox()
+    protected function _advancedComboBox()
     {
         return array(
             'BPerson[fullname]' => array(

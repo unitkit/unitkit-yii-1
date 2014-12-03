@@ -12,12 +12,12 @@ class MessageGroupEditDataView extends BEditDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param array $pk Primary key
-     * @param bool $isSaved Saved satus
+     * @param bool $isSaved Saved status
      */
-    public function __construct($datas, $relatedDatas, $pk, $isSaved)
+    public function __construct($data, $relatedData, $pk, $isSaved)
     {
         $this->id = 'bMessageGroupMessageGroupEdit';
 
@@ -28,22 +28,24 @@ class MessageGroupEditDataView extends BEditDataView
         // primary key
         $this->pk = $pk;
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // saved status
         $this->isSaved = $isSaved;
 
         // error status
-        foreach ($datas as $data)
-            if ($this->hasErrors = $data->hasErrors())
+        foreach ($data as $d) {
+            if ($this->hasErrors = $d->hasErrors()) {
                 break;
+            }
+        }
 
-            // new record status
-        $this->isNewRecord = $datas['BMessageGroup']->isNewRecord;
+        // new record status
+        $this->isNewRecord = $data['BMessageGroup']->isNewRecord;
 
         // page title
         $this->refreshPageTitle();
@@ -51,32 +53,32 @@ class MessageGroupEditDataView extends BEditDataView
         // items
         $this->items = array(
             new BItemField(array(
-                'model' => $datas['BMessageGroup'],
+                'model' => $data['BMessageGroup'],
                 'attribute' => 'id',
                 'type' => 'resolveValue'
             )),
             new BItemField(array(
-                'model' => $datas['BMessageGroupI18n'],
+                'model' => $data['BMessageGroupI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm select-related-field',
-                    'placeholder' => $datas['BMessageGroupI18n']->getAttributeLabel('name')
+                    'placeholder' => $data['BMessageGroupI18n']->getAttributeLabel('name')
                 )
             ))
         );
 
-        if (! $datas['BMessageGroup']->isNewRecord) {
+        if (! $data['BMessageGroup']->isNewRecord) {
             $this->items[] = new BItemField(array(
-                'model' => $datas['BMessageGroup'],
+                'model' => $data['BMessageGroup'],
                 'attribute' => 'created_at',
-                'value' => $datas['BMessageGroup']->created_at
+                'value' => $data['BMessageGroup']->created_at
             ));
             $this->items[] = new BItemField(array(
-                'model' => $datas['BMessageGroup'],
+                'model' => $data['BMessageGroup'],
                 'attribute' => 'updated_at',
-                'value' => $datas['BMessageGroup']->updated_at
+                'value' => $data['BMessageGroup']->updated_at
             ));
         }
     }

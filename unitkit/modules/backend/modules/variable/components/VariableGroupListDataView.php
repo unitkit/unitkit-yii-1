@@ -12,13 +12,13 @@ class VariableGroupListDataView extends BListDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param CModel $model Current model
      * @param CSort $sort CSort component
      * @param CPagination $pagination CPagination component
      */
-    public function __construct(&$datas, &$relatedDatas, &$model, &$sort, &$pagination)
+    public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
         $this->id = 'bVariableGroupVariableGroupMain';
@@ -26,11 +26,11 @@ class VariableGroupListDataView extends BListDataView
         // component title
         $this->title = B::t('backend', 'variable_variable_group_list_title');
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // sort
         $this->sort = $sort;
@@ -39,8 +39,6 @@ class VariableGroupListDataView extends BListDataView
         $this->sortAttributes = array(
             'bVariableGroupI18ns.name',
             'bVariableGroup.code'
-        // 'bVariableGroup.created_at',
-        // 'bVariableGroup.updated_at',
         );
 
         // search
@@ -65,54 +63,6 @@ class VariableGroupListDataView extends BListDataView
                     'id' => false
                 )
             ))
-        // new BDateRangeItemField(
-        // $model,
-        // 'created_at',
-        // new BItemField(array(
-        // 'model' => $model,
-        // 'attribute' => 'v_created_at_start',
-        // 'type' => 'activeTextField',
-        // 'htmlOptions' => array(
-        // 'class' => 'form-control input-sm date-picker date-range',
-        // 'placeholder' => B::t('unitkit', 'input_search'),
-        // 'id' => 'bVariableGroupVCreatedAtStartGridSearch'
-        // )
-        // )),
-        // new BItemField(array(
-        // 'model' => $model,
-        // 'attribute' => 'v_created_at_end',
-        // 'type' => 'activeTextField',
-        // 'htmlOptions' => array(
-        // 'class' => 'form-control input-sm date-picker date-range',
-        // 'placeholder' => B::t('unitkit', 'input_search'),
-        // 'id' => 'bVariableGroupVCreatedAtEndGridSearch'
-        // )
-        // ))
-        // ),
-        // new BDateRangeItemField(
-        // $model,
-        // 'updated_at',
-        // new BItemField(array(
-        // 'model' => $model,
-        // 'attribute' => 'v_updated_at_start',
-        // 'type' => 'activeTextField',
-        // 'htmlOptions' => array(
-        // 'class' => 'form-control input-sm date-picker date-range',
-        // 'placeholder' => B::t('unitkit', 'input_search'),
-        // 'id' => 'bVariableGroupVUpdatedAtStartGridSearch'
-        // )
-        // )),
-        // new BItemField(array(
-        // 'model' => $model,
-        // 'attribute' => 'v_updated_at_end',
-        // 'type' => 'activeTextField',
-        // 'htmlOptions' => array(
-        // 'class' => 'form-control input-sm date-picker date-range',
-        // 'placeholder' => B::t('unitkit', 'input_search'),
-        // 'id' => 'bVariableGroupVUpdatedAtEndGridSearch'
-        // )
-        // ))
-        // ),
         );
 
         // advanced search
@@ -178,12 +128,13 @@ class VariableGroupListDataView extends BListDataView
         );
 
         // rows
-        foreach ($datas as $data)
-            $this->rows[] = new VariableGroupListRowDataView($data, array(
-                'id' => $data->id
+        foreach ($data as $d) {
+            $this->rows[] = new VariableGroupListRowDataView($d, array(
+                'id' => $d->id
             ));
+        }
 
-            // pagination
+        // pagination
         $this->pagination = $pagination;
     }
 }

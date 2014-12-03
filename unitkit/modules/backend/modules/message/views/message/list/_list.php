@@ -23,7 +23,7 @@
     <?php
         $this->renderPartial('list/_search', array(
             'model' => $model,
-            'relatedDatas' => $relatedDatas
+            'relatedData' => $relatedData
         ));
     ?>
 	</div>
@@ -34,7 +34,7 @@
             'models' => $models,
             'sort' => $sort,
             'model' => $model,
-            'relatedDatas' => $relatedDatas,
+            'relatedData' => $relatedData,
             'isSaved' => $isSaved
         ));
     ?>

@@ -14,14 +14,14 @@ class BBaseSettingsDataView extends CComponent
     public $id;
 
     /**
-     * Related datas
+     * Related data
      *
      * @var array
      */
-    public $relatedDatas;
+    public $relatedData;
 
     /**
-     * Saved satus
+     * Saved status
      *
      * @var bool
      */
@@ -35,11 +35,11 @@ class BBaseSettingsDataView extends CComponent
     public $hasErrors = false;
 
     /**
-     * Array of datas
+     * Array of data
      *
      * @var array
      */
-    public $datas;
+    public $data;
 
     /**
      * Array of BItemField
@@ -72,23 +72,23 @@ class BBaseSettingsDataView extends CComponent
     /**
      * Data view of settings component
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Related datas
-     * @param bool $isSaved Saved satus
+     * @param array $data Array of CModel
+     * @param array $relatedData Related data
+     * @param bool $isSaved Saved status
      */
-    public function __construct($datas, $relatedDatas, $isSaved)
+    public function __construct($data, $relatedData, $isSaved)
     {
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        $this->relatedDatas = $relatedDatas;
+        $this->relatedData = $relatedData;
 
         // saved status
         $this->isSaved = $isSaved;
 
         // error status
-        foreach ($datas as $data) {
-            if ($this->hasErrors = $data->hasErrors()) {
+        foreach ($data as $d) {
+            if ($this->hasErrors = $d->hasErrors()) {
                 break;
             }
         }
@@ -96,12 +96,12 @@ class BBaseSettingsDataView extends CComponent
             // items
         $this->items = array(
             new BItemField(array(
-                'model' => $datas['BInterfaceSetting'],
+                'model' => $data['BInterfaceSetting'],
                 'attribute' => 'page_size',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BInterfaceSetting']->getAttributeLabel('page_size'),
+                    'placeholder' => $data['BInterfaceSetting']->getAttributeLabel('page_size'),
                     'id' => false
                 )
             ))
@@ -131,7 +131,7 @@ class BBaseSettingsDataView extends CComponent
         if ($this->_closeAction === null) {
             // controller
             $controller = Yii::app()->controller;
-
+            // action
             $this->_closeAction = $controller->createUrl($controller->id . '/list');
         }
         return $this->_closeAction;
@@ -157,7 +157,7 @@ class BBaseSettingsDataView extends CComponent
         if ($this->_action === null) {
             // controller
             $controller = Yii::app()->controller;
-
+            // action
             $this->_action = $controller->createUrl($controller->id . '/settings');
         }
         return $this->_action;

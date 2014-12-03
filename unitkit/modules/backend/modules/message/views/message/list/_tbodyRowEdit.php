@@ -30,9 +30,9 @@
                         'class' => 'form-control input-sm input-ajax-select',
                         'name' => 'bMessages[' . $model['BMessage']->id . '][b_message_group_id]',
                         'id' => 'BMessageGroupI18nNameListTbodyRowEdit' . $model['BMessage']->id,
-                        'data-action' => $this->createUrl($this->id . '/advCombobox/', array('name' => 'BMessageGroupI18n[name]','language' => Yii::app()->language)),
+                        'data-action' => $this->createUrl($this->id . '/advComboBox/', array('name' => 'BMessageGroupI18n[name]','language' => Yii::app()->language)),
                         'data-placeholder' => B::t('unitkit', 'input_select'),
-                        'data-text' => isset($relatedDatas['BMessageGroupI18n[name]'][$model['BMessage']->b_message_group_id]) ? $relatedDatas['BMessageGroupI18n[name]'][$model['BMessage']->b_message_group_id] : '',
+                        'data-text' => isset($relatedData['BMessageGroupI18n[name]'][$model['BMessage']->b_message_group_id]) ? $relatedData['BMessageGroupI18n[name]'][$model['BMessage']->b_message_group_id] : '',
                         'data-addAction' => $this->createUrl('messageGroup/create'),
                     )
                 );
@@ -42,7 +42,7 @@
         <div class="help-inline"><?=BHtml::error($model['BMessage'], 'b_message_group_id'); ?></div>
         <?php endif; ?>
     </td>
-	<?php foreach($relatedDatas['i18nIds'] as $i18nId): ?>
+	<?php foreach($relatedData['i18nIds'] as $i18nId): ?>
 	<td class="control-group <?=$model['bMessageI18ns'][$i18nId]->hasErrors('translation') ? 'error' : ''; ?>">
         <div class="input">
         	<?=

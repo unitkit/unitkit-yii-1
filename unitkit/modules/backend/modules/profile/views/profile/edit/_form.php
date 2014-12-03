@@ -42,7 +42,7 @@
                             array(
                                 'class' => 'form-control input-sm input-ajax-select',
                                 'id' => false,
-                                'data-action' => $this->createUrl($this->id . '/advCombobox/', array('name' => 'BI18nI18n[name]','language' => Yii::app()->language)),
+                                'data-action' => $this->createUrl($this->id . '/advComboBox/', array('name' => 'BI18nI18n[name]','language' => Yii::app()->language)),
                                 'data-placeholder' => B::t('unitkit', 'input_select'),
                                 'data-text' => ! empty($models['PersonProfile']->default_language) ? BI18nI18n::model()->findByPk(array('b_i18n_id' => $models['PersonProfile']->default_language,'i18n_id' => Yii::app()->language))->name : ''
                             )

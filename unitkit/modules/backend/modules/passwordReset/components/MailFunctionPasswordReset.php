@@ -9,9 +9,10 @@ class MailFunctionPasswordReset
 {
 
     /**
-     * Person ID
+     * Create password reset link
      *
-     * @param string $id
+     * @param int $id BPerson ID
+     * @return string
      */
     public static function createPasswordResetLink($id)
     {

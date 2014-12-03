@@ -45,7 +45,7 @@ class BActiveRecordExportCsv
     public static $delimiter = ';';
 
     /**
-     * Instanciate a BActiveRecordExportCsv
+     * Instantiate a BActiveRecordExportCsv
      *
      * @param string $modelName
      * @param array of model $models
@@ -92,8 +92,9 @@ class BActiveRecordExportCsv
     protected function buildHeader()
     {
         if (! empty($this->_header)) {
-            foreach ($this->_header as $attribute)
+            foreach ($this->_header as $attribute) {
                 $this->_rows[0][] = BTools::utf8Decode($this->_modelClass->getAttributeLabel($attribute));
+            }
         } else {
             foreach ($this->_modelClass->attributeLabels() as $attr => $label) {
                 $this->_rows[0][] = BTools::utf8Decode($label);
@@ -109,8 +110,9 @@ class BActiveRecordExportCsv
     {
         foreach ($this->_models as $index => $model) {
             $i = $index + 1;
-            foreach ($this->_header as $attribute)
+            foreach ($this->_header as $attribute) {
                 $this->_rows[$i][] = BTools::utf8Decode($this->getAttributeValue($attribute, $index));
+            }
         }
     }
 
@@ -120,8 +122,9 @@ class BActiveRecordExportCsv
     protected function build()
     {
         $this->buildHeader();
-        if (! empty($this->_models))
+        if (! empty($this->_models)) {
             $this->buildContent();
+        }
     }
 
     /**
@@ -135,15 +138,15 @@ class BActiveRecordExportCsv
 
         $handle = @fopen($pathFile, 'w');
         if ($handle) {
-            foreach ($this->_rows as $row)
+            foreach ($this->_rows as $row) {
                 fputcsv($handle, $row, static::$delimiter);
-
+            }
             fclose($handle);
         }
     }
 
     /**
-     * Donwload csv file
+     * Download csv file
      */
     public function download()
     {
@@ -178,8 +181,9 @@ class BActiveRecordExportCsv
                 if(strpos($attribute, $relationUnder) !== false) {
                     $table = $relation;
                     $parts = explode('lk_'.$relationUnder.'_', $attribute);
-                    if(count($parts) == 2)
+                    if(count($parts) == 2) {
                         $colName = $parts[1];
+                    }
                 }
             }
 

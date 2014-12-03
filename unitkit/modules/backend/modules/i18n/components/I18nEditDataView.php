@@ -12,12 +12,12 @@ class I18nEditDataView extends BEditDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param array $pk Primary key
-     * @param bool $isSaved Saved satus
+     * @param bool $isSaved Saved status
      */
-    public function __construct($datas, $relatedDatas, $pk, $isSaved)
+    public function __construct($data, $relatedData, $pk, $isSaved)
     {
         $this->id = 'bI18nI18nEdit';
 
@@ -28,22 +28,24 @@ class I18nEditDataView extends BEditDataView
         // primary key
         $this->pk = $pk;
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // saved status
         $this->isSaved = $isSaved;
 
         // error status
-        foreach ($datas as $data)
-            if ($this->hasErrors = $data->hasErrors())
+        foreach ($data as $d) {
+            if ($this->hasErrors = $d->hasErrors()) {
                 break;
+            }
+        }
 
-            // new record status
-        $this->isNewRecord = $datas['BI18n']->isNewRecord;
+        // new record status
+        $this->isNewRecord = $data['BI18n']->isNewRecord;
 
         // page title
         $this->refreshPageTitle();
@@ -51,23 +53,23 @@ class I18nEditDataView extends BEditDataView
         // items
         $this->items = array(
             new BItemField(array(
-                'model' => $datas['BI18n'],
+                'model' => $data['BI18n'],
                 'attribute' => 'id',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BI18n']->getAttributeLabel('id')
+                    'placeholder' => $data['BI18n']->getAttributeLabel('id')
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BI18nI18n'],
+                'model' => $data['BI18nI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BI18nI18n']->getAttributeLabel('name')
+                    'placeholder' => $data['BI18nI18n']->getAttributeLabel('name')
                 )
             ))
         );

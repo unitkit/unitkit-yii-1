@@ -12,12 +12,12 @@ class VariableGroupEditDataView extends BEditDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param array $pk Primary key
-     * @param bool $isSaved Saved satus
+     * @param bool $isSaved Saved status
      */
-    public function __construct($datas, $relatedDatas, $pk, $isSaved)
+    public function __construct($data, $relatedData, $pk, $isSaved)
     {
         $this->id = 'bVariableGroupVariableGroupEdit';
 
@@ -28,22 +28,24 @@ class VariableGroupEditDataView extends BEditDataView
         // primary key
         $this->pk = $pk;
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // saved status
         $this->isSaved = $isSaved;
 
         // error status
-        foreach ($datas as $data)
-            if ($this->hasErrors = $data->hasErrors())
+        foreach ($data as $d) {
+            if ($this->hasErrors = $d->hasErrors()) {
                 break;
+            }
+        }
 
             // new record status
-        $this->isNewRecord = $datas['BVariableGroup']->isNewRecord;
+        $this->isNewRecord = $data['BVariableGroup']->isNewRecord;
 
         // page title
         $this->refreshPageTitle();
@@ -51,38 +53,38 @@ class VariableGroupEditDataView extends BEditDataView
         // items
         $this->items = array(
             new BItemField(array(
-                'model' => $datas['BVariableGroupI18n'],
+                'model' => $data['BVariableGroupI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm select-related-field',
-                    'placeholder' => $datas['BVariableGroupI18n']->getAttributeLabel('name')
+                    'placeholder' => $data['BVariableGroupI18n']->getAttributeLabel('name')
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BVariableGroup'],
+                'model' => $data['BVariableGroup'],
                 'attribute' => 'code',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BVariableGroup']->getAttributeLabel('code')
+                    'placeholder' => $data['BVariableGroup']->getAttributeLabel('code')
                 )
             ))
         );
 
-        if (! $datas['BVariableGroup']->isNewRecord) {
+        if (! $data['BVariableGroup']->isNewRecord) {
 
             $this->items[] = new BItemField(array(
-                'model' => $datas['BVariableGroup'],
+                'model' => $data['BVariableGroup'],
                 'attribute' => 'created_at',
-                'value' => $datas['BVariableGroup']->created_at
+                'value' => $data['BVariableGroup']->created_at
             ));
             $this->items[] = new BItemField(array(
-                'model' => $datas['BVariableGroup'],
+                'model' => $data['BVariableGroup'],
                 'attribute' => 'updated_at',
-                'value' => $datas['BVariableGroup']->updated_at
+                'value' => $data['BVariableGroup']->updated_at
             ));
         }
     }

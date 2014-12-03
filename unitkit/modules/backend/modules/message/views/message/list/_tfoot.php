@@ -1,6 +1,6 @@
 <?php if(Yii::app()->user->checkMultiAccess($this->getDefaultRoles('delete'))): ?>
 <tr>
-    <td colspan="<?= count($relatedDatas['i18nIds']) + 3 ?>">
+    <td colspan="<?= count($relatedData['i18nIds']) + 3 ?>">
         <a href="#" class="check-all">
             <span class="glyphicon glyphicon-check"></span>
             <span><?= B::t('unitkit', 'btn_check_all'); ?></span>

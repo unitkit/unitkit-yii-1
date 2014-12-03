@@ -24,7 +24,7 @@ class BBaseUploader extends CComponent
     const ACTION_DELETE = 'delete';
 
     /**
-     * Tempory directory
+     * Temporary directory
      *
      * @var string
      */
@@ -38,6 +38,7 @@ class BBaseUploader extends CComponent
      *
      * @param CModel $model instance of CModel
      * @param string $attribute name of attribute
+     * @return string
      */
     public function getDataSize(&$model, $attribute)
     {
@@ -49,6 +50,7 @@ class BBaseUploader extends CComponent
      *
      * @param CModel $model instance of CModel
      * @param string $attribute name of attribute
+     * @return string
      */
     public function getLegend(&$model, $attribute)
     {
@@ -62,6 +64,7 @@ class BBaseUploader extends CComponent
      *
      * @param CModel $model instance of CModel
      * @param string $attribute name of attribute
+     * @return string
      */
     public function getDataTypes(&$model, $attribute)
     {
@@ -108,10 +111,10 @@ class BBaseUploader extends CComponent
     /**
      * Save a temporary file
      *
-     * @param string $model name of model
-     * @param string $attribute name of attribute
+     * @param string $modelName name of model
+     * @param string $attributeName name of attribute
      * @param mixed $overview array('type' => , ..)
-     * @param int $cache duration of tempory data
+     * @param int $cache duration of temporary data
      * @return mixed
      */
     public function saveTmpFile($modelName, $attributeName, $overview = array(), $cache = 86400 /* 24h */)
@@ -139,9 +142,9 @@ class BBaseUploader extends CComponent
                 'overview' => $overview
             );
 
-            // save the tempory datas
+            // save the temporary datas
             if (Yii::app()->cache->set(self::PREFIX_KEY_CACHE . $tmpKey, $data, $cache)) {
-                // save the tempory file
+                // save the temporary file
                 $model->$attributeName->saveAs($this->pathTmp . '/' . $nameFile);
                 // overview
                 $html = $this->tmpFileOverviewSelector($tmpKey, $overview, $model, $attributeName);
@@ -164,7 +167,7 @@ class BBaseUploader extends CComponent
      * @param CModel $overview overview option
      * @param mixed $model instance of model
      * @param string $attribute name of attribute
-     * @reutn string
+     * @return string
      */
     public function tmpFileOverviewSelector($tmpKey, $overview, $model, $attribute)
     {
@@ -383,7 +386,7 @@ class BBaseUploader extends CComponent
      */
     protected function _setAttributeModeInsert(&$model, &$attribute, &$oldValue, &$command, &$modelValue)
     {
-        // get tempory file informations
+        // get temporary file informations
         $data = Yii::app()->cache->get(self::PREFIX_KEY_CACHE . $command['key']);
         // control session ID
         if (false !== $data && $data['id'] === BTools::sha512(Yii::app()->session->sessionID)) {

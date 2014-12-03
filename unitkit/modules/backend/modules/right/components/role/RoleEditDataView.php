@@ -12,12 +12,12 @@ class RoleEditDataView extends BEditDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param array $pk Primary key
-     * @param bool $isSaved Saved satus
+     * @param bool $isSaved Saved status
      */
-    public function __construct($datas, $relatedDatas, $pk, $isSaved)
+    public function __construct($data, $relatedData, $pk, $isSaved)
     {
         $this->id = 'bRoleRoleEdit';
 
@@ -28,22 +28,24 @@ class RoleEditDataView extends BEditDataView
         // primary key
         $this->pk = $pk;
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // saved status
         $this->isSaved = $isSaved;
 
         // error status
-        foreach ($datas as $data)
-            if ($this->hasErrors = $data->hasErrors())
+        foreach ($data as $d) {
+            if ($this->hasErrors = $d->hasErrors()) {
                 break;
+            }
+        }
 
-            // new record status
-        $this->isNewRecord = $datas['BRole']->isNewRecord;
+        // new record status
+        $this->isNewRecord = $data['BRole']->isNewRecord;
 
         // page title
         $this->refreshPageTitle();
@@ -51,48 +53,47 @@ class RoleEditDataView extends BEditDataView
         // items
         $this->items = array(
             new BItemField(array(
-                'model' => $datas['BRoleI18n'],
+                'model' => $data['BRoleI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BRoleI18n']->getAttributeLabel('name')
+                    'placeholder' => $data['BRoleI18n']->getAttributeLabel('name')
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BRole'],
+                'model' => $data['BRole'],
                 'attribute' => 'operation',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BRole']->getAttributeLabel('operation')
+                    'placeholder' => $data['BRole']->getAttributeLabel('operation')
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BRole'],
+                'model' => $data['BRole'],
                 'attribute' => 'business_rule',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BRole']->getAttributeLabel('business_rule')
+                    'placeholder' => $data['BRole']->getAttributeLabel('business_rule')
                 )
             ))
         );
 
-        if (! $datas['BRole']->isNewRecord) {
-
+        if (! $data['BRole']->isNewRecord) {
             $this->items[] = new BItemField(array(
-                'model' => $datas['BRole'],
+                'model' => $data['BRole'],
                 'attribute' => 'created_at',
-                'value' => $datas['BRole']->created_at
+                'value' => $data['BRole']->created_at
             ));
             $this->items[] = new BItemField(array(
-                'model' => $datas['BRole'],
+                'model' => $data['BRole'],
                 'attribute' => 'updated_at',
-                'value' => $datas['BRole']->updated_at
+                'value' => $data['BRole']->updated_at
             ));
         }
     }

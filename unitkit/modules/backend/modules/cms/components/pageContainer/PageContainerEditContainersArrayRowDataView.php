@@ -13,7 +13,7 @@ class PageContainerEditContainersArrayRowDataView
      */
     public $items;
 
-    public function __construct($index, &$datas)
+    public function __construct($index, &$data)
     {
         $controller = Yii::app()->controller;
 
@@ -22,7 +22,7 @@ class PageContainerEditContainersArrayRowDataView
             	'value' => B::t('backend', 'cms_page_container_index').' '.$index
             )),
             new BItemField(array(
-                'model' => $datas['BCmsPageContents'][$index]->bCmsPageContentI18n,
+                'model' => $data['BCmsPageContents'][$index]->bCmsPageContentI18n,
                 'attribute' => 'content',
                 'type' => 'activeTextArea',
                 'htmlOptions' => array(

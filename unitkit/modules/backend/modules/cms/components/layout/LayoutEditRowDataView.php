@@ -11,61 +11,61 @@ class LayoutEditRowDataView extends BEditRowItemDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related datas
      * @param array $pk Primary key
      */
-    public function __construct($datas, $relatedDatas, $pk)
+    public function __construct($data, $relatedData, $pk)
     {
         // primary key
         $this->pk = $pk;
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $datas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // items
         $this->items = array(
             new BItemField(array(
-                'model' => $datas['BCmsLayoutI18n'],
+                'model' => $data['BCmsLayoutI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsLayoutI18n']->getAttributeLabel('name'),
+                    'placeholder' => $data['BCmsLayoutI18n']->getAttributeLabel('name'),
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BCmsLayout'],
+                'model' => $data['BCmsLayout'],
                 'attribute' => 'max_container',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsLayout']->getAttributeLabel('max_container'),
+                    'placeholder' => $data['BCmsLayout']->getAttributeLabel('max_container'),
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BCmsLayout'],
+                'model' => $data['BCmsLayout'],
                 'attribute' => 'path',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsLayout']->getAttributeLabel('path'),
+                    'placeholder' => $data['BCmsLayout']->getAttributeLabel('path'),
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BCmsLayout'],
+                'model' => $data['BCmsLayout'],
                 'attribute' => 'view',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsLayout']->getAttributeLabel('view'),
+                    'placeholder' => $data['BCmsLayout']->getAttributeLabel('view'),
                 )
             )),
         );

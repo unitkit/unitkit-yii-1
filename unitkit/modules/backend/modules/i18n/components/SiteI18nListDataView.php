@@ -12,13 +12,13 @@ class SiteI18nListDataView extends BListDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param CModel $model Current model
      * @param CSort $sort CSort component
      * @param CPagination $pagination CPagination component
      */
-    public function __construct(&$datas, &$relatedDatas, &$model, &$sort, &$pagination)
+    public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
         $this->id = 'bSiteI18nSiteI18nMain';
@@ -26,11 +26,11 @@ class SiteI18nListDataView extends BListDataView
         // component title
         $this->title = B::t('backend', 'i18n_site_i18n_list_title');
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // sort
         $this->sort = $sort;
@@ -50,7 +50,7 @@ class SiteI18nListDataView extends BListDataView
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
                     'id' => 'bI18nI18nNameGridSearch',
-                    'data-action' => $this->controller->createUrl($this->controller->id . '/advCombobox/', array(
+                    'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
                         'name' => 'BI18nI18n[name]',
                         'language' => Yii::app()->language
                     )),
@@ -65,7 +65,7 @@ class SiteI18nListDataView extends BListDataView
                 'model' => $model,
                 'attribute' => 'activated',
                 'type' => 'activeDropDownList',
-                'datas' => array(
+                'data' => array(
                     '' => B::t('unitkit', 'input_drop_down_list_all'),
                     '1' => B::t('unitkit', 'input_drop_down_list_checked'),
                     '0' => B::t('unitkit', 'input_drop_down_list_unchecked')
@@ -85,7 +85,7 @@ class SiteI18nListDataView extends BListDataView
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
                     'id' => 'bI18nI18nNameAdvSearch',
-                    'data-action' => $this->controller->createUrl($this->controller->id . '/advCombobox/', array(
+                    'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
                         'name' => 'BI18nI18n[name]',
                         'language' => Yii::app()->language
                     )),
@@ -112,10 +112,10 @@ class SiteI18nListDataView extends BListDataView
         );
 
         // rows
-        foreach ($datas as $data)
-            $this->rows[] = new SiteI18nListRowDataView($data, array(
-                'i18n_id' => $data->i18n_id,
-                'activated' => $data->activated
+        foreach ($data as $d)
+            $this->rows[] = new SiteI18nListRowDataView($d, array(
+                'i18n_id' => $d->i18n_id,
+                'activated' => $d->activated
             ));
 
         // pagination

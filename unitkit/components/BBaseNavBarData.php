@@ -10,16 +10,14 @@ class BBaseNavBarData
 {
 
     /**
-     * Instance of BBControler
+     * Instance of BBController
      *
-     * @var BBControler
+     * @var BBController
      */
     protected $_controller;
 
     /**
      * Constructor
-     *
-     * @param BController $controller
      */
     public function __construct()
     {

@@ -11,13 +11,13 @@ class I18nListDataView extends BListDataView
 
     /**
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param CModel $model Current model
      * @param CSort $sort CSort component
      * @param CPagination $pagination CPagination component
      */
-    public function __construct(&$datas, &$relatedDatas, &$model, &$sort, &$pagination)
+    public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
         $this->id = 'bI18nI18nMain';
@@ -25,11 +25,11 @@ class I18nListDataView extends BListDataView
         // component title
         $this->title = B::t('backend', 'i18n_i18n_list_title');
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // sort
         $this->sort = $sort;
@@ -89,12 +89,13 @@ class I18nListDataView extends BListDataView
         );
 
         // rows
-        foreach ($datas as $data)
-            $this->rows[] = new I18nListRowDataView($data, array(
-                'id' => $data->id
+        foreach ($data as $d) {
+            $this->rows[] = new I18nListRowDataView($d, array(
+                'id' => $d->id
             ));
+        }
 
-            // pagination
+        // pagination
         $this->pagination = $pagination;
     }
 }

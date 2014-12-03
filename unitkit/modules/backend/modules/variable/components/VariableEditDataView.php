@@ -12,12 +12,12 @@ class VariableEditDataView extends BEditDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param array $pk Primary key
-     * @param bool $isSaved Saved satus
+     * @param bool $isSaved Saved status
      */
-    public function __construct($datas, $relatedDatas, $pk, $isSaved)
+    public function __construct($data, $relatedData, $pk, $isSaved)
     {
         $this->id = 'bVariableVariableEdit';
 
@@ -28,22 +28,23 @@ class VariableEditDataView extends BEditDataView
         // primary key
         $this->pk = $pk;
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // saved status
         $this->isSaved = $isSaved;
 
         // error status
-        foreach ($datas as $data)
-            if ($this->hasErrors = $data->hasErrors())
+        foreach ($data as $d) {
+            if ($this->hasErrors = $d->hasErrors())
                 break;
+        }
 
-            // new record status
-        $this->isNewRecord = $datas['BVariable']->isNewRecord;
+        // new record status
+        $this->isNewRecord = $data['BVariable']->isNewRecord;
 
         // page title
         $this->refreshPageTitle();
@@ -51,19 +52,19 @@ class VariableEditDataView extends BEditDataView
         // items
         $this->items = array(
             new BItemField(array(
-                'model' => $datas['BVariable'],
+                'model' => $data['BVariable'],
                 'attribute' => 'b_variable_group_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm input-ajax-select',
-                    'data-action' => $this->controller->createUrl($this->controller->id . '/advCombobox/', array(
+                    'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
                         'name' => 'BVariableGroupI18n[name]',
                         'language' => Yii::app()->language
                     )),
                     'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($datas['BVariable']->b_variable_group_id) ? BVariableGroupI18n::model()->findByPk(array(
-                        'b_variable_group_id' => $datas['BVariable']->b_variable_group_id,
+                    'data-text' => ! empty($data['BVariable']->b_variable_group_id) ? BVariableGroupI18n::model()->findByPk(array(
+                        'b_variable_group_id' => $data['BVariable']->b_variable_group_id,
                         'i18n_id' => Yii::app()->language
                     ))->name : '',
                     'data-addAction' => $this->controller->createUrl('variableGroup/create'),
@@ -71,48 +72,47 @@ class VariableEditDataView extends BEditDataView
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BVariable'],
+                'model' => $data['BVariable'],
                 'attribute' => 'param',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BVariable']->getAttributeLabel('param')
+                    'placeholder' => $data['BVariable']->getAttributeLabel('param')
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BVariable'],
+                'model' => $data['BVariable'],
                 'attribute' => 'val',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BVariable']->getAttributeLabel('val')
+                    'placeholder' => $data['BVariable']->getAttributeLabel('val')
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BVariableI18n'],
+                'model' => $data['BVariableI18n'],
                 'attribute' => 'description',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BVariableI18n']->getAttributeLabel('description')
+                    'placeholder' => $data['BVariableI18n']->getAttributeLabel('description')
                 )
             ))
         );
 
-        if (! $datas['BVariable']->isNewRecord) {
-
+        if (! $data['BVariable']->isNewRecord) {
             $this->items[] = new BItemField(array(
-                'model' => $datas['BVariable'],
+                'model' => $data['BVariable'],
                 'attribute' => 'created_at',
-                'value' => $datas['BVariable']->created_at
+                'value' => $data['BVariable']->created_at
             ));
             $this->items[] = new BItemField(array(
-                'model' => $datas['BVariable'],
+                'model' => $data['BVariable'],
                 'attribute' => 'updated_at',
-                'value' => $datas['BVariable']->updated_at
+                'value' => $data['BVariable']->updated_at
             ));
         }
     }

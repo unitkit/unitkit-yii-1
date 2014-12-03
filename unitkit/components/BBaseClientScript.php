@@ -101,14 +101,17 @@ class BBaseClientScript extends CClientScript
      */
     public function render(&$output)
     {
-        foreach ($this->_dynamicScriptFiles as $path)
+        foreach ($this->_dynamicScriptFiles as $path) {
             $this->registerScriptFile($path);
+        }
 
-        foreach ($this->_dynamicCssFiles as $path)
+        foreach ($this->_dynamicCssFiles as $path) {
             $this->registerCssFile($path);
+        }
 
-        foreach ($this->_dynamicScript as $id => $script)
+        foreach ($this->_dynamicScript as $id => $script) {
             $this->registerScript($id, $script);
+        }
 
         parent::render($output);
     }
@@ -119,15 +122,18 @@ class BBaseClientScript extends CClientScript
     public function renderDynamicScripts()
     {
         $scriptFiles = array();
-        foreach ($this->_dynamicScriptFiles as $path)
+        foreach ($this->_dynamicScriptFiles as $path) {
             $scriptFiles[] = $path;
+        }
 
         $cssFiles = array();
-        foreach ($this->_dynamicCssFiles as $path)
+        foreach ($this->_dynamicCssFiles as $path) {
             $cssFiles[] = $path;
+        }
 
-        foreach ($this->_dynamicCssFiles as $path)
+        foreach ($this->_dynamicCssFiles as $path) {
             $this->registerCssFile($path);
+        }
 
         return array(
             'scriptFiles' => $scriptFiles,
@@ -355,8 +361,9 @@ class BBaseClientScript extends CClientScript
     public function combineScriptFiles($sources, $destination)
     {
         $ctFiles = '';
-        foreach ($sources as $file)
+        foreach ($sources as $file) {
             $ctFiles .= file_get_contents($file);
+        }
         file_put_contents($destination, $ctFiles);
     }
 

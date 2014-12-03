@@ -10,15 +10,15 @@ class RoleListDataView extends BListDataView
 {
 
     /**
-     * Consrtuctor
+     * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param CModel $model Current model
      * @param CSort $sort CSort component
      * @param CPagination $pagination CPagination component
      */
-    public function __construct(&$datas, &$relatedDatas, &$model, &$sort, &$pagination)
+    public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
         $this->id = 'bRoleRoleMain';
@@ -26,11 +26,11 @@ class RoleListDataView extends BListDataView
         // component title
         $this->title = B::t('backend', 'right_role_list_title');
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // sort
         $this->sort = $sort;
@@ -149,10 +149,11 @@ class RoleListDataView extends BListDataView
         );
 
         // rows
-        foreach ($datas as $data)
-            $this->rows[] = new RoleListRowDataView($data, array(
-                'id' => $data->id
+        foreach ($data as $d) {
+            $this->rows[] = new RoleListRowDataView($d, array(
+                'id' => $d->id
             ));
+        }
 
             // pagination
         $this->pagination = $pagination;

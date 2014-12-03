@@ -11,13 +11,13 @@ class MailTemplateGroupListDataView extends BListDataView
 
     /**
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param CModel $model Current model
      * @param CSort $sort CSort component
      * @param CPagination $pagination CPagination component
      */
-    public function __construct(&$datas, &$relatedDatas, &$model, &$sort, &$pagination)
+    public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
         $this->id = 'bMailTemplateGroupMailTemplateGroupMain';
@@ -25,11 +25,11 @@ class MailTemplateGroupListDataView extends BListDataView
         // component title
         $this->title = B::t('backend', 'mail_mail_template_group_list_title');
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // sort
         $this->sort = $sort;
@@ -37,8 +37,6 @@ class MailTemplateGroupListDataView extends BListDataView
         // sort attributes
         $this->sortAttributes = array(
             'bMailTemplateGroupI18ns.name'
-        // 'bMailTemplateGroup.created_at',
-        // 'bMailTemplateGroup.updated_at',
         );
 
         // search
@@ -53,55 +51,7 @@ class MailTemplateGroupListDataView extends BListDataView
                     'id' => false
                 )
             ))
-        // new BDateRangeItemField(
-        // $model,
-        // 'created_at',
-        // new BItemField(array(
-        // 'model' => $model,
-        // 'attribute' => 'v_created_at_start',
-        // 'type' => 'activeTextField',
-        // 'htmlOptions' => array(
-        // 'class' => 'form-control input-sm date-picker date-range',
-        // 'placeholder' => B::t('unitkit', 'input_search'),
-        // 'id' => 'bMailTemplateGroupVCreatedAtStartGridSearch'
-        // )
-        // )),
-        // new BItemField(array(
-        // 'model' => $model,
-        // 'attribute' => 'v_created_at_end',
-        // 'type' => 'activeTextField',
-        // 'htmlOptions' => array(
-        // 'class' => 'form-control input-sm date-picker date-range',
-        // 'placeholder' => B::t('unitkit', 'input_search'),
-        // 'id' => 'bMailTemplateGroupVCreatedAtEndGridSearch'
-        // )
-        // ))
-        // ),
-        // new BDateRangeItemField(
-        // $model,
-        // 'updated_at',
-        // new BItemField(array(
-        // 'model' => $model,
-        // 'attribute' => 'v_updated_at_start',
-        // 'type' => 'activeTextField',
-        // 'htmlOptions' => array(
-        // 'class' => 'form-control input-sm date-picker date-range',
-        // 'placeholder' => B::t('unitkit', 'input_search'),
-        // 'id' => 'bMailTemplateGroupVUpdatedAtStartGridSearch'
-        // )
-        // )),
-        // new BItemField(array(
-        // 'model' => $model,
-        // 'attribute' => 'v_updated_at_end',
-        // 'type' => 'activeTextField',
-        // 'htmlOptions' => array(
-        // 'class' => 'form-control input-sm date-picker date-range',
-        // 'placeholder' => B::t('unitkit', 'input_search'),
-        // 'id' => 'bMailTemplateGroupVUpdatedAtEndGridSearch'
-        // )
-        // ))
-        // ),
-                );
+        );
 
         // advanced search
         $this->advancedSearch = array(
@@ -156,12 +106,13 @@ class MailTemplateGroupListDataView extends BListDataView
         );
 
         // rows
-        foreach ($datas as $data)
-            $this->rows[] = new MailTemplateGroupListRowDataView($data, array(
-                'id' => $data->id
+        foreach ($data as $d) {
+            $this->rows[] = new MailTemplateGroupListRowDataView($d, array(
+                'id' => $d->id
             ));
+        }
 
-            // pagination
+        // pagination
         $this->pagination = $pagination;
     }
 }

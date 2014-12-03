@@ -78,7 +78,6 @@ abstract class BBaseUrlManager extends CUrlManager
             } elseif (isset(Yii::app()->request->cookies['language'])) {
                 Yii::app()->language = BLanguagesApp::secureLanguage(Yii::app()->request->cookies['language']->value);
             }
-
             $params['language'] = Yii::app()->language;
         }
 

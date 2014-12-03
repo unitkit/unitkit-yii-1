@@ -11,12 +11,12 @@ class MenuEditDataView extends BEditDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param array $pk Primary key
-     * @param bool $isSaved Saved satus
+     * @param bool $isSaved Saved status
      */
-    public function __construct($datas, $relatedDatas, $pk, $isSaved)
+    public function __construct($data, $relatedData, $pk, $isSaved)
     {
         // data view id
         $this->id = 'bCmsMenuMenuEdit';
@@ -28,22 +28,24 @@ class MenuEditDataView extends BEditDataView
         // primary key
         $this->pk = $pk;
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // saved status
         $this->isSaved = $isSaved;
 
         // error status
-        foreach($datas as $data)
-        	if($this->hasErrors = $data->hasErrors())
-        		break;
+        foreach($data as $d) {
+            if ($this->hasErrors = $d->hasErrors()) {
+                break;
+            }
+        }
 
         // new record status
-        $this->isNewRecord = $datas['BCmsMenu']->isNewRecord;
+        $this->isNewRecord = $data['BCmsMenu']->isNewRecord;
 
         // page title
         $this->refreshPageTitle();
@@ -51,19 +53,19 @@ class MenuEditDataView extends BEditDataView
         // items
         $this->items = array(
             new BItemField(array(
-                'model' => $datas['BCmsMenu'],
+                'model' => $data['BCmsMenu'],
                 'attribute' => 'b_cms_menu_group_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm input-ajax-select',
                     'data-action' => $this->controller->createUrl(
-                        $this->controller->id.'/advCombobox/',
+                        $this->controller->id.'/advComboBox/',
                         array('name' => 'BCmsMenuGroupI18n[name]', 'language' => Yii::app()->language)
                     ),
                     'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($datas['BCmsMenu']->b_cms_menu_group_id) ? BCmsMenuGroupI18n::model()->findByPk(array(
-                                    'b_cms_menu_group_id' => $datas['BCmsMenu']->b_cms_menu_group_id,
+                    'data-text' => ! empty($data['BCmsMenu']->b_cms_menu_group_id) ? BCmsMenuGroupI18n::model()->findByPk(array(
+                                    'b_cms_menu_group_id' => $data['BCmsMenu']->b_cms_menu_group_id,
                                     'i18n_id' => Yii::app()->language
                                 ))->name : '',
                     'data-addAction' => $this->controller->createUrl('menuGroup/create'),
@@ -71,47 +73,47 @@ class MenuEditDataView extends BEditDataView
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BCmsMenu'],
+                'model' => $data['BCmsMenu'],
                 'attribute' => 'rank',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsMenuI18n']->getAttributeLabel('rank'),
+                    'placeholder' => $data['BCmsMenuI18n']->getAttributeLabel('rank'),
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BCmsMenuI18n'],
+                'model' => $data['BCmsMenuI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsMenuI18n']->getAttributeLabel('name'),
+                    'placeholder' => $data['BCmsMenuI18n']->getAttributeLabel('name'),
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BCmsMenuI18n'],
+                'model' => $data['BCmsMenuI18n'],
                 'attribute' => 'url',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm active-slug',
-                    'placeholder' => $datas['BCmsMenuI18n']->getAttributeLabel('url'),
+                    'placeholder' => $data['BCmsMenuI18n']->getAttributeLabel('url'),
                 )
             )),
         );
 
-        if (! $datas['BCmsMenu']->isNewRecord) {
+        if (! $data['BCmsMenu']->isNewRecord) {
             $this->items[] = new BItemField(array(
-                'model' => $datas['BCmsMenu'],
+                'model' => $data['BCmsMenu'],
                 'attribute' => 'created_at',
-                'value' =>  $datas['BCmsMenu']->created_at
+                'value' =>  $data['BCmsMenu']->created_at
             ));
             $this->items[] = new BItemField(array(
-                'model' => $datas['BCmsMenu'],
+                'model' => $data['BCmsMenu'],
                 'attribute' => 'updated_at',
-                'value' =>  $datas['BCmsMenu']->updated_at
+                'value' =>  $data['BCmsMenu']->updated_at
             ));
         }
     }

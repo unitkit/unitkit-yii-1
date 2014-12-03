@@ -119,11 +119,11 @@ abstract class BBaseAutoController extends BBaseController
     }
 
     /**
-     * Get parameters used from advanced combobox action
+     * Get parameters used from advanced comboBox action
      *
      * @return array
      */
-    protected function _advancedConbobox()
+    protected function _advancedComboBox()
     {
         return array(
 			/*'Model[name]' => array(
@@ -174,12 +174,12 @@ abstract class BBaseAutoController extends BBaseController
     /**
      * List related model (Action)
      */
-    public function actionAdvCombobox()
+    public function actionAdvComboBox()
     {
         if (isset($_GET['name'])) {
-            $data = $this->_advancedConbobox();
+            $data = $this->_advancedComboBox();
             if (! empty($data[$_GET['name']])) {
-                echo CJSON::encode(BHtml::listdatasAdvCombobox($data[$_GET['name']]['model'], $data[$_GET['name']]['select'], $data[$_GET['name']]['search'], $data[$_GET['name']]['criteria'], $data[$_GET['name']]['cache']));
+                echo CJSON::encode(BHtml::listDataAdvCombobox($data[$_GET['name']]['model'], $data[$_GET['name']]['select'], $data[$_GET['name']]['search'], $data[$_GET['name']]['criteria'], $data[$_GET['name']]['cache']));
             }
         }
         Yii::app()->end();
@@ -292,7 +292,7 @@ abstract class BBaseAutoController extends BBaseController
         $data = $dataProvider->getData();
 
         // related data
-        $relatedData = $this->_loadRelatedDatas();
+        $relatedData = $this->_loadRelatedData();
 
         // template
         $template = isset($_REQUEST['partial']) ? 'list/_table' : 'list/main';
@@ -467,7 +467,7 @@ abstract class BBaseAutoController extends BBaseController
         $data = $this->_loadEditModels();
 
         // related data
-        $relatedData = $this->_loadRelatedDatas();
+        $relatedData = $this->_loadRelatedData();
 
         // save data
         $isSaved = Yii::app()->request->isPostRequest && ! empty($postData) ? $this->_saveEditModels($data, $postData) : false;
@@ -489,7 +489,7 @@ abstract class BBaseAutoController extends BBaseController
             'edit/edit',
             array(
                 'dataView' => new $this->crudComponents['editDataView'](
-                    $data, $this->_loadRelatedDatas(), $pk, $isSaved, $this
+                    $data, $this->_loadRelatedData(), $pk, $isSaved, $this
                 )
             )
         );
@@ -521,7 +521,7 @@ abstract class BBaseAutoController extends BBaseController
         $data = $this->_loadEditModels($pk);
 
         // related data
-        $relatedData = $this->_loadRelatedDatas();
+        $relatedData = $this->_loadRelatedData();
 
         // save data
         $isSaved = Yii::app()->request->isPostRequest && ! empty($postData) ? $this->_saveEditModels($data, $postData) : false;
@@ -575,7 +575,7 @@ abstract class BBaseAutoController extends BBaseController
         $data = $this->_loadEditModels($pk);
 
         // related data
-        $relatedData = $this->_loadRelatedDatas();
+        $relatedData = $this->_loadRelatedData();
 
         // save models
         $isSaved = Yii::app()->request->isPostRequest && ! empty($postData) ? $this->_saveEditModels($data, $postData) : false;
@@ -656,7 +656,7 @@ abstract class BBaseAutoController extends BBaseController
      *
      * @return array
      */
-    protected function _loadRelatedDatas()
+    protected function _loadRelatedData()
     {
         return array();
     }
@@ -750,7 +750,7 @@ abstract class BBaseAutoController extends BBaseController
      * @param mixed $models array of models
      * @param mixed $postData array of data (data to update)
      * @return bool true on success and false in the other cases
-     * @throws Exception
+     * @throws CException
      */
     protected function _saveEditModels(&$models, &$postData)
     {
@@ -821,9 +821,9 @@ abstract class BBaseAutoController extends BBaseController
 
                 $this->_afterSaveEditModels($models);
             } else {
-                throw new Exception();
+                throw new CException();
             }
-        } catch (Exception $e) {
+        } catch (CException $e) {
             $models[$this->_model]->isNewRecord = $isNewRecord[$this->_model];
 
             if (! empty($modelName::$upload)) {

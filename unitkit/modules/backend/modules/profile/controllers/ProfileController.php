@@ -81,7 +81,7 @@ class ProfileController extends BController
         }
 
         if (! empty($args)) {
-            echo CJSON::encode(BHtml::listDatasAdvCombobox($args['model'], $args['select'], $args['search'], $args['criteria'], $args['cache']));
+            echo CJSON::encode(BHtml::listDataAdvCombobox($args['model'], $args['select'], $args['search'], $args['criteria'], $args['cache']));
         }
         Yii::app()->end();
     }

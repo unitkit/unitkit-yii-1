@@ -14,7 +14,7 @@ class MailTemplateController extends BAutoController
     /**
      * @see BBaseAutoController::advancedConbobox()
      */
-    protected function _advancedConbobox()
+    protected function _advancedComboBox()
     {
         return array(
             'BMailTemplateGroupI18n[name]' => array(

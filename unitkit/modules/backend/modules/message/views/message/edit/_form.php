@@ -1,7 +1,7 @@
 <?php
 $hasErrors = $models['BMessage']->hasErrors();
 if (! $hasErrors)
-    foreach ($relatedDatas['i18nIds'] as $i18nId) {
+    foreach ($relatedData['i18nIds'] as $i18nId) {
         $hasErrors = $models['bMessageI18ns'][$i18nId]->hasErrors();
         if ($hasErrors)
             break;
@@ -47,7 +47,7 @@ if (! $hasErrors)
                         array(
                             'class' => 'input-ajax-select',
                             'id' => uniqid(),
-                            'data-action' => $this->createUrl($this->id . '/advCombobox/', array('name' => 'BMessageGroupI18n[name]', 'language' => Yii::app()->language)),
+                            'data-action' => $this->createUrl($this->id . '/advComboBox/', array('name' => 'BMessageGroupI18n[name]', 'language' => Yii::app()->language)),
                             'data-placeholder' => B::t('unitkit', 'input_select'),
                             'data-text' => ! empty($models['BMessage']->b_message_group_id) ? BMessageGroupI18n::model()->findByPk(array('b_message_group_id' => $models['BMessage']->b_message_group_id,'i18n_id' => Yii::app()->language))->name : '',
                             'data-addAction' => $this->createUrl('messageGroup/create'),
@@ -73,7 +73,7 @@ if (! $hasErrors)
             </tr>
             <!-- BMessage source -->
 
-            <?php foreach($relatedDatas['i18nIds'] as $i18nId): ?>
+            <?php foreach($relatedData['i18nIds'] as $i18nId): ?>
             <tr>
                 <th><?= BHtml::labelI18n($i18nId) ?></th>
                 <td class="control-group <?=$models['bMessageI18ns'][$i18nId]->hasErrors('translation') ? 'error' : ''; ?>">

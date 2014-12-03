@@ -52,6 +52,8 @@ class BBaseTools
 
     /**
      * Return current date
+     *
+     * @return string
      */
     public static function now()
     {
@@ -68,8 +70,9 @@ class BBaseTools
     {
         $charsLen = strlen($chars);
         $string = '';
-        for ($i = 0; $i < $length; ++ $i)
+        for ($i = 0; $i < $length; ++$i) {
             $string .= $chars[rand() % $charsLen];
+        }
         return $string;
     }
 

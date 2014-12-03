@@ -15,7 +15,7 @@
             <thead>
                 <tr class="form-inline">
                     <th><i class="icon-th-list"></i></th>
-                    <?php foreach($dataView->relatedDatas['i18nIds'] as $i18nId): ?>
+                    <?php foreach($dataView->relatedData['i18nIds'] as $i18nId): ?>
                     <th><?= BHtml::labelI18n($i18nId); ?></th>
                     <?php endforeach; ?>
                 </tr>
@@ -25,7 +25,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="<?= count($dataView->relatedDatas['i18nIds']) + 2; ?>" class="text-center">
+                    <td colspan="<?= count($dataView->relatedData['i18nIds']) + 2; ?>" class="text-center">
                         <button class="btn btn-primary btn-update">
                             <span class="glyphicon glyphicon-floppy-disk"></span>
                             <span><?= B::t('unitkit', 'btn_save'); ?></span>

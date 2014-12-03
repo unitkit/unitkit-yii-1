@@ -21,18 +21,18 @@ class BBaseEditRowItemDataView extends CComponent
     public $items;
 
     /**
-     * Related datas
+     * Related data
      *
      * @var mixed
      */
-    public $relatedDatas;
+    public $relatedData;
 
     /**
-     * Datas
+     * Data
      *
      * @var mixed
      */
-    public $datas;
+    public $data;
 
     /**
      * Is translatable
@@ -51,11 +51,11 @@ class BBaseEditRowItemDataView extends CComponent
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param array $pk Primary key
      */
-    public function __construct($datas, $relatedDatas, $pk)
+    public function __construct($data, $relatedData, $pk)
     {}
 
     /**

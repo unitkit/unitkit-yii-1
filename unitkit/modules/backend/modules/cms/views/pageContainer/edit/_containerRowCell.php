@@ -2,7 +2,7 @@
     <div class="input">
 		<?php if (! empty($itemField->type)): ?>
 			<?php if (! empty($itemField->datas)): ?>
-				<?= call_user_func_array('BHtml::'.$itemField->type, array($itemField->model, $itemField->attribute, $itemField->datas, $itemField->htmlOptions)); ?>
+				<?= call_user_func_array('BHtml::'.$itemField->type, array($itemField->model, $itemField->attribute, $itemField->data, $itemField->htmlOptions)); ?>
 			<?php else : ?>
 				<?= call_user_func_array('BHtml::'.$itemField->type, array($itemField->model, $itemField->attribute, $itemField->htmlOptions)); ?>
 			<?php endif; ?>

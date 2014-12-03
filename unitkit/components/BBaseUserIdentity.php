@@ -16,6 +16,7 @@ class BBaseUserIdentity extends CBaseUserIdentity
      * This method is required by {@link IUserIdentity}.
      *
      * @return boolean whether authentication succeeds.
+     * @throws CException
      */
     public function authenticate()
     {

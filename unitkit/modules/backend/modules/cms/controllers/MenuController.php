@@ -14,7 +14,7 @@ class MenuController extends BAutoController
     /**
      * @see BBaseAutoController::advancedConbobox()
      */
-    protected function _advancedConbobox()
+    protected function _advancedComboBox()
     {
         return array(
             'BCmsMenuGroupI18n[name]' => array(

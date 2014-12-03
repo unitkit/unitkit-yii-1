@@ -28,14 +28,14 @@ class BBaseTranslateDataView extends CComponent
     public $items;
 
     /**
-     * Related datas
+     * Related data
      *
      * @var mixed
      */
-    public $relatedDatas;
+    public $relatedData;
 
     /**
-     * Saved satus
+     * Saved status
      *
      * @var bool
      */
@@ -49,11 +49,11 @@ class BBaseTranslateDataView extends CComponent
     public $model;
 
     /**
-     * Array of datas
+     * Array of data
      *
      * @var mixed
      */
-    public $datas;
+    public $data;
 
     /**
      * Page title
@@ -82,6 +82,17 @@ class BBaseTranslateDataView extends CComponent
      * @var CController
      */
     protected $_controller;
+
+    /**
+     * Constructor
+     *
+     * @param array $data Array of CModels
+     * @param array $relatedData Array of related data
+     * @param array $pk Primary key
+     * @param bool $isSaved Saved status
+     */
+    public function __construct($data, $relatedData, $pk, $isSaved)
+    {}
 
     /**
      * Get close action attribute

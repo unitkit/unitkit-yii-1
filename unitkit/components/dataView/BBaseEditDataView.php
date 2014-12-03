@@ -28,21 +28,21 @@ class BBaseEditDataView extends CComponent
     public $items = array();
 
     /**
-     * Related datas
+     * Related data
      *
      * @var array
      */
-    public $relatedDatas;
+    public $relatedData;
 
     /**
-     * Saved satus
+     * Saved status
      *
      * @var bool
      */
     public $isSaved;
 
     /**
-     * New record satus
+     * New record status
      *
      * @var bool
      */
@@ -63,11 +63,11 @@ class BBaseEditDataView extends CComponent
     public $model;
 
     /**
-     * Array of datas
+     * Array of data
      *
      * @var array
      */
-    public $datas;
+    public $data;
 
     /**
      * Create page title
@@ -107,12 +107,12 @@ class BBaseEditDataView extends CComponent
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param array $pk Primary key
-     * @param bool $isSaved Saved satus
+     * @param bool $isSaved Saved status
      */
-    public function __construct($datas, $relatedDatas, $pk, $isSaved)
+    public function __construct($data, $relatedData, $pk, $isSaved)
     {}
 
     /**

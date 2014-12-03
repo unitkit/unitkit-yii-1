@@ -11,13 +11,13 @@ class MenuListDataView extends BListDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param CModel $model Current model
      * @param CSort $sort CSort component
      * @param CPagination $pagination CPagination component
      */
-    public function __construct(&$datas, &$relatedDatas, &$model, &$sort, &$pagination)
+    public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
         $this->id = 'bCmsMenuMenuMain';
@@ -25,11 +25,11 @@ class MenuListDataView extends BListDataView
         // component title
         $this->title = B::t('backend', 'cms_menu_list_title');
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // sort
         $this->sort = $sort;
@@ -55,7 +55,7 @@ class MenuListDataView extends BListDataView
                 	'class' => 'input-ajax-select allow-clear',
                 	'id' => 'bCmsMenuGroupI18nNameGridSearch',
                 	'data-action' => $controller->createUrl(
-                        $controller->id.'/advCombobox/',
+                        $controller->id.'/advComboBox/',
                         array(
                             'name' => 'BCmsMenuGroupI18n[name]',
             				'language' => Yii::app()->language
@@ -115,7 +115,7 @@ class MenuListDataView extends BListDataView
                     'class' => 'input-ajax-select allow-clear',
                     'id' => 'bCmsMenuGroupI18nNameAdvSearch',
                     'data-action' => $controller->createUrl(
-                        $controller->id.'/advCombobox/',
+                        $controller->id.'/advComboBox/',
                         array(
                             'name' => 'BCmsMenuGroupI18n[name]',
             				'language' => Yii::app()->language
@@ -214,8 +214,9 @@ class MenuListDataView extends BListDataView
         );
 
         // rows
-        foreach($datas as $data)
-            $this->rows[] = new MenuListRowDataView($data, array('id' => $data->id,));
+        foreach($data as $d) {
+            $this->rows[] = new MenuListRowDataView($d, array('id' => $d->id,));
+        }
 
         // pagination
         $this->pagination = $pagination;

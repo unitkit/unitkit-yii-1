@@ -88,6 +88,7 @@ class AlbumPhotoUploader extends BUploader
      * @param CModel $model instance of model
      * @param string $attribute name of attribute
      * @param mixed $overviewOptions array of options array('type' => , 'route' => , 'html_options' => array())
+     * @return string
      */
     public function htmlOverview(&$model, $attribute, $overviewOptions = array())
     {

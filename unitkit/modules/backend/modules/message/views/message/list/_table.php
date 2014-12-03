@@ -11,25 +11,25 @@
             $this->renderPartial('list/_thead', array(
                 'sort' => $sort,
                 'model' => $model,
-                'relatedDatas' => $relatedDatas
+                'relatedData' => $relatedData
             ));
         ?>
         </thead>
         <tbody>
             <?php if($pagination->itemCount > 0): ?>
                 <?php foreach($models as $model): ?>
-                    <?php $this->renderPartial('list/_tbodyRowEdit', array('model' => $model, 'relatedDatas' => $relatedDatas)); ?>
+                    <?php $this->renderPartial('list/_tbodyRowEdit', array('model' => $model, 'relatedData' => $relatedData)); ?>
                 <?php endforeach; ?>
             <?php else : ?>
             <tr>
-                <td colspan="<?= count($relatedDatas['i18nIds']) + 3; ?>" class="text-center">
+                <td colspan="<?= count($relatedData['i18nIds']) + 3; ?>" class="text-center">
                     <em><?= B::t('unitkit', 'no_results'); ?></em>
                 </td>
             </tr>
             <?php endif;  ?>
         </tbody>
         <tfoot>
-            <?php $this->renderPartial('list/_tfoot', array('relatedDatas' => $relatedDatas)); ?>
+            <?php $this->renderPartial('list/_tfoot', array('relatedData' => $relatedData)); ?>
         </tfoot>
     </table>
 </div>

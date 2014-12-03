@@ -14,16 +14,17 @@ class BBaseLanguagesApp extends CComponent
      */
     public static function getBrowserLanguage()
     {
-        if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
+        if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
             return strtolower(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
-        else
+        } else {
             return Yii::app()->sourceLanguage;
+        }
     }
 
     /**
      * Secure i18n ID
      *
-     * @param string $sLang i18n ID
+     * @param string $i18nId i18n ID
      * @return i18n ID return a valid language
      */
     public static function secureLanguage($i18nId)

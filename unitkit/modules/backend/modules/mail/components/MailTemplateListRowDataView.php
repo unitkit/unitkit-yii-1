@@ -26,16 +26,8 @@ class MailTemplateListRowDataView extends BListRowItemDataView
                 'disabled' => 'disabled',
                 'id' => false
             )),
-            // $data->sql_request,
-            // $data->sql_param,
             isset($data->bMailTemplateI18ns[0]) ? $data->bMailTemplateI18ns[0]->object : '',
             isset($data->bMailTemplateI18ns[0]) ? $data->bMailTemplateI18ns[0]->message : ''
-        // Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse(
-        // $data->created_at, 'yyyy-MM-dd hh:mm:ss'
-        // )),
-        // Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse(
-        // $data->updated_at, 'yyyy-MM-dd hh:mm:ss'
-        // )),
-                );
+        );
     }
 }

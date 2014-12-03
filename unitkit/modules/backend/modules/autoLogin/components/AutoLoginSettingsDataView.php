@@ -12,13 +12,13 @@ class AutoLoginSettingsDataView extends BSettingsDataView
     /**
      * Data view of settings component
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Related datas
-     * @param bool $isSaved Saved satus
+     * @param array $data Array of CModel
+     * @param array $relatedData Related data
+     * @param bool $isSaved Saved status
      */
-    public function __construct($datas, $relatedDatas, $isSaved)
+    public function __construct($data, $relatedData, $isSaved)
     {
         $this->id = 'bAutoLoginAutoLoginSettings';
-        parent::__construct($datas, $relatedDatas, $isSaved);
+        parent::__construct($data, $relatedData, $isSaved);
     }
 }

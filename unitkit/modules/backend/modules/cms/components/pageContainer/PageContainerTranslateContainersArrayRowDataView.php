@@ -13,13 +13,13 @@ class PageContainerTranslateContainersArrayRowDataView
      */
     public $items;
 
-    public $datas;
+    public $data;
 
-    public function __construct(&$datas, &$relatedDatas)
+    public function __construct(&$data, &$relatedData)
     {
         $controller = Yii::app()->controller;
-        $this->datas = $datas;
-        $this->relatedDatas = $relatedDatas;
+        $this->data = $data;
+        $this->relatedDatas = $relatedData;
 
         $this->items = array(
             new BItemField(array(

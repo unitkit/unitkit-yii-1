@@ -12,12 +12,12 @@ class PersonEditDataView extends BEditDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param array $pk Primary key
-     * @param bool $isSaved Saved satus
+     * @param bool $isSaved Saved status
      */
-    public function __construct($datas, $relatedDatas, $pk, $isSaved)
+    public function __construct($data, $relatedData, $pk, $isSaved)
     {
         $this->id = 'bPersonPersonEdit';
 
@@ -28,22 +28,24 @@ class PersonEditDataView extends BEditDataView
         // primary key
         $this->pk = $pk;
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // saved status
         $this->isSaved = $isSaved;
 
         // error status
-        foreach ($datas as $data)
-            if (! is_array($data) && $this->hasErrors = $data->hasErrors())
+        foreach ($data as $d) {
+            if (! is_array($d) && $this->hasErrors = $d->hasErrors()) {
                 break;
+            }
+        }
 
         // new record status
-        $this->isNewRecord = $datas['BPerson']->isNewRecord;
+        $this->isNewRecord = $data['BPerson']->isNewRecord;
 
         // page title
         $this->refreshPageTitle();
@@ -51,106 +53,105 @@ class PersonEditDataView extends BEditDataView
         // items
         $this->items = array(
             new BItemField(array(
-                'model' => $datas['BPerson'],
+                'model' => $data['BPerson'],
                 'attribute' => 'email',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BPerson']->getAttributeLabel('email')
+                    'placeholder' => $data['BPerson']->getAttributeLabel('email')
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BPerson'],
+                'model' => $data['BPerson'],
                 'attribute' => 'password',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BPerson']->getAttributeLabel('password')
+                    'placeholder' => $data['BPerson']->getAttributeLabel('password')
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BPerson'],
+                'model' => $data['BPerson'],
                 'attribute' => 'first_name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BPerson']->getAttributeLabel('first_name')
+                    'placeholder' => $data['BPerson']->getAttributeLabel('first_name')
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BPerson'],
+                'model' => $data['BPerson'],
                 'attribute' => 'last_name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BPerson']->getAttributeLabel('last_name')
+                    'placeholder' => $data['BPerson']->getAttributeLabel('last_name')
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BPerson'],
+                'model' => $data['BPerson'],
                 'attribute' => 'activated',
                 'type' => 'activeCheckBox',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BPerson']->getAttributeLabel('activated')
+                    'placeholder' => $data['BPerson']->getAttributeLabel('activated')
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BPerson'],
+                'model' => $data['BPerson'],
                 'attribute' => 'validated',
                 'type' => 'activeCheckBox',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BPerson']->getAttributeLabel('validated')
+                    'placeholder' => $data['BPerson']->getAttributeLabel('validated')
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BPerson'],
+                'model' => $data['BPerson'],
                 'attribute' => 'active_reset',
                 'type' => 'activeCheckBox',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BPerson']->getAttributeLabel('active_reset')
+                    'placeholder' => $data['BPerson']->getAttributeLabel('active_reset')
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BPerson'],
+                'model' => $data['BPerson'],
                 'attribute' => 'default_language',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm input-ajax-select',
-                    'data-action' => $this->controller->createUrl($this->controller->id . '/advCombobox/', array(
+                    'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
                         'name' => 'BI18nI18n[name]',
                         'language' => Yii::app()->language
                     )),
                     'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($datas['BPerson']->default_language) ? BI18nI18n::model()->findByPk(array(
-                        'b_i18n_id' => $datas['BPerson']->default_language,
+                    'data-text' => ! empty($data['BPerson']->default_language) ? BI18nI18n::model()->findByPk(array(
+                        'b_i18n_id' => $data['BPerson']->default_language,
                         'i18n_id' => Yii::app()->language
                     ))->name : ''
                 )
             ))
         );
 
-        if (! $datas['BPerson']->isNewRecord) {
-
+        if (! $data['BPerson']->isNewRecord) {
             $this->items[] = new BItemField(array(
-                'model' => $datas['BPerson'],
+                'model' => $data['BPerson'],
                 'attribute' => 'created_at',
-                'value' => $datas['BPerson']->created_at
+                'value' => $data['BPerson']->created_at
             ));
             $this->items[] = new BItemField(array(
-                'model' => $datas['BPerson'],
+                'model' => $data['BPerson'],
                 'attribute' => 'updated_at',
-                'value' => $datas['BPerson']->updated_at
+                'value' => $data['BPerson']->updated_at
             ));
         }
     }

@@ -12,13 +12,13 @@ class VariableListDataView extends BListDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param CModel $model Current model
      * @param CSort $sort CSort component
      * @param CPagination $pagination CPagination component
      */
-    public function __construct(&$datas, &$relatedDatas, &$model, &$sort, &$pagination)
+    public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
         $this->id = 'bVariableVariableMain';
@@ -26,11 +26,11 @@ class VariableListDataView extends BListDataView
         // component title
         $this->title = B::t('backend', 'variable_variable_list_title');
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // sort
         $this->sort = $sort;
@@ -52,7 +52,7 @@ class VariableListDataView extends BListDataView
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
                     'id' => 'bVariableGroupI18nNameGridSearch',
-                    'data-action' => $this->controller->createUrl($this->controller->id . '/advCombobox/', array(
+                    'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
                         'name' => 'BVariableGroupI18n[name]',
                         'language' => Yii::app()->language
                     )),
@@ -104,7 +104,7 @@ class VariableListDataView extends BListDataView
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
                     'id' => 'bVariableGroupI18nNameAdvSearch',
-                    'data-action' => $this->controller->createUrl($this->controller->id . '/advCombobox/', array(
+                    'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
                         'name' => 'BVariableGroupI18n[name]',
                         'language' => Yii::app()->language
                     )),
@@ -186,9 +186,9 @@ class VariableListDataView extends BListDataView
         );
 
         // rows
-        foreach ($datas as $data) {
-            $this->rows[] = new VariableListRowDataView($data, array(
-                'id' => $data->id
+        foreach ($data as $d) {
+            $this->rows[] = new VariableListRowDataView($d, array(
+                'id' => $d->id
             ));
         }
 

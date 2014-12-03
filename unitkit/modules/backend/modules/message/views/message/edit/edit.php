@@ -13,7 +13,7 @@ Yii::app()
 <?php
     $this->renderPartial('edit/' . $tpl, array(
         'models' => $models,
-        'relatedDatas' => $relatedDatas,
+        'relatedData' => $relatedData,
         'isSaved' => $isSaved,
         'pk' => $pk
     ));

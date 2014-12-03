@@ -115,12 +115,13 @@ abstract class BBaseMail extends CComponent
             'id' => $id
         ));
 
-        if ($mailTemplate === null)
+        if ($mailTemplate === null) {
             throw new Exception(B::t('unitkit', 'mail_template_not_exist'));
-        elseif (! isset($mailTemplate->bMailTemplateI18ns[0]))
+        } elseif (! isset($mailTemplate->bMailTemplateI18ns[0])) {
             throw new Exception(B::t('unitkit', 'mail_template_not_translated'));
+        }
 
-            // get sending roles
+        // get sending roles
         $modelSendingRoles = new BMailSendingRole();
         $modelSendingRoles->unsetAttributes();
         $sendingRoles = $modelSendingRoles->with(array(
@@ -131,10 +132,11 @@ abstract class BBaseMail extends CComponent
             'b_mail_template_id' => $mailTemplate->id
         ));
 
-        if (count($sendingRoles) == 0)
+        if (count($sendingRoles) == 0) {
             throw new Exception(B::t('unitkit', 'mail_no_sending_role'));
+        }
 
-            // decode params
+        // decode params
         $mailObject = $mailTemplate->bMailTemplateI18ns[0]->object;
         $mailBody = $mailTemplate->bMailTemplateI18ns[0]->message;
 
@@ -152,47 +154,55 @@ abstract class BBaseMail extends CComponent
             $connection = Yii::app()->db;
             $command = $connection->createCommand($mailTemplate->sql_request);
 
-            foreach ($params as $param => $value)
+            foreach ($params as $param => $value) {
                 $command->bindParam(':' . $param, $value);
+            }
 
             $resQuery = $command->queryRow();
 
-            if ($resQuery === false)
+            if ($resQuery === false) {
                 throw new Exception(B::t('unitkit', 'mail_template_request_error'));
+            }
 
             // exception
             foreach ($resQuery as $attrName => $attrVal) {
                 $mailObject = str_replace('{' . $attrName . '}', $attrVal, $mailObject);
                 $mailBody = str_replace('{' . $attrName . '}', $attrVal, $mailBody);
-                if ($attrName === 'b_mt_email_to' && $attrVal != '')
+                if ($attrName === 'b_mt_email_to' && $attrVal != '') {
                     $this->mailer->AddAddress($attrVal);
-                elseif ($attrName === 'b_mt_email_from' && $attrVal != '')
+                } elseif ($attrName === 'b_mt_email_from' && $attrVal != '') {
                     $this->mailer->SetFrom($attrVal);
-                elseif ($attrName === 'b_mt_email_sender' && $attrVal != '')
+                } elseif ($attrName === 'b_mt_email_sender' && $attrVal != '') {
                     $this->mailer->Sender = $attrVal;
+                }
             }
         }
 
-        if (! empty($this->replyTo))
+        if (! empty($this->replyTo)) {
             $this->mailer->AddReplyTo($this->replyTo[0], isset($this->replyTo[1]) ? utf8_decode($this->replyTo[1]) : '');
+        }
 
-        if ($this->parseToExecute)
+        if ($this->parseToExecute) {
             $mailBody = self::parseMailFunction($mailBody, $this->classFunction);
+        }
 
         $mailBodyHtml = '';
-        if ($mailTemplate->html_mode == 1)
+        if ($mailTemplate->html_mode == 1) {
             $mailBodyHtml = $mailBody;
+        }
 
         // add attachment
-        foreach ($this->filesPath as $path)
+        foreach ($this->filesPath as $path) {
             $this->mailer->AddAttachment($path);
+        }
 
         $this->mailer->Subject = utf8_decode($mailObject);
         if ($mailBodyHtml != '') {
             $this->mailer->MsgHTML(utf8_decode($mailBodyHtml));
             $this->mailer->AltBody = strip_tags($mailBody);
-        } else
+        } else {
             $this->mailer->Body = utf8_decode($mailBody);
+        }
 
         foreach ($sendingRoles as $sendingRole) {
             switch ($sendingRole->b_mail_send_role_id) {
@@ -220,6 +230,7 @@ abstract class BBaseMail extends CComponent
      * The separator character used is "|"
      *
      * @param string $string
+     * @return array
      */
     public static function extractParamsMailFunction($string)
     {
@@ -250,6 +261,7 @@ abstract class BBaseMail extends CComponent
      *
      * @param string $string string to parse
      * @param string $classFunction class name contained functions to execute
+     * @return string
      */
     protected static function parseMailFunction($string, $classFunction)
     {

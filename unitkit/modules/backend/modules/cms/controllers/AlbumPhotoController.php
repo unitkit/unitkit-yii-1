@@ -52,7 +52,7 @@ class AlbumPhotoController extends BAutoController
     /**
      * @see BBaseAutoController::advancedConbobox()
      */
-    protected function _advancedConbobox()
+    protected function _advancedComboBox()
     {
         return array(
             'BCmsAlbumI18n[title]' => array(
@@ -105,7 +105,7 @@ class AlbumPhotoController extends BAutoController
         $datas = $dataProvider->getData();
 
         // related datas
-        $relatedDatas = $this->_loadRelatedDatas();
+        $relatedDatas = $this->_loadRelatedData();
 
         // template
         $template = isset($_REQUEST['partial']) ? 'list/_table' : 'list/main';
@@ -142,7 +142,7 @@ class AlbumPhotoController extends BAutoController
      *
      * @return array
      */
-    protected function _loadRelatedDatas()
+    protected function _loadRelatedData()
     {
         return array(
             'BCmsAlbumI18n' => BCmsAlbumI18n::model()->findByPk(array(
@@ -155,10 +155,10 @@ class AlbumPhotoController extends BAutoController
      * Save models
      *
      * @param mixed $models array of models
-     * @param mixed $postDatas array of datas (datas to update)
+     * @param mixed $postData array of datas (datas to update)
      * @return bool true on success and false in the other cases
      */
-    protected function _saveEditModels(&$models, &$postDatas)
+    protected function _saveEditModels(&$models, &$postData)
     {
         // initialize the status
         $isSaved = false;
@@ -182,13 +182,13 @@ class AlbumPhotoController extends BAutoController
             }
 
             // set attributes
-            if (isset($postDatas[$this->_model])) {
-                $models[$this->_model]->attributes = $postDatas[$this->_model];
+            if (isset($postData[$this->_model])) {
+                $models[$this->_model]->attributes = $postData[$this->_model];
             }
 
             $oldModels[$this->_modelI18n] = clone $models[$this->_modelI18n];
-            if (isset($postDatas[$this->_modelI18n])) {
-                $models[$this->_modelI18n]->attributes = $postDatas[$this->_modelI18n];
+            if (isset($postData[$this->_modelI18n])) {
+                $models[$this->_modelI18n]->attributes = $postData[$this->_modelI18n];
                 $models[$this->_modelI18n]->i18n_id = Yii::app()->language;
             }
             // set files attributes and fetch array of operations

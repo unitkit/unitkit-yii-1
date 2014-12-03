@@ -11,31 +11,31 @@ class MenuGroupEditRowDataView extends BEditRowItemDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param array $pk Primary key
      */
-    public function __construct($datas, $relatedDatas, $pk)
+    public function __construct($data, $relatedData, $pk)
     {
         // primary key
         $this->pk = $pk;
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $datas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // items
         $this->items = array(
             new BItemField(array(
-                'model' => $datas['BCmsMenuGroupI18n'],
+                'model' => $data['BCmsMenuGroupI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsMenuGroupI18n']->getAttributeLabel('name'),
+                    'placeholder' => $data['BCmsMenuGroupI18n']->getAttributeLabel('name'),
                 )
             )),
         );

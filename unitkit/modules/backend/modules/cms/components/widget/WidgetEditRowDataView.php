@@ -11,54 +11,51 @@ class WidgetEditRowDataView extends BEditRowItemDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param array $pk Primary key
      */
-    public function __construct($datas, $relatedDatas, $pk)
+    public function __construct($data, $relatedData, $pk)
     {
         // primary key
         $this->pk = $pk;
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $datas;
-
-        // controller
-        $controller = Yii::app()->controller;
+        // related data
+        $this->relatedData = $relatedData;
 
         // items
         $this->items = array(
             new BItemField(array(
-                'model' => $datas['BCmsWidgetI18n'],
+                'model' => $data['BCmsWidgetI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsWidgetI18n']->getAttributeLabel('name'),
+                    'placeholder' => $data['BCmsWidgetI18n']->getAttributeLabel('name'),
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BCmsWidget'],
+                'model' => $data['BCmsWidget'],
                 'attribute' => 'path',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsWidget']->getAttributeLabel('path'),
+                    'placeholder' => $data['BCmsWidget']->getAttributeLabel('path'),
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BCmsWidget'],
+                'model' => $data['BCmsWidget'],
                 'attribute' => 'arg',
                 'type' => 'activeTextArea',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsWidget']->getAttributeLabel('arg'),
+                    'placeholder' => $data['BCmsWidget']->getAttributeLabel('arg'),
                 )
             )),
         );

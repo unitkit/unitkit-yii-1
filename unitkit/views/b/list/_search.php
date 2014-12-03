@@ -13,8 +13,8 @@
                 <td class="form-inline">
             		<?php if($class === 'BItemField'): ?>
     		    		<?php if ( ! empty($itemField->type)) : ?>
-    		    			<?php if (! empty($itemField->datas)) : ?>
-    		    				<?= call_user_func_array('BHtml::'.$itemField->type, array($itemField->model, $itemField->attribute, $itemField->datas, $itemField->htmlOptions)); ?>
+    		    			<?php if (! empty($itemField->data)) : ?>
+    		    				<?= call_user_func_array('BHtml::'.$itemField->type, array($itemField->model, $itemField->attribute, $itemField->data, $itemField->htmlOptions)); ?>
     		    			<?php else : ?>
     		    				<?= call_user_func_array('BHtml::'.$itemField->type, array($itemField->model, $itemField->attribute, $itemField->htmlOptions)); ?>
     		    			<?php endif; ?>

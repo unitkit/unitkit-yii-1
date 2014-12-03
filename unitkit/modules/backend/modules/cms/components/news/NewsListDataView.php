@@ -11,13 +11,13 @@ class NewsListDataView extends BListDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param CModel $model Current model
      * @param CSort $sort CSort component
      * @param CPagination $pagination CPagination component
      */
-    public function __construct(&$datas, &$relatedDatas, &$model, &$sort, &$pagination)
+    public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
         $this->id = 'bCmsNewsNewsMain';
@@ -25,11 +25,11 @@ class NewsListDataView extends BListDataView
         // component title
         $this->title = B::t('backend', 'cms_news_list_title');
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // sort
         $this->sort = $sort;
@@ -55,7 +55,7 @@ class NewsListDataView extends BListDataView
                 	'class' => 'input-ajax-select allow-clear',
                 	'id' => 'bCmsNewsGroupI18nNameGridSearch',
                 	'data-action' => $controller->createUrl(
-                        $controller->id.'/advCombobox/',
+                        $controller->id.'/advComboBox/',
                         array(
                             'name' => 'BCmsNewsGroupI18n[name]',
             				'language' => Yii::app()->language
@@ -87,7 +87,7 @@ class NewsListDataView extends BListDataView
                 'model' => $model,
                 'attribute' => 'activated',
                 'type' => 'activeDropDownList',
-                'datas' => array(
+                'data' => array(
                     '' => B::t('unitkit', 'input_drop_down_list_all'),
                     '1' => B::t('unitkit', 'input_drop_down_list_checked'),
                     '0' => B::t('unitkit', 'input_drop_down_list_unchecked')
@@ -132,7 +132,7 @@ class NewsListDataView extends BListDataView
                     'class' => 'input-ajax-select allow-clear',
                     'id' => 'bCmsNewsGroupI18nNameAdvSearch',
                     'data-action' => $controller->createUrl(
-                        $controller->id.'/advCombobox/',
+                        $controller->id.'/advComboBox/',
                         array(
                             'name' => 'BCmsNewsGroupI18n[name]',
             				'language' => Yii::app()->language
@@ -174,7 +174,7 @@ class NewsListDataView extends BListDataView
                 'model' => $model,
                 'attribute' => 'activated',
                 'type' => 'activeDropDownList',
-                'datas' => array(
+                'data' => array(
                     '' => B::t('unitkit', 'input_drop_down_list_all'),
                     '1' => B::t('unitkit', 'input_drop_down_list_checked'),
                     '0' => B::t('unitkit', 'input_drop_down_list_unchecked')
@@ -258,8 +258,9 @@ class NewsListDataView extends BListDataView
         );
 
         // rows
-        foreach($datas as $data)
-            $this->rows[] = new NewsListRowDataView($data, array('id' => $data->id,));
+        foreach($data as $d) {
+            $this->rows[] = new NewsListRowDataView($d, array('id' => $d->id,));
+        }
 
         // pagination
         $this->pagination = $pagination;

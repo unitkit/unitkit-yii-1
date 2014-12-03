@@ -31,7 +31,7 @@ Yii::app()
                 'models' => $models,
                 'sort' => $sort,
                 'model' => $model,
-                'relatedDatas' => $relatedDatas,
+                'relatedData' => $relatedData,
                 'isSaved' => $isSaved
             ));
         ?>

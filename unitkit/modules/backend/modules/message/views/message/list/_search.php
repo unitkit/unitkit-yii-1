@@ -18,7 +18,7 @@
         	               'name' => 'BMessageSearch[b_message_group_id]',
         	               'id' => 'BMessageGroupI18nNameListSearch',
         	               'data-action' => $this->createUrl(
-                                $this->id . '/advCombobox/',
+                                $this->id . '/advComboBox/',
                                 array(
                                     'name' => 'BMessageGroupI18n[name]',
                                     'language' => Yii::app()->language
@@ -43,7 +43,7 @@
                 ?>
         		</td>
             </tr>
-            <?php foreach($relatedDatas['i18nIds'] as $i18nId): ?>
+            <?php foreach($relatedData['i18nIds'] as $i18nId): ?>
             <tr>
                 <th><?= BHtml::labelI18n($i18nId); ?></th>
                 <td class="control-group">

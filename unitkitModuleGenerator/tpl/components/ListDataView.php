@@ -11,13 +11,13 @@ class ' . $datas['controller'] . 'ListDataView extends BListDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param CModel $model Current model
      * @param CSort $sort CSort component
      * @param CPagination $pagination CPagination component
      */
-    public function __construct(&$datas, &$relatedDatas, &$model, &$sort, &$pagination)
+    public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
         $this->id = \'' . lcfirst($datas['class']) . $datas['controller'] . 'Main\';
@@ -25,11 +25,11 @@ class ' . $datas['controller'] . 'ListDataView extends BListDataView
         // component title
         $this->title = B::t(\'unitkit\', \'list_title\');
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // sort
         $this->sort = $sort;
@@ -110,7 +110,7 @@ foreach ($datas['allColumns'] as $k => $v) {
             $html .= '
             new BItemField(array(
                 \'model\' => $model,
-                \'datas\' => array(
+                \'data\' => array(
                     \'\' => B::t(\'unitkit\', \'input_drop_down_list_all\'),
                     \'1\' => B::t(\'unitkit\', \'input_drop_down_list_checked\'),
                     \'0\' => B::t(\'unitkit\', \'input_drop_down_list_unchecked\'),
@@ -179,7 +179,7 @@ foreach ($datas['allColumns'] as $k => $v) {
             $html .= '
             new BItemField(array(
                 \'model\' => $model,
-                \'datas\' => $relatedDatas[\'' . $classR . '[' . $info[1] . ']\'],
+                \'data\' => $relatedData[\'' . $classR . '[' . $info[1] . ']\'],
                 \'attribute\' => \'' . $columnName . '\',
                 \'type\' => \'activeDropDownList\',
                 \'htmlOptions\' => array(
@@ -295,7 +295,7 @@ foreach ($datas['allColumns'] as $k => $v) {
             $html .= '
             new BItemField(array(
                 \'model\' => $model,
-                \'datas\' => array(
+                \'data\' => array(
                     \'\' => B::t(\'unitkit\', \'input_drop_down_list_all\'),
                     \'1\' => B::t(\'unitkit\', \'input_drop_down_list_checked\'),
                     \'0\' => B::t(\'unitkit\', \'input_drop_down_list_unchecked\'),
@@ -364,7 +364,7 @@ foreach ($datas['allColumns'] as $k => $v) {
             $html .= '
             new BItemField(array(
                 \'model\' => $model,
-                \'datas\' => $relatedDatas[\'' . $classR . '[' . $info[1] . ']\'],
+                \'data\' => $relatedData[\'' . $classR . '[' . $info[1] . ']\'],
                 \'attribute\' => \'' . $columnName . '\',
                 \'type\' => \'activeDropDownList\',
                 \'htmlOptions\' => array(
@@ -452,8 +452,8 @@ $sLinkArrayPK .= ')';
 $html .= '
 
         // rows
-        foreach($datas as $data)
-            $this->rows[] = new ' . $datas['controller'] . 'ListRowDataView($data, ' . $sLinkArrayPK . ');
+        foreach($data as $d)
+            $this->rows[] = new ' . $datas['controller'] . 'ListRowDataView($d, ' . $sLinkArrayPK . ');
 
         // pagination
         $this->pagination = $pagination;

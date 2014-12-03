@@ -11,12 +11,12 @@ class NewsGroupEditDataView extends BEditDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related datas
      * @param array $pk Primary key
      * @param bool $isSaved Saved satus
      */
-    public function __construct($datas, $relatedDatas, $pk, $isSaved)
+    public function __construct($data, $relatedData, $pk, $isSaved)
     {
         // data view id
         $this->id = 'bCmsNewsGroupNewsGroupEdit';
@@ -28,22 +28,24 @@ class NewsGroupEditDataView extends BEditDataView
         // primary key
         $this->pk = $pk;
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // saved status
         $this->isSaved = $isSaved;
 
         // error status
-        foreach($datas as $data)
-        	if($this->hasErrors = $data->hasErrors())
-        		break;
+        foreach($data as $d) {
+            if ($this->hasErrors = $d->hasErrors()) {
+                break;
+            }
+        }
 
         // new record status
-        $this->isNewRecord = $datas['BCmsNewsGroup']->isNewRecord;
+        $this->isNewRecord = $data['BCmsNewsGroup']->isNewRecord;
 
         // page title
         $this->refreshPageTitle();
@@ -51,32 +53,32 @@ class NewsGroupEditDataView extends BEditDataView
         // items
         $this->items = array(
             new BItemField(array(
-                'model' => $datas['BCmsNewsGroup'],
+                'model' => $data['BCmsNewsGroup'],
                 'attribute' => 'id',
                 'type' => 'resolveValue'
             )),
             new BItemField(array(
-                'model' => $datas['BCmsNewsGroupI18n'],
+                'model' => $data['BCmsNewsGroupI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsNewsGroupI18n']->getAttributeLabel('name'),
+                    'placeholder' => $data['BCmsNewsGroupI18n']->getAttributeLabel('name'),
                 )
             )),
         );
 
-        if (! $datas['BCmsNewsGroup']->isNewRecord) {
+        if (! $data['BCmsNewsGroup']->isNewRecord) {
             $this->items[] = new BItemField(array(
-                'model' => $datas['BCmsNewsGroup'],
+                'model' => $data['BCmsNewsGroup'],
                 'attribute' => 'created_at',
-                'value' =>  $datas['BCmsNewsGroup']->created_at
+                'value' =>  $data['BCmsNewsGroup']->created_at
             ));
             $this->items[] = new BItemField(array(
-                'model' => $datas['BCmsNewsGroup'],
+                'model' => $data['BCmsNewsGroup'],
                 'attribute' => 'updated_at',
-                'value' =>  $datas['BCmsNewsGroup']->updated_at
+                'value' =>  $data['BCmsNewsGroup']->updated_at
             ));
         }
     }

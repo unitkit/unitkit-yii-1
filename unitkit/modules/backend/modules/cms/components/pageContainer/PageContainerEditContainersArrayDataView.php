@@ -13,11 +13,11 @@ class PageContainerEditContainersArrayDataView
      */
     public $rows = array();
 
-    public function __construct($datas)
+    public function __construct($data)
     {
-        if (isset($datas['BCmsPageContents'])) {
-            foreach($datas['BCmsPageContents'] as $id => $bCmsPageContent) {
-                $this->rows[] = new PageContainerEditContainersArrayRowDataView($id, $datas);
+        if (isset($data['BCmsPageContents'])) {
+            foreach($data['BCmsPageContents'] as $id => $bCmsPageContent) {
+                $this->rows[] = new PageContainerEditContainersArrayRowDataView($id, $data);
             }
         }
     }

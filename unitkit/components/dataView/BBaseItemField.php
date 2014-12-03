@@ -49,11 +49,11 @@ class BBaseItemField extends CComponent
     public $value;
 
     /**
-     * Datas
+     * Data
      *
      * @var mixed
      */
-    public $datas;
+    public $data;
 
     /**
      * Html options
@@ -81,8 +81,8 @@ class BBaseItemField extends CComponent
         if (isset($args['displayAttribute'])) {
             $this->displayAttribute = $args['displayAttribute'];
         }
-        if (isset($args['datas'])) {
-            $this->datas = $args['datas'];
+        if (isset($args['data'])) {
+            $this->data = $args['data'];
         }
         if (isset($args['value'])) {
             $this->value = $args['value'];

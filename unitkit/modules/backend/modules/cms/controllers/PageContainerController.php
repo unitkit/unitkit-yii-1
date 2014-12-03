@@ -46,7 +46,7 @@ class PageContainerController extends BAutoController
     /**
      * @see BBaseAutoController::advancedConbobox()
      */
-    protected function _advancedConbobox()
+    protected function _advancedComboBox()
     {
         return array(
             'BCmsLayoutI18n[name]' => array(
@@ -122,11 +122,11 @@ class PageContainerController extends BAutoController
                 if (isset($_GET['pageId'])) {
                     $pageId = $_GET['pageId'];
                 }
-                $datas = $this->_loadCmsPageContentModels($pageId, $layout->max_container);
+                $data = $this->_loadCmsPageContentModels($pageId, $layout->max_container);
                 echo CJSON::encode(array(
                     'html' => $this->bRenderPartial(
                         'edit/_containerTable',
-                        array('dataView' => new PageContainerEditContainersArrayDataView($datas)),
+                        array('dataView' => new PageContainerEditContainersArrayDataView($data)),
                         true
                     )
                 ));
@@ -214,6 +214,7 @@ class PageContainerController extends BAutoController
      *
      * @param mixed $pk the primary key of the model
      * @return mixed array of models
+     * @throws CHttpException
      */
     protected function _loadEditModels($pk = null)
     {
@@ -256,10 +257,11 @@ class PageContainerController extends BAutoController
      * Save models
      *
      * @param mixed $models array of models
-     * @param mixed $postDatas array of datas (datas to update)
+     * @param mixed $postData array of data (data to update)
      * @return bool true on success and false in the other cases
+     * @throws CException
      */
-    protected function _saveEditModels(&$models, &$postDatas)
+    protected function _saveEditModels(&$models, &$postData)
     {
         $isSaved = false;
         $isNewRecord[$this->_model] = $models[$this->_model]->isNewRecord;
@@ -281,15 +283,15 @@ class PageContainerController extends BAutoController
             $cmsLayoutId = $models[$this->_model]->b_cms_layout_id;
 
             // set attributes
-            if (isset($postDatas[$this->_model])) {
-                $models[$this->_model]->attributes = $postDatas[$this->_model];
+            if (isset($postData[$this->_model])) {
+                $models[$this->_model]->attributes = $postData[$this->_model];
             }
-            if (isset($postDatas[$this->_modelI18n])) {
-                $models[$this->_modelI18n]->attributes = $postDatas[$this->_modelI18n];
+            if (isset($postData[$this->_modelI18n])) {
+                $models[$this->_modelI18n]->attributes = $postData[$this->_modelI18n];
                 $models[$this->_modelI18n]->i18n_id = Yii::app()->language;
             }
 
-            if (isset($postDatas['BCmsPageContentsI18n'])) {
+            if (isset($postData['BCmsPageContentsI18n'])) {
                 if ($cmsLayoutId != $models[$this->_model]->b_cms_layout_id) {
                     $layout = BCmsLayout::model()->findByPk(
                         $models[$this->_model]->b_cms_layout_id,
@@ -301,8 +303,8 @@ class PageContainerController extends BAutoController
                 }
 
                 foreach($models['BCmsPageContents'] as $i => &$BCmsPageContent) {
-                    if (isset($postDatas['BCmsPageContentsI18n'][$i])) {
-                        $BCmsPageContent->bCmsPageContentI18n->content = $postDatas['BCmsPageContentsI18n'][$i]['content'];
+                    if (isset($postData['BCmsPageContentsI18n'][$i])) {
+                        $BCmsPageContent->bCmsPageContentI18n->content = $postData['BCmsPageContentsI18n'][$i]['content'];
                     }
                 }
             }
@@ -344,7 +346,7 @@ class PageContainerController extends BAutoController
 
                     // save the i18n model
                     if (! $models[$this->_modelI18n]->save()) {
-                        throw new Exception();
+                        throw new CException();
                     }
                 }
 
@@ -354,10 +356,10 @@ class PageContainerController extends BAutoController
                         if ($BCmsPageContent->save()) {
                             $BCmsPageContent->bCmsPageContentI18n->b_cms_page_content_id = $BCmsPageContent->id;
                             if (! $BCmsPageContent->bCmsPageContentI18n->save()) {
-                                throw new Exception();
+                                throw new CException();
                             }
                         } else {
-                            throw new Exception();
+                            throw new CException();
                         }
                     }
                 }
@@ -376,10 +378,10 @@ class PageContainerController extends BAutoController
 
                 $this->_afterSaveEditModels($models);
             } else {
-                throw new Exception();
+                throw new CException();
             }
 
-        } catch (Exception $e) {
+        } catch (CException $e) {
             $models[$this->_model]->isNewRecord = $isNewRecord[$this->_model];
 
             if (! empty($modelName::$upload)) {
@@ -422,10 +424,11 @@ class PageContainerController extends BAutoController
      * Save the translations
      *
      * @param array $models the list of models to be translated
-     * @param mixed $postDatas array of datas (datas to update)
+     * @param mixed $postData array of data (data to update)
      * @return bool true on success and false in the other cases
+     * @throws CException
      */
-    protected function _saveTranslationModels(&$models, &$postDatas)
+    protected function _saveTranslationModels(&$models, &$postData)
     {
         // status
         $isSaved = false;
@@ -436,13 +439,13 @@ class PageContainerController extends BAutoController
         try {
             // validate models
             foreach ($models as $i18nId => $data) {
-                if (isset($postDatas[$this->_modelI18n][$i18nId])) {
-                    $models[$i18nId][$this->_modelI18n]->attributes = $postDatas[$this->_modelI18n][$i18nId];
+                if (isset($postData[$this->_modelI18n][$i18nId])) {
+                    $models[$i18nId][$this->_modelI18n]->attributes = $postData[$this->_modelI18n][$i18nId];
                 }
                 $models[$i18nId][$this->_modelI18n]->validate();
 
-                if (isset($postDatas['BCmsPageContentI18n'][$i18nId])) {
-                    foreach($postDatas['BCmsPageContentI18n'][$i18nId] as $index => $attributes) {
+                if (isset($postData['BCmsPageContentI18n'][$i18nId])) {
+                    foreach($postData['BCmsPageContentI18n'][$i18nId] as $index => $attributes) {
                         $models[$i18nId]['BCmsPageContentI18ns'][$index]->attributes = $attributes;
                         $models[$i18nId]['BCmsPageContentI18ns'][$index]->validate();
                     }
@@ -455,7 +458,7 @@ class PageContainerController extends BAutoController
                     $isSaved = true;
                 } else {
                     $isSaved = false;
-                    throw new Exception();
+                    throw new CException();
                 }
                 if (isset($models[$i18nId]['BCmsPageContentI18ns'])) {
                     foreach($models[$i18nId]['BCmsPageContentI18ns'] as $bCmsPageContentI18n) {
@@ -463,7 +466,7 @@ class PageContainerController extends BAutoController
                             $isSaved = true;
                         } else {
                             $isSaved = false;
-                            throw new Exception();
+                            throw new CException();
                         }
                     }
                 }
@@ -474,7 +477,7 @@ class PageContainerController extends BAutoController
                 $transaction->commit();
                 $this->_afterSaveTranslationModels($models);
             }
-        } catch (Exception $e) {
+        } catch (CException $e) {
             // roll back
             if ($transaction->active) {
                 $transaction->rollback();
@@ -498,7 +501,7 @@ class PageContainerController extends BAutoController
         $model = $this->_model;
         $pkId = $model::model()->tableSchema->primaryKey;
 
-        // curent model
+        // current model
         $modelI18n = $this->_modelI18n;
 
         // array of models

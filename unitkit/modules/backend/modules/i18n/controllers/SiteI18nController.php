@@ -13,7 +13,7 @@ class SiteI18nController extends BAutoController
     /**
      * @see BBaseAutoController::advancedConbobox()
      */
-    protected function _advancedConbobox()
+    protected function _advancedComboBox()
     {
         return array(
             'BI18nI18n[name]' => array(

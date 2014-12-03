@@ -56,17 +56,16 @@
 				$.b.app.ajax(
 					link.attr('href'), 
 					function(json) {
-						if(json.loginReload)
-						{
-							if($.b.app.loginReload(json))
-								ajaxRequest(false);
-						}
-						else
-						{
+						if(json.loginReload) {
+							if($.b.app.loginReload(json)) {
+                                ajaxRequest(false);
+                            }
+						} else {
 							$this.grid.unblock();
 							$this.grid.html(json.html);
-							if(json.filters)
-								$this.filters = json.filters;
+							if(json.filters) {
+                                $this.filters = json.filters;
+                            }
 							$this.initGridEvents();
 							$.b.app.scrollTop();
 						}
@@ -81,5 +80,5 @@
 			return false;
 		});
 	};
-	
+
 })(jQuery);

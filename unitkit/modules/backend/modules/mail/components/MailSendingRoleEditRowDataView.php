@@ -12,53 +12,53 @@ class MailSendingRoleEditRowDataView extends BEditRowItemDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param array $pk Primary key
      */
-    public function __construct($datas, $relatedDatas, $pk)
+    public function __construct($data, $relatedData, $pk)
     {
         // primary key
         $this->pk = $pk;
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $datas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // items
         $this->items = array(
             new BItemField(array(
-                'model' => $datas['BMailSendingRole'],
+                'model' => $data['BMailSendingRole'],
                 'attribute' => 'b_mail_send_role_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm input-ajax-select',
-                    'data-action' => $this->controller->createUrl($this->controller->id . '/advCombobox/', array(
+                    'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
                         'name' => 'BMailSendRoleI18n[name]',
                         'language' => Yii::app()->language
                     )),
                     'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($datas['BMailSendingRole']->b_mail_send_role_id) ? BMailSendRoleI18n::model()->findByPk(array(
-                        'b_mail_send_role_id' => $datas['BMailSendingRole']->b_mail_send_role_id,
+                    'data-text' => ! empty($data['BMailSendingRole']->b_mail_send_role_id) ? BMailSendRoleI18n::model()->findByPk(array(
+                        'b_mail_send_role_id' => $data['BMailSendingRole']->b_mail_send_role_id,
                         'i18n_id' => Yii::app()->language
                     ))->name : ''
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BMailSendingRole'],
+                'model' => $data['BMailSendingRole'],
                 'attribute' => 'b_person_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm input-ajax-select',
-                    'data-action' => $this->controller->createUrl($this->controller->id . '/advCombobox/', array(
+                    'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
                         'name' => 'BPerson[fullName]'
                     )),
                     'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($datas['BMailSendingRole']->b_person_id) ? BPerson::model()->findByPk($datas['BMailSendingRole']->b_person_id)->fullName : ''
+                    'data-text' => ! empty($data['BMailSendingRole']->b_person_id) ? BPerson::model()->findByPk($data['BMailSendingRole']->b_person_id)->fullName : ''
                 )
             ))
         );

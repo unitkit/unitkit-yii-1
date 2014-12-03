@@ -74,6 +74,8 @@ class BBaseDbVariable extends CApplicationComponent
 
     /**
      * Get name of dynamic key
+     *
+     * @return string
      */
     protected static function getCacheDynKeyName()
     {
@@ -84,6 +86,7 @@ class BBaseDbVariable extends CApplicationComponent
      * Get dynamic key from cache
      *
      * @param bool $refresh force refresh
+     * @return string
      */
     public function getCacheDynKey($refresh = false)
     {
@@ -93,6 +96,8 @@ class BBaseDbVariable extends CApplicationComponent
 
     /**
      * Delete dynamic key cache in cache
+     *
+     * @return bool
      */
     public function deleteCacheDynKey()
     {
@@ -101,6 +106,8 @@ class BBaseDbVariable extends CApplicationComponent
 
     /**
      * Refresh dynamic key in cache
+     *
+     * @return string
      */
     public function refreshCacheDynKey()
     {

@@ -11,20 +11,20 @@ class PageContainerEditRowDataView extends BEditRowItemDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param array $pk Primary key
      */
-    public function __construct($datas, $relatedDatas, $pk)
+    public function __construct($data, $relatedData, $pk)
     {
         // primary key
         $this->pk = $pk;
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $datas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // controller
         $controller = Yii::app()->controller;
@@ -32,107 +32,63 @@ class PageContainerEditRowDataView extends BEditRowItemDataView
         // items
         $this->items = array(
             new BItemField(array(
-                'model' => $datas['BCmsPageI18n'],
+                'model' => $data['BCmsPageI18n'],
                 'attribute' => 'slug',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsPageI18n']->getAttributeLabel('slug'),
+                    'placeholder' => $data['BCmsPageI18n']->getAttributeLabel('slug'),
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BCmsPage'],
+                'model' => $data['BCmsPage'],
                 'attribute' => 'activated',
                 'type' => 'activeCheckBox',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsPage']->getAttributeLabel('activated'),
+                    'placeholder' => $data['BCmsPage']->getAttributeLabel('activated'),
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BCmsPage'],
+                'model' => $data['BCmsPage'],
                 'attribute' => 'cache_duration',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsPageI18n']->getAttributeLabel('cache_duration'),
+                    'placeholder' => $data['BCmsPageI18n']->getAttributeLabel('cache_duration'),
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BCmsPageI18n'],
+                'model' => $data['BCmsPageI18n'],
                 'attribute' => 'title',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsPageI18n']->getAttributeLabel('title'),
+                    'placeholder' => $data['BCmsPageI18n']->getAttributeLabel('title'),
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BCmsPage'],
+                'model' => $data['BCmsPage'],
                 'attribute' => 'b_cms_layout_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm input-ajax-select',
                     'data-action' => $controller->createUrl(
-                        $controller->id.'/advCombobox/',
+                        $controller->id.'/advComboBox/',
                         array('name' => 'BCmsLayoutI18n[name]', 'language' => Yii::app()->language)
                     ),
                     'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($datas['BCmsPage']->b_cms_layout_id) ? BCmsLayoutI18n::model()->findByPk(array(
-                                    'b_cms_layout_id' => $datas['BCmsPage']->b_cms_layout_id,
+                    'data-text' => ! empty($data['BCmsPage']->b_cms_layout_id) ? BCmsLayoutI18n::model()->findByPk(array(
+                                    'b_cms_layout_id' => $data['BCmsPage']->b_cms_layout_id,
                                     'i18n_id' => Yii::app()->language
                                 ))->name : '',
                 )
             )),
-            /*new BItemField(array(
-                'model' => $datas['BCmsPageI18n'],
-                'attribute' => 'html_title',
-                'type' => 'activeTextField',
-                'htmlOptions' => array(
-                    'id' => false,
-                    'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsPageI18n']->getAttributeLabel('html_title'),
-                )
-            )),
-            new BItemField(array(
-                'model' => $datas['BCmsPageI18n'],
-                'attribute' => 'html_description',
-                'type' => 'activeTextField',
-                'htmlOptions' => array(
-                    'id' => false,
-                    'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsPageI18n']->getAttributeLabel('html_description'),
-                )
-            )),
-            new BItemField(array(
-                'model' => $datas['BCmsPageI18n'],
-                'attribute' => 'html_keywords',
-                'type' => 'activeTextField',
-                'htmlOptions' => array(
-                    'id' => false,
-                    'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsPageI18n']->getAttributeLabel('html_keywords'),
-                )
-            )),
-           new BItemField(array(
-                'model' => $datas['BCmsPage'],
-                'attribute' => 'created_at',
-                'value' => Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse(
-                    $datas['BCmsPage']->created_at, 'yyyy-MM-dd hh:mm:ss'
-                ))
-            )),
-            new BItemField(array(
-                'model' => $datas['BCmsPage'],
-                'attribute' => 'updated_at',
-                'value' => Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse(
-                    $datas['BCmsPage']->updated_at, 'yyyy-MM-dd hh:mm:ss'
-                ))
-            )),*/
         );
     }
 }

@@ -10,6 +10,7 @@ class GroupListRowDataView extends BListRowItemDataView
 {
 
     /**
+     * Constructor
      *
      * @param CModel $data
      * @param mixed $pk
@@ -20,12 +21,6 @@ class GroupListRowDataView extends BListRowItemDataView
         $this->pk = $pk;
         $this->items = array(
             isset($data->bGroupI18ns[0]) ? $data->bGroupI18ns[0]->name : ''
-        // Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse(
-        // $data->updated_at, 'yyyy-MM-dd hh:mm:ss'
-        // )),
-        // Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse(
-        // $data->created_at, 'yyyy-MM-dd hh:mm:ss'
-        // )),
         );
     }
 }

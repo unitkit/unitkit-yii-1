@@ -7,6 +7,12 @@
  */
 class BBaseHtml extends CHtml
 {
+    /**
+     * Slugify a string
+     *
+     * @param $text Text to slugify
+     * @return string
+     */
     public static function slugify($text)
     {
         // replace non letter or digits by -
@@ -39,7 +45,7 @@ class BBaseHtml extends CHtml
      *
      * @param string $id I18n ID
      * @param bool $flag Display flag
-     * @param bool $test Display text
+     * @param bool $text Display text
      * @return string HTML
      */
     public static function labelI18n($id, $flag = true, $text = true)
@@ -52,6 +58,7 @@ class BBaseHtml extends CHtml
      *
      * @param string $string string to be transform
      * @param int $length number of maximum displayed characters
+     * @return string
      */
     public static function textReduce($string, $length)
     {
@@ -67,8 +74,9 @@ class BBaseHtml extends CHtml
      * @param string $search search value
      * @param mixed $criteria array of criteria
      * @param int $cache cache duration (in seconds)
+     * @return mixed
      */
-    public static function listDatasAdvCombobox($modelName, $select, $search, $criteria = array(), $cache = 0)
+    public static function listDataAdvCombobox($modelName, $select, $search, $criteria = array(), $cache = 0)
     {
         $model = new $modelName();
         $dbCriteria = $model->getDbCriteria();
@@ -96,6 +104,7 @@ class BBaseHtml extends CHtml
      * @param mixed $select array(0 => id, 1 => text)
      * @param mixed $criteria array of criteria
      * @param int $cache cache duration (in seconds)
+     * @return array
      */
     public static function listDatasCombobox($modelName, $select, $criteria = array(), $cache = 0)
     {
@@ -144,8 +153,10 @@ class BBaseHtml extends CHtml
         if (isset($htmlOptions['value'])) {
             $text = $htmlOptions['value'];
             unset($htmlOptions['value']);
-        } else
+        } else {
             $text = self::resolveValue($model, $attribute);
+        }
+
         return self::tag('textarea', $htmlOptions, isset($htmlOptions['encode']) && ! $htmlOptions['encode'] ? $text : self::encode($text));
     }
 
@@ -167,16 +178,18 @@ class BBaseHtml extends CHtml
      */
     public static function errorSummary($model, $header = null, $footer = null, $htmlOptions = array())
     {
-        if ($header == null)
+        if ($header == null) {
             $header = '<h4>' . Yii::t('yii', 'Please fix the following input errors:') . '</h4>';
+        }
 
         $modelClean = $model;
 
         // clean model
         if (is_array($modelClean)) {
             foreach($modelClean as $k => $m) {
-                if( is_array($m))
+                if( is_array($m)) {
                     unset($modelClean[$k]);
+                }
             }
         }
 
@@ -186,11 +199,12 @@ class BBaseHtml extends CHtml
     /**
      * Generates a hyperlink that can be clicked to cause sorting.
      *
-     * @param Csort $sort the current Csort instance
+     * @param CSort $sort the current CSort instance
      * @param string $attribute the attribute name
      * @param string $label the attribute label
+     * @return string
      */
-    public static function createBSortLink(Csort $sort, $attribute, $label = null)
+    public static function createBSortLink(CSort $sort, $attribute, $label = null)
     {
         $class['link'] = '';
         $class['icon'] = 'glyphicon-sort-by-alphabet';

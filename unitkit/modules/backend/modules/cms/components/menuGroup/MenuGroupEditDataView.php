@@ -11,12 +11,12 @@ class MenuGroupEditDataView extends BEditDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param array $pk Primary key
-     * @param bool $isSaved Saved satus
+     * @param bool $isSaved Saved status
      */
-    public function __construct($datas, $relatedDatas, $pk, $isSaved)
+    public function __construct($data, $relatedData, $pk, $isSaved)
     {
         // data view id
         $this->id = 'bCmsMenuGroupMenuGroupEdit';
@@ -28,22 +28,24 @@ class MenuGroupEditDataView extends BEditDataView
         // primary key
         $this->pk = $pk;
 
-        // datas
-        $this->datas = $datas;
+        // data
+        $this->data = $data;
 
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // saved status
         $this->isSaved = $isSaved;
 
         // error status
-        foreach($datas as $data)
-        	if($this->hasErrors = $data->hasErrors())
-        		break;
+        foreach($data as $d) {
+            if ($this->hasErrors = $d->hasErrors()) {
+                break;
+            }
+        }
 
         // new record status
-        $this->isNewRecord = $datas['BCmsMenuGroup']->isNewRecord;
+        $this->isNewRecord = $data['BCmsMenuGroup']->isNewRecord;
 
         // page title
         $this->refreshPageTitle();
@@ -51,32 +53,32 @@ class MenuGroupEditDataView extends BEditDataView
         // items
         $this->items = array(
             new BItemField(array(
-                'model' => $datas['BCmsMenuGroup'],
+                'model' => $data['BCmsMenuGroup'],
                 'attribute' => 'id',
                 'type' => 'resolveValue'
             )),
             new BItemField(array(
-                'model' => $datas['BCmsMenuGroupI18n'],
+                'model' => $data['BCmsMenuGroupI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsMenuGroupI18n']->getAttributeLabel('name'),
+                    'placeholder' => $data['BCmsMenuGroupI18n']->getAttributeLabel('name'),
                 )
             )),
         );
 
-        if (! $datas['BCmsMenuGroup']->isNewRecord) {
+        if (! $data['BCmsMenuGroup']->isNewRecord) {
             $this->items[] = new BItemField(array(
-                'model' => $datas['BCmsMenuGroup'],
+                'model' => $data['BCmsMenuGroup'],
                 'attribute' => 'created_at',
-                'value' =>  $datas['BCmsMenuGroup']->created_at
+                'value' =>  $data['BCmsMenuGroup']->created_at
             ));
             $this->items[] = new BItemField(array(
-                'model' => $datas['BCmsMenuGroup'],
+                'model' => $data['BCmsMenuGroup'],
                 'attribute' => 'updated_at',
-                'value' =>  $datas['BCmsMenuGroup']->updated_at
+                'value' =>  $data['BCmsMenuGroup']->updated_at
             ));
         }
     }

@@ -11,12 +11,12 @@ class ImageEditDataView extends BEditDataView
     /**
      * Constructor
      *
-     * @param array $datas Array of CModel
-     * @param array $relatedDatas Array of related datas
+     * @param array $data Array of CModel
+     * @param array $relatedData Array of related data
      * @param array $pk Primary key
-     * @param bool $isSaved Saved satus
+     * @param bool $isSaved Saved status
      */
-    public function __construct($datas, $relatedDatas, $pk, $isSaved)
+    public function __construct($data, $relatedData, $pk, $isSaved)
     {
         // data view id
         $this->id = 'bCmsImageImageEdit';
@@ -28,23 +28,24 @@ class ImageEditDataView extends BEditDataView
         // primary key
         $this->pk = array_merge($pk, $_GET);
 
+        // data
+        $this->data = $data;
 
-        // datas
-        $this->datas = $datas;
-
-        // related datas
-        $this->relatedDatas = $relatedDatas;
+        // related data
+        $this->relatedData = $relatedData;
 
         // saved status
         $this->isSaved = $isSaved;
 
         // error status
-        foreach($datas as $data)
-        	if($this->hasErrors = $data->hasErrors())
-        		break;
+        foreach($data as $d) {
+        	if($this->hasErrors = $d->hasErrors()) {
+                break;
+            }
+        }
 
         // new record status
-        $this->isNewRecord = $datas['BCmsImage']->isNewRecord;
+        $this->isNewRecord = $data['BCmsImage']->isNewRecord;
 
         // page title
         $this->refreshPageTitle();
@@ -52,25 +53,25 @@ class ImageEditDataView extends BEditDataView
         // items
         $this->items = array(
             new BItemField(array(
-                'model' => $datas['BCmsImage'],
+                'model' => $data['BCmsImage'],
                 'attribute' => 'id',
                 'type' => 'resolveValue'
             )),
             new BItemField(array(
-                'model' => $datas['BCmsImageI18n'],
+                'model' => $data['BCmsImageI18n'],
                 'attribute' => 'title',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $datas['BCmsImageI18n']->getAttributeLabel('title'),
+                    'placeholder' => $data['BCmsImageI18n']->getAttributeLabel('title'),
                 )
             )),
             new BItemField(array(
-                'model' => $datas['BCmsImage'],
+                'model' => $data['BCmsImage'],
                 'attribute' => 'file_path',
                 'value' => $this->controller->getUploader('BCmsImage[file_path]')['uploader']->htmlUploader(
-                    $datas['BCmsImage'],
+                    $data['BCmsImage'],
                     'file_path',
                     $this->controller->createUrl($this->controller->id.'/upload'),
                     array(
@@ -81,16 +82,16 @@ class ImageEditDataView extends BEditDataView
             )),
         );
 
-        if (! $datas['BCmsImage']->isNewRecord) {
+        if (! $data['BCmsImage']->isNewRecord) {
             $this->items[] = new BItemField(array(
-                'model' => $datas['BCmsImage'],
+                'model' => $data['BCmsImage'],
                 'attribute' => 'created_at',
-                'value' =>  $datas['BCmsImage']->created_at
+                'value' =>  $data['BCmsImage']->created_at
             ));
             $this->items[] = new BItemField(array(
-                'model' => $datas['BCmsImage'],
+                'model' => $data['BCmsImage'],
                 'attribute' => 'updated_at',
-                'value' =>  $datas['BCmsImage']->updated_at
+                'value' =>  $data['BCmsImage']->updated_at
             ));
         }
     }

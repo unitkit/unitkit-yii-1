@@ -1,9 +1,9 @@
 <?php
 Yii::app()->clientScript
     ->registerDynamicScript(
-        'bAppCrudCoreScript',
+        'uAppCrudCoreScript',
         Yii::app()->clientScript->getAppCrudMessages()."
-        new $.b.app.Settings({
+        new $.unitkit.app.Settings({
         	main:'#" . $dataView->id . "'
         }).initEvents();"
     );

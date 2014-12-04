@@ -2,9 +2,9 @@
 Yii::app()
     ->clientScript
     ->registerDynamicScript(
-        'bAppCrudCoreScript',
+        'uAppCrudCoreScript',
         Yii::app()->clientScript->getAppCrudMessages()."
-        new $.b.app.Translate({
+        new $.unitkit.app.Translate({
         	main:'#" . $dataView->id . "'
         }).initEvents();"
     );

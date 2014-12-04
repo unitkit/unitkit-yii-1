@@ -2,7 +2,7 @@
 Yii::app()
     ->clientScript
     ->registerDynamicScript(
-        'bAppCrudCoreScript',
+        'uAppCrudCoreScript',
         Yii::app()->clientScript->getAppCrudMessages()."
         new $.b.app.Edit({
         	main:'#" . $dataView->id . "'

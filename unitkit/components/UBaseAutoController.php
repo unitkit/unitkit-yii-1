@@ -243,8 +243,8 @@ abstract class UBaseAutoController extends UBaseController
     {
         // data to update
         $postData = array();
-        if (isset($_POST['BInterfaceSetting'])) {
-            $postData['BInterfaceSetting'] = $_POST['BInterfaceSetting'];
+        if (isset($_POST['UInterfaceSetting'])) {
+            $postData['UInterfaceSetting'] = $_POST['UInterfaceSetting'];
         }
 
         // load / save data

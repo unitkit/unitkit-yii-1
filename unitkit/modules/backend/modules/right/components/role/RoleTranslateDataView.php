@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class RoleTranslateDataView extends BTranslateDataView
+class RoleTranslateDataView extends UTranslateDataView
 {
     /**
      * Constructor
@@ -18,13 +18,13 @@ class RoleTranslateDataView extends BTranslateDataView
      */
     public function __construct($data, $relatedData, $pk, $isSaved)
     {
-        $this->id = 'bRoleRoleTranslate';
+        $this->id = 'uRoleRoleTranslate';
 
         // primary key
         $this->pk = $pk;
 
         // I18n model
-        $this->model = BRoleI18n::model();
+        $this->model = URoleI18n::model();
 
         // datas
         $this->data = $data;
@@ -37,7 +37,7 @@ class RoleTranslateDataView extends BTranslateDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
+            new UItemField(array(
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(

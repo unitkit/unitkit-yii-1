@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MenuTranslateDataView extends BTranslateDataView
+class MenuTranslateDataView extends UTranslateDataView
 {
     /**
      * Constructor
@@ -19,13 +19,13 @@ class MenuTranslateDataView extends BTranslateDataView
     public function __construct($data, $relatedData, $pk, $isSaved)
     {
         // data view id
-        $this->id = 'bCmsMenuMenuTranslate';
+        $this->id = 'uCmsMenuMenuTranslate';
 
         // primary key
         $this->pk = $pk;
 
         // I18n model
-        $this->model = BCmsMenuI18n::model();
+        $this->model = UCmsMenuI18n::model();
 
         // data
         $this->data = $data;
@@ -38,7 +38,7 @@ class MenuTranslateDataView extends BTranslateDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
+            new UItemField(array(
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
@@ -46,7 +46,7 @@ class MenuTranslateDataView extends BTranslateDataView
                     'id' => false,
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'attribute' => 'url',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(

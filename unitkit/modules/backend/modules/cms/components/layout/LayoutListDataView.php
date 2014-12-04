@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class LayoutListDataView extends BListDataView
+class LayoutListDataView extends UListDataView
 {
     /**
      * Constructor
@@ -21,10 +21,10 @@ class LayoutListDataView extends BListDataView
     public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination, &$controller)
     {
         // id
-        $this->id = 'bCmsLayoutLayoutMain';
+        $this->id = 'uCmsLayoutLayoutMain';
 
         // component title
-        $this->title = B::t('backend', 'cms_layout_list_title');
+        $this->title = Unitkit::t('backend', 'cms_layout_list_title');
 
         // data
         $this->data = $data;
@@ -37,51 +37,51 @@ class LayoutListDataView extends BListDataView
 
         // sort attributes
         $this->sortAttributes = array(
-            'bCmsLayoutI18ns.name',
-            'bCmsLayout.max_container',
-            'bCmsLayout.path',
-            'bCmsLayout.view',
+            'uCmsLayoutI18ns.name',
+            'uCmsLayout.max_container',
+            'uCmsLayout.path',
+            'uCmsLayout.view',
         );
 
         // search
         $this->gridSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_cms_layout_i18ns_name',
+                'attribute' => 'lk_u_cms_layout_i18ns_name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'max_container',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'path',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'view',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
@@ -89,91 +89,91 @@ class LayoutListDataView extends BListDataView
 
         // advanced search
         $this->advancedSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_cms_layout_i18ns_name',
+                'attribute' => 'lk_u_cms_layout_i18ns_name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'max_container',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'path',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'view',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-        	new BDateRangeItemField(
+        	new UDateRangeItemField(
                 $model,
                 'created_at',
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_created_at_start',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsLayoutVCreatedAtStartAdvSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsLayoutVCreatedAtStartAdvSearch'
                     )
                 )),
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_created_at_end',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsLayoutVCreatedAtEndAdvSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsLayoutVCreatedAtEndAdvSearch'
                     )
                 ))
             ),
-        	new BDateRangeItemField(
+        	new UDateRangeItemField(
                 $model,
                 'updated_at',
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_updated_at_start',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsLayoutVUpdatedAtStartAdvSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsLayoutVUpdatedAtStartAdvSearch'
                     )
                 )),
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_updated_at_end',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsLayoutVUpdatedAtEndAdvSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsLayoutVUpdatedAtEndAdvSearch'
                     )
                 ))
             ),

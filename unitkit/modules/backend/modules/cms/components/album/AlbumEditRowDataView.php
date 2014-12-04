@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class AlbumEditRowDataView extends BEditRowItemDataView
+class AlbumEditRowDataView extends UEditRowItemDataView
 {
     /**
      * Constructor
@@ -28,28 +28,28 @@ class AlbumEditRowDataView extends BEditRowItemDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BCmsAlbumI18n'],
+            new UItemField(array(
+                'model' => $data['UCmsAlbumI18n'],
                 'attribute' => 'title',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsAlbumI18n']->getAttributeLabel('title'),
+                    'placeholder' => $data['UCmsAlbumI18n']->getAttributeLabel('title'),
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BCmsAlbum'],
+            new UItemField(array(
+                'model' => $data['UCmsAlbum'],
                 'attribute' => 'created_at',
                 'value' => Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse(
-                    $data['BCmsAlbum']->created_at, 'yyyy-MM-dd hh:mm:ss'
+                    $data['UCmsAlbum']->created_at, 'yyyy-MM-dd hh:mm:ss'
                 ))
             )),
-            new BItemField(array(
-                'model' => $data['BCmsAlbum'],
+            new UItemField(array(
+                'model' => $data['UCmsAlbum'],
                 'attribute' => 'updated_at',
                 'value' => Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse(
-                    $data['BCmsAlbum']->updated_at, 'yyyy-MM-dd hh:mm:ss'
+                    $data['UCmsAlbum']->updated_at, 'yyyy-MM-dd hh:mm:ss'
                 ))
             )),
         );

@@ -29,9 +29,9 @@ class LoginForm extends CFormModel
     public function attributeLabels()
     {
         return array(
-            'username' => B::t('backend', 'login_form:username'),
-            'password' => B::t('backend', 'login_form:password'),
-            'remember_me' => B::t('backend', 'login_form:remember_me')
+            'username' => Unitkit::t('backend', 'login_form:username'),
+            'password' => Unitkit::t('backend', 'login_form:password'),
+            'remember_me' => Unitkit::t('backend', 'login_form:remember_me')
         );
     }
 
@@ -44,14 +44,14 @@ class LoginForm extends CFormModel
     public function authenticate($attribute, $params)
     {
         if (! $this->hasErrors()) {
-            $this->_identity = new BUserIdentity($this->username, $this->password);
+            $this->_identity = new UUserIdentity($this->username, $this->password);
             if (! $this->_identity->authenticate()) {
-                if ($this->_identity->errorCode === BUserIdentity::ERR_USER_NOT_ACTIVATED) {
-                    $this->addError('password', B::t('backend', 'account_not_activated'));
-                } elseif ($this->_identity->errorCode === BUserIdentity::ERR_USER_NOT_VALIDATED) {
-                    $this->addError('password', B::t('backend', 'account_not_validated'));
+                if ($this->_identity->errorCode === UUserIdentity::ERR_USER_NOT_ACTIVATED) {
+                    $this->addError('password', Unitkit::t('backend', 'account_not_activated'));
+                } elseif ($this->_identity->errorCode === UUserIdentity::ERR_USER_NOT_VALIDATED) {
+                    $this->addError('password', Unitkit::t('backend', 'account_not_validated'));
                 } else {
-                    $this->addError('password', B::t('backend', 'bad_login_password'));
+                    $this->addError('password', Unitkit::t('backend', 'bad_login_password'));
                 }
             }
         }
@@ -63,14 +63,14 @@ class LoginForm extends CFormModel
     public function login()
     {
         if ($this->_identity === null) {
-            $this->_identity = new BUserIdentity($this->username, $this->password);
+            $this->_identity = new UUserIdentity($this->username, $this->password);
             $this->_identity->authenticate();
         }
 
-        if ($this->_identity->errorCode === BUserIdentity::ERROR_NONE) {
+        if ($this->_identity->errorCode === UUserIdentity::ERROR_NONE) {
             $user = Yii::app()->user;
             if (! $user->login($this->_identity, $this->remember_me)) {
-                $this->addError('password', B::t('backend', 'bad_login_password'));
+                $this->addError('password', Unitkit::t('backend', 'bad_login_password'));
                 return false;
             }
             return true;

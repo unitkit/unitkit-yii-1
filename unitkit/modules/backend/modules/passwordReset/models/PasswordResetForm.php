@@ -30,7 +30,7 @@ class PasswordResetForm extends CFormModel
     public function attributeLabels()
     {
         return array(
-            'email' => B::t('unitkit', 'b_person:email')
+            'email' => Unitkit::t('unitkit', 'u_person:email')
         );
     }
 
@@ -43,29 +43,29 @@ class PasswordResetForm extends CFormModel
     public function isAuth($attribute, $params)
     {
         if ($this->email !== '') {
-            $person = BPerson::model()->findByAttributes(array(
+            $person = UPerson::model()->findByAttributes(array(
                 'email' => $this->email
             ));
             if ($person === null)
-                $this->addError('email', B::t('backend', 'b_person_email_not_exist'));
+                $this->addError('email', Unitkit::t('backend', 'u_person_email_not_exist'));
             elseif ($person->active_reset == 0)
-                $this->addError('email', B::t('backend', 'password_reset_cant_be_reset'));
+                $this->addError('email', Unitkit::t('backend', 'password_reset_cant_be_reset'));
         }
     }
 
     public function sendEmail()
     {
         if (! $this->hasErrors()) {
-            $mail = new BMail();
+            $mail = new UMail();
             $mail->classFunction = 'MailFunctionPasswordReset';
             $mail->staticParams = array(
-                'nb' => B::v('backend', 'b_person_token_expired_at:resetPassword')
+                'nb' => Unitkit::v('backend', 'u_person_token_expired_at:resetPassword')
             );
             $mail->sqlParams = array(
                 'email' => $this->email
             );
 
-            if ($mail->sendMailTemplate(B::v('backend', 'mail_template_id:resetPassword'), Yii::app()->language)) {
+            if ($mail->sendMailTemplate(Unitkit::v('backend', 'mail_template_id:resetPassword'), Yii::app()->language)) {
                 $this->isSent = true;
             }
         }

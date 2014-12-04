@@ -7,15 +7,15 @@ Yii::app()
         $dataView->id,
         Yii::app()->clientScript->getAppCrudMessages()."
     	var list = new $.backend.mail.mailTemplate.List({main: '#" . $dataView->id . " .list:first'});
-    	list.addAppSettings(new $.b.app.Settings({
+    	list.addAppSettings(new $.unitkit.app.Settings({
     		main: '#" . $dataView->id . " .dynamic:first',
     		list: list
     	}));
-    	list.addAppEdit(new $.b.app.Edit({
+    	list.addAppEdit(new $.unitkit.app.Edit({
     		main: '#" . $dataView->id . " .dynamic:first',
     		list: list
     	}));
-    	list.addAppTranslate(new $.b.app.Translate({
+    	list.addAppTranslate(new $.unitkit.app.Translate({
     		main: '#" . $dataView->id . " .dynamic:first',
     		list: list
     	}));

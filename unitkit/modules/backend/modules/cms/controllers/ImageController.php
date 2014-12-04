@@ -6,10 +6,10 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class ImageController extends BAutoController
+class ImageController extends UAutoController
 {
-    protected $_model = 'BCmsImage';
-    protected $_modelI18n = 'BCmsImageI18n';
+    protected $_model = 'UCmsImage';
+    protected $_modelI18n = 'UCmsImageI18n';
 
     public function init()
     {
@@ -26,8 +26,8 @@ class ImageController extends BAutoController
     protected function _uploader()
     {
         return array(
-            'BCmsImage[file_path]' => array(
-                'model' => 'BCmsImage',
+            'UCmsImage[file_path]' => array(
+                'model' => 'UCmsImage',
                 'field' => 'file_path',
                 'uploader' => Yii::app()->getModule('backend')->getModule('cms')->albumPhotoUploader
             ),
@@ -73,7 +73,7 @@ class ImageController extends BAutoController
             // set files attributes and fetch array of operations
             if (! empty($modelName::$upload)) {
                 foreach ($modelName::$upload as $column => $data) {
-                    $uploader = $this->getUploader(BHtml::resolveName($modelName, $column));
+                    $uploader = $this->getUploader(UHtml::resolveName($modelName, $column));
                     $uploader['uploader']->setAttribute($models[$this->_model], $column, $oldFilesPath[$this->_model][$column]);
                 }
                 if (isset($models[$this->_model]->uploadOperations['file_path']['postModelAttribute'])) {
@@ -83,7 +83,7 @@ class ImageController extends BAutoController
                             ? $models[$this->_model]->uploadOperations['file_path']['extension']
                             : pathinfo($models[$this->_model]->uploadOperations['file_path']['postModelAttribute'])['extension'];
 
-                        $models[$this->_model]->uploadOperations['file_path']['value'] = BHtml::slugify($models[$this->_modelI18n]->title) .
+                        $models[$this->_model]->uploadOperations['file_path']['value'] = UHtml::slugify($models[$this->_modelI18n]->title) .
                             '_'.uniqid() . '.' . $extension;
                         $models[$this->_model]->file_path = $models[$this->_model]->uploadOperations['file_path']['value'];
                     }
@@ -114,7 +114,7 @@ class ImageController extends BAutoController
                 // execute files operations
                 if (! empty($modelName::$upload)) {
                     foreach ($modelName::$upload as $column => $data) {
-                        $uploader = $this->getUploader(BHtml::resolveName($modelName, $column));
+                        $uploader = $this->getUploader(UHtml::resolveName($modelName, $column));
                         $uploader['uploader']->updateFile($models[$this->_model], $column, $data['pathDest']);
                     }
                 }

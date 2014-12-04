@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class NewsGroupListRowDataView extends BListRowItemDataView
+class NewsGroupListRowDataView extends UListRowItemDataView
 {
     /**
      * Constructor
@@ -19,7 +19,7 @@ class NewsGroupListRowDataView extends BListRowItemDataView
         $this->isTranslatable = true;
         $this->pk = $pk;
         $this->items = array(
-            isset($data->bCmsNewsGroupI18ns[0]) ? $data->bCmsNewsGroupI18ns[0]->name : '',
+            isset($data->uCmsNewsGroupI18ns[0]) ? $data->uCmsNewsGroupI18ns[0]->name : '',
         );
     }
 }

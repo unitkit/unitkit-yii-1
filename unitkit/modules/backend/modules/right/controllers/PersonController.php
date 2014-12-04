@@ -6,9 +6,9 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class PersonController extends BAutoController
+class PersonController extends UAutoController
 {
-    protected $_model = 'BPerson';
+    protected $_model = 'UPerson';
 
     /**
      * Get array of crud components
@@ -18,11 +18,11 @@ class PersonController extends BAutoController
     protected function _advancedComboBox()
     {
         return array(
-            'BI18nI18n[name]' => array(
+            'UI18nI18n[name]' => array(
                 'search' => $_GET['search'],
-                'model' => 'BI18nI18n',
+                'model' => 'UI18nI18n',
                 'select' => array(
-                    'id' => 'b_i18n_id',
+                    'id' => 'u_i18n_id',
                     'text' => 'name'
                 ),
                 'criteria' => array(
@@ -49,43 +49,43 @@ class PersonController extends BAutoController
         // array of models
         $models = array();
 
-        $models['BPerson'] = ($pk !== null) ? BPerson::model()->findByPk(count($pk) == 1 ? reset($pk) : $pk) : null;
-        if ($models['BPerson'] === null) {
+        $models['UPerson'] = ($pk !== null) ? UPerson::model()->findByPk(count($pk) == 1 ? reset($pk) : $pk) : null;
+        if ($models['UPerson'] === null) {
             if ($pk !== null)
                 throw new CHttpException(403);
-            $models['BPerson'] = new BPerson('insert');
+            $models['UPerson'] = new UPerson('insert');
         } else
-            $models['BPerson']->setScenario('update');
+            $models['UPerson']->setScenario('update');
 
-        $models['BPerson']->password = '';
+        $models['UPerson']->password = '';
 
         if (Yii::app()->user->checkAccess('administrate:backend/right')) {
-            $models['BGroup'] = new BGroup('search');
-            $models['BGroup']->unsetAttributes();
-            foreach ($models['BGroup']->search(Yii::app()->language)->getData() as $BGroup)
-                $models['BGroups'][$BGroup->id] = $BGroup;
+            $models['UGroup'] = new UGroup('search');
+            $models['UGroup']->unsetAttributes();
+            foreach ($models['UGroup']->search(Yii::app()->language)->getData() as $UGroup)
+                $models['UGroups'][$UGroup->id] = $UGroup;
 
-            if (! empty($models['BGroups'])) {
+            if (! empty($models['UGroups'])) {
                 // get all person/group relations
-                $models['BPersonGroups'] = array();
+                $models['UPersonGroups'] = array();
 
                 if ($pk !== null) {
-                    $models['BPersonGroup'] = new BPersonGroup();
-                    $models['BPersonGroup']->unsetAttributes();
-                    foreach ($models['BPersonGroup']->findAll(array(
-                        'condition' => 'b_person_id = :bPersonId',
+                    $models['UPersonGroup'] = new UPersonGroup();
+                    $models['UPersonGroup']->unsetAttributes();
+                    foreach ($models['UPersonGroup']->findAll(array(
+                        'condition' => 'u_person_id = :uPersonId',
                         'params' => array(
-                            ':bPersonId' => $pk['id']
+                            ':uPersonId' => $pk['id']
                         )
-                    )) as $bPersonGroup) {
-                        $models['BPersonGroups'][$bPersonGroup->b_group_id] = $bPersonGroup;
-                        $models['BPersonGroups'][$bPersonGroup->b_group_id]->setScenario('update');
+                    )) as $uPersonGroup) {
+                        $models['UPersonGroups'][$uPersonGroup->u_group_id] = $uPersonGroup;
+                        $models['UPersonGroups'][$uPersonGroup->u_group_id]->setScenario('update');
                     }
                 }
 
-                foreach ($models['BGroups'] as $bGroup)
-                    if (! isset($models['BPersonGroups'][$bGroup->id]))
-                        $models['BPersonGroups'][$bGroup->id] = new BPersonGroup('insert');
+                foreach ($models['UGroups'] as $uGroup)
+                    if (! isset($models['UPersonGroups'][$uGroup->id]))
+                        $models['UPersonGroups'][$uGroup->id] = new UPersonGroup('insert');
             }
         }
 
@@ -105,48 +105,48 @@ class PersonController extends BAutoController
         $isSaved = false;
 
         // begin a transaction
-        $transaction = $models['BPerson']->dbConnection->beginTransaction();
+        $transaction = $models['UPerson']->dbConnection->beginTransaction();
         try {
             // set attributes
-            if (isset($postData['BPerson']))
-                $models['BPerson']->attributes = $postData['BPerson'];
+            if (isset($postData['UPerson']))
+                $models['UPerson']->attributes = $postData['UPerson'];
 
-            if (isset($models['BPersonGroups'])) {
-                foreach ($models['BPersonGroups'] as $bGroupId => &$BPersonGroup) {
-                    if (isset($postData['BPersonGroups'][$bGroupId])) {
+            if (isset($models['UPersonGroups'])) {
+                foreach ($models['UPersonGroups'] as $uGroupId => &$UPersonGroup) {
+                    if (isset($postData['UPersonGroups'][$uGroupId])) {
                         // get current scenario
-                        $scenario = $BPersonGroup->getScenario();
+                        $scenario = $UPersonGroup->getScenario();
                         // set and validate attributes
-                        if ($scenario == 'insert' && $postData['BPersonGroups'][$bGroupId] == 1) {
-                            $BPersonGroup->b_group_id = $bGroupId;
-                            $BPersonGroup->validate();
-                        } elseif ($scenario == 'update' && $postData['BPersonGroups'][$bGroupId] == 0) {
-                            $BPersonGroup->b_group_id = null;
-                            $BPersonGroup->setScenario('delete');
+                        if ($scenario == 'insert' && $postData['UPersonGroups'][$uGroupId] == 1) {
+                            $UPersonGroup->u_group_id = $uGroupId;
+                            $UPersonGroup->validate();
+                        } elseif ($scenario == 'update' && $postData['UPersonGroups'][$uGroupId] == 0) {
+                            $UPersonGroup->u_group_id = null;
+                            $UPersonGroup->setScenario('delete');
                         }
                     }
                 }
             }
 
             // validate attributes
-            $models['BPerson']->validate();
+            $models['UPerson']->validate();
 
             // save the model
-            if ($models['BPerson']->save()) {
-                if (isset($models['BPersonGroups'])) {
-                    foreach ($models['BPersonGroups'] as $bGroupId => &$BPersonGroup) {
+            if ($models['UPerson']->save()) {
+                if (isset($models['UPersonGroups'])) {
+                    foreach ($models['UPersonGroups'] as $uGroupId => &$UPersonGroup) {
                         // get current scenario
-                        $scenario = $BPersonGroup->getScenario();
+                        $scenario = $UPersonGroup->getScenario();
                         // update informations
-                        if ($scenario == 'insert' && $BPersonGroup->b_group_id !== null) {
-                            $BPersonGroup->b_person_id = $models['BPerson']->id;
-                            if (! $BPersonGroup->save())
+                        if ($scenario == 'insert' && $UPersonGroup->u_group_id !== null) {
+                            $UPersonGroup->u_person_id = $models['UPerson']->id;
+                            if (! $UPersonGroup->save())
                                 throw new Exception();
                         } elseif ($scenario == 'delete') {
-                            // b_group_id is temporary filled in order to remove record (this attribute belong to the PK)
-                            $BPersonGroup->b_group_id = $bGroupId;
-                            $BPersonGroup->delete();
-                            $BPersonGroup->b_group_id = null;
+                            // u_group_id is temporary filled in order to remove record (this attribute belong to the PK)
+                            $UPersonGroup->u_group_id = $uGroupId;
+                            $UPersonGroup->delete();
+                            $UPersonGroup->u_group_id = null;
                         }
                     }
                 }
@@ -155,12 +155,12 @@ class PersonController extends BAutoController
                 $transaction->commit();
 
                 // flush rights in cache
-                Yii::app()->rights->deleteCachePersonDynKey($models['BPerson']->id);
+                Yii::app()->rights->deleteCachePersonDynKey($models['UPerson']->id);
 
                 // update the status
                 $isSaved = true;
 
-                $models['BPerson']->password = '';
+                $models['UPerson']->password = '';
             } else {
                 throw new Exception(500);
             }

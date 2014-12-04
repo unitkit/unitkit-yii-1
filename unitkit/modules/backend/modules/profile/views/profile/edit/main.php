@@ -2,17 +2,17 @@
 Yii::app()
     ->clientScript
     ->registerDynamicScript(
-        'bProfileProfilMain',
+        'uProfileProfilMain',
         Yii::app()->clientScript->getAppCrudMessages() . "
-    	var edit = new $.b.app.Edit({
-    		main: '#bProfileProfileMain .inner-container'
+    	var edit = new $.unitkit.app.Edit({
+    		main: '#uProfileProfileMain .inner-container'
     	});
     	edit.initEvents();"
     );
 ?>
-<div id="bProfileProfileMain">
+<div id="uProfileProfileMain">
     <div class="header-title">
-        <h1><?= B::t('backend', 'profile_edit_title') ?></h1>
+        <h1><?= Unitkit::t('backend', 'profile_edit_title') ?></h1>
     </div>
     <div class="inner-container">
     <?php

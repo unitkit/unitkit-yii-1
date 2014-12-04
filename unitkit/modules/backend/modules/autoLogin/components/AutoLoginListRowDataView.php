@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class AutoLoginListRowDataView extends BListRowItemDataView
+class AutoLoginListRowDataView extends UListRowItemDataView
 {
 
     /**
@@ -19,7 +19,7 @@ class AutoLoginListRowDataView extends BListRowItemDataView
     {
         $this->pk = $pk;
         $this->items = array(
-            $data->bPerson->fullName,
+            $data->uPerson->fullName,
             $data->duration,
             Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse($data->expired_at, 'yyyy-MM-dd hh:mm:ss')),
             Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse($data->created_at, 'yyyy-MM-dd hh:mm:ss'))

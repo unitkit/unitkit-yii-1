@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class AlbumEditDataView extends BEditDataView
+class AlbumEditDataView extends UEditDataView
 {
     /**
      * Constructor
@@ -19,11 +19,11 @@ class AlbumEditDataView extends BEditDataView
     public function __construct($data, $relatedData, $pk, $isSaved)
     {
         // data view id
-        $this->id = 'bCmsAlbumAlbumEdit';
+        $this->id = 'uCmsAlbumAlbumEdit';
 
         // component title
-        $this->createTitle = B::t('backend', 'cms_album_create_title');
-        $this->updateTitle = B::t('backend', 'cms_album_update_title');
+        $this->createTitle = Unitkit::t('backend', 'cms_album_create_title');
+        $this->updateTitle = Unitkit::t('backend', 'cms_album_update_title');
 
         // primary key
         $this->pk = $pk;
@@ -45,40 +45,40 @@ class AlbumEditDataView extends BEditDataView
         }
 
         // new record status
-        $this->isNewRecord = $data['BCmsAlbum']->isNewRecord;
+        $this->isNewRecord = $data['UCmsAlbum']->isNewRecord;
 
         // page title
         $this->refreshPageTitle();
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BCmsAlbum'],
+            new UItemField(array(
+                'model' => $data['UCmsAlbum'],
                 'attribute' => 'id',
                 'type' => 'resolveValue'
             )),
-            new BItemField(array(
-                'model' => $data['BCmsAlbumI18n'],
+            new UItemField(array(
+                'model' => $data['UCmsAlbumI18n'],
                 'attribute' => 'title',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsAlbumI18n']->getAttributeLabel('title'),
+                    'placeholder' => $data['UCmsAlbumI18n']->getAttributeLabel('title'),
                 )
             )),
         );
 
-        if (! $data['BCmsAlbum']->isNewRecord) {
-            $this->items[] = new BItemField(array(
-                'model' => $data['BCmsAlbum'],
+        if (! $data['UCmsAlbum']->isNewRecord) {
+            $this->items[] = new UItemField(array(
+                'model' => $data['UCmsAlbum'],
                 'attribute' => 'created_at',
-                'value' =>  $data['BCmsAlbum']->created_at
+                'value' =>  $data['UCmsAlbum']->created_at
             ));
-            $this->items[] = new BItemField(array(
-                'model' => $data['BCmsAlbum'],
+            $this->items[] = new UItemField(array(
+                'model' => $data['UCmsAlbum'],
                 'attribute' => 'updated_at',
-                'value' =>  $data['BCmsAlbum']->updated_at
+                'value' =>  $data['UCmsAlbum']->updated_at
             ));
         }
     }

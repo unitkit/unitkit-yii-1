@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class ImageSettingsDataView extends BSettingsDataView
+class ImageSettingsDataView extends USettingsDataView
 {
     /**
      * Constructor
@@ -17,7 +17,7 @@ class ImageSettingsDataView extends BSettingsDataView
      */
     public function __construct($data, $relatedData, $isSaved)
     {
-        $this->id = 'bCmsImageImageSettings';
+        $this->id = 'uCmsImageImageSettings';
         parent::__construct($data, $relatedData, $isSaved);
     }
 }

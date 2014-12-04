@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MailSendingRoleListRowDataView extends BListRowItemDataView
+class MailSendingRoleListRowDataView extends UListRowItemDataView
 {
 
     /**
@@ -19,8 +19,8 @@ class MailSendingRoleListRowDataView extends BListRowItemDataView
     {
         $this->pk = $pk;
         $this->items = array(
-            isset($data->bMailSendRoleI18ns[0]) ? $data->bMailSendRoleI18ns[0]->name : '',
-            $data->bPerson->fullName
+            isset($data->uMailSendRoleI18ns[0]) ? $data->uMailSendRoleI18ns[0]->name : '',
+            $data->uPerson->fullName
         );
     }
 }

@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class VariableListRowDataView extends BListRowItemDataView
+class VariableListRowDataView extends UListRowItemDataView
 {
 
     /**
@@ -20,10 +20,10 @@ class VariableListRowDataView extends BListRowItemDataView
         $this->isTranslatable = true;
         $this->pk = $pk;
         $this->items = array(
-            isset($data->bVariableGroupI18ns[0]) ? $data->bVariableGroupI18ns[0]->name : '',
+            isset($data->uVariableGroupI18ns[0]) ? $data->uVariableGroupI18ns[0]->name : '',
             $data->param,
             $data->val,
-            isset($data->bVariableI18ns[0]) ? $data->bVariableI18ns[0]->description : ''
+            isset($data->uVariableI18ns[0]) ? $data->uVariableI18ns[0]->description : ''
         );
     }
 }

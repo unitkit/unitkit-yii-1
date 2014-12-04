@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class NewsGroupEditDataView extends BEditDataView
+class NewsGroupEditDataView extends UEditDataView
 {
     /**
      * Constructor
@@ -19,11 +19,11 @@ class NewsGroupEditDataView extends BEditDataView
     public function __construct($data, $relatedData, $pk, $isSaved)
     {
         // data view id
-        $this->id = 'bCmsNewsGroupNewsGroupEdit';
+        $this->id = 'uCmsNewsGroupNewsGroupEdit';
 
         // component title
-        $this->createTitle = B::t('backend', 'cms_news_group_create_title');
-        $this->updateTitle = B::t('backend', 'cms_news_group_update_title');
+        $this->createTitle = Unitkit::t('backend', 'cms_news_group_create_title');
+        $this->updateTitle = Unitkit::t('backend', 'cms_news_group_update_title');
 
         // primary key
         $this->pk = $pk;
@@ -45,40 +45,40 @@ class NewsGroupEditDataView extends BEditDataView
         }
 
         // new record status
-        $this->isNewRecord = $data['BCmsNewsGroup']->isNewRecord;
+        $this->isNewRecord = $data['UCmsNewsGroup']->isNewRecord;
 
         // page title
         $this->refreshPageTitle();
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BCmsNewsGroup'],
+            new UItemField(array(
+                'model' => $data['UCmsNewsGroup'],
                 'attribute' => 'id',
                 'type' => 'resolveValue'
             )),
-            new BItemField(array(
-                'model' => $data['BCmsNewsGroupI18n'],
+            new UItemField(array(
+                'model' => $data['UCmsNewsGroupI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsNewsGroupI18n']->getAttributeLabel('name'),
+                    'placeholder' => $data['UCmsNewsGroupI18n']->getAttributeLabel('name'),
                 )
             )),
         );
 
-        if (! $data['BCmsNewsGroup']->isNewRecord) {
-            $this->items[] = new BItemField(array(
-                'model' => $data['BCmsNewsGroup'],
+        if (! $data['UCmsNewsGroup']->isNewRecord) {
+            $this->items[] = new UItemField(array(
+                'model' => $data['UCmsNewsGroup'],
                 'attribute' => 'created_at',
-                'value' =>  $data['BCmsNewsGroup']->created_at
+                'value' =>  $data['UCmsNewsGroup']->created_at
             ));
-            $this->items[] = new BItemField(array(
-                'model' => $data['BCmsNewsGroup'],
+            $this->items[] = new UItemField(array(
+                'model' => $data['UCmsNewsGroup'],
                 'attribute' => 'updated_at',
-                'value' =>  $data['BCmsNewsGroup']->updated_at
+                'value' =>  $data['UCmsNewsGroup']->updated_at
             ));
         }
     }

@@ -6,10 +6,10 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class AlbumPhotoController extends BAutoController
+class AlbumPhotoController extends UAutoController
 {
-    protected $_model = 'BCmsAlbumPhoto';
-    protected $_modelI18n = 'BCmsAlbumPhotoI18n';
+    protected $_model = 'UCmsAlbumPhoto';
+    protected $_modelI18n = 'UCmsAlbumPhotoI18n';
 
     /**
      * @see CController::filters()
@@ -26,7 +26,7 @@ class AlbumPhotoController extends BAutoController
         if (empty($_GET['album'])) {
             throw new CHttpException(404);
         } else {
-            $model = BCmsAlbum::model()->findByPk($_GET['album'], array('select' => '1'));
+            $model = UCmsAlbum::model()->findByPk($_GET['album'], array('select' => '1'));
             if($model === null) {
                 throw new CHttpException(404);
             } else {
@@ -41,8 +41,8 @@ class AlbumPhotoController extends BAutoController
     protected function _uploader()
     {
         return array(
-            'BCmsAlbumPhoto[file_path]' => array(
-                'model' => 'BCmsAlbumPhoto',
+            'UCmsAlbumPhoto[file_path]' => array(
+                'model' => 'UCmsAlbumPhoto',
                 'field' => 'file_path',
                 'uploader' => Yii::app()->getModule('backend')->getModule('cms')->albumPhotoUploader
             ),
@@ -55,11 +55,11 @@ class AlbumPhotoController extends BAutoController
     protected function _advancedComboBox()
     {
         return array(
-            'BCmsAlbumI18n[title]' => array(
+            'UCmsAlbumI18n[title]' => array(
                 'search' => $_GET['search'],
-                'model' => 'BCmsAlbumI18n',
+                'model' => 'UCmsAlbumI18n',
                 'select' => array(
-                    'id' => 'b_cms_album_id',
+                    'id' => 'u_cms_album_id',
                     'text' => 'title'
                 ),
                 'criteria' => array(
@@ -86,7 +86,7 @@ class AlbumPhotoController extends BAutoController
         if (isset($_GET[$this->_model])) {
             $model->attributes = $_GET[$this->_model];
         }
-        $model->b_cms_album_id = $_GET['album'];
+        $model->u_cms_album_id = $_GET['album'];
 
         // search
         $dataProvider = $model->search(Yii::app()->language);
@@ -98,7 +98,7 @@ class AlbumPhotoController extends BAutoController
         // pagination parameters
         $pagination = $dataProvider->getPagination();
         $pagination->route = $this->id . '/list';
-        $pagination->pageSize = BInterfaceSetting::model()->getSettings($this->id . ':' . $this->module->id, Yii::app()->user->id)->page_size;
+        $pagination->pageSize = UInterfaceSetting::model()->getSettings($this->id . ':' . $this->module->id, Yii::app()->user->id)->page_size;
         $pagination->itemCount = $dataProvider->totalItemCount;
 
         // datas
@@ -145,8 +145,8 @@ class AlbumPhotoController extends BAutoController
     protected function _loadRelatedData()
     {
         return array(
-            'BCmsAlbumI18n' => BCmsAlbumI18n::model()->findByPk(array(
-                'b_cms_album_id' => $_GET['album'], 'i18n_id' => Yii::app()->language
+            'UCmsAlbumI18n' => UCmsAlbumI18n::model()->findByPk(array(
+                'u_cms_album_id' => $_GET['album'], 'i18n_id' => Yii::app()->language
             ))
         );
     }
@@ -178,7 +178,7 @@ class AlbumPhotoController extends BAutoController
             }
 
             if($models[$this->_model]->scenario === 'insert') {
-                $models[$this->_model]->b_cms_album_id = $_GET['album'];
+                $models[$this->_model]->u_cms_album_id = $_GET['album'];
             }
 
             // set attributes
@@ -194,7 +194,7 @@ class AlbumPhotoController extends BAutoController
             // set files attributes and fetch array of operations
             if (! empty($modelName::$upload)) {
                 foreach ($modelName::$upload as $column => $data) {
-                    $uploader = $this->getUploader(BHtml::resolveName($modelName, $column));
+                    $uploader = $this->getUploader(UHtml::resolveName($modelName, $column));
                     $uploader['uploader']->setAttribute($models[$this->_model], $column, $oldFilesPath[$this->_model][$column]);
                 }
                 if (isset($models[$this->_model]->uploadOperations['file_path']['postModelAttribute'])) {
@@ -204,7 +204,7 @@ class AlbumPhotoController extends BAutoController
                             ? $models[$this->_model]->uploadOperations['file_path']['extension']
                             : pathinfo($models[$this->_model]->uploadOperations['file_path']['postModelAttribute'])['extension'];
 
-                        $models[$this->_model]->uploadOperations['file_path']['value'] = BHtml::slugify($models[$this->_modelI18n]->title) .
+                        $models[$this->_model]->uploadOperations['file_path']['value'] = UHtml::slugify($models[$this->_modelI18n]->title) .
                             '_'.uniqid() . '.' . $extension;
                         $models[$this->_model]->file_path = $models[$this->_model]->uploadOperations['file_path']['value'];
                     }
@@ -235,7 +235,7 @@ class AlbumPhotoController extends BAutoController
                 // execute files operations
                 if (! empty($modelName::$upload)) {
                     foreach ($modelName::$upload as $column => $data) {
-                        $uploader = $this->getUploader(BHtml::resolveName($modelName, $column));
+                        $uploader = $this->getUploader(UHtml::resolveName($modelName, $column));
                         $uploader['uploader']->updateFile($models[$this->_model], $column, $data['pathDest']);
                     }
                 }

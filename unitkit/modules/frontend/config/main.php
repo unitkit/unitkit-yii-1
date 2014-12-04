@@ -21,7 +21,7 @@ return array(
         'application.modules.frontend.vendor.EScriptBoost.*'
     ),
     // default language
-    'language' => 'fr',
+    'language' => 'en',
     // list of activated modules
     // !! module order is very important because url rules of modules are evaluated in statement order) !!
     // !! cms module should be declared at the end !!
@@ -39,29 +39,29 @@ return array(
     // application components
     'components' => array(
         'variables' => array(
-            'class' => 'application.components.BDbVariable',
+            'class' => 'application.components.UDbVariable',
             'cacheID' => 'varCache'
         ),
         'rights' => array(
-            'class' => 'application.components.BDbRight',
+            'class' => 'application.components.UDbRight',
             'cacheID' => 'rightCache'
         ),
         'mail' => array(
-            'class' => 'application.modules.frontend.components.BMail',
-            'classFunction' => 'BMailFunction'
+            'class' => 'application.modules.frontend.components.UMail',
+            'classFunction' => 'UMailFunction'
         ),
         'clientScript' => array(
-            'class' => 'application.modules.frontend.components.BClientScript'
+            'class' => 'application.modules.frontend.components.UClientScript'
         ),
         'request' => array(
-            'class' => 'application.components.BHttpRequest',
+            'class' => 'application.components.UHttpRequest',
             'enableCsrfValidation' => true
         ),
         'session' => array(
-            'class' => 'application.components.BHttpSession'
+            'class' => 'application.components.UHttpSession'
         ),
         'messages' => array(
-            'class' => 'application.components.BDbMessageSource',
+            'class' => 'application.components.UDbMessageSource',
             'cacheID' => 'messCache'
         ),
         'mailer' => array(
@@ -73,7 +73,7 @@ return array(
             //'Host' => ''
         ),
         'urlManager' => array(
-            'class' => 'application.modules.frontend.components.BUrlManager',
+            'class' => 'application.modules.frontend.components.UUrlManager',
             'urlFormat' => 'path',
             'showScriptName' => false,
             'cacheID' => 'urlCache'
@@ -90,14 +90,12 @@ return array(
         ),
         // variable cache
         'varCache' => array(
-            'class' => 'CMemCache',
-            'useMemcached' => true,
+            'class' => 'CFileCache',
             'keyPrefix' => 'b:app:var'
         ),
         // database cache
         'DBCache' => array(
-            'class' => 'CMemCache',
-            'useMemcached' => true,
+            'class' => 'CFileCache',
             'keyPrefix' => 'b:app:db'
         ),
         // messages cache

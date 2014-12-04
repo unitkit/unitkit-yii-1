@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class RoleEditRowDataView extends BEditRowItemDataView
+class RoleEditRowDataView extends UEditRowItemDataView
 {
 
     /**
@@ -29,34 +29,34 @@ class RoleEditRowDataView extends BEditRowItemDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BRoleI18n'],
+            new UItemField(array(
+                'model' => $data['URoleI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BRoleI18n']->getAttributeLabel('name')
+                    'placeholder' => $data['URoleI18n']->getAttributeLabel('name')
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BRole'],
+            new UItemField(array(
+                'model' => $data['URole'],
                 'attribute' => 'operation',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BRole']->getAttributeLabel('operation')
+                    'placeholder' => $data['URole']->getAttributeLabel('operation')
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BRole'],
+            new UItemField(array(
+                'model' => $data['URole'],
                 'attribute' => 'business_rule',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BRole']->getAttributeLabel('business_rule')
+                    'placeholder' => $data['URole']->getAttributeLabel('business_rule')
                 )
             ))
         );

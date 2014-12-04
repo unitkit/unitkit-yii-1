@@ -1,33 +1,33 @@
 <?php
-$hasErrors = $models['BMessage']->hasErrors();
+$hasErrors = $models['UMessage']->hasErrors();
 if (! $hasErrors)
     foreach ($relatedData['i18nIds'] as $i18nId) {
-        $hasErrors = $models['bMessageI18ns'][$i18nId]->hasErrors();
+        $hasErrors = $models['uMessageI18ns'][$i18nId]->hasErrors();
         if ($hasErrors)
             break;
     }
 ?>
 <?php if( $hasErrors ) : ?>
 <div class="alert alert-danger">
-	<?= BHtml::errorSummary(array_merge(array($models['BMessage']), $models['bMessageI18ns'])); ?>
+	<?= UHtml::errorSummary(array_merge(array($models['UMessage']), $models['uMessageI18ns'])); ?>
 </div>
 <?php endif ?>
 
 <?php if($isSaved): ?>
 <div class="alert alert-success">
-    <h4><?= B::t('unitkit', 'is_saved') ?></h4>
+    <h4><?= Unitkit::t('unitkit', 'is_saved') ?></h4>
     <div class="action-success">
 		<?php if($this->getAction()->getId() == 'create'): ?>
 		<a class="btn-success btn btn-add-again" href="<?= $this->createUrl($this->id.'/create'); ?>">
             <span class="glyphicon glyphicon-plus-sign"></span>
-            <span><?= B::t('unitkit', 'btn_add_again'); ?></span>
+            <span><?= Unitkit::t('unitkit', 'btn_add_again'); ?></span>
         </a>
         <a class="btn btn-default btn-close" href="<?= $this->createUrl($this->id.'/list'); ?>">
-            <span><?= B::t('unitkit', 'btn_close'); ?></span>
+            <span><?= Unitkit::t('unitkit', 'btn_close'); ?></span>
         </a>
 		<?php else: ?>
 		<a class="btn btn-default btn-close" href="<?= $this->createUrl($this->id.'/list'); ?>">
-            <span><?= B::t('unitkit', 'btn_close'); ?></span>
+            <span><?= Unitkit::t('unitkit', 'btn_close'); ?></span>
         </a>
 		<?php endif; ?>
 	</div>
@@ -38,18 +38,18 @@ if (! $hasErrors)
     <table class="table table-striped table-condensed">
         <tbody>
             <tr>
-                <th><?=$models['BMessage']->getAttributeLabel('b_message_group_id'); ?></th>
-                <td class="<?=$models['BMessage']->hasErrors('b_message_group_id') ? 'has-error' : ''; ?>">
+                <th><?=$models['UMessage']->getAttributeLabel('u_message_group_id'); ?></th>
+                <td class="<?=$models['UMessage']->hasErrors('u_message_group_id') ? 'has-error' : ''; ?>">
             	<?=
-            	   BHtml::activeHiddenField(
-                        $models['BMessage'],
-                        'b_message_group_id',
+            	   UHtml::activeHiddenField(
+                        $models['UMessage'],
+                        'u_message_group_id',
                         array(
                             'class' => 'input-ajax-select',
                             'id' => uniqid(),
-                            'data-action' => $this->createUrl($this->id . '/advComboBox/', array('name' => 'BMessageGroupI18n[name]', 'language' => Yii::app()->language)),
-                            'data-placeholder' => B::t('unitkit', 'input_select'),
-                            'data-text' => ! empty($models['BMessage']->b_message_group_id) ? BMessageGroupI18n::model()->findByPk(array('b_message_group_id' => $models['BMessage']->b_message_group_id,'i18n_id' => Yii::app()->language))->name : '',
+                            'data-action' => $this->createUrl($this->id . '/advComboBox/', array('name' => 'UMessageGroupI18n[name]', 'language' => Yii::app()->language)),
+                            'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
+                            'data-text' => ! empty($models['UMessage']->u_message_group_id) ? UMessageGroupI18n::model()->findByPk(array('u_message_group_id' => $models['UMessage']->u_message_group_id,'i18n_id' => Yii::app()->language))->name : '',
                             'data-addAction' => $this->createUrl('messageGroup/create'),
                             'data-updateAction' => $this->createUrl('messageGroup/update')
                         )
@@ -57,34 +57,34 @@ if (! $hasErrors)
                 ?>
         		</td>
             </tr>
-            <!-- BMessage b_message_group_id -->
+            <!-- UMessage u_message_group_id -->
 
             <tr>
-                <th><?=$models['BMessage']->getAttributeLabel('source'); ?></th>
-                <td class="<?=$models['BMessage']->hasErrors('source') ? 'has-error' : ''; ?>">
+                <th><?=$models['UMessage']->getAttributeLabel('source'); ?></th>
+                <td class="<?=$models['UMessage']->hasErrors('source') ? 'has-error' : ''; ?>">
             	<?=
-                    BHtml::activeTextField(
-                        $models['BMessage'],
+                    UHtml::activeTextField(
+                        $models['UMessage'],
                         'source',
-                        array('class' => 'form-control input-sm','placeholder' => $models['BMessage']->getAttributeLabel('source'),'id' => false)
+                        array('class' => 'form-control input-sm','placeholder' => $models['UMessage']->getAttributeLabel('source'),'id' => false)
                     );
                 ?>
         		</td>
             </tr>
-            <!-- BMessage source -->
+            <!-- UMessage source -->
 
             <?php foreach($relatedData['i18nIds'] as $i18nId): ?>
             <tr>
-                <th><?= BHtml::labelI18n($i18nId) ?></th>
-                <td class="control-group <?=$models['bMessageI18ns'][$i18nId]->hasErrors('translation') ? 'error' : ''; ?>">
+                <th><?= UHtml::labelI18n($i18nId) ?></th>
+                <td class="control-group <?=$models['uMessageI18ns'][$i18nId]->hasErrors('translation') ? 'error' : ''; ?>">
             	<?=
-                    BHtml::activeTextArea(
-                        $models['bMessageI18ns'][$i18nId],
+                    UHtml::activeTextArea(
+                        $models['uMessageI18ns'][$i18nId],
                         'translation',
                         array(
                             'class' => 'form-control input-sm',
-                            'name' => 'bMessageI18ns[' . $i18nId . '][translation]',
-                            'placeholder' => $models['bMessageI18ns'][$i18nId]->getAttributeLabel('translation'),
+                            'name' => 'uMessageI18ns[' . $i18nId . '][translation]',
+                            'placeholder' => $models['uMessageI18ns'][$i18nId]->getAttributeLabel('translation'),
                             'id' => false
                         )
                     );
@@ -93,23 +93,23 @@ if (! $hasErrors)
             </tr>
             <?php endforeach ?>
 
-			<!-- BMessageI18n translation -->
-            <?php if( ! $models['BMessage']->isNewRecord ): ?>
+			<!-- UMessageI18n translation -->
+            <?php if( ! $models['UMessage']->isNewRecord ): ?>
             <tr>
-                <th><?= $models['BMessage']->getAttributeLabel('created_at'); ?></th>
+                <th><?= $models['UMessage']->getAttributeLabel('created_at'); ?></th>
                 <td class="control-group">
-            		<?= Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse($models['BMessage']->created_at, 'yyyy-MM-dd hh:mm:ss')); ?>
+            		<?= Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse($models['UMessage']->created_at, 'yyyy-MM-dd hh:mm:ss')); ?>
             	</td>
             </tr>
-            <!-- BMessage created_at -->
+            <!-- UMessage created_at -->
 
             <tr>
-                <th><?=$models['BMessage']->getAttributeLabel('updated_at'); ?></th>
+                <th><?=$models['UMessage']->getAttributeLabel('updated_at'); ?></th>
                 <td class="control-group">
-            		<?=Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse($models['BMessage']->updated_at, 'yyyy-MM-dd hh:mm:ss')); ?>
+            		<?=Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse($models['UMessage']->updated_at, 'yyyy-MM-dd hh:mm:ss')); ?>
             	</td>
             </tr>
-            <!-- BMessage updated_at -->
+            <!-- UMessage updated_at -->
             <?php endif; ?>
     	</tbody>
         <tfoot>
@@ -117,10 +117,10 @@ if (! $hasErrors)
                 <td colspan="2" class="text-center">
                     <button class="btn btn-primary btn-update">
                         <span class="glyphicon glyphicon-floppy-disk"></span>
-                        <span><?=B::t('unitkit', 'btn_save') ?></span>
+                        <span><?=Unitkit::t('unitkit', 'btn_save') ?></span>
                     </button>
                     <a href="<?= $this->createUrl($this->id.'/list'); ?>" class="btn btn-default btn-close">
-                        <span><?= B::t('unitkit', 'btn_close') ?></span>
+                        <span><?= Unitkit::t('unitkit', 'btn_close') ?></span>
                     </a>
                 </td>
             </tr>

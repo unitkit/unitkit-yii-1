@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class ProfileController extends BController
+class ProfileController extends UController
 {
     /**
      * Default action
@@ -21,7 +21,7 @@ class ProfileController extends BController
     public function init()
     {
         parent::init();
-        $this->pageTitle = Yii::app()->name . ' - ' . B::t('backend', 'profile_edit_title');
+        $this->pageTitle = Yii::app()->name . ' - ' . Unitkit::t('backend', 'profile_edit_title');
     }
 
     /**
@@ -61,11 +61,11 @@ class ProfileController extends BController
     {
         $args = array();
         switch ($_GET['name']) {
-            case 'BI18nI18n[name]':
+            case 'UI18nI18n[name]':
                 $args['search'] = $_GET['search'];
-                $args['model'] = 'BI18nI18n';
+                $args['model'] = 'UI18nI18n';
                 $args['select'] = array(
-                    'id' => 'b_i18n_id',
+                    'id' => 'u_i18n_id',
                     'text' => 'name'
                 );
                 $args['criteria'] = array(
@@ -81,7 +81,7 @@ class ProfileController extends BController
         }
 
         if (! empty($args)) {
-            echo CJSON::encode(BHtml::listDataAdvCombobox($args['model'], $args['select'], $args['search'], $args['criteria'], $args['cache']));
+            echo CJSON::encode(UHtml::listDataAdvCombobox($args['model'], $args['select'], $args['search'], $args['criteria'], $args['cache']));
         }
         Yii::app()->end();
     }

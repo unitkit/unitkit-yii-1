@@ -16,14 +16,14 @@
         this.activeLocationUpdate = (this.args.activeLocationUpdate != undefined) ? this.args.activeLocationUpdate : true;
         this.requestSaved = {url: window.location.href || '', data: undefined, type: undefined};
         this.swfUpload = [];
-        this.message = $.extend($.b.app.defaultMessage, this.args.message || {});
+        this.message = $.extend($.unitkit.app.defaultMessage, this.args.message || {});
         this.filters = '';
 	};
 	
 	/**
-	 * Extend $.b.app.List
+	 * Extend $.unitkit.app.List
 	 */
-	$.backend.message.message.List.prototype = Object.create($.b.app.List.prototype);
+	$.backend.message.message.List.prototype = Object.create($.unitkit.app.List.prototype);
 
 	$.backend.message.message.List.prototype.initExtendGridEvents = function(grid)
 	{
@@ -37,7 +37,7 @@
 	$.backend.message.message.List.prototype.initAjaxSelect = function()
 	{
 		this.main.find('tbody .input-ajax-select').each(function(){
-			$.b.app.select2Ajax($(this), {allowClear: false});
+			$.unitkit.app.select2Ajax($(this), {allowClear: false});
 		});
 	};
 	
@@ -53,11 +53,11 @@
 			$this.grid.block($this.blockUI);
 			// ajax request
 			var ajaxRequest = function(async){
-				$.b.app.ajax(
+				$.unitkit.app.ajax(
 					link.attr('href'), 
 					function(json) {
 						if(json.loginReload) {
-							if($.b.app.loginReload(json)) {
+							if($.unitkit.app.loginReload(json)) {
                                 ajaxRequest(false);
                             }
 						} else {
@@ -67,7 +67,7 @@
                                 $this.filters = json.filters;
                             }
 							$this.initGridEvents();
-							$.b.app.scrollTop();
+							$.unitkit.app.scrollTop();
 						}
 					}, 
 					$this.grid.find('tbody input, tbody select, tbody textarea').serialize() + '&partial=1', 

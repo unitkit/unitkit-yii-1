@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class PageContainerListDataView extends BListDataView
+class PageContainerListDataView extends UListDataView
 {
     /**
      * Constructor
@@ -20,10 +20,10 @@ class PageContainerListDataView extends BListDataView
     public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
-        $this->id = 'bCmsPagePageContainerMain';
+        $this->id = 'uCmsPagePageContainerMain';
 
         // component title
-        $this->title = B::t('backend', 'cms_page_container_list_title');
+        $this->title = Unitkit::t('backend', 'cms_page_container_list_title');
 
         // data
         $this->data = $data;
@@ -36,31 +36,67 @@ class PageContainerListDataView extends BListDataView
 
         // sort attributes
         $this->sortAttributes = array(
-            'bCmsPageI18ns.slug',
-            'bCmsPage.activated',
-            'bCmsPage.cache_duration',
-            'bCmsPageI18ns.title',
-            'bCmsLayoutI18ns.name',
+            'uCmsPageI18ns.title',
+            'uCmsLayoutI18ns.name',
+            'uCmsPageI18ns.slug',
+            'uCmsPage.activated',
+            'uCmsPage.cache_duration',
         );
 
         // search
         $this->gridSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_cms_page_i18ns_slug',
+                'attribute' => 'lk_u_cms_page_i18ns_title',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
+                'model' => $model,
+                'attribute' => 'u_cms_layout_id',
+                'type' => 'activeHiddenField',
+                'htmlOptions' => array(
+                    'class' => 'input-ajax-select allow-clear',
+                    'id' => 'uCmsLayoutI18nTitleGridSearch',
+                    'data-action' => $this->controller->createUrl(
+                        $this->controller->id.'/advComboBox/',
+                        array(
+                            'name' => 'UCmsLayoutI18n[name]',
+                            'language' => Yii::app()->language
+                        )
+                    ),
+                    'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
+                    'data-text' =>
+                        ! empty($model->u_cms_layout_id)
+                            ?
+                            UCmsLayoutI18n::model()->findByPk(array(
+                                'u_cms_layout_id' => $model->u_cms_layout_id,
+                                'i18n_id' => Yii::app()->language
+                            ))->name
+                            :
+                            ''
+                )
+            )),
+            new UItemField(array(
+                'model' => $model,
+                'attribute' => 'lk_u_cms_page_i18ns_slug',
+                'type' => 'activeTextField',
+                'htmlOptions' => array(
+                    'class' => 'form-control input-sm',
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => false
+                )
+            )),
+            new UItemField(array(
                 'model' => $model,
                 'data' => array(
-                    '' => B::t('unitkit', 'input_drop_down_list_all'),
-                    '1' => B::t('unitkit', 'input_drop_down_list_checked'),
-                    '0' => B::t('unitkit', 'input_drop_down_list_unchecked'),
+                    '' => Unitkit::t('unitkit', 'input_drop_down_list_all'),
+                    '1' => Unitkit::t('unitkit', 'input_drop_down_list_checked'),
+                    '0' => Unitkit::t('unitkit', 'input_drop_down_list_unchecked'),
                 ),
                 'attribute' => 'activated',
                 'type' => 'activeDropDownList',
@@ -68,72 +104,36 @@ class PageContainerListDataView extends BListDataView
                     'class' => 'form-control input-sm',
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'cache_duration',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
-                )
-            )),
-            new BItemField(array(
-                'model' => $model,
-                'attribute' => 'lk_b_cms_page_i18ns_title',
-                'type' => 'activeTextField',
-                'htmlOptions' => array(
-                    'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => false
-                )
-            )),
-            new BItemField(array(
-                'model' => $model,
-                'attribute' => 'b_cms_layout_id',
-                'type' => 'activeHiddenField',
-                'htmlOptions' => array(
-                	'class' => 'input-ajax-select allow-clear',
-                	'id' => 'bCmsLayoutI18nTitleGridSearch',
-                	'data-action' => $this->controller->createUrl(
-                        $this->controller->id.'/advComboBox/',
-                        array(
-                            'name' => 'BCmsLayoutI18n[name]',
-            				'language' => Yii::app()->language
-                        )
-                	),
-                	'data-placeholder' => B::t('unitkit', 'input_select'),
-                	'data-text' =>
-                        ! empty($model->b_cms_layout_id)
-                        ?
-                        	BCmsLayoutI18n::model()->findByPk(array(
-                                'b_cms_layout_id' => $model->b_cms_layout_id,
-                                'i18n_id' => Yii::app()->language
-                            ))->name
-                        :
-                        	''
                 )
             )),
         );
 
         // advanced search
         $this->advancedSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_cms_page_i18ns_slug',
+                'attribute' => 'lk_u_cms_page_i18ns_slug',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'data' => array(
-                    '' => B::t('unitkit', 'input_drop_down_list_all'),
-                    '1' => B::t('unitkit', 'input_drop_down_list_checked'),
-                    '0' => B::t('unitkit', 'input_drop_down_list_unchecked'),
+                    '' => Unitkit::t('unitkit', 'input_drop_down_list_all'),
+                    '1' => Unitkit::t('unitkit', 'input_drop_down_list_checked'),
+                    '0' => Unitkit::t('unitkit', 'input_drop_down_list_unchecked'),
                 ),
                 'attribute' => 'activated',
                 'type' => 'activeDropDownList',
@@ -141,117 +141,117 @@ class PageContainerListDataView extends BListDataView
                     'class' => 'form-control input-sm',
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_cms_page_i18ns_title',
+                'attribute' => 'lk_u_cms_page_i18ns_title',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'b_cms_layout_id',
+                'attribute' => 'u_cms_layout_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
-                    'id' => 'bCmsLayoutI18nTitleAdvSearch',
+                    'id' => 'uCmsLayoutI18nTitleAdvSearch',
                     'data-action' => $this->controller->createUrl(
                         $this->controller->id.'/advComboBox/',
                         array(
-                            'name' => 'BCmsLayoutI18n[name]',
+                            'name' => 'UCmsLayoutI18n[name]',
             				'language' => Yii::app()->language
                         )
                     ),
-                    'data-placeholder' => B::t('unitkit', 'input_select'),
+                    'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
                     'data-text' =>
-                        ! empty($model->b_cms_layout_id)
+                        ! empty($model->u_cms_layout_id)
                         ?
-                            BCmsLayoutI18n::model()->findByPk(array(
-                				'b_cms_layout_id' => $model->b_cms_layout_id,
-                				'b_i18n_id' => Yii::app()->language
+                            UCmsLayoutI18n::model()->findByPk(array(
+                				'u_cms_layout_id' => $model->u_cms_layout_id,
+                				'u_i18n_id' => Yii::app()->language
                 			))->name
                         :
                             ''
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_cms_page_i18ns_html_title',
+                'attribute' => 'lk_u_cms_page_i18ns_html_title',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_cms_page_i18ns_html_description',
+                'attribute' => 'lk_u_cms_page_i18ns_html_description',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_cms_page_i18ns_html_keywords',
+                'attribute' => 'lk_u_cms_page_i18ns_html_keywords',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-        	new BDateRangeItemField(
+        	new UDateRangeItemField(
                 $model,
                 'created_at',
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_created_at_start',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsPageVCreatedAtStartAdvSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsPageVCreatedAtStartAdvSearch'
                     )
                 )),
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_created_at_end',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsPageVCreatedAtEndAdvSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsPageVCreatedAtEndAdvSearch'
                     )
                 ))
             ),
-        	new BDateRangeItemField(
+        	new UDateRangeItemField(
                 $model,
                 'updated_at',
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_updated_at_start',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsPageVUpdatedAtStartAdvSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsPageVUpdatedAtStartAdvSearch'
                     )
                 )),
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_updated_at_end',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsPageVUpdatedAtEndAdvSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsPageVUpdatedAtEndAdvSearch'
                     )
                 ))
             ),

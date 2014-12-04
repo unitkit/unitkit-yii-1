@@ -1,5 +1,12 @@
 set foreign_key_checks = 0;
-
+-- phpMyAdmin SQL Dump
+-- version 4.2.3
+-- http://www.phpmyadmin.net
+--
+-- Client :  localhost
+-- Généré le :  Jeu 04 Décembre 2014 à 13:45
+-- Version du serveur :  5.6.19
+-- Version de PHP :  5.5.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,12 +24,12 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_auto_login`
+-- Structure de la table `u_auto_login`
 --
 
-CREATE TABLE IF NOT EXISTS `b_auto_login` (
+CREATE TABLE IF NOT EXISTS `u_auto_login` (
   `uuid` varchar(64) COLLATE utf8_bin NOT NULL,
-  `b_person_id` int(10) unsigned NOT NULL,
+  `u_person_id` int(10) unsigned NOT NULL,
   `key1` varchar(64) COLLATE utf8_bin NOT NULL,
   `key2` varchar(64) COLLATE utf8_bin NOT NULL,
   `duration` int(10) unsigned NOT NULL,
@@ -33,40 +40,40 @@ CREATE TABLE IF NOT EXISTS `b_auto_login` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_album`
+-- Structure de la table `u_cms_album`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_album` (
+CREATE TABLE IF NOT EXISTS `u_cms_album` (
 `id` int(10) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=50 ;
 
 --
--- Contenu de la table `b_cms_album`
+-- Contenu de la table `u_cms_album`
 --
 
-INSERT INTO `b_cms_album` (`id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `u_cms_album` (`id`, `created_at`, `updated_at`) VALUES
 (48, '2014-08-03 07:13:23', '2014-08-03 07:13:23'),
-(49, '2014-11-29 13:00:45', '2014-11-29 13:10:08');
+(49, '2014-11-29 13:00:45', '2014-12-04 11:12:51');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_album_i18n`
+-- Structure de la table `u_cms_album_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_album_i18n` (
-  `b_cms_album_id` int(10) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `u_cms_album_i18n` (
+  `u_cms_album_id` int(10) unsigned NOT NULL,
   `i18n_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `title` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `b_cms_album_i18n`
+-- Contenu de la table `u_cms_album_i18n`
 --
 
-INSERT INTO `b_cms_album_i18n` (`b_cms_album_id`, `i18n_id`, `title`) VALUES
+INSERT INTO `u_cms_album_i18n` (`u_cms_album_id`, `i18n_id`, `title`) VALUES
 (48, 'en', 'Carousel'),
 (48, 'fr', 'Carousel'),
 (49, 'en', 'Demo'),
@@ -75,45 +82,45 @@ INSERT INTO `b_cms_album_i18n` (`b_cms_album_id`, `i18n_id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_album_photo`
+-- Structure de la table `u_cms_album_photo`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_album_photo` (
+CREATE TABLE IF NOT EXISTS `u_cms_album_photo` (
 `id` int(10) unsigned NOT NULL,
-  `b_cms_album_id` int(10) unsigned NOT NULL,
+  `u_cms_album_id` int(10) unsigned NOT NULL,
   `file_path` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=55 ;
 
 --
--- Contenu de la table `b_cms_album_photo`
+-- Contenu de la table `u_cms_album_photo`
 --
 
-INSERT INTO `b_cms_album_photo` (`id`, `b_cms_album_id`, `file_path`, `created_at`, `updated_at`) VALUES
+INSERT INTO `u_cms_album_photo` (`id`, `u_cms_album_id`, `file_path`, `created_at`, `updated_at`) VALUES
 (50, 48, 's1_53dfaeb90a174.jpg', '2014-08-04 16:03:05', '2014-08-04 16:03:05'),
 (51, 48, 's2_53dfaec50f42f.jpg', '2014-08-04 16:03:17', '2014-08-04 16:03:17'),
-(52, 48, 's3_5409838f0f182.jpg', '2014-08-04 16:03:25', '2014-09-05 09:34:07'),
+(52, 48, 's3_5409838f0f182.jpg', '2014-08-04 16:03:25', '2014-12-04 11:12:58'),
 (53, 49, 'picture-1_5479c66c32f72.jpg', '2014-11-29 13:00:53', '2014-11-29 13:13:16'),
 (54, 49, 'picture-2_5479c65f9065d.jpg', '2014-11-29 13:01:02', '2014-11-29 13:13:03');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_album_photo_i18n`
+-- Structure de la table `u_cms_album_photo_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_album_photo_i18n` (
-  `b_cms_album_photo_id` int(10) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `u_cms_album_photo_i18n` (
+  `u_cms_album_photo_id` int(10) unsigned NOT NULL,
   `i18n_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `title` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `b_cms_album_photo_i18n`
+-- Contenu de la table `u_cms_album_photo_i18n`
 --
 
-INSERT INTO `b_cms_album_photo_i18n` (`b_cms_album_photo_id`, `i18n_id`, `title`) VALUES
+INSERT INTO `u_cms_album_photo_i18n` (`u_cms_album_photo_id`, `i18n_id`, `title`) VALUES
 (50, 'en', 'Slide 1'),
 (50, 'fr', 'Slide 1'),
 (51, 'en', 'Slide 2'),
@@ -128,10 +135,10 @@ INSERT INTO `b_cms_album_photo_i18n` (`b_cms_album_photo_id`, `i18n_id`, `title`
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_image`
+-- Structure de la table `u_cms_image`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_image` (
+CREATE TABLE IF NOT EXISTS `u_cms_image` (
 `id` int(10) unsigned NOT NULL,
   `file_path` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -139,30 +146,30 @@ CREATE TABLE IF NOT EXISTS `b_cms_image` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
--- Contenu de la table `b_cms_image`
+-- Contenu de la table `u_cms_image`
 --
 
-INSERT INTO `b_cms_image` (`id`, `file_path`, `created_at`, `updated_at`) VALUES
+INSERT INTO `u_cms_image` (`id`, `file_path`, `created_at`, `updated_at`) VALUES
 (8, 'image_53dfa4ecb66da.jpg', '2014-08-03 07:31:17', '2014-08-04 15:21:16'),
 (11, 'image2_53dfbb686a4c2.jpg', '2014-08-04 16:57:12', '2014-08-12 00:14:05');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_image_i18n`
+-- Structure de la table `u_cms_image_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_image_i18n` (
-  `b_cms_image_id` int(10) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `u_cms_image_i18n` (
+  `u_cms_image_id` int(10) unsigned NOT NULL,
   `i18n_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `title` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `b_cms_image_i18n`
+-- Contenu de la table `u_cms_image_i18n`
 --
 
-INSERT INTO `b_cms_image_i18n` (`b_cms_image_id`, `i18n_id`, `title`) VALUES
+INSERT INTO `u_cms_image_i18n` (`u_cms_image_id`, `i18n_id`, `title`) VALUES
 (8, 'en', 'Image 1'),
 (8, 'fr', 'Image 1'),
 (11, 'en', 'Image 2'),
@@ -171,10 +178,10 @@ INSERT INTO `b_cms_image_i18n` (`b_cms_image_id`, `i18n_id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_layout`
+-- Structure de la table `u_cms_layout`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_layout` (
+CREATE TABLE IF NOT EXISTS `u_cms_layout` (
 `id` int(10) unsigned NOT NULL,
   `max_container` smallint(5) unsigned NOT NULL DEFAULT '1',
   `path` varchar(255) NOT NULL,
@@ -184,10 +191,10 @@ CREATE TABLE IF NOT EXISTS `b_cms_layout` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Contenu de la table `b_cms_layout`
+-- Contenu de la table `u_cms_layout`
 --
 
-INSERT INTO `b_cms_layout` (`id`, `max_container`, `path`, `view`, `created_at`, `updated_at`) VALUES
+INSERT INTO `u_cms_layout` (`id`, `max_container`, `path`, `view`, `created_at`, `updated_at`) VALUES
 (1, 2, '//../modules/frontend/views/layouts/base', 'index', '2014-07-12 06:11:54', '2014-08-04 19:02:36'),
 (2, 2, '//../modules/frontend/views/layouts/base', 'contact', '2014-08-03 18:57:42', '2014-10-12 11:44:19'),
 (3, 2, '//../modules/frontend/views/layouts/base', 'carousel', '2014-11-22 11:45:08', '2014-11-22 11:45:18'),
@@ -197,20 +204,20 @@ INSERT INTO `b_cms_layout` (`id`, `max_container`, `path`, `view`, `created_at`,
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_layout_i18n`
+-- Structure de la table `u_cms_layout_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_layout_i18n` (
-  `b_cms_layout_id` int(10) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `u_cms_layout_i18n` (
+  `u_cms_layout_id` int(10) unsigned NOT NULL,
   `i18n_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `b_cms_layout_i18n`
+-- Contenu de la table `u_cms_layout_i18n`
 --
 
-INSERT INTO `b_cms_layout_i18n` (`b_cms_layout_id`, `i18n_id`, `name`) VALUES
+INSERT INTO `u_cms_layout_i18n` (`u_cms_layout_id`, `i18n_id`, `name`) VALUES
 (1, 'en', 'Main'),
 (1, 'fr', 'Défaut'),
 (2, 'en', 'Contact'),
@@ -225,22 +232,22 @@ INSERT INTO `b_cms_layout_i18n` (`b_cms_layout_id`, `i18n_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_menu`
+-- Structure de la table `u_cms_menu`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_menu` (
+CREATE TABLE IF NOT EXISTS `u_cms_menu` (
 `id` int(10) unsigned NOT NULL,
-  `b_cms_menu_group_id` int(10) unsigned NOT NULL,
+  `u_cms_menu_group_id` int(10) unsigned NOT NULL,
   `rank` int(10) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Contenu de la table `b_cms_menu`
+-- Contenu de la table `u_cms_menu`
 --
 
-INSERT INTO `b_cms_menu` (`id`, `b_cms_menu_group_id`, `rank`, `created_at`, `updated_at`) VALUES
+INSERT INTO `u_cms_menu` (`id`, `u_cms_menu_group_id`, `rank`, `created_at`, `updated_at`) VALUES
 (1, 1, 10, '2014-07-29 15:55:15', '2014-11-22 14:12:11'),
 (2, 1, 20, '2014-08-02 09:57:25', '2014-11-22 11:32:17'),
 (3, 1, 30, '2014-08-04 16:29:24', '2014-11-22 11:32:20'),
@@ -249,60 +256,60 @@ INSERT INTO `b_cms_menu` (`id`, `b_cms_menu_group_id`, `rank`, `created_at`, `up
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_menu_group`
+-- Structure de la table `u_cms_menu_group`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_menu_group` (
+CREATE TABLE IF NOT EXISTS `u_cms_menu_group` (
 `id` int(10) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Contenu de la table `b_cms_menu_group`
+-- Contenu de la table `u_cms_menu_group`
 --
 
-INSERT INTO `b_cms_menu_group` (`id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `u_cms_menu_group` (`id`, `created_at`, `updated_at`) VALUES
 (1, '2014-07-28 16:19:53', '2014-08-05 08:29:39');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_menu_group_i18n`
+-- Structure de la table `u_cms_menu_group_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_menu_group_i18n` (
-  `b_cms_menu_group_id` int(10) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `u_cms_menu_group_i18n` (
+  `u_cms_menu_group_id` int(10) unsigned NOT NULL,
   `i18n_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `b_cms_menu_group_i18n`
+-- Contenu de la table `u_cms_menu_group_i18n`
 --
 
-INSERT INTO `b_cms_menu_group_i18n` (`b_cms_menu_group_id`, `i18n_id`, `name`) VALUES
+INSERT INTO `u_cms_menu_group_i18n` (`u_cms_menu_group_id`, `i18n_id`, `name`) VALUES
 (1, 'en', 'Main'),
 (1, 'fr', 'Principal');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_menu_i18n`
+-- Structure de la table `u_cms_menu_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_menu_i18n` (
-  `b_cms_menu_id` int(10) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `u_cms_menu_i18n` (
+  `u_cms_menu_id` int(10) unsigned NOT NULL,
   `i18n_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `name` varchar(100) NOT NULL,
   `url` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `b_cms_menu_i18n`
+-- Contenu de la table `u_cms_menu_i18n`
 --
 
-INSERT INTO `b_cms_menu_i18n` (`b_cms_menu_id`, `i18n_id`, `name`, `url`) VALUES
+INSERT INTO `u_cms_menu_i18n` (`u_cms_menu_id`, `i18n_id`, `name`, `url`) VALUES
 (1, 'en', 'Home', '/en'),
 (1, 'fr', 'Accueil', '/fr'),
 (2, 'en', 'About', '/en/about'),
@@ -315,12 +322,12 @@ INSERT INTO `b_cms_menu_i18n` (`b_cms_menu_id`, `i18n_id`, `name`, `url`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_news`
+-- Structure de la table `u_cms_news`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_news` (
+CREATE TABLE IF NOT EXISTS `u_cms_news` (
 `id` int(10) unsigned NOT NULL,
-  `b_cms_news_group_id` int(10) unsigned NOT NULL,
+  `u_cms_news_group_id` int(10) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `activated` tinyint(3) unsigned NOT NULL DEFAULT '1',
@@ -328,70 +335,70 @@ CREATE TABLE IF NOT EXISTS `b_cms_news` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Contenu de la table `b_cms_news`
+-- Contenu de la table `u_cms_news`
 --
 
-INSERT INTO `b_cms_news` (`id`, `b_cms_news_group_id`, `created_at`, `updated_at`, `activated`, `published_at`) VALUES
+INSERT INTO `u_cms_news` (`id`, `u_cms_news_group_id`, `created_at`, `updated_at`, `activated`, `published_at`) VALUES
 (3, 15, '2014-08-03 07:32:43', '2014-11-27 19:55:13', 1, '2014-08-31 00:00:00'),
 (4, 15, '2014-10-31 15:23:36', '2014-11-27 19:55:48', 1, '2014-07-16 00:00:00');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_news_group`
+-- Structure de la table `u_cms_news_group`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_news_group` (
+CREATE TABLE IF NOT EXISTS `u_cms_news_group` (
 `id` int(10) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 --
--- Contenu de la table `b_cms_news_group`
+-- Contenu de la table `u_cms_news_group`
 --
 
-INSERT INTO `b_cms_news_group` (`id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `u_cms_news_group` (`id`, `created_at`, `updated_at`) VALUES
 (15, '2014-07-28 16:23:03', '2014-07-28 16:23:03');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_news_group_i18n`
+-- Structure de la table `u_cms_news_group_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_news_group_i18n` (
-  `b_cms_news_group_id` int(10) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `u_cms_news_group_i18n` (
+  `u_cms_news_group_id` int(10) unsigned NOT NULL,
   `i18n_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `b_cms_news_group_i18n`
+-- Contenu de la table `u_cms_news_group_i18n`
 --
 
-INSERT INTO `b_cms_news_group_i18n` (`b_cms_news_group_id`, `i18n_id`, `name`) VALUES
+INSERT INTO `u_cms_news_group_i18n` (`u_cms_news_group_id`, `i18n_id`, `name`) VALUES
 (15, 'en', 'Main'),
 (15, 'fr', 'Principal');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_news_i18n`
+-- Structure de la table `u_cms_news_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_news_i18n` (
-  `b_cms_news_id` int(10) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `u_cms_news_i18n` (
+  `u_cms_news_id` int(10) unsigned NOT NULL,
   `i18n_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `title` varchar(200) NOT NULL,
   `content` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `b_cms_news_i18n`
+-- Contenu de la table `u_cms_news_i18n`
 --
 
-INSERT INTO `b_cms_news_i18n` (`b_cms_news_id`, `i18n_id`, `title`, `content`) VALUES
+INSERT INTO `u_cms_news_i18n` (`u_cms_news_id`, `i18n_id`, `title`, `content`) VALUES
 (3, 'en', 'News title 1', '<p><img alt="" src="//static.unitkit.local/cms/images/lg/image_53dfa4ecb66da.jpg" style="width: 800px; height: 382px;" /></p>\r\n\r\n<p>News content</p>\r\n\r\n<p>&nbsp;</p>\r\n'),
 (3, 'fr', 'Actualité titre 1', '<p><img alt="" src="//static.unitkit.local/cms/images/lg/image_53dfa4ecb66da.jpg" style="width: 800px; height: 382px;" /></p>\r\n\r\n<p>Actualité 1</p>\r\n\r\n<p>&nbsp;</p>'),
 (4, 'en', 'News title 2', '<p>News content 2</p>\r\n'),
@@ -400,46 +407,46 @@ INSERT INTO `b_cms_news_i18n` (`b_cms_news_id`, `i18n_id`, `title`, `content`) V
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_page`
+-- Structure de la table `u_cms_page`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_page` (
+CREATE TABLE IF NOT EXISTS `u_cms_page` (
 `id` int(10) unsigned NOT NULL,
   `activated` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `cache_duration` int(10) unsigned NOT NULL,
-  `b_cms_layout_id` int(10) unsigned NOT NULL,
+  `u_cms_layout_id` int(10) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=43 ;
 
 --
--- Contenu de la table `b_cms_page`
+-- Contenu de la table `u_cms_page`
 --
 
-INSERT INTO `b_cms_page` (`id`, `activated`, `cache_duration`, `b_cms_layout_id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `u_cms_page` (`id`, `activated`, `cache_duration`, `u_cms_layout_id`, `created_at`, `updated_at`) VALUES
 (8, 1, 3600, 3, '2014-08-02 09:38:43', '2014-11-22 12:30:59'),
-(37, 1, 3600, 1, '2014-08-04 15:21:22', '2014-08-05 10:59:53'),
-(39, 1, 3600, 2, '2014-08-04 16:26:09', '2014-11-24 18:41:21'),
-(41, 1, 100, 4, '2014-08-04 16:32:00', '2014-11-29 12:51:13'),
-(42, 1, 3600, 5, '2014-11-29 12:59:22', '2014-11-29 13:06:17');
+(37, 1, 3600, 1, '2014-08-04 15:21:22', '2014-12-04 12:26:44'),
+(39, 1, 3600, 2, '2014-08-04 16:26:09', '2014-12-04 12:26:26'),
+(41, 1, 100, 4, '2014-08-04 16:32:00', '2014-12-04 11:12:44'),
+(42, 1, 3600, 5, '2014-11-29 12:59:22', '2014-12-04 11:42:35');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_page_content`
+-- Structure de la table `u_cms_page_content`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_page_content` (
+CREATE TABLE IF NOT EXISTS `u_cms_page_content` (
 `id` int(10) unsigned NOT NULL,
-  `b_cms_page_id` int(10) unsigned NOT NULL,
+  `u_cms_page_id` int(10) unsigned NOT NULL,
   `index` smallint(5) unsigned NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=78 ;
 
 --
--- Contenu de la table `b_cms_page_content`
+-- Contenu de la table `u_cms_page_content`
 --
 
-INSERT INTO `b_cms_page_content` (`id`, `b_cms_page_id`, `index`) VALUES
+INSERT INTO `u_cms_page_content` (`id`, `u_cms_page_id`, `index`) VALUES
 (75, 8, 1),
 (76, 8, 2),
 (62, 37, 1),
@@ -452,22 +459,22 @@ INSERT INTO `b_cms_page_content` (`id`, `b_cms_page_id`, `index`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_page_content_i18n`
+-- Structure de la table `u_cms_page_content_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_page_content_i18n` (
-  `b_cms_page_content_id` int(10) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `u_cms_page_content_i18n` (
+  `u_cms_page_content_id` int(10) unsigned NOT NULL,
   `i18n_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `content` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `b_cms_page_content_i18n`
+-- Contenu de la table `u_cms_page_content_i18n`
 --
 
-INSERT INTO `b_cms_page_content_i18n` (`b_cms_page_content_id`, `i18n_id`, `content`) VALUES
-(62, 'en', '<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">About-us</h2>\r\n\r\n<hr /></div>\r\n\r\n<div class="col-md-6"><img alt="" class="img-responsive img-border-left" src="//static.unitkit.local/cms/images/lg/image_53dfa4ecb66da.jpg" style="width: 800px; height: 382px;" /></div>\r\n\r\n<div class="col-md-6">\r\n<p>This is a great place to introduce your company or project and describe what you do.</p>\r\n\r\n<p>Lid est laborum dolo rumes fugats untras. Etharums ser quidem rerum facilis dolores nemis omnis fugats vitaes nemo minima rerums unsers sadips amets.</p>\r\n\r\n<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>\r\n</div>\r\n\r\n<div class="clearfix">&nbsp;</div>\r\n</div>\r\n</div>\r\n\r\n<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">Our <strong>Team</strong></h2>\r\n\r\n<hr /></div>\r\n\r\n<div class="col-sm-4 text-center"><img alt="" class="img-responsive" src="http://placehold.it/750x450" />\r\n<h3>John Smith <small>Job Title</small></h3>\r\n</div>\r\n\r\n<div class="col-sm-4 text-center"><img alt="" class="img-responsive" src="http://placehold.it/750x450" />\r\n<h3>John Smith <small>Job Title</small></h3>\r\n</div>\r\n\r\n<div class="col-sm-4 text-center"><img alt="" class="img-responsive" src="http://placehold.it/750x450" />\r\n<h3>John Smith <small>Job Title</small></h3>\r\n</div>\r\n\r\n<div class="clearfix">&nbsp;</div>\r\n</div>\r\n</div>\r\n'),
-(62, 'fr', '<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">A propos de nous</h2>\r\n\r\n<hr /></div>\r\n\r\n<div class="col-md-6"><img alt="" class="img-responsive img-border-left" src="//static.unitkit.local/cms/images/lg/image_53dfa4ecb66da.jpg" style="width: 800px; height: 382px;" /></div>\r\n\r\n<div class="col-md-6">&nbsp;</div>\r\n\r\n<div class="clearfix">&nbsp;</div>\r\n</div>\r\n</div>\r\n\r\n<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">Notre <strong>Equipe</strong></h2>\r\n\r\n<hr /></div>\r\n\r\n<div class="col-sm-4 text-center"><img alt="" class="img-responsive" src="http://placehold.it/750x450" />\r\n<h3>John Smith <small>Titre du job</small></h3>\r\n</div>\r\n\r\n<div class="col-sm-4 text-center"><img alt="" class="img-responsive" src="http://placehold.it/750x450" />\r\n<h3>John Smith <small>Titre du job</small></h3>\r\n</div>\r\n\r\n<div class="col-sm-4 text-center"><img alt="" class="img-responsive" src="http://placehold.it/750x450" />\r\n<h3>John Smith <small>Titre du job</small></h3>\r\n</div>\r\n\r\n<div class="clearfix">&nbsp;</div>\r\n</div>\r\n</div>\r\n'),
+INSERT INTO `u_cms_page_content_i18n` (`u_cms_page_content_id`, `i18n_id`, `content`) VALUES
+(62, 'en', '<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">About-us</h2>\r\n\r\n<hr /></div>\r\n\r\n<div class="col-md-6"><img alt="" class="img-responsive img-border-left" src="//static.unitkit.local/cms/images/lg/image_53dfa4ecb66da.jpg" style="width: 800px;" /></div>\r\n\r\n<div class="col-md-6">\r\n<p>This is a great place to introduce your company or project and describe what you do.</p>\r\n\r\n<p>Lid est laborum dolo rumes fugats untras. Etharums ser quidem rerum facilis dolores nemis omnis fugats vitaes nemo minima rerums unsers sadips amets.</p>\r\n\r\n<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>\r\n</div>\r\n\r\n<div class="clearfix">&nbsp;</div>\r\n</div>\r\n</div>\r\n\r\n<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">Our <strong>Team</strong></h2>\r\n\r\n<hr /></div>\r\n\r\n<div class="col-sm-4 text-center"><img alt="" class="img-responsive" src="http://placehold.it/750x450" />\r\n<h3>John Smith <small>Job Title</small></h3>\r\n</div>\r\n\r\n<div class="col-sm-4 text-center"><img alt="" class="img-responsive" src="http://placehold.it/750x450" />\r\n<h3>John Smith <small>Job Title</small></h3>\r\n</div>\r\n\r\n<div class="col-sm-4 text-center"><img alt="" class="img-responsive" src="http://placehold.it/750x450" />\r\n<h3>John Smith <small>Job Title</small></h3>\r\n</div>\r\n\r\n<div class="clearfix">&nbsp;</div>\r\n</div>\r\n</div>\r\n'),
+(62, 'fr', '<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">A propos de nous</h2>\r\n\r\n<hr /></div>\r\n\r\n<div class="col-md-6"><img alt="" class="img-responsive img-border-left" src="//static.unitkit.local/cms/images/lg/image_53dfa4ecb66da.jpg" style="width: 800px;" /></div>\r\n\r\n<div class="col-md-6">&nbsp;</div>\r\n\r\n<div class="clearfix">&nbsp;</div>\r\n</div>\r\n</div>\r\n\r\n<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">Notre <strong>Equipe</strong></h2>\r\n\r\n<hr /></div>\r\n\r\n<div class="col-sm-4 text-center"><img alt="" class="img-responsive" src="http://placehold.it/750x450" />\r\n<h3>John Smith <small>Titre du job</small></h3>\r\n</div>\r\n\r\n<div class="col-sm-4 text-center"><img alt="" class="img-responsive" src="http://placehold.it/750x450" />\r\n<h3>John Smith <small>Titre du job</small></h3>\r\n</div>\r\n\r\n<div class="col-sm-4 text-center"><img alt="" class="img-responsive" src="http://placehold.it/750x450" />\r\n<h3>John Smith <small>Titre du job</small></h3>\r\n</div>\r\n\r\n<div class="clearfix">&nbsp;</div>\r\n</div>\r\n</div>\r\n'),
 (63, 'en', ''),
 (63, 'fr', ''),
 (64, 'en', '<div class="row">\r\n<div class="box">\r\n<div class="col-lg-12">\r\n<hr />\r\n<h2 class="intro-text text-center">Contact-us</h2>\r\n\r\n<hr /></div>\r\n\r\n<div class="col-md-8"><!-- Embedded Google Map using an iframe - to select your location find it on Google maps and paste the link as the iframe src. If you want to use the Google Maps API instead then have at it! --><iframe frameborder="0" height="400" marginheight="0" marginwidth="0" scrolling="no" src="http://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=37.0625,-95.677068&amp;spn=56.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed" width="100%"></iframe></div>\r\n\r\n<div class="col-md-4">\r\n<p>Phone: <strong>123.456.7890</strong></p>\r\n\r\n<p>Email: <strong><a href="mailto:name@example.com">name@example.com</a></strong></p>\r\n\r\n<p>Address: <strong>3481 Melrose Place<br />\r\nBeverly Hills, CA 90210</strong></p>\r\n</div>\r\n\r\n<div class="clearfix">&nbsp;</div>\r\n</div>\r\n</div>\r\n'),
@@ -486,11 +493,11 @@ INSERT INTO `b_cms_page_content_i18n` (`b_cms_page_content_id`, `i18n_id`, `cont
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_page_i18n`
+-- Structure de la table `u_cms_page_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_page_i18n` (
-  `b_cms_page_id` int(11) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `u_cms_page_i18n` (
+  `u_cms_page_id` int(11) unsigned NOT NULL,
   `i18n_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `title` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
@@ -500,10 +507,10 @@ CREATE TABLE IF NOT EXISTS `b_cms_page_i18n` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `b_cms_page_i18n`
+-- Contenu de la table `u_cms_page_i18n`
 --
 
-INSERT INTO `b_cms_page_i18n` (`b_cms_page_id`, `i18n_id`, `title`, `slug`, `html_title`, `html_description`, `html_keywords`) VALUES
+INSERT INTO `u_cms_page_i18n` (`u_cms_page_id`, `i18n_id`, `title`, `slug`, `html_title`, `html_description`, `html_keywords`) VALUES
 (8, 'en', 'Home', 'home', 'Home', '', ''),
 (8, 'fr', 'Accueil', 'home', 'Accueil', '', ''),
 (37, 'en', 'About', 'about', 'About', '', ''),
@@ -518,10 +525,10 @@ INSERT INTO `b_cms_page_i18n` (`b_cms_page_id`, `i18n_id`, `title`, `slug`, `htm
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_social`
+-- Structure de la table `u_cms_social`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_social` (
+CREATE TABLE IF NOT EXISTS `u_cms_social` (
 `id` int(10) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -529,40 +536,40 @@ CREATE TABLE IF NOT EXISTS `b_cms_social` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `b_cms_social`
+-- Contenu de la table `u_cms_social`
 --
 
-INSERT INTO `b_cms_social` (`id`, `name`, `created_at`, `updated_at`) VALUES
+INSERT INTO `u_cms_social` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'Facebook', '2014-07-18 22:00:00', '2014-07-19 17:43:52'),
 (2, 'Twitter', '2014-07-18 22:00:00', '2014-08-01 09:12:09');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_social_i18n`
+-- Structure de la table `u_cms_social_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_social_i18n` (
-  `b_cms_social_id` int(10) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `u_cms_social_i18n` (
+  `u_cms_social_id` int(10) unsigned NOT NULL,
   `i18n_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `url` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `b_cms_social_i18n`
+-- Contenu de la table `u_cms_social_i18n`
 --
 
-INSERT INTO `b_cms_social_i18n` (`b_cms_social_id`, `i18n_id`, `url`) VALUES
+INSERT INTO `u_cms_social_i18n` (`u_cms_social_id`, `i18n_id`, `url`) VALUES
 (1, 'en', ''),
 (2, 'en', '');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_widget`
+-- Structure de la table `u_cms_widget`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_widget` (
+CREATE TABLE IF NOT EXISTS `u_cms_widget` (
 `id` int(10) unsigned NOT NULL,
   `path` varchar(255) NOT NULL,
   `arg` text NOT NULL,
@@ -571,33 +578,33 @@ CREATE TABLE IF NOT EXISTS `b_cms_widget` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
--- Contenu de la table `b_cms_widget`
+-- Contenu de la table `u_cms_widget`
 --
 
-INSERT INTO `b_cms_widget` (`id`, `path`, `arg`, `created_at`, `updated_at`) VALUES
-(2, 'application.modules.frontend.widgets.news.BWidgetCmsNews', '{id:15, size:5}', '2014-07-25 10:26:10', '2014-11-29 11:31:24'),
-(3, 'application.modules.frontend.widgets.social.BWidgetCmsSocial', '', '2014-07-29 14:52:12', '2014-07-29 14:52:42'),
-(4, 'application.modules.frontend.widgets.menu.BWidgetCmsMenu', '{id:20,brand:"My website"}', '2014-07-29 15:55:57', '2014-08-04 17:03:52'),
-(5, 'application.modules.frontend.widgets.album.BWidgetCmsCarousel', '{album_id:48,container_id:"carousel"}', '2014-08-03 07:15:10', '2014-08-04 15:34:35'),
-(6, 'application.modules.frontend.widgets.album.BWidgetCmsAlbum', '{id:49, cols:4}', '2014-11-29 13:01:50', '2014-11-29 13:22:57');
+INSERT INTO `u_cms_widget` (`id`, `path`, `arg`, `created_at`, `updated_at`) VALUES
+(2, 'application.modules.frontend.widgets.news.UWidgetCmsNews', '{id:15, size:5}', '2014-07-25 10:26:10', '2014-12-04 12:18:47'),
+(3, 'application.modules.frontend.widgets.social.UWidgetCmsSocial', '', '2014-07-29 14:52:12', '2014-12-04 12:18:44'),
+(4, 'application.modules.frontend.widgets.menu.UWidgetCmsMenu', '{id:20,brand:"My website"}', '2014-07-29 15:55:57', '2014-12-04 12:18:40'),
+(5, 'application.modules.frontend.widgets.album.UWidgetCmsCarousel', '{album_id:48,container_id:"carousel"}', '2014-08-03 07:15:10', '2014-12-04 12:18:37'),
+(6, 'application.modules.frontend.widgets.album.UWidgetCmsAlbum', '{id:49, cols:4}', '2014-11-29 13:01:50', '2014-12-04 12:18:33');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_cms_widget_i18n`
+-- Structure de la table `u_cms_widget_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_cms_widget_i18n` (
-  `b_cms_widget_id` int(10) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `u_cms_widget_i18n` (
+  `u_cms_widget_id` int(10) unsigned NOT NULL,
   `i18n_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `b_cms_widget_i18n`
+-- Contenu de la table `u_cms_widget_i18n`
 --
 
-INSERT INTO `b_cms_widget_i18n` (`b_cms_widget_id`, `i18n_id`, `name`) VALUES
+INSERT INTO `u_cms_widget_i18n` (`u_cms_widget_id`, `i18n_id`, `name`) VALUES
 (2, 'en', 'News'),
 (2, 'fr', 'Actualités'),
 (3, 'en', 'Social networks'),
@@ -612,40 +619,40 @@ INSERT INTO `b_cms_widget_i18n` (`b_cms_widget_id`, `i18n_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_group`
+-- Structure de la table `u_group`
 --
 
-CREATE TABLE IF NOT EXISTS `b_group` (
+CREATE TABLE IF NOT EXISTS `u_group` (
 `id` int(10) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `b_group`
+-- Contenu de la table `u_group`
 --
 
-INSERT INTO `b_group` (`id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `u_group` (`id`, `created_at`, `updated_at`) VALUES
 (2, '2012-12-05 16:34:39', '2014-01-27 09:17:28'),
 (3, '2014-03-29 12:11:59', '2014-10-31 16:15:50');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_group_i18n`
+-- Structure de la table `u_group_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_group_i18n` (
-`b_group_id` int(10) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `u_group_i18n` (
+`u_group_id` int(10) unsigned NOT NULL,
   `i18n_id` varchar(16) COLLATE utf8_bin NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `b_group_i18n`
+-- Contenu de la table `u_group_i18n`
 --
 
-INSERT INTO `b_group_i18n` (`b_group_id`, `i18n_id`, `name`) VALUES
+INSERT INTO `u_group_i18n` (`u_group_id`, `i18n_id`, `name`) VALUES
 (2, 'en', 'Super administrator'),
 (2, 'fr', 'Super administrateur'),
 (3, 'en', 'Backend users'),
@@ -654,19 +661,19 @@ INSERT INTO `b_group_i18n` (`b_group_id`, `i18n_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_group_role`
+-- Structure de la table `u_group_role`
 --
 
-CREATE TABLE IF NOT EXISTS `b_group_role` (
-  `b_group_id` int(10) unsigned NOT NULL,
-  `b_role_id` int(10) unsigned NOT NULL
+CREATE TABLE IF NOT EXISTS `u_group_role` (
+  `u_group_id` int(10) unsigned NOT NULL,
+  `u_role_id` int(10) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Contenu de la table `b_group_role`
+-- Contenu de la table `u_group_role`
 --
 
-INSERT INTO `b_group_role` (`b_group_id`, `b_role_id`) VALUES
+INSERT INTO `u_group_role` (`u_group_id`, `u_role_id`) VALUES
 (2, 1),
 (2, 2),
 (2, 3),
@@ -679,18 +686,18 @@ INSERT INTO `b_group_role` (`b_group_id`, `b_role_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_i18n`
+-- Structure de la table `u_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_i18n` (
+CREATE TABLE IF NOT EXISTS `u_i18n` (
   `id` varchar(16) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Contenu de la table `b_i18n`
+-- Contenu de la table `u_i18n`
 --
 
-INSERT INTO `b_i18n` (`id`) VALUES
+INSERT INTO `u_i18n` (`id`) VALUES
 ('en'),
 ('es'),
 ('fr');
@@ -698,20 +705,20 @@ INSERT INTO `b_i18n` (`id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_i18n_i18n`
+-- Structure de la table `u_i18n_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_i18n_i18n` (
-  `b_i18n_id` varchar(16) COLLATE utf8_bin NOT NULL,
+CREATE TABLE IF NOT EXISTS `u_i18n_i18n` (
+  `u_i18n_id` varchar(16) COLLATE utf8_bin NOT NULL,
   `i18n_id` varchar(16) COLLATE utf8_bin NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Contenu de la table `b_i18n_i18n`
+-- Contenu de la table `u_i18n_i18n`
 --
 
-INSERT INTO `b_i18n_i18n` (`b_i18n_id`, `i18n_id`, `name`) VALUES
+INSERT INTO `u_i18n_i18n` (`u_i18n_id`, `i18n_id`, `name`) VALUES
 ('en', 'en', 'English'),
 ('en', 'fr', 'Anglais'),
 ('es', 'en', 'Spanish'),
@@ -722,20 +729,20 @@ INSERT INTO `b_i18n_i18n` (`b_i18n_id`, `i18n_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_interface_setting`
+-- Structure de la table `u_interface_setting`
 --
 
-CREATE TABLE IF NOT EXISTS `b_interface_setting` (
+CREATE TABLE IF NOT EXISTS `u_interface_setting` (
   `interface_id` varchar(64) COLLATE utf8_bin NOT NULL,
-  `b_person_id` int(10) unsigned NOT NULL,
+  `u_person_id` int(10) unsigned NOT NULL,
   `page_size` int(10) unsigned NOT NULL DEFAULT '10'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Contenu de la table `b_interface_setting`
+-- Contenu de la table `u_interface_setting`
 --
 
-INSERT INTO `b_interface_setting` (`interface_id`, `b_person_id`, `page_size`) VALUES
+INSERT INTO `u_interface_setting` (`interface_id`, `u_person_id`, `page_size`) VALUES
 ('album:backend/cms', 1, 10),
 ('autoLogin:backend/autoLogin', 1, 10),
 ('group:backend/right', 1, 10),
@@ -751,20 +758,20 @@ INSERT INTO `b_interface_setting` (`interface_id`, `b_person_id`, `page_size`) V
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_mail_sending_role`
+-- Structure de la table `u_mail_sending_role`
 --
 
-CREATE TABLE IF NOT EXISTS `b_mail_sending_role` (
-  `b_person_id` int(10) unsigned NOT NULL,
-  `b_mail_template_id` int(10) unsigned NOT NULL,
-  `b_mail_send_role_id` int(10) unsigned NOT NULL
+CREATE TABLE IF NOT EXISTS `u_mail_sending_role` (
+  `u_person_id` int(10) unsigned NOT NULL,
+  `u_mail_template_id` int(10) unsigned NOT NULL,
+  `u_mail_send_role_id` int(10) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `b_mail_sending_role`
+-- Contenu de la table `u_mail_sending_role`
 --
 
-INSERT INTO `b_mail_sending_role` (`b_person_id`, `b_mail_template_id`, `b_mail_send_role_id`) VALUES
+INSERT INTO `u_mail_sending_role` (`u_person_id`, `u_mail_template_id`, `u_mail_send_role_id`) VALUES
 (2, 2, 1),
 (1, 3, 2),
 (2, 3, 1);
@@ -772,20 +779,20 @@ INSERT INTO `b_mail_sending_role` (`b_person_id`, `b_mail_template_id`, `b_mail_
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_mail_send_role`
+-- Structure de la table `u_mail_send_role`
 --
 
-CREATE TABLE IF NOT EXISTS `b_mail_send_role` (
+CREATE TABLE IF NOT EXISTS `u_mail_send_role` (
 `id` int(10) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Contenu de la table `b_mail_send_role`
+-- Contenu de la table `u_mail_send_role`
 --
 
-INSERT INTO `b_mail_send_role` (`id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `u_mail_send_role` (`id`, `created_at`, `updated_at`) VALUES
 (1, '2013-01-25 16:30:04', '2013-01-25 16:30:16'),
 (2, '2013-01-25 16:30:08', '2013-01-25 16:30:20'),
 (3, '2013-01-25 16:30:27', '2013-01-25 16:30:27'),
@@ -794,20 +801,20 @@ INSERT INTO `b_mail_send_role` (`id`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_mail_send_role_i18n`
+-- Structure de la table `u_mail_send_role_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_mail_send_role_i18n` (
-  `b_mail_send_role_id` int(10) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `u_mail_send_role_i18n` (
+  `u_mail_send_role_id` int(10) unsigned NOT NULL,
   `i18n_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `b_mail_send_role_i18n`
+-- Contenu de la table `u_mail_send_role_i18n`
 --
 
-INSERT INTO `b_mail_send_role_i18n` (`b_mail_send_role_id`, `i18n_id`, `name`) VALUES
+INSERT INTO `u_mail_send_role_i18n` (`u_mail_send_role_id`, `i18n_id`, `name`) VALUES
 (1, 'en', 'From'),
 (1, 'fr', 'From'),
 (2, 'en', 'To'),
@@ -820,12 +827,12 @@ INSERT INTO `b_mail_send_role_i18n` (`b_mail_send_role_id`, `i18n_id`, `name`) V
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_mail_template`
+-- Structure de la table `u_mail_template`
 --
 
-CREATE TABLE IF NOT EXISTS `b_mail_template` (
+CREATE TABLE IF NOT EXISTS `u_mail_template` (
 `id` int(10) unsigned NOT NULL,
-  `b_mail_template_group_id` int(10) unsigned NOT NULL,
+  `u_mail_template_group_id` int(10) unsigned NOT NULL,
   `html_mode` tinyint(1) unsigned NOT NULL,
   `sql_request` text NOT NULL,
   `sql_param` text NOT NULL,
@@ -834,50 +841,50 @@ CREATE TABLE IF NOT EXISTS `b_mail_template` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `b_mail_template`
+-- Contenu de la table `u_mail_template`
 --
 
-INSERT INTO `b_mail_template` (`id`, `b_mail_template_group_id`, `html_mode`, `sql_request`, `sql_param`, `created_at`, `updated_at`) VALUES
-(2, 2, 1, 'SELECT id, first_name, last_name, email as b_mt_email_to FROM b_person WHERE email = :email', '', '2014-06-22 15:42:45', '2014-10-28 19:12:33'),
+INSERT INTO `u_mail_template` (`id`, `u_mail_template_group_id`, `html_mode`, `sql_request`, `sql_param`, `created_at`, `updated_at`) VALUES
+(2, 2, 1, 'SELECT id, first_name, last_name, email as b_mt_email_to FROM u_person WHERE email = :email', '', '2014-06-22 15:42:45', '2014-10-28 19:12:33'),
 (3, 3, 1, '', '', '2014-11-24 19:39:02', '2014-11-25 16:32:53');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_mail_template_group`
+-- Structure de la table `u_mail_template_group`
 --
 
-CREATE TABLE IF NOT EXISTS `b_mail_template_group` (
+CREATE TABLE IF NOT EXISTS `u_mail_template_group` (
 `id` int(10) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `b_mail_template_group`
+-- Contenu de la table `u_mail_template_group`
 --
 
-INSERT INTO `b_mail_template_group` (`id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `u_mail_template_group` (`id`, `created_at`, `updated_at`) VALUES
 (2, '2013-01-25 13:47:50', '2013-06-13 12:22:55'),
-(3, '2014-11-24 19:37:54', '2014-11-24 19:37:54');
+(3, '2014-11-24 19:37:54', '2014-12-04 11:12:28');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_mail_template_group_i18n`
+-- Structure de la table `u_mail_template_group_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_mail_template_group_i18n` (
-  `b_mail_template_group_id` int(10) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `u_mail_template_group_i18n` (
+  `u_mail_template_group_id` int(10) unsigned NOT NULL,
   `i18n_id` varchar(16) COLLATE utf8_bin NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Contenu de la table `b_mail_template_group_i18n`
+-- Contenu de la table `u_mail_template_group_i18n`
 --
 
-INSERT INTO `b_mail_template_group_i18n` (`b_mail_template_group_id`, `i18n_id`, `name`) VALUES
+INSERT INTO `u_mail_template_group_i18n` (`u_mail_template_group_id`, `i18n_id`, `name`) VALUES
 (2, 'en', 'Backend'),
 (2, 'fr', 'Backend'),
 (3, 'en', 'Frontend'),
@@ -886,21 +893,21 @@ INSERT INTO `b_mail_template_group_i18n` (`b_mail_template_group_id`, `i18n_id`,
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_mail_template_i18n`
+-- Structure de la table `u_mail_template_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_mail_template_i18n` (
-  `b_mail_template_id` int(10) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `u_mail_template_i18n` (
+  `u_mail_template_id` int(10) unsigned NOT NULL,
   `i18n_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `object` varchar(255) NOT NULL,
   `message` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `b_mail_template_i18n`
+-- Contenu de la table `u_mail_template_i18n`
 --
 
-INSERT INTO `b_mail_template_i18n` (`b_mail_template_id`, `i18n_id`, `object`, `message`) VALUES
+INSERT INTO `u_mail_template_i18n` (`u_mail_template_id`, `i18n_id`, `object`, `message`) VALUES
 (2, 'en', 'Password reset', '<p>Hello {first_name}&nbsp; {last_name},</p>\r\n\r\n<p>To reset your password, please go to the following page :</p>\r\n\r\n<p>{createPasswordResetLink({id})}</p>\r\n\r\n<p>If you do not wish to reset your password, ignore this message. It will expire in {nb} hours.</p>\r\n\r\n<p>Regards</p>\r\n\r\n<p>&nbsp;</p>\r\n'),
 (2, 'fr', 'Réinitialisation du mot de passe', '<p>Bonjour {first_name} {last_name},</p>\r\n\r\n<p>Afin de r&eacute;initialiser votre mot de passe, merci de vous rendre &agrave; l&#39;adresse suivante :</p>\r\n\r\n<p>{createPasswordResetLink({id})}</p>\r\n\r\n<p>Si vous ne souhaitez pas r&eacute;initialiser votre mot de passe, ignorer ce message. Il expirera dans {nb} heures.</p>\r\n\r\n<p>Cordialement</p>\r\n\r\n<p>&nbsp;</p>\r\n'),
 (3, 'en', 'Contact', '<p>Hello,</p>\r\n\r\n<p>You have received a message from {firstName} {lastName}.</p>\r\n\r\n<p>Contact informations :</p>\r\n\r\n<ul>\r\n	<li>First name : {firstName}</li>\r\n	<li>Last name : {lastName}</li>\r\n	<li>Email : {email}</li>\r\n	<li>Phone : {phone}</li>\r\n</ul>\r\n\r\n<p>Message :</p>\r\n\r\n<p>{message}</p>\r\n\r\n<hr />\r\n<p>This message is automatically sent from contact page</p>\r\n'),
@@ -909,25 +916,25 @@ INSERT INTO `b_mail_template_i18n` (`b_mail_template_id`, `i18n_id`, `object`, `
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_message`
+-- Structure de la table `u_message`
 --
 
-CREATE TABLE IF NOT EXISTS `b_message` (
+CREATE TABLE IF NOT EXISTS `u_message` (
 `id` int(10) unsigned NOT NULL,
-  `b_message_group_id` int(10) unsigned DEFAULT NULL,
+  `u_message_group_id` int(10) unsigned DEFAULT NULL,
   `source` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=529 ;
 
 --
--- Contenu de la table `b_message`
+-- Contenu de la table `u_message`
 --
 
-INSERT INTO `b_message` (`id`, `b_message_group_id`, `source`, `created_at`, `updated_at`) VALUES
-(11, 1, 'b_i18n_fr', '2013-01-23 07:30:52', '2014-11-26 15:16:26'),
-(12, 1, 'b_i18n_en', '2013-01-23 07:31:31', '2014-11-26 15:16:26'),
-(13, 1, 'b_i18n_de', '2013-01-23 07:47:12', '2014-11-26 15:16:26'),
+INSERT INTO `u_message` (`id`, `u_message_group_id`, `source`, `created_at`, `updated_at`) VALUES
+(11, 1, 'u_i18n_fr', '2013-01-23 07:30:52', '2014-11-26 15:16:26'),
+(12, 1, 'u_i18n_en', '2013-01-23 07:31:31', '2014-11-26 15:16:26'),
+(13, 1, 'u_i18n_de', '2013-01-23 07:47:12', '2014-11-26 15:16:26'),
 (14, 2, 'navbar_parameter', '2013-01-23 08:07:53', '2014-04-12 10:20:22'),
 (15, 2, 'navbar_variable', '2013-01-23 08:10:33', '2014-04-12 10:20:22'),
 (17, 1, 'btn_save', '2013-01-23 08:11:33', '2014-04-12 10:20:22'),
@@ -938,11 +945,10 @@ INSERT INTO `b_message` (`id`, `b_message_group_id`, `source`, `created_at`, `up
 (23, 1, 'is_saved', '2013-01-23 08:16:32', '2014-06-28 11:29:10'),
 (24, 1, 'advanced_search_title', '2013-01-23 08:41:06', '2014-06-28 11:29:10'),
 (25, 1, 'btn_search', '2013-01-23 08:41:36', '2014-06-28 11:29:10'),
-(26, 1, 'b_message:source', '2013-01-23 08:51:03', '2014-06-28 11:29:10'),
-(27, 1, 'b_message_category_i18n:name', '2013-01-23 08:51:21', '2014-07-05 11:21:02'),
+(26, 1, 'u_message:source', '2013-01-23 08:51:03', '2014-06-28 11:29:10'),
+(27, 1, 'u_message_category_i18n:name', '2013-01-23 08:51:21', '2014-07-05 11:21:02'),
 (29, 1, 'input_search', '2013-01-23 10:28:40', '2014-11-01 10:07:39'),
 (30, 1, 'navbar_current_language', '2013-01-24 10:23:34', '2014-04-12 10:20:22'),
-(32, 1, 'b_login_form:password', '2013-01-24 15:40:49', '2014-04-12 10:20:22'),
 (34, 1, 'login_btn_connect', '2013-01-24 15:43:12', '2014-04-12 10:20:22'),
 (36, 1, 'btn_check_all', '2013-01-24 16:25:07', '2014-04-12 10:20:22'),
 (38, 1, 'btn_uncheck_all', '2013-01-24 16:26:39', '2014-04-12 10:20:22'),
@@ -955,10 +961,10 @@ INSERT INTO `b_message` (`id`, `b_message_group_id`, `source`, `created_at`, `up
 (48, 1, 'input_drop_down_list_checked', '2013-01-28 13:53:49', '2014-06-28 11:13:22'),
 (49, 1, 'input_drop_down_list_unchecked', '2013-01-28 13:54:25', '2014-06-28 11:13:22'),
 (51, 2, 'mail_template_btn_list_role', '2013-01-29 15:41:47', '2014-04-12 10:20:22'),
-(54, 1, 'b_person:first_name', '2013-01-30 17:02:04', '2014-06-28 11:13:22'),
-(55, 1, 'b_person:last_name', '2013-01-30 17:02:17', '2014-07-10 18:43:31'),
-(56, 1, 'b_person:email', '2013-01-30 17:02:40', '2014-06-28 11:13:22'),
-(57, 1, 'b_person:password', '2013-01-30 17:02:51', '2014-06-28 11:13:22'),
+(54, 1, 'u_person:first_name', '2013-01-30 17:02:04', '2014-06-28 11:13:22'),
+(55, 1, 'u_person:last_name', '2013-01-30 17:02:17', '2014-07-10 18:43:31'),
+(56, 1, 'u_person:email', '2013-01-30 17:02:40', '2014-06-28 11:13:22'),
+(57, 1, 'u_person:password', '2013-01-30 17:02:51', '2014-06-28 11:13:22'),
 (61, 2, 'profile_password_is_required', '2013-01-30 19:29:35', '2014-06-27 10:14:18'),
 (65, 1, 'person_email_exist', '2013-01-30 19:33:01', '2014-06-28 11:13:22'),
 (66, 2, 'person_profile:password', '2013-01-30 19:33:35', '2014-06-27 10:05:17'),
@@ -983,10 +989,10 @@ INSERT INTO `b_message` (`id`, `b_message_group_id`, `source`, `created_at`, `up
 (190, 1, 'btn_export_csv', '2013-04-17 11:44:53', '2014-04-12 10:36:07'),
 (191, 1, 'no_results', '2013-04-25 09:56:57', '2014-04-12 10:36:07'),
 (192, 1, 'list_advanced_search_title', '2013-04-25 09:57:36', '2014-04-12 10:36:07'),
-(193, 1, 'b_message:b_message_group_id', '2013-04-25 09:58:49', '2014-07-10 18:43:31'),
+(193, 1, 'u_message:u_message_group_id', '2013-04-25 09:58:49', '2014-07-10 18:43:31'),
 (194, 2, 'navbar_member', '2013-04-25 10:01:24', '2014-06-27 09:22:10'),
 (195, 1, 'settings_title', '2013-04-25 10:02:21', '2014-06-28 11:12:06'),
-(196, 1, 'b_interface_setting:page_size', '2013-04-25 10:02:54', '2014-06-28 11:12:06'),
+(196, 1, 'u_interface_setting:page_size', '2013-04-25 10:02:54', '2014-06-28 11:12:06'),
 (197, 2, 'navbar_mail_template', '2013-04-25 10:03:52', '2014-07-08 15:31:01'),
 (198, 2, 'navbar_mail_template_group', '2013-04-25 10:05:49', '2014-07-08 15:34:39'),
 (199, 2, 'navbar_mail_send_role', '2013-04-25 10:06:34', '2014-07-08 15:25:51'),
@@ -998,15 +1004,15 @@ INSERT INTO `b_message` (`id`, `b_message_group_id`, `source`, `created_at`, `up
 (217, 2, 'navbar_role', '2013-04-25 10:31:37', '2014-04-12 10:36:07'),
 (219, 2, 'navbar_site_i18n', '2013-04-25 10:32:04', '2014-04-12 10:36:07'),
 (220, 2, 'navbar_i18n', '2013-04-25 10:32:31', '2014-04-12 10:36:07'),
-(227, 1, 'b_person:default_language', '2013-04-25 10:43:24', '2014-07-08 15:03:55'),
-(228, 1, 'b_message_group_i18n:name', '2013-04-25 10:44:12', '2014-07-08 15:18:01'),
-(229, 1, 'b_message_i18n:translation', '2013-04-25 10:44:48', '2014-06-28 11:12:06'),
+(227, 1, 'u_person:default_language', '2013-04-25 10:43:24', '2014-07-08 15:03:55'),
+(228, 1, 'u_message_group_i18n:name', '2013-04-25 10:44:12', '2014-07-08 15:18:01'),
+(229, 1, 'u_message_i18n:translation', '2013-04-25 10:44:48', '2014-06-28 11:12:06'),
 (230, 1, 'navbar_logout', '2013-04-25 10:45:22', '2014-06-28 11:12:06'),
-(231, 1, 'b_person:b_groups', '2013-04-25 10:46:37', '2014-06-28 11:12:06'),
-(232, 1, 'b_mail_template_i18n:object', '2013-04-25 10:47:24', '2014-06-28 11:12:06'),
-(233, 1, 'b_mail_template_i18n:message', '2013-04-25 10:47:39', '2014-04-12 10:36:07'),
-(234, 1, 'b_mail_template_group_i18n:name', '2013-04-25 10:47:58', '2014-07-05 11:21:02'),
-(235, 1, 'b_mail_template:html_mode', '2013-04-25 10:48:12', '2014-04-12 10:36:07'),
+(231, 1, 'u_person:u_groups', '2013-04-25 10:46:37', '2014-06-28 11:12:06'),
+(232, 1, 'u_mail_template_i18n:object', '2013-04-25 10:47:24', '2014-06-28 11:12:06'),
+(233, 1, 'u_mail_template_i18n:message', '2013-04-25 10:47:39', '2014-04-12 10:36:07'),
+(234, 1, 'u_mail_template_group_i18n:name', '2013-04-25 10:47:58', '2014-07-05 11:21:02'),
+(235, 1, 'u_mail_template:html_mode', '2013-04-25 10:48:12', '2014-04-12 10:36:07'),
 (236, 2, 'login_title', '2013-04-25 10:51:08', '2014-07-14 09:41:13'),
 (237, 1, 'btn_update', '2013-04-25 10:52:25', '2014-04-13 15:48:13'),
 (238, 1, 'btn_edit_inline', '2013-04-25 10:53:24', '2014-04-12 10:36:07'),
@@ -1015,7 +1021,7 @@ INSERT INTO `b_message` (`id`, `b_message_group_id`, `source`, `created_at`, `up
 (243, 1, 'btn_confirm', '2013-04-25 11:59:17', '2014-04-12 10:36:07'),
 (244, 1, 'modal_remove_selected', '2013-04-25 12:00:05', '2014-07-19 10:06:05'),
 (245, 1, 'modal_remove_one', '2013-04-25 12:12:21', '2014-06-19 09:59:18'),
-(246, 2, 'b_person_email_exist', '2013-05-29 14:52:02', '2014-06-27 09:38:37'),
+(246, 2, 'u_person_email_exist', '2013-05-29 14:52:02', '2014-06-27 09:38:37'),
 (247, 2, 'navbar_adv_setting', '2013-06-14 10:35:42', '2014-06-19 09:59:18'),
 (248, 2, 'navbar_db_schema_flush', '2013-06-14 10:37:05', '2014-06-19 09:59:18'),
 (249, 2, 'db_shema_refresh_title', '2013-06-14 10:38:59', '2014-06-19 09:59:18'),
@@ -1026,27 +1032,27 @@ INSERT INTO `b_message` (`id`, `b_message_group_id`, `source`, `created_at`, `up
 (254, 1, 'model:updated_at', '2013-06-14 11:15:36', '2014-04-13 15:48:13'),
 (261, 2, 'right_right_interface_list_title', '2013-06-20 05:24:28', '2014-04-12 10:36:07'),
 (263, 1, 'model:id', '2013-06-20 06:02:44', '2014-06-19 16:35:49'),
-(264, 1, 'b_mail_template:sql_request', '2013-06-20 06:03:40', '2014-04-12 10:36:07'),
-(265, 1, 'b_mail_template:sql_param', '2013-06-20 06:04:14', '2014-04-12 10:36:07'),
-(266, 1, 'b_mail_template:b_mail_template_group_id', '2013-06-20 06:07:40', '2014-07-08 15:31:01'),
-(267, 1, 'b_mail_send_role_i18n:name', '2013-06-20 06:08:55', '2014-07-05 11:21:02'),
-(268, 1, 'b_person:fullName', '2013-06-20 06:14:52', '2014-04-12 10:36:07'),
-(269, 1, 'b_mail_sending_role:b_mail_send_role_id', '2013-06-20 06:20:48', '2014-07-08 15:25:51'),
-(270, 1, 'b_variable:param', '2013-06-20 06:22:17', '2014-07-10 18:43:31'),
-(271, 1, 'b_variable_group_i18n:name', '2013-06-20 06:22:34', '2014-07-05 16:02:47'),
-(272, 1, 'b_variable:val', '2013-06-20 06:22:48', '2014-04-12 10:36:07'),
-(273, 1, 'b_variable_i18n:description', '2013-06-20 06:23:01', '2014-04-12 10:36:07'),
-(274, 1, 'b_variable:b_variable_group_id', '2013-06-20 06:26:51', '2014-07-10 18:43:31'),
+(264, 1, 'u_mail_template:sql_request', '2013-06-20 06:03:40', '2014-04-12 10:36:07'),
+(265, 1, 'u_mail_template:sql_param', '2013-06-20 06:04:14', '2014-04-12 10:36:07'),
+(266, 1, 'u_mail_template:u_mail_template_group_id', '2013-06-20 06:07:40', '2014-07-08 15:31:01'),
+(267, 1, 'u_mail_send_role_i18n:name', '2013-06-20 06:08:55', '2014-07-05 11:21:02'),
+(268, 1, 'u_person:fullName', '2013-06-20 06:14:52', '2014-04-12 10:36:07'),
+(269, 1, 'u_mail_sending_role:u_mail_send_role_id', '2013-06-20 06:20:48', '2014-07-08 15:25:51'),
+(270, 1, 'u_variable:param', '2013-06-20 06:22:17', '2014-07-10 18:43:31'),
+(271, 1, 'u_variable_group_i18n:name', '2013-06-20 06:22:34', '2014-07-05 16:02:47'),
+(272, 1, 'u_variable:val', '2013-06-20 06:22:48', '2014-04-12 10:36:07'),
+(273, 1, 'u_variable_i18n:description', '2013-06-20 06:23:01', '2014-04-12 10:36:07'),
+(274, 1, 'u_variable:u_variable_group_id', '2013-06-20 06:26:51', '2014-07-10 18:43:31'),
 (277, 2, 'right_group_role_edit_title', '2013-06-20 07:12:55', '2014-04-12 10:36:07'),
 (278, 2, 'right_auto_login_list_title', '2013-06-20 07:13:40', '2014-04-12 10:36:07'),
-(279, 1, 'b_auto_login:duration', '2013-06-20 07:14:32', '2014-04-12 10:36:07'),
-(280, 1, 'b_auto_login:expired_at', '2013-06-20 07:14:45', '2014-04-12 10:36:07'),
-(281, 1, 'b_auto_login:key1', '2013-06-20 07:15:05', '2014-04-12 10:36:07'),
-(282, 1, 'b_auto_login:key2', '2013-06-20 07:15:18', '2014-04-12 10:36:07'),
+(279, 1, 'u_auto_login:duration', '2013-06-20 07:14:32', '2014-04-12 10:36:07'),
+(280, 1, 'u_auto_login:expired_at', '2013-06-20 07:14:45', '2014-04-12 10:36:07'),
+(281, 1, 'u_auto_login:key1', '2013-06-20 07:15:05', '2014-04-12 10:36:07'),
+(282, 1, 'u_auto_login:key2', '2013-06-20 07:15:18', '2014-04-12 10:36:07'),
 (283, 2, 'right_interface_list_title', '2013-06-20 07:17:15', '2014-05-04 09:33:12'),
 (285, 2, 'right_role_list_title', '2013-06-20 07:18:41', '2014-07-08 14:49:23'),
 (287, 2, 'right_action_list_title', '2013-06-20 07:20:22', '2014-05-04 09:33:11'),
-(290, 1, 'b_i18n_i18n:name', '2013-06-20 07:22:03', '2014-11-26 15:16:26'),
+(290, 1, 'u_i18n_i18n:name', '2013-06-20 07:22:03', '2014-11-26 15:16:26'),
 (291, 1, 'model:name', '2013-06-20 07:22:15', '2014-07-05 11:21:02'),
 (293, 2, 'person_profile:old_password', '2013-06-20 07:27:53', '2014-06-27 10:05:17'),
 (294, 2, 'person_profile:repeat_password', '2013-06-20 07:29:51', '2014-06-27 10:05:17'),
@@ -1054,7 +1060,7 @@ INSERT INTO `b_message` (`id`, `b_message_group_id`, `source`, `created_at`, `up
 (298, 1, 'date_range_between', '2014-01-22 13:58:34', '2014-04-29 09:12:17'),
 (299, 1, 'date_range_separator', '2014-01-22 13:59:00', '2014-04-29 09:12:17'),
 (300, 1, 'select_input_add', '2014-01-22 14:19:09', '2014-04-29 09:12:17'),
-(301, 1, 'b_variable_group:code', '2014-01-22 14:20:47', '2014-07-05 16:02:47'),
+(301, 1, 'u_variable_group:code', '2014-01-22 14:20:47', '2014-07-05 16:02:47'),
 (302, 2, 'navbar_cache', '2014-01-22 14:22:13', '2014-05-04 15:46:07'),
 (303, 2, 'navbar_person', '2014-01-22 14:22:53', '2014-05-04 15:46:07'),
 (304, 2, 'btn_translate_all_message', '2014-01-22 14:39:04', '2014-07-06 08:23:30'),
@@ -1064,14 +1070,14 @@ INSERT INTO `b_message` (`id`, `b_message_group_id`, `source`, `created_at`, `up
 (318, 2, 'bad_login_password', '2014-06-19 16:30:27', '2014-06-28 11:32:23'),
 (320, 2, 'login_form:password', '2014-06-26 18:31:01', '2014-07-30 19:26:56'),
 (321, 2, 'account_not_activated', '2014-06-27 09:17:57', '2014-11-26 13:56:48'),
-(322, 2, 'b_person_email_not_exist', '2014-06-27 09:56:42', '2014-07-03 12:32:55'),
+(322, 2, 'u_person_email_not_exist', '2014-06-27 09:56:42', '2014-07-03 12:32:55'),
 (323, 2, 'password_reset_email_sent', '2014-06-27 10:01:11', '2014-07-04 18:36:53'),
 (324, 2, 'profile_old_password_not_valid', '2014-06-27 10:15:14', '2014-07-04 18:36:53'),
 (326, 2, 'reset_password_invalid_token', '2014-06-27 14:25:41', '2014-07-04 18:36:53'),
 (327, 2, 'password_reset_title', '2014-06-27 14:48:30', '2014-07-04 18:36:53'),
 (328, 2, 'password_reset_renew', '2014-06-27 16:53:52', '2014-07-04 18:36:53'),
 (329, 2, 'password_reset_cant_be_reset', '2014-06-28 07:38:28', '2014-07-04 18:36:53'),
-(331, 1, 'b_person:active_reset', '2014-06-28 16:11:10', '2014-07-05 09:43:59'),
+(331, 1, 'u_person:active_reset', '2014-06-28 16:11:10', '2014-07-05 09:43:59'),
 (334, 2, 'cms_page_container_index', '2014-07-03 15:59:36', '2014-07-05 09:43:59'),
 (335, 2, 'cache_refresh_success', '2014-07-04 18:35:38', '2014-07-05 09:43:59'),
 (336, 2, 'cache_refresh_error', '2014-07-04 18:35:54', '2014-07-21 07:39:57'),
@@ -1084,39 +1090,34 @@ INSERT INTO `b_message` (`id`, `b_message_group_id`, `source`, `created_at`, `up
 (343, 2, 'navbar_cms_image', '2014-07-05 09:44:20', '2014-07-05 09:57:11'),
 (345, 1, 'model:activated', '2014-07-05 09:49:38', '2014-11-26 13:56:48'),
 (346, 1, 'model:validated', '2014-07-05 09:52:36', '2014-07-05 09:57:11'),
-(347, 1, 'b_cms_page:cache_duration', '2014-07-05 09:53:43', '2014-07-21 07:39:57'),
-(348, 1, 'b_cms_page_i18n:title', '2014-07-05 09:54:40', '2014-07-08 13:00:39'),
-(349, 1, 'b_cms_page_i18n:html_title', '2014-07-05 09:56:32', '2014-07-08 13:00:39'),
-(350, 1, 'b_cms_page_i18n:html_description', '2014-07-05 09:56:56', '2014-07-08 14:04:23'),
-(351, 1, 'b_cms_page_i18n:html_keywords', '2014-07-05 09:57:42', '2014-07-08 14:04:23'),
-(352, 2, 'b_cms_page:pageContainers', '2014-07-05 09:59:38', '2014-07-05 10:16:01'),
-(353, 1, 'b_cms_page:b_cms_layout_id', '2014-07-05 10:02:13', '2014-07-08 15:57:19'),
-(354, 1, 'b_cms_layout:max_container', '2014-07-05 10:12:04', '2014-07-13 09:33:13'),
-(355, 1, 'b_cms_layout:path', '2014-07-05 10:12:24', '2014-07-13 09:33:13'),
+(347, 1, 'u_cms_page:cache_duration', '2014-07-05 09:53:43', '2014-07-21 07:39:57'),
+(348, 1, 'u_cms_page_i18n:title', '2014-07-05 09:54:40', '2014-07-08 13:00:39'),
+(349, 1, 'u_cms_page_i18n:html_title', '2014-07-05 09:56:32', '2014-07-08 13:00:39'),
+(350, 1, 'u_cms_page_i18n:html_description', '2014-07-05 09:56:56', '2014-07-08 14:04:23'),
+(351, 1, 'u_cms_page_i18n:html_keywords', '2014-07-05 09:57:42', '2014-07-08 14:04:23'),
+(352, 2, 'u_cms_page:pageContainers', '2014-07-05 09:59:38', '2014-07-05 10:16:01'),
+(353, 1, 'u_cms_page:u_cms_layout_id', '2014-07-05 10:02:13', '2014-07-08 15:57:19'),
+(354, 1, 'u_cms_layout:max_container', '2014-07-05 10:12:04', '2014-07-13 09:33:13'),
+(355, 1, 'u_cms_layout:path', '2014-07-05 10:12:24', '2014-07-13 09:33:13'),
 (356, 2, 'btn_refresh_all_cms_page', '2014-07-05 10:13:23', '2014-07-21 07:39:57'),
 (357, 2, 'btn_refresh_cms_page', '2014-07-05 10:16:54', '2014-07-21 07:39:57'),
-(358, 1, 'b_cms_edito_i18n:content', '2014-07-05 10:26:18', '2014-07-12 05:48:52'),
-(359, 2, 'b_cms_page:cacheManagment', '2014-07-05 10:27:13', '2014-07-21 07:39:57'),
-(360, 1, 'b_cms_widget:path', '2014-07-05 10:27:48', '2014-07-08 15:59:33'),
+(359, 2, 'u_cms_page:cacheManagment', '2014-07-05 10:27:13', '2014-07-21 07:39:57'),
+(360, 1, 'u_cms_widget:path', '2014-07-05 10:27:48', '2014-07-08 15:59:33'),
 (361, 1, 'model:title', '2014-07-05 10:32:07', '2014-07-05 11:19:53'),
 (367, 1, 'model:description', '2014-07-05 10:44:55', '2014-07-05 15:45:47'),
-(368, 1, 'b_cms_layout_i18n:name', '2014-07-05 11:16:06', '2014-07-21 07:40:25'),
-(369, 1, 'b_cms_edito_group_i18n:name', '2014-07-05 15:13:26', '2014-07-05 15:52:49'),
-(370, 1, 'b_cms_edito_i18n:name', '2014-07-05 15:14:08', '2014-07-12 05:48:52'),
-(371, 1, 'b_cms_widget_i18n:name', '2014-07-05 15:23:49', '2014-07-08 15:59:33'),
-(372, 1, 'b_cms_image:file_path', '2014-07-05 15:25:18', '2014-07-08 16:10:29'),
-(373, 1, 'b_cms_image:code', '2014-07-05 15:25:39', '2014-07-05 15:58:02'),
-(374, 1, 'b_cms_image_i18n:title', '2014-07-05 15:26:01', '2014-07-05 15:58:02'),
-(375, 1, 'b_cms_edito_i18n:title', '2014-07-05 15:40:08', '2014-07-12 05:48:52'),
-(376, 1, 'b_cms_edito:b_cms_edito_group_id', '2014-07-05 15:44:12', '2014-07-05 15:58:02'),
-(377, 1, 'b_role:operation', '2014-07-05 15:50:10', '2014-07-05 15:58:02'),
-(378, 1, 'b_role:business_rule', '2014-07-05 15:50:40', '2014-07-05 15:58:02'),
-(392, 1, 'b_message_source_exist', '2014-07-05 16:52:10', '2014-07-06 08:32:25'),
+(368, 1, 'u_cms_layout_i18n:name', '2014-07-05 11:16:06', '2014-07-21 07:40:25'),
+(371, 1, 'u_cms_widget_i18n:name', '2014-07-05 15:23:49', '2014-07-08 15:59:33'),
+(372, 1, 'u_cms_image:file_path', '2014-07-05 15:25:18', '2014-07-08 16:10:29'),
+(373, 1, 'u_cms_image:code', '2014-07-05 15:25:39', '2014-07-05 15:58:02'),
+(374, 1, 'u_cms_image_i18n:title', '2014-07-05 15:26:01', '2014-07-05 15:58:02'),
+(377, 1, 'u_role:operation', '2014-07-05 15:50:10', '2014-07-05 15:58:02'),
+(378, 1, 'u_role:business_rule', '2014-07-05 15:50:40', '2014-07-05 15:58:02'),
+(392, 1, 'u_message_source_exist', '2014-07-05 16:52:10', '2014-07-06 08:32:25'),
 (398, 2, 'person_create_title', '2014-07-06 13:54:45', '2014-07-19 19:24:35'),
 (399, 2, 'person_update_title', '2014-07-06 13:55:10', '2014-07-06 13:55:10'),
 (401, 1, 'translate_title', '2014-07-07 09:50:45', '2014-07-07 09:50:45'),
-(402, 1, 'b_cms_page_i18n:slug', '2014-07-08 13:00:23', '2014-07-08 14:04:23'),
-(403, 1, 'b_cms_page_i18n_slug_exist', '2014-07-08 14:02:22', '2014-07-08 14:04:23'),
+(402, 1, 'u_cms_page_i18n:slug', '2014-07-08 13:00:23', '2014-07-08 14:04:23'),
+(403, 1, 'u_cms_page_i18n_slug_exist', '2014-07-08 14:02:22', '2014-07-08 14:04:23'),
 (405, 2, 'variable_variable_create_title', '2014-07-08 14:37:12', '2014-07-19 19:24:35'),
 (406, 2, 'variable_variable_update_title', '2014-07-08 14:37:29', '2014-07-08 14:37:29'),
 (407, 2, 'variable_variable_group_list_title', '2014-07-08 14:38:10', '2014-07-08 14:38:10'),
@@ -1135,7 +1136,7 @@ INSERT INTO `b_message` (`id`, `b_message_group_id`, `source`, `created_at`, `up
 (420, 2, 'i18n_site_i18n_list_title', '2014-07-08 14:59:09', '2014-07-08 15:06:06'),
 (422, 2, 'i18n_site_i18n_create_title', '2014-07-08 15:01:56', '2014-07-08 15:06:06'),
 (423, 2, 'i18n_site_i18n_update_title', '2014-07-08 15:02:25', '2014-07-08 15:06:06'),
-(424, 1, 'b_site_i18n:i18n_id', '2014-07-08 15:02:52', '2014-07-08 15:06:06'),
+(424, 1, 'u_site_i18n:i18n_id', '2014-07-08 15:02:52', '2014-07-08 15:06:06'),
 (425, 2, 'i18n_i18n_list_title', '2014-07-08 15:05:10', '2014-07-08 15:06:06'),
 (426, 2, 'i18n_i18n_create_title', '2014-07-08 15:06:38', '2014-07-08 15:06:38'),
 (427, 2, 'i18n_i18n_update_title', '2014-07-08 15:07:04', '2014-07-08 15:07:04'),
@@ -1175,16 +1176,16 @@ INSERT INTO `b_message` (`id`, `b_message_group_id`, `source`, `created_at`, `up
 (462, 1, 'uploader_max_size', '2014-07-09 07:03:13', '2014-08-05 09:00:11'),
 (463, 1, 'select_input_update', '2014-07-10 09:55:35', '2014-07-18 09:20:57'),
 (464, 2, 'btn_cms_image_select', '2014-07-10 14:25:09', '2014-07-19 10:06:05'),
-(465, 1, 'b_cms_layout:view', '2014-07-13 09:32:30', '2014-07-18 09:20:57'),
+(465, 1, 'u_cms_layout:view', '2014-07-13 09:32:30', '2014-07-18 09:20:57'),
 (466, 2, 'cms_social_list_title', '2014-07-19 09:51:47', '2014-07-19 10:03:25'),
 (467, 2, 'cms_social_update_title', '2014-07-19 09:52:23', '2014-07-19 10:03:25'),
-(468, 1, 'b_cms_social:name', '2014-07-19 09:52:59', '2014-07-19 10:03:25'),
-(469, 1, 'b_cms_social_i18n:url', '2014-07-19 09:54:02', '2014-07-20 11:05:55'),
+(468, 1, 'u_cms_social:name', '2014-07-19 09:52:59', '2014-07-19 10:03:25'),
+(469, 1, 'u_cms_social_i18n:url', '2014-07-19 09:54:02', '2014-07-20 11:05:55'),
 (470, 2, 'navbar_cms_social', '2014-07-19 09:55:41', '2014-07-20 11:05:55'),
-(471, 1, 'b_cms_album_i18n:title', '2014-07-20 11:01:05', '2014-07-20 11:05:55'),
-(472, 1, 'b_cms_album_photo:file_path', '2014-07-20 11:01:51', '2014-07-20 11:05:55'),
-(473, 1, 'b_cms_album_photo:b_cms_album_id', '2014-07-20 11:02:17', '2014-07-20 11:05:55'),
-(474, 1, 'b_cms_album_photo_i18n:title', '2014-07-20 13:17:37', '2014-07-20 13:17:37'),
+(471, 1, 'u_cms_album_i18n:title', '2014-07-20 11:01:05', '2014-07-20 11:05:55'),
+(472, 1, 'u_cms_album_photo:file_path', '2014-07-20 11:01:51', '2014-07-20 11:05:55'),
+(473, 1, 'u_cms_album_photo:u_cms_album_id', '2014-07-20 11:02:17', '2014-07-20 11:05:55'),
+(474, 1, 'u_cms_album_photo_i18n:title', '2014-07-20 13:17:37', '2014-07-20 13:17:37'),
 (475, 2, 'btn_back_album', '2014-07-21 09:07:39', '2014-07-21 09:07:39'),
 (476, 2, 'navbar_cms_album', '2014-07-21 09:08:05', '2014-07-21 09:08:05'),
 (477, 2, 'cms_album_list_title', '2014-07-21 09:13:16', '2014-07-21 09:13:16'),
@@ -1194,14 +1195,14 @@ INSERT INTO `b_message` (`id`, `b_message_group_id`, `source`, `created_at`, `up
 (481, 2, 'cms_album_photo_create_title', '2014-07-21 09:34:36', '2014-07-21 09:35:35'),
 (482, 2, 'cms_album_photo_update_title', '2014-07-21 09:35:23', '2014-07-21 09:35:35'),
 (483, 2, 'btn_add_cms_album_photo', '2014-07-21 11:27:04', '2014-07-25 11:42:23'),
-(484, 1, 'b_cms_widget:arg', '2014-07-21 14:04:40', '2014-07-25 11:42:23'),
+(484, 1, 'u_cms_widget:arg', '2014-07-21 14:04:40', '2014-07-25 11:42:23'),
 (485, 2, 'btn_view_photos', '2014-07-21 14:46:01', '2014-07-25 11:42:23'),
 (486, 2, 'btn_cms_image_select_sm', '2014-07-23 14:44:43', '2014-07-28 16:10:01'),
 (487, 2, 'btn_cms_image_select_lg', '2014-07-23 14:45:02', '2014-07-28 16:10:54'),
-(488, 1, 'b_cms_news_group_i18n:name', '2014-07-28 16:08:45', '2014-11-22 10:57:36'),
-(489, 1, 'b_cms_news_i18n:title', '2014-07-28 16:09:09', '2014-07-28 16:24:18'),
-(490, 1, 'b_cms_news_i18n:content', '2014-07-28 16:09:37', '2014-07-28 16:24:18'),
-(491, 1, 'b_cms_news:b_cms_news_group_id', '2014-07-28 16:10:18', '2014-07-28 16:24:18'),
+(488, 1, 'u_cms_news_group_i18n:name', '2014-07-28 16:08:45', '2014-11-22 10:57:36'),
+(489, 1, 'u_cms_news_i18n:title', '2014-07-28 16:09:09', '2014-07-28 16:24:18'),
+(490, 1, 'u_cms_news_i18n:content', '2014-07-28 16:09:37', '2014-07-28 16:24:18'),
+(491, 1, 'u_cms_news:u_cms_news_group_id', '2014-07-28 16:10:18', '2014-07-28 16:24:18'),
 (493, 2, 'cms_news_list_title', '2014-07-28 16:20:38', '2014-11-22 10:57:36'),
 (494, 2, 'cms_news_create_title', '2014-07-28 16:21:46', '2014-07-28 16:21:46'),
 (495, 2, 'cms_news_update_title', '2014-07-28 16:22:07', '2014-07-28 16:22:07'),
@@ -1217,42 +1218,42 @@ INSERT INTO `b_message` (`id`, `b_message_group_id`, `source`, `created_at`, `up
 (507, 2, 'cms_menu_create_title', '2014-07-28 16:42:05', '2014-11-01 09:32:47'),
 (508, 2, 'cms_menu_update_title', '2014-07-28 16:42:37', '2014-11-24 18:30:39'),
 (509, 2, 'cms_menu_group_list_title', '2014-07-28 16:43:23', '2014-11-24 18:32:02'),
-(510, 1, 'b_cms_menu_group_i18n:name', '2014-07-28 16:43:39', '2014-11-24 18:32:02'),
+(510, 1, 'u_cms_menu_group_i18n:name', '2014-07-28 16:43:39', '2014-11-24 18:32:02'),
 (511, 2, 'cms_menu_group_create_title', '2014-07-28 16:44:34', '2014-11-24 18:32:02'),
 (512, 2, 'cms_menu_group_update_title', '2014-07-28 16:45:14', '2014-11-24 18:32:02'),
-(513, 1, 'b_cms_menu_i18n:name', '2014-07-28 16:45:47', '2014-11-24 18:32:02'),
-(514, 1, 'b_cms_menu_i18n:url', '2014-07-28 16:46:45', '2014-11-24 18:32:02'),
-(515, 1, 'b_cms_menu:b_cms_menu_group_id', '2014-07-29 13:13:19', '2014-11-24 18:32:02'),
+(513, 1, 'u_cms_menu_i18n:name', '2014-07-28 16:45:47', '2014-11-24 18:32:02'),
+(514, 1, 'u_cms_menu_i18n:url', '2014-07-28 16:46:45', '2014-11-24 18:32:02'),
+(515, 1, 'u_cms_menu:u_cms_menu_group_id', '2014-07-29 13:13:19', '2014-11-24 18:32:02'),
 (516, 2, 'url_manager_refresh_title', '2014-11-24 18:29:12', '2014-11-24 18:32:02'),
 (517, 2, 'url_manager_schema_flush', '2014-11-24 18:30:01', '2014-11-26 15:17:03'),
-(518, 2, 'url_is_refreshed', '2014-11-24 18:31:50', '2014-11-26 15:17:03'),
-(519, 3, 'contact_form:first_name', '2014-11-25 15:30:08', '2014-11-27 19:51:51'),
-(520, 3, 'contact_form:last_name', '2014-11-25 15:30:27', '2014-11-27 19:51:51'),
-(521, 3, 'contact_form:email', '2014-11-25 15:30:40', '2014-11-27 19:51:51'),
-(522, 3, 'contact_form:phone', '2014-11-25 15:31:03', '2014-11-27 19:51:51'),
-(523, 3, 'contact_form:message', '2014-11-25 15:32:47', '2014-11-27 19:51:51'),
-(524, 3, 'email_is_sent', '2014-11-25 16:03:35', '2014-11-27 19:51:51'),
-(525, 1, 'b_site_i18n:activated', '2014-11-26 13:56:28', '2014-11-27 19:51:51'),
-(526, 1, 'b_i18n_es', '2014-11-26 15:16:01', '2014-11-27 19:51:51'),
-(528, 1, 'b_cms_news:published_at', '2014-11-27 19:51:38', '2014-11-27 19:51:51');
+(518, 2, 'url_is_refreshed', '2014-11-24 18:31:50', '2014-12-04 10:57:07'),
+(519, 3, 'contact_form:first_name', '2014-11-25 15:30:08', '2014-12-04 10:57:07'),
+(520, 3, 'contact_form:last_name', '2014-11-25 15:30:27', '2014-12-04 10:57:07'),
+(521, 3, 'contact_form:email', '2014-11-25 15:30:40', '2014-12-04 10:57:07'),
+(522, 3, 'contact_form:phone', '2014-11-25 15:31:03', '2014-12-04 10:57:07'),
+(523, 3, 'contact_form:message', '2014-11-25 15:32:47', '2014-12-04 10:57:07'),
+(524, 3, 'email_is_sent', '2014-11-25 16:03:35', '2014-12-04 10:57:07'),
+(525, 1, 'u_site_i18n:activated', '2014-11-26 13:56:28', '2014-12-04 10:57:07'),
+(526, 1, 'u_i18n_es', '2014-11-26 15:16:01', '2014-12-04 10:57:07'),
+(528, 1, 'u_cms_news:published_at', '2014-11-27 19:51:38', '2014-12-04 10:57:07');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_message_group`
+-- Structure de la table `u_message_group`
 --
 
-CREATE TABLE IF NOT EXISTS `b_message_group` (
+CREATE TABLE IF NOT EXISTS `u_message_group` (
 `id` int(10) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `b_message_group`
+-- Contenu de la table `u_message_group`
 --
 
-INSERT INTO `b_message_group` (`id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `u_message_group` (`id`, `created_at`, `updated_at`) VALUES
 (1, '2014-06-28 10:37:52', '2014-07-30 19:19:58'),
 (2, '2013-01-11 11:03:27', '2014-06-28 14:03:47'),
 (3, '2014-08-02 09:29:12', '2014-08-02 09:29:12');
@@ -1260,20 +1261,20 @@ INSERT INTO `b_message_group` (`id`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_message_group_i18n`
+-- Structure de la table `u_message_group_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_message_group_i18n` (
-  `b_message_group_id` int(10) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `u_message_group_i18n` (
+  `u_message_group_id` int(10) unsigned NOT NULL,
   `i18n_id` varchar(16) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `b_message_group_i18n`
+-- Contenu de la table `u_message_group_i18n`
 --
 
-INSERT INTO `b_message_group_i18n` (`b_message_group_id`, `i18n_id`, `name`) VALUES
+INSERT INTO `u_message_group_i18n` (`u_message_group_id`, `i18n_id`, `name`) VALUES
 (1, 'en', 'Unitkit'),
 (1, 'fr', 'UNITKIT'),
 (2, 'en', 'Backend'),
@@ -1284,20 +1285,20 @@ INSERT INTO `b_message_group_i18n` (`b_message_group_id`, `i18n_id`, `name`) VAL
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_message_i18n`
+-- Structure de la table `u_message_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_message_i18n` (
-  `b_message_id` int(11) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `u_message_i18n` (
+  `u_message_id` int(11) unsigned NOT NULL,
   `i18n_id` varchar(16) COLLATE utf8_bin NOT NULL DEFAULT '',
   `translation` text CHARACTER SET utf8
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Contenu de la table `b_message_i18n`
+-- Contenu de la table `u_message_i18n`
 --
 
-INSERT INTO `b_message_i18n` (`b_message_id`, `i18n_id`, `translation`) VALUES
+INSERT INTO `u_message_i18n` (`u_message_id`, `i18n_id`, `translation`) VALUES
 (11, 'en', 'French'),
 (11, 'fr', 'Français'),
 (12, 'en', 'English'),
@@ -1332,8 +1333,6 @@ INSERT INTO `b_message_i18n` (`b_message_id`, `i18n_id`, `translation`) VALUES
 (29, 'fr', 'Rechercher'),
 (30, 'en', 'Language'),
 (30, 'fr', 'Langue'),
-(32, 'en', 'Password'),
-(32, 'fr', 'Mot de passe'),
 (34, 'en', 'Log In'),
 (34, 'fr', 'Connexion'),
 (36, 'en', 'Check all'),
@@ -1414,8 +1413,8 @@ INSERT INTO `b_message_i18n` (`b_message_id`, `i18n_id`, `translation`) VALUES
 (191, 'fr', 'Aucun résultat'),
 (192, 'en', 'Advanced search'),
 (192, 'fr', 'Recherche avançée'),
-(193, 'en', '{@=b_message_group_i18n:name }'),
-(193, 'fr', '{@=b_message_group_i18n:name }'),
+(193, 'en', '{@=u_message_group_i18n:name }'),
+(193, 'fr', '{@=u_message_group_i18n:name }'),
 (194, 'en', 'Users'),
 (194, 'fr', 'Utilisateurs'),
 (195, 'en', 'Settings'),
@@ -1520,8 +1519,8 @@ INSERT INTO `b_message_i18n` (`b_message_id`, `i18n_id`, `translation`) VALUES
 (272, 'fr', 'Valeur'),
 (273, 'en', 'Descrition'),
 (273, 'fr', 'Description'),
-(274, 'en', '{@=b_variable_group_i18n:name}'),
-(274, 'fr', '{@=b_variable_group_i18n:name}'),
+(274, 'en', '{@=u_variable_group_i18n:name}'),
+(274, 'fr', '{@=u_variable_group_i18n:name}'),
 (277, 'en', 'Assigning roles to groups'),
 (277, 'fr', 'Affectation des rôles aux groupes'),
 (278, 'en', 'Auto login'),
@@ -1574,8 +1573,8 @@ INSERT INTO `b_message_i18n` (`b_message_id`, `i18n_id`, `translation`) VALUES
 (316, 'fr', 'groupe de personnes'),
 (318, 'en', 'Bad login or password'),
 (318, 'fr', 'Mauvais identifiant ou mot de passe'),
-(320, 'en', '{@=unitkit, b_person:password}'),
-(320, 'fr', '{@=unitkit, b_person:password}'),
+(320, 'en', '{@=unitkit, u_person:password}'),
+(320, 'fr', '{@=unitkit, u_person:password}'),
 (321, 'en', 'Your account is not activated'),
 (321, 'fr', 'Votre compte utilisateur a été désactivé'),
 (322, 'en', 'Email doesn''t exist'),
@@ -1640,8 +1639,6 @@ INSERT INTO `b_message_i18n` (`b_message_id`, `i18n_id`, `translation`) VALUES
 (356, 'fr', 'Rafrachir le cache des pages'),
 (357, 'en', 'Refresh page cache'),
 (357, 'fr', 'Rafraichir le cache de la page'),
-(358, 'en', 'Body of editorial'),
-(358, 'fr', 'Contenu de l''éditorial'),
 (359, 'en', 'Cache managment'),
 (359, 'fr', 'Gestion du cache'),
 (360, 'en', 'Widget path'),
@@ -1652,10 +1649,6 @@ INSERT INTO `b_message_i18n` (`b_message_id`, `i18n_id`, `translation`) VALUES
 (367, 'fr', 'Description'),
 (368, 'en', 'Layout'),
 (368, 'fr', 'Modèle de page'),
-(369, 'en', 'Group name'),
-(369, 'fr', 'Nom du groupe'),
-(370, 'en', 'Short name of editorial'),
-(370, 'fr', 'Nom court de l''éditorial'),
 (371, 'en', 'Widget name'),
 (371, 'fr', 'Nom du widget'),
 (372, 'en', 'Image file'),
@@ -1664,10 +1657,6 @@ INSERT INTO `b_message_i18n` (`b_message_id`, `i18n_id`, `translation`) VALUES
 (373, 'fr', 'Code de l''image'),
 (374, 'en', 'Image title'),
 (374, 'fr', 'Titre de l''image'),
-(375, 'en', 'Title of editorial'),
-(375, 'fr', 'Titre de l''éditorial'),
-(376, 'en', '{@=b_cms_edito_group_i18n:name}'),
-(376, 'fr', '{@=b_cms_edito_group_i18n:name}'),
 (377, 'en', 'Operation'),
 (377, 'fr', 'Opération'),
 (378, 'en', 'Buisness rule'),
@@ -1720,8 +1709,8 @@ INSERT INTO `b_message_i18n` (`b_message_id`, `i18n_id`, `translation`) VALUES
 (422, 'fr', 'Ajouter une langue de site web'),
 (423, 'en', 'Update the website language'),
 (423, 'fr', 'Modifier la langue du site'),
-(424, 'en', '{@=b_i18n_i18n:name}'),
-(424, 'fr', '{@=b_i18n_i18n:name}'),
+(424, 'en', '{@=u_i18n_i18n:name}'),
+(424, 'fr', '{@=u_i18n_i18n:name}'),
 (425, 'en', 'Languages'),
 (425, 'fr', 'Langues'),
 (426, 'en', 'Add a language'),
@@ -1816,8 +1805,8 @@ INSERT INTO `b_message_i18n` (`b_message_id`, `i18n_id`, `translation`) VALUES
 (471, 'fr', 'Album'),
 (472, 'en', 'Photo path'),
 (472, 'fr', 'Adresse de la photo'),
-(473, 'en', '{@=b_cms_album_i18n:title}'),
-(473, 'fr', '{@=b_cms_album_i18n:title}'),
+(473, 'en', '{@=u_cms_album_i18n:title}'),
+(473, 'fr', '{@=u_cms_album_i18n:title}'),
 (474, 'en', 'Photo title'),
 (474, 'fr', 'Titre de la photo'),
 (475, 'en', 'Back to albums'),
@@ -1852,8 +1841,8 @@ INSERT INTO `b_message_i18n` (`b_message_id`, `i18n_id`, `translation`) VALUES
 (489, 'fr', 'Titre de la nouvelle'),
 (490, 'en', 'News content'),
 (490, 'fr', 'Contenu de la nouvelle'),
-(491, 'en', '{@=b_cms_news_group_i18n:name}'),
-(491, 'fr', '{@=b_cms_news_group_i18n:name}'),
+(491, 'en', '{@=u_cms_news_group_i18n:name}'),
+(491, 'fr', '{@=u_cms_news_group_i18n:name}'),
 (493, 'en', 'News'),
 (493, 'fr', 'Actualités'),
 (494, 'en', 'Add news'),
@@ -1924,10 +1913,10 @@ INSERT INTO `b_message_i18n` (`b_message_id`, `i18n_id`, `translation`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_person`
+-- Structure de la table `u_person`
 --
 
-CREATE TABLE IF NOT EXISTS `b_person` (
+CREATE TABLE IF NOT EXISTS `u_person` (
 `id` int(10) unsigned NOT NULL,
   `email` varchar(255) CHARACTER SET utf8 NOT NULL,
   `password` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -1942,40 +1931,40 @@ CREATE TABLE IF NOT EXISTS `b_person` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
 
 --
--- Contenu de la table `b_person`
+-- Contenu de la table `u_person`
 --
 
-INSERT INTO `b_person` (`id`, `email`, `password`, `first_name`, `last_name`, `activated`, `validated`, `active_reset`, `default_language`, `created_at`, `updated_at`) VALUES
-(1, 'admin@unitkit.com', '$2a$13$wX7Nnt9jkr2MB9ZaLKtOgu9ZoppWTFl7hwIKV2LayqLwoghhlYiKm', 'Super', 'Admin', 1, 1, 0, 'fr', '2012-12-20 12:40:50', '2014-11-29 14:44:46'),
-(2, 'noreply@unitkit.local', '', 'Sender', '', 0, 0, 0, 'en', '2013-04-25 10:07:58', '2014-06-22 12:06:57');
+INSERT INTO `u_person` (`id`, `email`, `password`, `first_name`, `last_name`, `activated`, `validated`, `active_reset`, `default_language`, `created_at`, `updated_at`) VALUES
+(1, 'admin@unitkit.com', '$2a$13$wX7Nnt9jkr2MB9ZaLKtOgu9ZoppWTFl7hwIKV2LayqLwoghhlYiKm', 'Super', 'Admin', 1, 1, 0, 'en', '2012-12-20 12:40:50', '2014-12-04 11:13:12'),
+(2, 'noreply@unitkit.com', '', 'Sender', '', 0, 0, 0, 'en', '2013-04-25 10:07:58', '2014-12-04 12:42:46');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_person_group`
+-- Structure de la table `u_person_group`
 --
 
-CREATE TABLE IF NOT EXISTS `b_person_group` (
-  `b_person_id` int(10) unsigned NOT NULL,
-  `b_group_id` int(10) unsigned NOT NULL
+CREATE TABLE IF NOT EXISTS `u_person_group` (
+  `u_person_id` int(10) unsigned NOT NULL,
+  `u_group_id` int(10) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Contenu de la table `b_person_group`
+-- Contenu de la table `u_person_group`
 --
 
-INSERT INTO `b_person_group` (`b_person_id`, `b_group_id`) VALUES
+INSERT INTO `u_person_group` (`u_person_id`, `u_group_id`) VALUES
 (1, 2);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_person_token`
+-- Structure de la table `u_person_token`
 --
 
-CREATE TABLE IF NOT EXISTS `b_person_token` (
+CREATE TABLE IF NOT EXISTS `u_person_token` (
   `uuid` varchar(64) NOT NULL,
-  `b_person_id` int(10) unsigned NOT NULL,
+  `u_person_id` int(10) unsigned NOT NULL,
   `password` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `action` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `expired_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -1986,10 +1975,10 @@ CREATE TABLE IF NOT EXISTS `b_person_token` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_role`
+-- Structure de la table `u_role`
 --
 
-CREATE TABLE IF NOT EXISTS `b_role` (
+CREATE TABLE IF NOT EXISTS `u_role` (
 `id` int(10) unsigned NOT NULL,
   `operation` varchar(64) COLLATE utf8_bin NOT NULL,
   `business_rule` text COLLATE utf8_bin NOT NULL,
@@ -1998,10 +1987,10 @@ CREATE TABLE IF NOT EXISTS `b_role` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=107 ;
 
 --
--- Contenu de la table `b_role`
+-- Contenu de la table `u_role`
 --
 
-INSERT INTO `b_role` (`id`, `operation`, `business_rule`, `created_at`, `updated_at`) VALUES
+INSERT INTO `u_role` (`id`, `operation`, `business_rule`, `created_at`, `updated_at`) VALUES
 (1, 'consult:*', '', '2014-03-23 14:35:53', '2014-04-09 09:18:52'),
 (2, 'create:*', '', '2014-03-23 13:44:27', '2014-11-22 10:44:55'),
 (3, 'update:*', '', '2014-03-23 14:38:13', '2014-04-09 09:19:14'),
@@ -2109,20 +2098,20 @@ INSERT INTO `b_role` (`id`, `operation`, `business_rule`, `created_at`, `updated
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_role_i18n`
+-- Structure de la table `u_role_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_role_i18n` (
-  `b_role_id` int(10) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `u_role_i18n` (
+  `u_role_id` int(10) unsigned NOT NULL,
   `i18n_id` varchar(16) COLLATE utf8_bin NOT NULL,
   `name` varchar(255) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Contenu de la table `b_role_i18n`
+-- Contenu de la table `u_role_i18n`
 --
 
-INSERT INTO `b_role_i18n` (`b_role_id`, `i18n_id`, `name`) VALUES
+INSERT INTO `u_role_i18n` (`u_role_id`, `i18n_id`, `name`) VALUES
 (1, 'en', 'Consult'),
 (1, 'fr', 'Consulter'),
 (2, 'en', 'Create'),
@@ -2333,31 +2322,31 @@ INSERT INTO `b_role_i18n` (`b_role_id`, `i18n_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_site_i18n`
+-- Structure de la table `u_site_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_site_i18n` (
+CREATE TABLE IF NOT EXISTS `u_site_i18n` (
   `i18n_id` varchar(16) COLLATE utf8_bin NOT NULL,
   `activated` tinyint(1) unsigned NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Contenu de la table `b_site_i18n`
+-- Contenu de la table `u_site_i18n`
 --
 
-INSERT INTO `b_site_i18n` (`i18n_id`, `activated`) VALUES
-('en', 0),
-('fr', 1);
+INSERT INTO `u_site_i18n` (`i18n_id`, `activated`) VALUES
+('en', 1),
+('fr', 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_variable`
+-- Structure de la table `u_variable`
 --
 
-CREATE TABLE IF NOT EXISTS `b_variable` (
+CREATE TABLE IF NOT EXISTS `u_variable` (
 `id` int(10) unsigned NOT NULL,
-  `b_variable_group_id` int(10) unsigned NOT NULL,
+  `u_variable_group_id` int(10) unsigned NOT NULL,
   `param` varchar(50) COLLATE utf8_bin NOT NULL,
   `val` text COLLATE utf8_bin NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -2365,36 +2354,36 @@ CREATE TABLE IF NOT EXISTS `b_variable` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=25 ;
 
 --
--- Contenu de la table `b_variable`
+-- Contenu de la table `u_variable`
 --
 
-INSERT INTO `b_variable` (`id`, `b_variable_group_id`, `param`, `val`, `created_at`, `updated_at`) VALUES
-(1, 2, 'b_role_id:navigate', 'consult:backend', '2012-12-20 17:38:56', '2014-06-23 13:16:53'),
-(2, 2, 'b_auto_login_duration', '7', '2012-12-21 09:34:02', '2014-06-23 13:56:20'),
-(3, 1, 'b_send_role_id:from', '1', '2013-01-29 17:35:43', '2014-06-23 13:16:27'),
-(4, 1, 'b_send_role_id:to', '2', '2013-01-29 17:36:12', '2014-06-23 13:16:23'),
-(5, 1, 'b_send_role_id:cc', '3', '2013-01-29 17:36:33', '2014-06-23 13:16:19'),
-(6, 1, 'b_send_role_id:bcc', '4', '2013-01-29 17:36:51', '2014-06-23 13:16:14'),
-(11, 1, 'b_message_group_id:unitkit', '1', '2014-06-22 16:01:48', '2014-07-30 19:23:11'),
-(12, 1, 'b_message_group_id:backend', '2', '2014-06-22 16:02:12', '2014-08-02 09:30:49'),
+INSERT INTO `u_variable` (`id`, `u_variable_group_id`, `param`, `val`, `created_at`, `updated_at`) VALUES
+(1, 2, 'u_role_id:navigate', 'consult:backend', '2012-12-20 17:38:56', '2014-06-23 13:16:53'),
+(2, 2, 'u_auto_login_duration', '7', '2012-12-21 09:34:02', '2014-06-23 13:56:20'),
+(3, 1, 'u_send_role_id:from', '1', '2013-01-29 17:35:43', '2014-06-23 13:16:27'),
+(4, 1, 'u_send_role_id:to', '2', '2013-01-29 17:36:12', '2014-06-23 13:16:23'),
+(5, 1, 'u_send_role_id:cc', '3', '2013-01-29 17:36:33', '2014-06-23 13:16:19'),
+(6, 1, 'u_send_role_id:bcc', '4', '2013-01-29 17:36:51', '2014-06-23 13:16:14'),
+(11, 1, 'u_message_group_id:unitkit', '1', '2014-06-22 16:01:48', '2014-07-30 19:23:11'),
+(12, 1, 'u_message_group_id:backend', '2', '2014-06-22 16:02:12', '2014-08-02 09:30:49'),
 (13, 2, 'mail_template_id:resetPassword', '2', '2014-06-23 12:30:47', '2014-06-23 13:32:38'),
-(14, 2, 'b_person_token_action:resetPassword', 'backend:resetPassword', '2014-06-23 13:27:09', '2014-06-23 13:32:33'),
-(15, 2, 'b_person_token_expired_at:resetPassword', '12', '2014-06-23 13:34:14', '2014-07-02 14:02:34'),
-(18, 1, 'b_message_group_id:frontend', '3', '2014-08-02 09:29:56', '2014-08-02 09:30:37'),
+(14, 2, 'u_person_token_action:resetPassword', 'backend:resetPassword', '2014-06-23 13:27:09', '2014-06-23 13:32:33'),
+(15, 2, 'u_person_token_expired_at:resetPassword', '12', '2014-06-23 13:34:14', '2014-07-02 14:02:34'),
+(18, 1, 'u_message_group_id:frontend', '3', '2014-08-02 09:29:56', '2014-08-02 09:30:37'),
 (19, 3, 'website_name', 'Website', '2014-08-05 07:37:18', '2014-11-22 11:36:44'),
-(20, 3, 'b_cms_menu_group_id:main', '1', '2014-08-05 09:23:31', '2014-11-24 18:34:21'),
-(21, 3, 'b_cms_page_id:contact', '39', '2014-11-24 17:32:18', '2014-11-24 17:33:21'),
+(20, 3, 'u_cms_menu_group_id:main', '1', '2014-08-05 09:23:31', '2014-11-24 18:34:21'),
+(21, 3, 'u_cms_page_id:contact', '39', '2014-11-24 17:32:18', '2014-11-24 17:33:21'),
 (22, 3, 'mail_template_id:contact', ' 3', '2014-11-25 15:46:17', '2014-11-29 11:19:49'),
-(23, 3, 'b_cms_page_id:news', '41', '2014-11-29 11:19:14', '2014-11-29 11:19:57'),
-(24, 3, 'b_cms_news_group_id:main', '15', '2014-11-29 12:47:04', '2014-11-29 12:47:04');
+(23, 3, 'u_cms_page_id:news', '41', '2014-11-29 11:19:14', '2014-11-29 11:19:57'),
+(24, 3, 'u_cms_news_group_id:main', '15', '2014-11-29 12:47:04', '2014-11-29 12:47:04');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_variable_group`
+-- Structure de la table `u_variable_group`
 --
 
-CREATE TABLE IF NOT EXISTS `b_variable_group` (
+CREATE TABLE IF NOT EXISTS `u_variable_group` (
 `id` int(10) unsigned NOT NULL,
   `code` varchar(50) COLLATE utf8_bin NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -2402,10 +2391,10 @@ CREATE TABLE IF NOT EXISTS `b_variable_group` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `b_variable_group`
+-- Contenu de la table `u_variable_group`
 --
 
-INSERT INTO `b_variable_group` (`id`, `code`, `created_at`, `updated_at`) VALUES
+INSERT INTO `u_variable_group` (`id`, `code`, `created_at`, `updated_at`) VALUES
 (1, 'unitkit', '2012-12-28 15:46:26', '2014-07-30 19:24:31'),
 (2, 'backend', '2012-12-20 17:28:37', '2014-11-01 10:03:50'),
 (3, 'frontend', '2014-08-05 07:36:32', '2014-08-05 07:36:32');
@@ -2413,20 +2402,20 @@ INSERT INTO `b_variable_group` (`id`, `code`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_variable_group_i18n`
+-- Structure de la table `u_variable_group_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_variable_group_i18n` (
-  `b_variable_group_id` int(10) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `u_variable_group_i18n` (
+  `u_variable_group_id` int(10) unsigned NOT NULL,
   `i18n_id` varchar(16) COLLATE utf8_bin NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Contenu de la table `b_variable_group_i18n`
+-- Contenu de la table `u_variable_group_i18n`
 --
 
-INSERT INTO `b_variable_group_i18n` (`b_variable_group_id`, `i18n_id`, `name`) VALUES
+INSERT INTO `u_variable_group_i18n` (`u_variable_group_id`, `i18n_id`, `name`) VALUES
 (1, 'en', 'Unitkit'),
 (1, 'fr', 'Unitkit'),
 (2, 'en', 'Backend'),
@@ -2437,20 +2426,20 @@ INSERT INTO `b_variable_group_i18n` (`b_variable_group_id`, `i18n_id`, `name`) V
 -- --------------------------------------------------------
 
 --
--- Structure de la table `b_variable_i18n`
+-- Structure de la table `u_variable_i18n`
 --
 
-CREATE TABLE IF NOT EXISTS `b_variable_i18n` (
-  `b_variable_id` int(10) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `u_variable_i18n` (
+  `u_variable_id` int(10) unsigned NOT NULL,
   `i18n_id` varchar(16) COLLATE utf8_bin NOT NULL,
   `description` text CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Contenu de la table `b_variable_i18n`
+-- Contenu de la table `u_variable_i18n`
 --
 
-INSERT INTO `b_variable_i18n` (`b_variable_id`, `i18n_id`, `description`) VALUES
+INSERT INTO `u_variable_i18n` (`u_variable_id`, `i18n_id`, `description`) VALUES
 (1, 'en', 'Role ID used to navigate in the Backend'),
 (1, 'fr', 'Identifiant du rôle permettant de naviguer dans le Backend'),
 (2, 'en', 'Time during which an autologin session keep alive (in days)'),
@@ -2493,698 +2482,697 @@ INSERT INTO `b_variable_i18n` (`b_variable_id`, `i18n_id`, `description`) VALUES
 --
 
 --
--- Index pour la table `b_auto_login`
+-- Index pour la table `u_auto_login`
 --
-ALTER TABLE `b_auto_login`
- ADD PRIMARY KEY (`uuid`), ADD KEY `b_person_id` (`b_person_id`);
+ALTER TABLE `u_auto_login`
+ ADD PRIMARY KEY (`uuid`), ADD KEY `u_person_id` (`u_person_id`);
 
 --
--- Index pour la table `b_cms_album`
+-- Index pour la table `u_cms_album`
 --
-ALTER TABLE `b_cms_album`
+ALTER TABLE `u_cms_album`
  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `b_cms_album_i18n`
+-- Index pour la table `u_cms_album_i18n`
 --
-ALTER TABLE `b_cms_album_i18n`
- ADD PRIMARY KEY (`b_cms_album_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
+ALTER TABLE `u_cms_album_i18n`
+ ADD PRIMARY KEY (`u_cms_album_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
 
 --
--- Index pour la table `b_cms_album_photo`
+-- Index pour la table `u_cms_album_photo`
 --
-ALTER TABLE `b_cms_album_photo`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `file_path` (`file_path`), ADD KEY `b_cms_album_id` (`b_cms_album_id`);
+ALTER TABLE `u_cms_album_photo`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `file_path` (`file_path`), ADD KEY `u_cms_album_id` (`u_cms_album_id`);
 
 --
--- Index pour la table `b_cms_album_photo_i18n`
+-- Index pour la table `u_cms_album_photo_i18n`
 --
-ALTER TABLE `b_cms_album_photo_i18n`
- ADD PRIMARY KEY (`b_cms_album_photo_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
+ALTER TABLE `u_cms_album_photo_i18n`
+ ADD PRIMARY KEY (`u_cms_album_photo_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
 
 --
--- Index pour la table `b_cms_image`
+-- Index pour la table `u_cms_image`
 --
-ALTER TABLE `b_cms_image`
+ALTER TABLE `u_cms_image`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `file_path` (`file_path`);
 
 --
--- Index pour la table `b_cms_image_i18n`
+-- Index pour la table `u_cms_image_i18n`
 --
-ALTER TABLE `b_cms_image_i18n`
- ADD PRIMARY KEY (`b_cms_image_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
+ALTER TABLE `u_cms_image_i18n`
+ ADD PRIMARY KEY (`u_cms_image_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
 
 --
--- Index pour la table `b_cms_layout`
+-- Index pour la table `u_cms_layout`
 --
-ALTER TABLE `b_cms_layout`
+ALTER TABLE `u_cms_layout`
  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `b_cms_layout_i18n`
+-- Index pour la table `u_cms_layout_i18n`
 --
-ALTER TABLE `b_cms_layout_i18n`
- ADD PRIMARY KEY (`b_cms_layout_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
+ALTER TABLE `u_cms_layout_i18n`
+ ADD PRIMARY KEY (`u_cms_layout_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
 
 --
--- Index pour la table `b_cms_menu`
+-- Index pour la table `u_cms_menu`
 --
-ALTER TABLE `b_cms_menu`
- ADD PRIMARY KEY (`id`), ADD KEY `b_cms_edito_group_id` (`b_cms_menu_group_id`), ADD KEY `rank` (`rank`);
+ALTER TABLE `u_cms_menu`
+ ADD PRIMARY KEY (`id`), ADD KEY `u_cms_edito_group_id` (`u_cms_menu_group_id`), ADD KEY `rank` (`rank`);
 
 --
--- Index pour la table `b_cms_menu_group`
+-- Index pour la table `u_cms_menu_group`
 --
-ALTER TABLE `b_cms_menu_group`
+ALTER TABLE `u_cms_menu_group`
  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `b_cms_menu_group_i18n`
+-- Index pour la table `u_cms_menu_group_i18n`
 --
-ALTER TABLE `b_cms_menu_group_i18n`
- ADD PRIMARY KEY (`b_cms_menu_group_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
+ALTER TABLE `u_cms_menu_group_i18n`
+ ADD PRIMARY KEY (`u_cms_menu_group_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
 
 --
--- Index pour la table `b_cms_menu_i18n`
+-- Index pour la table `u_cms_menu_i18n`
 --
-ALTER TABLE `b_cms_menu_i18n`
- ADD PRIMARY KEY (`b_cms_menu_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
+ALTER TABLE `u_cms_menu_i18n`
+ ADD PRIMARY KEY (`u_cms_menu_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
 
 --
--- Index pour la table `b_cms_news`
+-- Index pour la table `u_cms_news`
 --
-ALTER TABLE `b_cms_news`
- ADD PRIMARY KEY (`id`), ADD KEY `b_cms_news_group_id` (`b_cms_news_group_id`);
+ALTER TABLE `u_cms_news`
+ ADD PRIMARY KEY (`id`), ADD KEY `u_cms_news_group_id` (`u_cms_news_group_id`);
 
 --
--- Index pour la table `b_cms_news_group`
+-- Index pour la table `u_cms_news_group`
 --
-ALTER TABLE `b_cms_news_group`
+ALTER TABLE `u_cms_news_group`
  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `b_cms_news_group_i18n`
+-- Index pour la table `u_cms_news_group_i18n`
 --
-ALTER TABLE `b_cms_news_group_i18n`
- ADD PRIMARY KEY (`b_cms_news_group_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
+ALTER TABLE `u_cms_news_group_i18n`
+ ADD PRIMARY KEY (`u_cms_news_group_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
 
 --
--- Index pour la table `b_cms_news_i18n`
+-- Index pour la table `u_cms_news_i18n`
 --
-ALTER TABLE `b_cms_news_i18n`
- ADD PRIMARY KEY (`b_cms_news_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
+ALTER TABLE `u_cms_news_i18n`
+ ADD PRIMARY KEY (`u_cms_news_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
 
 --
--- Index pour la table `b_cms_page`
+-- Index pour la table `u_cms_page`
 --
-ALTER TABLE `b_cms_page`
- ADD PRIMARY KEY (`id`), ADD KEY `b_cms_layout_id` (`b_cms_layout_id`);
+ALTER TABLE `u_cms_page`
+ ADD PRIMARY KEY (`id`), ADD KEY `u_cms_layout_id` (`u_cms_layout_id`);
 
 --
--- Index pour la table `b_cms_page_content`
+-- Index pour la table `u_cms_page_content`
 --
-ALTER TABLE `b_cms_page_content`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `b_cms_page_id_2` (`b_cms_page_id`,`index`), ADD KEY `b_cms_page_id` (`b_cms_page_id`);
+ALTER TABLE `u_cms_page_content`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `u_cms_page_id_2` (`u_cms_page_id`,`index`), ADD KEY `u_cms_page_id` (`u_cms_page_id`);
 
 --
--- Index pour la table `b_cms_page_content_i18n`
+-- Index pour la table `u_cms_page_content_i18n`
 --
-ALTER TABLE `b_cms_page_content_i18n`
- ADD PRIMARY KEY (`b_cms_page_content_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
+ALTER TABLE `u_cms_page_content_i18n`
+ ADD PRIMARY KEY (`u_cms_page_content_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
 
 --
--- Index pour la table `b_cms_page_i18n`
+-- Index pour la table `u_cms_page_i18n`
 --
-ALTER TABLE `b_cms_page_i18n`
- ADD PRIMARY KEY (`b_cms_page_id`,`i18n_id`), ADD UNIQUE KEY `i18n_id_2` (`i18n_id`,`slug`), ADD KEY `i18n_id` (`i18n_id`);
+ALTER TABLE `u_cms_page_i18n`
+ ADD PRIMARY KEY (`u_cms_page_id`,`i18n_id`), ADD UNIQUE KEY `i18n_id_2` (`i18n_id`,`slug`), ADD KEY `i18n_id` (`i18n_id`);
 
 --
--- Index pour la table `b_cms_social`
+-- Index pour la table `u_cms_social`
 --
-ALTER TABLE `b_cms_social`
+ALTER TABLE `u_cms_social`
  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `b_cms_social_i18n`
+-- Index pour la table `u_cms_social_i18n`
 --
-ALTER TABLE `b_cms_social_i18n`
- ADD PRIMARY KEY (`b_cms_social_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
+ALTER TABLE `u_cms_social_i18n`
+ ADD PRIMARY KEY (`u_cms_social_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
 
 --
--- Index pour la table `b_cms_widget`
+-- Index pour la table `u_cms_widget`
 --
-ALTER TABLE `b_cms_widget`
+ALTER TABLE `u_cms_widget`
  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `b_cms_widget_i18n`
+-- Index pour la table `u_cms_widget_i18n`
 --
-ALTER TABLE `b_cms_widget_i18n`
- ADD PRIMARY KEY (`b_cms_widget_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
+ALTER TABLE `u_cms_widget_i18n`
+ ADD PRIMARY KEY (`u_cms_widget_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
 
 --
--- Index pour la table `b_group`
+-- Index pour la table `u_group`
 --
-ALTER TABLE `b_group`
+ALTER TABLE `u_group`
  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `b_group_i18n`
+-- Index pour la table `u_group_i18n`
 --
-ALTER TABLE `b_group_i18n`
- ADD PRIMARY KEY (`b_group_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
+ALTER TABLE `u_group_i18n`
+ ADD PRIMARY KEY (`u_group_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
 
 --
--- Index pour la table `b_group_role`
+-- Index pour la table `u_group_role`
 --
-ALTER TABLE `b_group_role`
- ADD PRIMARY KEY (`b_group_id`,`b_role_id`), ADD KEY `b_role_id` (`b_role_id`);
+ALTER TABLE `u_group_role`
+ ADD PRIMARY KEY (`u_group_id`,`u_role_id`), ADD KEY `u_role_id` (`u_role_id`);
 
 --
--- Index pour la table `b_i18n`
+-- Index pour la table `u_i18n`
 --
-ALTER TABLE `b_i18n`
+ALTER TABLE `u_i18n`
  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `b_i18n_i18n`
+-- Index pour la table `u_i18n_i18n`
 --
-ALTER TABLE `b_i18n_i18n`
- ADD PRIMARY KEY (`b_i18n_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
+ALTER TABLE `u_i18n_i18n`
+ ADD PRIMARY KEY (`u_i18n_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
 
 --
--- Index pour la table `b_interface_setting`
+-- Index pour la table `u_interface_setting`
 --
-ALTER TABLE `b_interface_setting`
- ADD PRIMARY KEY (`interface_id`,`b_person_id`), ADD KEY `b_person_id` (`b_person_id`);
+ALTER TABLE `u_interface_setting`
+ ADD PRIMARY KEY (`interface_id`,`u_person_id`), ADD KEY `u_person_id` (`u_person_id`);
 
 --
--- Index pour la table `b_mail_sending_role`
+-- Index pour la table `u_mail_sending_role`
 --
-ALTER TABLE `b_mail_sending_role`
- ADD PRIMARY KEY (`b_person_id`,`b_mail_template_id`,`b_mail_send_role_id`), ADD KEY `b_mail_template_id` (`b_mail_template_id`), ADD KEY `b_mail_send_role_id` (`b_mail_send_role_id`);
+ALTER TABLE `u_mail_sending_role`
+ ADD PRIMARY KEY (`u_person_id`,`u_mail_template_id`,`u_mail_send_role_id`), ADD KEY `u_mail_template_id` (`u_mail_template_id`), ADD KEY `u_mail_send_role_id` (`u_mail_send_role_id`);
 
 --
--- Index pour la table `b_mail_send_role`
+-- Index pour la table `u_mail_send_role`
 --
-ALTER TABLE `b_mail_send_role`
+ALTER TABLE `u_mail_send_role`
  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `b_mail_send_role_i18n`
+-- Index pour la table `u_mail_send_role_i18n`
 --
-ALTER TABLE `b_mail_send_role_i18n`
- ADD PRIMARY KEY (`b_mail_send_role_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
+ALTER TABLE `u_mail_send_role_i18n`
+ ADD PRIMARY KEY (`u_mail_send_role_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
 
 --
--- Index pour la table `b_mail_template`
+-- Index pour la table `u_mail_template`
 --
-ALTER TABLE `b_mail_template`
- ADD PRIMARY KEY (`id`), ADD KEY `b_mail_template_type_id` (`b_mail_template_group_id`);
+ALTER TABLE `u_mail_template`
+ ADD PRIMARY KEY (`id`), ADD KEY `u_mail_template_type_id` (`u_mail_template_group_id`);
 
 --
--- Index pour la table `b_mail_template_group`
+-- Index pour la table `u_mail_template_group`
 --
-ALTER TABLE `b_mail_template_group`
+ALTER TABLE `u_mail_template_group`
  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `b_mail_template_group_i18n`
+-- Index pour la table `u_mail_template_group_i18n`
 --
-ALTER TABLE `b_mail_template_group_i18n`
- ADD PRIMARY KEY (`b_mail_template_group_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
+ALTER TABLE `u_mail_template_group_i18n`
+ ADD PRIMARY KEY (`u_mail_template_group_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
 
 --
--- Index pour la table `b_mail_template_i18n`
+-- Index pour la table `u_mail_template_i18n`
 --
-ALTER TABLE `b_mail_template_i18n`
- ADD PRIMARY KEY (`b_mail_template_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
+ALTER TABLE `u_mail_template_i18n`
+ ADD PRIMARY KEY (`u_mail_template_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
 
 --
--- Index pour la table `b_message`
+-- Index pour la table `u_message`
 --
-ALTER TABLE `b_message`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `b_message_category_id` (`b_message_group_id`,`source`), ADD KEY `b_category_id` (`b_message_group_id`);
+ALTER TABLE `u_message`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `u_message_category_id` (`u_message_group_id`,`source`), ADD KEY `u_category_id` (`u_message_group_id`);
 
 --
--- Index pour la table `b_message_group`
+-- Index pour la table `u_message_group`
 --
-ALTER TABLE `b_message_group`
+ALTER TABLE `u_message_group`
  ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `b_message_group_i18n`
+-- Index pour la table `u_message_group_i18n`
 --
-ALTER TABLE `b_message_group_i18n`
- ADD PRIMARY KEY (`b_message_group_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
+ALTER TABLE `u_message_group_i18n`
+ ADD PRIMARY KEY (`u_message_group_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
 
 --
--- Index pour la table `b_message_i18n`
+-- Index pour la table `u_message_i18n`
 --
-ALTER TABLE `b_message_i18n`
- ADD PRIMARY KEY (`b_message_id`,`i18n_id`), ADD KEY `language` (`i18n_id`);
+ALTER TABLE `u_message_i18n`
+ ADD PRIMARY KEY (`u_message_id`,`i18n_id`), ADD KEY `language` (`i18n_id`);
 
 --
--- Index pour la table `b_person`
+-- Index pour la table `u_person`
 --
-ALTER TABLE `b_person`
+ALTER TABLE `u_person`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `email` (`email`), ADD KEY `default_language` (`default_language`);
 
 --
--- Index pour la table `b_person_group`
+-- Index pour la table `u_person_group`
 --
-ALTER TABLE `b_person_group`
- ADD PRIMARY KEY (`b_person_id`,`b_group_id`), ADD KEY `b_group_id` (`b_group_id`);
+ALTER TABLE `u_person_group`
+ ADD PRIMARY KEY (`u_person_id`,`u_group_id`), ADD KEY `u_group_id` (`u_group_id`);
 
 --
--- Index pour la table `b_person_token`
+-- Index pour la table `u_person_token`
 --
-ALTER TABLE `b_person_token`
- ADD PRIMARY KEY (`uuid`), ADD UNIQUE KEY `uuid` (`password`,`action`), ADD KEY `b_person_id` (`b_person_id`), ADD KEY `b_person_id_2` (`b_person_id`,`action`);
+ALTER TABLE `u_person_token`
+ ADD PRIMARY KEY (`uuid`), ADD UNIQUE KEY `uuid` (`password`,`action`), ADD KEY `u_person_id` (`u_person_id`), ADD KEY `u_person_id_2` (`u_person_id`,`action`);
 
 --
--- Index pour la table `b_role`
+-- Index pour la table `u_role`
 --
-ALTER TABLE `b_role`
+ALTER TABLE `u_role`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `operation_2` (`operation`), ADD KEY `operation` (`operation`);
 
 --
--- Index pour la table `b_role_i18n`
+-- Index pour la table `u_role_i18n`
 --
-ALTER TABLE `b_role_i18n`
- ADD PRIMARY KEY (`b_role_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
+ALTER TABLE `u_role_i18n`
+ ADD PRIMARY KEY (`u_role_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
 
 --
--- Index pour la table `b_site_i18n`
+-- Index pour la table `u_site_i18n`
 --
-ALTER TABLE `b_site_i18n`
+ALTER TABLE `u_site_i18n`
  ADD PRIMARY KEY (`i18n_id`);
 
 --
--- Index pour la table `b_variable`
+-- Index pour la table `u_variable`
 --
-ALTER TABLE `b_variable`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `b_unique_param` (`b_variable_group_id`,`param`);
+ALTER TABLE `u_variable`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `u_unique_param` (`u_variable_group_id`,`param`);
 
 --
--- Index pour la table `b_variable_group`
+-- Index pour la table `u_variable_group`
 --
-ALTER TABLE `b_variable_group`
+ALTER TABLE `u_variable_group`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `code` (`code`);
 
 --
--- Index pour la table `b_variable_group_i18n`
+-- Index pour la table `u_variable_group_i18n`
 --
-ALTER TABLE `b_variable_group_i18n`
- ADD PRIMARY KEY (`b_variable_group_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
+ALTER TABLE `u_variable_group_i18n`
+ ADD PRIMARY KEY (`u_variable_group_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
 
 --
--- Index pour la table `b_variable_i18n`
+-- Index pour la table `u_variable_i18n`
 --
-ALTER TABLE `b_variable_i18n`
- ADD PRIMARY KEY (`b_variable_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
+ALTER TABLE `u_variable_i18n`
+ ADD PRIMARY KEY (`u_variable_id`,`i18n_id`), ADD KEY `i18n_id` (`i18n_id`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
 --
 
 --
--- AUTO_INCREMENT pour la table `b_cms_album`
+-- AUTO_INCREMENT pour la table `u_cms_album`
 --
-ALTER TABLE `b_cms_album`
+ALTER TABLE `u_cms_album`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=50;
 --
--- AUTO_INCREMENT pour la table `b_cms_album_photo`
+-- AUTO_INCREMENT pour la table `u_cms_album_photo`
 --
-ALTER TABLE `b_cms_album_photo`
+ALTER TABLE `u_cms_album_photo`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=55;
 --
--- AUTO_INCREMENT pour la table `b_cms_image`
+-- AUTO_INCREMENT pour la table `u_cms_image`
 --
-ALTER TABLE `b_cms_image`
+ALTER TABLE `u_cms_image`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
--- AUTO_INCREMENT pour la table `b_cms_layout`
+-- AUTO_INCREMENT pour la table `u_cms_layout`
 --
-ALTER TABLE `b_cms_layout`
+ALTER TABLE `u_cms_layout`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT pour la table `b_cms_menu`
+-- AUTO_INCREMENT pour la table `u_cms_menu`
 --
-ALTER TABLE `b_cms_menu`
+ALTER TABLE `u_cms_menu`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT pour la table `b_cms_menu_group`
+-- AUTO_INCREMENT pour la table `u_cms_menu_group`
 --
-ALTER TABLE `b_cms_menu_group`
+ALTER TABLE `u_cms_menu_group`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT pour la table `b_cms_news`
+-- AUTO_INCREMENT pour la table `u_cms_news`
 --
-ALTER TABLE `b_cms_news`
+ALTER TABLE `u_cms_news`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT pour la table `b_cms_news_group`
+-- AUTO_INCREMENT pour la table `u_cms_news_group`
 --
-ALTER TABLE `b_cms_news_group`
+ALTER TABLE `u_cms_news_group`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
--- AUTO_INCREMENT pour la table `b_cms_page`
+-- AUTO_INCREMENT pour la table `u_cms_page`
 --
-ALTER TABLE `b_cms_page`
+ALTER TABLE `u_cms_page`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=43;
 --
--- AUTO_INCREMENT pour la table `b_cms_page_content`
+-- AUTO_INCREMENT pour la table `u_cms_page_content`
 --
-ALTER TABLE `b_cms_page_content`
+ALTER TABLE `u_cms_page_content`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=78;
 --
--- AUTO_INCREMENT pour la table `b_cms_social`
+-- AUTO_INCREMENT pour la table `u_cms_social`
 --
-ALTER TABLE `b_cms_social`
+ALTER TABLE `u_cms_social`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT pour la table `b_cms_widget`
+-- AUTO_INCREMENT pour la table `u_cms_widget`
 --
-ALTER TABLE `b_cms_widget`
+ALTER TABLE `u_cms_widget`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT pour la table `b_group`
+-- AUTO_INCREMENT pour la table `u_group`
 --
-ALTER TABLE `b_group`
+ALTER TABLE `u_group`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT pour la table `b_group_i18n`
+-- AUTO_INCREMENT pour la table `u_group_i18n`
 --
-ALTER TABLE `b_group_i18n`
-MODIFY `b_group_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+ALTER TABLE `u_group_i18n`
+MODIFY `u_group_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT pour la table `b_mail_send_role`
+-- AUTO_INCREMENT pour la table `u_mail_send_role`
 --
-ALTER TABLE `b_mail_send_role`
+ALTER TABLE `u_mail_send_role`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT pour la table `b_mail_template`
+-- AUTO_INCREMENT pour la table `u_mail_template`
 --
-ALTER TABLE `b_mail_template`
+ALTER TABLE `u_mail_template`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT pour la table `b_mail_template_group`
+-- AUTO_INCREMENT pour la table `u_mail_template_group`
 --
-ALTER TABLE `b_mail_template_group`
+ALTER TABLE `u_mail_template_group`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT pour la table `b_message`
+-- AUTO_INCREMENT pour la table `u_message`
 --
-ALTER TABLE `b_message`
+ALTER TABLE `u_message`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=529;
 --
--- AUTO_INCREMENT pour la table `b_message_group`
+-- AUTO_INCREMENT pour la table `u_message_group`
 --
-ALTER TABLE `b_message_group`
+ALTER TABLE `u_message_group`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT pour la table `b_person`
+-- AUTO_INCREMENT pour la table `u_person`
 --
-ALTER TABLE `b_person`
+ALTER TABLE `u_person`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT pour la table `b_role`
+-- AUTO_INCREMENT pour la table `u_role`
 --
-ALTER TABLE `b_role`
+ALTER TABLE `u_role`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=107;
 --
--- AUTO_INCREMENT pour la table `b_variable`
+-- AUTO_INCREMENT pour la table `u_variable`
 --
-ALTER TABLE `b_variable`
+ALTER TABLE `u_variable`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
--- AUTO_INCREMENT pour la table `b_variable_group`
+-- AUTO_INCREMENT pour la table `u_variable_group`
 --
-ALTER TABLE `b_variable_group`
+ALTER TABLE `u_variable_group`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- Contraintes pour les tables exportées
 --
 
 --
--- Contraintes pour la table `b_auto_login`
+-- Contraintes pour la table `u_auto_login`
 --
-ALTER TABLE `b_auto_login`
-ADD CONSTRAINT `b_auto_login_ibfk_2` FOREIGN KEY (`b_person_id`) REFERENCES `b_person` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_auto_login`
+ADD CONSTRAINT `u_auto_login_ibfk_2` FOREIGN KEY (`u_person_id`) REFERENCES `u_person` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_cms_album_i18n`
+-- Contraintes pour la table `u_cms_album_i18n`
 --
-ALTER TABLE `b_cms_album_i18n`
-ADD CONSTRAINT `b_cms_album_i18n_ibfk_1` FOREIGN KEY (`b_cms_album_id`) REFERENCES `b_cms_album` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_cms_album_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_cms_album_i18n`
+ADD CONSTRAINT `u_cms_album_i18n_ibfk_1` FOREIGN KEY (`u_cms_album_id`) REFERENCES `u_cms_album` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_cms_album_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_cms_album_photo`
+-- Contraintes pour la table `u_cms_album_photo`
 --
-ALTER TABLE `b_cms_album_photo`
-ADD CONSTRAINT `b_cms_album_photo_ibfk_1` FOREIGN KEY (`b_cms_album_id`) REFERENCES `b_cms_album` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_cms_album_photo`
+ADD CONSTRAINT `u_cms_album_photo_ibfk_1` FOREIGN KEY (`u_cms_album_id`) REFERENCES `u_cms_album` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_cms_album_photo_i18n`
+-- Contraintes pour la table `u_cms_album_photo_i18n`
 --
-ALTER TABLE `b_cms_album_photo_i18n`
-ADD CONSTRAINT `b_cms_album_photo_i18n_ibfk_1` FOREIGN KEY (`b_cms_album_photo_id`) REFERENCES `b_cms_album_photo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_cms_album_photo_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_cms_album_photo_i18n`
+ADD CONSTRAINT `u_cms_album_photo_i18n_ibfk_1` FOREIGN KEY (`u_cms_album_photo_id`) REFERENCES `u_cms_album_photo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_cms_album_photo_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_cms_image_i18n`
+-- Contraintes pour la table `u_cms_image_i18n`
 --
-ALTER TABLE `b_cms_image_i18n`
-ADD CONSTRAINT `b_cms_image_i18n_ibfk_1` FOREIGN KEY (`b_cms_image_id`) REFERENCES `b_cms_image` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_cms_image_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_cms_image_i18n`
+ADD CONSTRAINT `u_cms_image_i18n_ibfk_1` FOREIGN KEY (`u_cms_image_id`) REFERENCES `u_cms_image` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_cms_image_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_cms_layout_i18n`
+-- Contraintes pour la table `u_cms_layout_i18n`
 --
-ALTER TABLE `b_cms_layout_i18n`
-ADD CONSTRAINT `b_cms_layout_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_cms_layout_i18n_ibfk_3` FOREIGN KEY (`b_cms_layout_id`) REFERENCES `b_cms_layout` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_cms_layout_i18n`
+ADD CONSTRAINT `u_cms_layout_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_cms_layout_i18n_ibfk_3` FOREIGN KEY (`u_cms_layout_id`) REFERENCES `u_cms_layout` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_cms_menu`
+-- Contraintes pour la table `u_cms_menu`
 --
-ALTER TABLE `b_cms_menu`
-ADD CONSTRAINT `b_cms_menu_ibfk_1` FOREIGN KEY (`b_cms_menu_group_id`) REFERENCES `b_cms_menu_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_cms_menu`
+ADD CONSTRAINT `u_cms_menu_ibfk_1` FOREIGN KEY (`u_cms_menu_group_id`) REFERENCES `u_cms_menu_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_cms_menu_group_i18n`
+-- Contraintes pour la table `u_cms_menu_group_i18n`
 --
-ALTER TABLE `b_cms_menu_group_i18n`
-ADD CONSTRAINT `b_cms_menu_group_i18n_ibfk_1` FOREIGN KEY (`b_cms_menu_group_id`) REFERENCES `b_cms_menu_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_cms_menu_group_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_cms_menu_group_i18n`
+ADD CONSTRAINT `u_cms_menu_group_i18n_ibfk_1` FOREIGN KEY (`u_cms_menu_group_id`) REFERENCES `u_cms_menu_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_cms_menu_group_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_cms_menu_i18n`
+-- Contraintes pour la table `u_cms_menu_i18n`
 --
-ALTER TABLE `b_cms_menu_i18n`
-ADD CONSTRAINT `b_cms_menu_i18n_ibfk_1` FOREIGN KEY (`b_cms_menu_id`) REFERENCES `b_cms_menu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_cms_menu_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_cms_menu_i18n`
+ADD CONSTRAINT `u_cms_menu_i18n_ibfk_1` FOREIGN KEY (`u_cms_menu_id`) REFERENCES `u_cms_menu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_cms_menu_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_cms_news`
+-- Contraintes pour la table `u_cms_news`
 --
-ALTER TABLE `b_cms_news`
-ADD CONSTRAINT `b_cms_news_ibfk_1` FOREIGN KEY (`b_cms_news_group_id`) REFERENCES `b_cms_news_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_cms_news`
+ADD CONSTRAINT `u_cms_news_ibfk_1` FOREIGN KEY (`u_cms_news_group_id`) REFERENCES `u_cms_news_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_cms_news_group_i18n`
+-- Contraintes pour la table `u_cms_news_group_i18n`
 --
-ALTER TABLE `b_cms_news_group_i18n`
-ADD CONSTRAINT `b_cms_news_group_i18n_ibfk_1` FOREIGN KEY (`b_cms_news_group_id`) REFERENCES `b_cms_news_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_cms_news_group_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_cms_news_group_i18n`
+ADD CONSTRAINT `u_cms_news_group_i18n_ibfk_1` FOREIGN KEY (`u_cms_news_group_id`) REFERENCES `u_cms_news_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_cms_news_group_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_cms_news_i18n`
+-- Contraintes pour la table `u_cms_news_i18n`
 --
-ALTER TABLE `b_cms_news_i18n`
-ADD CONSTRAINT `b_cms_news_i18n_ibfk_1` FOREIGN KEY (`b_cms_news_id`) REFERENCES `b_cms_news` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_cms_news_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_cms_news_i18n`
+ADD CONSTRAINT `u_cms_news_i18n_ibfk_1` FOREIGN KEY (`u_cms_news_id`) REFERENCES `u_cms_news` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_cms_news_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_cms_page`
+-- Contraintes pour la table `u_cms_page`
 --
-ALTER TABLE `b_cms_page`
-ADD CONSTRAINT `b_cms_page_ibfk_1` FOREIGN KEY (`b_cms_layout_id`) REFERENCES `b_cms_layout` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_cms_page`
+ADD CONSTRAINT `u_cms_page_ibfk_1` FOREIGN KEY (`u_cms_layout_id`) REFERENCES `u_cms_layout` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_cms_page_content`
+-- Contraintes pour la table `u_cms_page_content`
 --
-ALTER TABLE `b_cms_page_content`
-ADD CONSTRAINT `b_cms_page_content_ibfk_2` FOREIGN KEY (`b_cms_page_id`) REFERENCES `b_cms_page` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_cms_page_content`
+ADD CONSTRAINT `u_cms_page_content_ibfk_2` FOREIGN KEY (`u_cms_page_id`) REFERENCES `u_cms_page` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_cms_page_content_i18n`
+-- Contraintes pour la table `u_cms_page_content_i18n`
 --
-ALTER TABLE `b_cms_page_content_i18n`
-ADD CONSTRAINT `b_cms_page_content_i18n_ibfk_1` FOREIGN KEY (`b_cms_page_content_id`) REFERENCES `b_cms_page_content` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_cms_page_content_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_cms_page_content_i18n`
+ADD CONSTRAINT `u_cms_page_content_i18n_ibfk_1` FOREIGN KEY (`u_cms_page_content_id`) REFERENCES `u_cms_page_content` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_cms_page_content_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_cms_page_i18n`
+-- Contraintes pour la table `u_cms_page_i18n`
 --
-ALTER TABLE `b_cms_page_i18n`
-ADD CONSTRAINT `b_cms_page_i18n_ibfk_1` FOREIGN KEY (`b_cms_page_id`) REFERENCES `b_cms_page` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_cms_page_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_cms_page_i18n`
+ADD CONSTRAINT `u_cms_page_i18n_ibfk_1` FOREIGN KEY (`u_cms_page_id`) REFERENCES `u_cms_page` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_cms_page_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_cms_social_i18n`
+-- Contraintes pour la table `u_cms_social_i18n`
 --
-ALTER TABLE `b_cms_social_i18n`
-ADD CONSTRAINT `b_cms_social_i18n_ibfk_1` FOREIGN KEY (`b_cms_social_id`) REFERENCES `b_cms_social` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_cms_social_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_cms_social_i18n`
+ADD CONSTRAINT `u_cms_social_i18n_ibfk_1` FOREIGN KEY (`u_cms_social_id`) REFERENCES `u_cms_social` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_cms_social_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_cms_widget_i18n`
+-- Contraintes pour la table `u_cms_widget_i18n`
 --
-ALTER TABLE `b_cms_widget_i18n`
-ADD CONSTRAINT `b_cms_widget_i18n_ibfk_1` FOREIGN KEY (`b_cms_widget_id`) REFERENCES `b_cms_widget` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_cms_widget_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_cms_widget_i18n`
+ADD CONSTRAINT `u_cms_widget_i18n_ibfk_1` FOREIGN KEY (`u_cms_widget_id`) REFERENCES `u_cms_widget` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_cms_widget_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_group_i18n`
+-- Contraintes pour la table `u_group_i18n`
 --
-ALTER TABLE `b_group_i18n`
-ADD CONSTRAINT `b_group_i18n_ibfk_3` FOREIGN KEY (`b_group_id`) REFERENCES `b_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_group_i18n_ibfk_4` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_group_i18n`
+ADD CONSTRAINT `u_group_i18n_ibfk_3` FOREIGN KEY (`u_group_id`) REFERENCES `u_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_group_i18n_ibfk_4` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_group_role`
+-- Contraintes pour la table `u_group_role`
 --
-ALTER TABLE `b_group_role`
-ADD CONSTRAINT `b_group_role_ibfk_3` FOREIGN KEY (`b_group_id`) REFERENCES `b_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_group_role_ibfk_4` FOREIGN KEY (`b_role_id`) REFERENCES `b_role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_group_role`
+ADD CONSTRAINT `u_group_role_ibfk_3` FOREIGN KEY (`u_group_id`) REFERENCES `u_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_group_role_ibfk_4` FOREIGN KEY (`u_role_id`) REFERENCES `u_role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_i18n_i18n`
+-- Contraintes pour la table `u_i18n_i18n`
 --
-ALTER TABLE `b_i18n_i18n`
-ADD CONSTRAINT `b_i18n_i18n_ibfk_3` FOREIGN KEY (`b_i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_i18n_i18n_ibfk_4` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_i18n_i18n`
+ADD CONSTRAINT `u_i18n_i18n_ibfk_3` FOREIGN KEY (`u_i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_i18n_i18n_ibfk_4` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_interface_setting`
+-- Contraintes pour la table `u_interface_setting`
 --
-ALTER TABLE `b_interface_setting`
-ADD CONSTRAINT `b_interface_setting_ibfk_4` FOREIGN KEY (`b_person_id`) REFERENCES `b_person` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_interface_setting`
+ADD CONSTRAINT `u_interface_setting_ibfk_4` FOREIGN KEY (`u_person_id`) REFERENCES `u_person` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_mail_sending_role`
+-- Contraintes pour la table `u_mail_sending_role`
 --
-ALTER TABLE `b_mail_sending_role`
-ADD CONSTRAINT `b_mail_sending_role_ibfk_4` FOREIGN KEY (`b_person_id`) REFERENCES `b_person` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_mail_sending_role_ibfk_5` FOREIGN KEY (`b_mail_template_id`) REFERENCES `b_mail_template` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_mail_sending_role_ibfk_6` FOREIGN KEY (`b_mail_send_role_id`) REFERENCES `b_mail_send_role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_mail_sending_role`
+ADD CONSTRAINT `u_mail_sending_role_ibfk_4` FOREIGN KEY (`u_person_id`) REFERENCES `u_person` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_mail_sending_role_ibfk_5` FOREIGN KEY (`u_mail_template_id`) REFERENCES `u_mail_template` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_mail_sending_role_ibfk_6` FOREIGN KEY (`u_mail_send_role_id`) REFERENCES `u_mail_send_role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_mail_send_role_i18n`
+-- Contraintes pour la table `u_mail_send_role_i18n`
 --
-ALTER TABLE `b_mail_send_role_i18n`
-ADD CONSTRAINT `b_mail_send_role_i18n_ibfk_4` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_mail_send_role_i18n_ibfk_5` FOREIGN KEY (`b_mail_send_role_id`) REFERENCES `b_mail_send_role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_mail_send_role_i18n`
+ADD CONSTRAINT `u_mail_send_role_i18n_ibfk_4` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_mail_send_role_i18n_ibfk_5` FOREIGN KEY (`u_mail_send_role_id`) REFERENCES `u_mail_send_role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_mail_template`
+-- Contraintes pour la table `u_mail_template`
 --
-ALTER TABLE `b_mail_template`
-ADD CONSTRAINT `b_mail_template_ibfk_2` FOREIGN KEY (`b_mail_template_group_id`) REFERENCES `b_mail_template_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_mail_template`
+ADD CONSTRAINT `u_mail_template_ibfk_2` FOREIGN KEY (`u_mail_template_group_id`) REFERENCES `u_mail_template_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_mail_template_group_i18n`
+-- Contraintes pour la table `u_mail_template_group_i18n`
 --
-ALTER TABLE `b_mail_template_group_i18n`
-ADD CONSTRAINT `b_mail_template_group_i18n_ibfk_4` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_mail_template_group_i18n_ibfk_5` FOREIGN KEY (`b_mail_template_group_id`) REFERENCES `b_mail_template_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_mail_template_group_i18n`
+ADD CONSTRAINT `u_mail_template_group_i18n_ibfk_4` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_mail_template_group_i18n_ibfk_5` FOREIGN KEY (`u_mail_template_group_id`) REFERENCES `u_mail_template_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_mail_template_i18n`
+-- Contraintes pour la table `u_mail_template_i18n`
 --
-ALTER TABLE `b_mail_template_i18n`
-ADD CONSTRAINT `b_mail_template_i18n_ibfk_3` FOREIGN KEY (`b_mail_template_id`) REFERENCES `b_mail_template` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_mail_template_i18n_ibfk_4` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_mail_template_i18n`
+ADD CONSTRAINT `u_mail_template_i18n_ibfk_3` FOREIGN KEY (`u_mail_template_id`) REFERENCES `u_mail_template` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_mail_template_i18n_ibfk_4` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_message`
+-- Contraintes pour la table `u_message`
 --
-ALTER TABLE `b_message`
-ADD CONSTRAINT `b_message_ibfk_2` FOREIGN KEY (`b_message_group_id`) REFERENCES `b_message_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_message`
+ADD CONSTRAINT `u_message_ibfk_2` FOREIGN KEY (`u_message_group_id`) REFERENCES `u_message_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_message_group_i18n`
+-- Contraintes pour la table `u_message_group_i18n`
 --
-ALTER TABLE `b_message_group_i18n`
-ADD CONSTRAINT `b_message_group_i18n_ibfk_4` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_message_group_i18n_ibfk_5` FOREIGN KEY (`b_message_group_id`) REFERENCES `b_message_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_message_group_i18n`
+ADD CONSTRAINT `u_message_group_i18n_ibfk_4` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_message_group_i18n_ibfk_5` FOREIGN KEY (`u_message_group_id`) REFERENCES `u_message_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_message_i18n`
+-- Contraintes pour la table `u_message_i18n`
 --
-ALTER TABLE `b_message_i18n`
-ADD CONSTRAINT `b_message_i18n_ibfk_4` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_message_i18n_ibfk_5` FOREIGN KEY (`b_message_id`) REFERENCES `b_message` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_message_i18n`
+ADD CONSTRAINT `u_message_i18n_ibfk_4` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_message_i18n_ibfk_5` FOREIGN KEY (`u_message_id`) REFERENCES `u_message` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_person`
+-- Contraintes pour la table `u_person`
 --
-ALTER TABLE `b_person`
-ADD CONSTRAINT `b_person_ibfk_2` FOREIGN KEY (`default_language`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_person`
+ADD CONSTRAINT `u_person_ibfk_2` FOREIGN KEY (`default_language`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_person_group`
+-- Contraintes pour la table `u_person_group`
 --
-ALTER TABLE `b_person_group`
-ADD CONSTRAINT `b_person_group_ibfk_3` FOREIGN KEY (`b_person_id`) REFERENCES `b_person` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_person_group_ibfk_4` FOREIGN KEY (`b_group_id`) REFERENCES `b_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_person_group`
+ADD CONSTRAINT `u_person_group_ibfk_3` FOREIGN KEY (`u_person_id`) REFERENCES `u_person` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_person_group_ibfk_4` FOREIGN KEY (`u_group_id`) REFERENCES `u_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_person_token`
+-- Contraintes pour la table `u_person_token`
 --
-ALTER TABLE `b_person_token`
-ADD CONSTRAINT `b_person_token_ibfk_1` FOREIGN KEY (`b_person_id`) REFERENCES `b_person` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_person_token`
+ADD CONSTRAINT `u_person_token_ibfk_1` FOREIGN KEY (`u_person_id`) REFERENCES `u_person` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_role_i18n`
+-- Contraintes pour la table `u_role_i18n`
 --
-ALTER TABLE `b_role_i18n`
-ADD CONSTRAINT `b_role_i18n_ibfk_3` FOREIGN KEY (`b_role_id`) REFERENCES `b_role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_role_i18n_ibfk_4` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_role_i18n`
+ADD CONSTRAINT `u_role_i18n_ibfk_3` FOREIGN KEY (`u_role_id`) REFERENCES `u_role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_role_i18n_ibfk_4` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_site_i18n`
+-- Contraintes pour la table `u_site_i18n`
 --
-ALTER TABLE `b_site_i18n`
-ADD CONSTRAINT `b_site_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_site_i18n`
+ADD CONSTRAINT `u_site_i18n_ibfk_2` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_variable`
+-- Contraintes pour la table `u_variable`
 --
-ALTER TABLE `b_variable`
-ADD CONSTRAINT `b_variable_ibfk_2` FOREIGN KEY (`b_variable_group_id`) REFERENCES `b_variable_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_variable`
+ADD CONSTRAINT `u_variable_ibfk_2` FOREIGN KEY (`u_variable_group_id`) REFERENCES `u_variable_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_variable_group_i18n`
+-- Contraintes pour la table `u_variable_group_i18n`
 --
-ALTER TABLE `b_variable_group_i18n`
-ADD CONSTRAINT `b_variable_group_i18n_ibfk_4` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_variable_group_i18n_ibfk_5` FOREIGN KEY (`b_variable_group_id`) REFERENCES `b_variable_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `u_variable_group_i18n`
+ADD CONSTRAINT `u_variable_group_i18n_ibfk_4` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_variable_group_i18n_ibfk_5` FOREIGN KEY (`u_variable_group_id`) REFERENCES `u_variable_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `b_variable_i18n`
+-- Contraintes pour la table `u_variable_i18n`
 --
-ALTER TABLE `b_variable_i18n`
-ADD CONSTRAINT `b_variable_i18n_ibfk_4` FOREIGN KEY (`b_variable_id`) REFERENCES `b_variable` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `b_variable_i18n_ibfk_5` FOREIGN KEY (`i18n_id`) REFERENCES `b_i18n` (`id`) ON DELETE CASCADE;
+ALTER TABLE `u_variable_i18n`
+ADD CONSTRAINT `u_variable_i18n_ibfk_4` FOREIGN KEY (`u_variable_id`) REFERENCES `u_variable` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `u_variable_i18n_ibfk_5` FOREIGN KEY (`i18n_id`) REFERENCES `u_i18n` (`id`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
 
 set foreign_key_checks = 1;
 

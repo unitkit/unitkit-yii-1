@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class GroupEditRowDataView extends BEditRowItemDataView
+class GroupEditRowDataView extends UEditRowItemDataView
 {
 
     /**
@@ -29,14 +29,14 @@ class GroupEditRowDataView extends BEditRowItemDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BGroupI18n'],
+            new UItemField(array(
+                'model' => $data['UGroupI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BGroupI18n']->getAttributeLabel('name')
+                    'placeholder' => $data['UGroupI18n']->getAttributeLabel('name')
                 )
             ))
         );

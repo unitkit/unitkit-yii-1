@@ -1,10 +1,10 @@
 <tr>
     <td class="td-action">
         <a href="<?= $this->createUrl($this->id.'/editRow', array_merge($dataView->pk, $_GET)); ?>"
-            class="btn-update-row" title="<?= B::t('unitkit', 'btn_save'); ?>">
+            class="btn-update-row" title="<?= Unitkit::t('unitkit', 'btn_save'); ?>">
             <span class="glyphicon glyphicon-floppy-disk"></span>
         </a>
-        <a href="<?= $this->createUrl($this->id.'/refreshRow', array_merge($dataView->pk, $_GET)); ?>" class="btn-close-row" title="<?= B::t('unitkit', 'btn_cancel'); ?>">
+        <a href="<?= $this->createUrl($this->id.'/refreshRow', array_merge($dataView->pk, $_GET)); ?>" class="btn-close-row" title="<?= Unitkit::t('unitkit', 'btn_cancel'); ?>">
             <span class="glyphicon glyphicon-remove"></span>
         </a>
     </td>
@@ -13,16 +13,16 @@
         <div class="input">
 		<?php if( ! empty($itemField->type)): ?>
 			<?php if( ! empty($itemField->datas)) : ?>
-				<?= call_user_func_array('BHtml::'.$itemField->type, array($itemField->model, $itemField->attribute, $itemField->data, $itemField->htmlOptions)); ?>
+				<?= call_user_func_array('UHtml::'.$itemField->type, array($itemField->model, $itemField->attribute, $itemField->data, $itemField->htmlOptions)); ?>
 			<?php else : ?>
-				<?= call_user_func_array('BHtml::'.$itemField->type, array($itemField->model, $itemField->attribute, $itemField->htmlOptions)); ?>
+				<?= call_user_func_array('UHtml::'.$itemField->type, array($itemField->model, $itemField->attribute, $itemField->htmlOptions)); ?>
 			<?php endif; ?>
 		<?php elseif( ! empty($itemField->value)): ?>
 			<?= $itemField->value; ?>
 		<?php endif; ?>
 		</div>
 		<?php if( $itemField->model->hasErrors($itemField->attribute)): ?>
-        <div class="control-label"><?= BHtml::error($itemField->model, $itemField->attribute); ?></div>
+        <div class="control-label"><?= UHtml::error($itemField->model, $itemField->attribute); ?></div>
         <?php endif; ?>
     </td>
 	<?php endforeach; ?>

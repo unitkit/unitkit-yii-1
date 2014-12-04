@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class I18nListDataView extends BListDataView
+class I18nListDataView extends UListDataView
 {
 
     /**
@@ -20,10 +20,10 @@ class I18nListDataView extends BListDataView
     public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
-        $this->id = 'bI18nI18nMain';
+        $this->id = 'uI18nI18nMain';
 
         // component title
-        $this->title = B::t('backend', 'i18n_i18n_list_title');
+        $this->title = Unitkit::t('backend', 'i18n_i18n_list_title');
 
         // data
         $this->data = $data;
@@ -36,29 +36,29 @@ class I18nListDataView extends BListDataView
 
         // sort attributes
         $this->sortAttributes = array(
-            'bI18nI18ns.name',
-            'bI18n.id'
+            'uI18nI18ns.name',
+            'uI18n.id'
         );
 
         // search
         $this->gridSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_i18n_i18ns_name',
+                'attribute' => 'lk_u_i18n_i18ns_name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'id',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             ))
@@ -66,23 +66,23 @@ class I18nListDataView extends BListDataView
 
         // advanced search
         $this->advancedSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'id',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_i18n_i18ns_name',
+                'attribute' => 'lk_u_i18n_i18ns_name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             ))

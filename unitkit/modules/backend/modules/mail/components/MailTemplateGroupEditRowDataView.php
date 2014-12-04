@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MailTemplateGroupEditRowDataView extends BEditRowItemDataView
+class MailTemplateGroupEditRowDataView extends UEditRowItemDataView
 {
 
     /**
@@ -29,14 +29,14 @@ class MailTemplateGroupEditRowDataView extends BEditRowItemDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BMailTemplateGroupI18n'],
+            new UItemField(array(
+                'model' => $data['UMailTemplateGroupI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BMailTemplateGroupI18n']->getAttributeLabel('name')
+                    'placeholder' => $data['UMailTemplateGroupI18n']->getAttributeLabel('name')
                 )
             ))
         );

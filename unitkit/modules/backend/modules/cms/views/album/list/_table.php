@@ -12,7 +12,7 @@
             <div class="option-add option">
                 <a href="<?= $this->createUrl($this->id.'/create'); ?>" class="btn btn-danger btn-add">
                     <span class="glyphicon glyphicon-plus-sign"></span>
-                    <b><?= B::t('unitkit', 'btn_add'); ?></b>
+                    <b><?= Unitkit::t('unitkit', 'btn_add'); ?></b>
                 </a>
             </div>
         </div>

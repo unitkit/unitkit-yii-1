@@ -1,5 +1,5 @@
 <?php
-class AlbumPhotoUploader extends BUploader
+class AlbumPhotoUploader extends UUploader
 {
     /**
      * Execute the overview method of the temporary file
@@ -109,7 +109,7 @@ class AlbumPhotoUploader extends BUploader
         	        $html .= $this->tmpFileOverviewSelector($command['key'], $overviewOptions, $model, $attribute);
         	    } else {
         	        $uploadVar = $model::$upload;
-        	        $html .= BHtml::image($uploadVar[$attribute]['urlDest'] . '/sm/' . $model->$attribute, '', $overviewOptions['html_options']);
+        	        $html .= UHtml::image($uploadVar[$attribute]['urlDest'] . '/sm/' . $model->$attribute, '', $overviewOptions['html_options']);
         	    }
         	    break;
         	default:

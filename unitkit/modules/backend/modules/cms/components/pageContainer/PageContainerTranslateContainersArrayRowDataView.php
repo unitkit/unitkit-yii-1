@@ -22,7 +22,7 @@ class PageContainerTranslateContainersArrayRowDataView
         $this->relatedDatas = $relatedData;
 
         $this->items = array(
-            new BItemField(array(
+            new UItemField(array(
                 'attribute' => 'content',
                 'type' => 'activeTextArea',
                 'htmlOptions' => array(

@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class GroupEditDataView extends BEditDataView
+class GroupEditDataView extends UEditDataView
 {
 
     /**
@@ -19,11 +19,11 @@ class GroupEditDataView extends BEditDataView
      */
     public function __construct($data, $relatedData, $pk, $isSaved)
     {
-        $this->id = 'bGroupGroupEdit';
+        $this->id = 'uGroupGroupEdit';
 
         // component title
-        $this->createTitle = B::t('backend', 'right_person_group_create_title');
-        $this->updateTitle = B::t('backend', 'right_person_group_update_title');
+        $this->createTitle = Unitkit::t('backend', 'right_person_group_create_title');
+        $this->updateTitle = Unitkit::t('backend', 'right_person_group_update_title');
 
         // primary key
         $this->pk = $pk;
@@ -45,35 +45,35 @@ class GroupEditDataView extends BEditDataView
         }
 
         // new record status
-        $this->isNewRecord = $data['BGroup']->isNewRecord;
+        $this->isNewRecord = $data['UGroup']->isNewRecord;
 
         // set page title
         $this->refreshPageTitle();
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BGroupI18n'],
+            new UItemField(array(
+                'model' => $data['UGroupI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BGroupI18n']->getAttributeLabel('name')
+                    'placeholder' => $data['UGroupI18n']->getAttributeLabel('name')
                 )
             ))
         );
 
-        if (! $data['BGroup']->isNewRecord) {
-            $this->items[] = new BItemField(array(
-                'model' => $data['BGroup'],
+        if (! $data['UGroup']->isNewRecord) {
+            $this->items[] = new UItemField(array(
+                'model' => $data['UGroup'],
                 'attribute' => 'updated_at',
-                'value' => $data['BGroup']->updated_at
+                'value' => $data['UGroup']->updated_at
             ));
-            $this->items[] = new BItemField(array(
-                'model' => $data['BGroup'],
+            $this->items[] = new UItemField(array(
+                'model' => $data['UGroup'],
                 'attribute' => 'created_at',
-                'value' => $data['BGroup']->created_at
+                'value' => $data['UGroup']->created_at
             ));
         }
     }

@@ -30,8 +30,8 @@ class NewPasswordForm extends CFormModel
     public function attributeLabels()
     {
         return array(
-            'password' => B::t('backend', 'person_profile:password'),
-            'repeat_password' => B::t('backend', 'person_profile:repeat_password')
+            'password' => Unitkit::t('backend', 'person_profile:password'),
+            'repeat_password' => Unitkit::t('backend', 'person_profile:repeat_password')
         );
     }
 
@@ -47,7 +47,7 @@ class NewPasswordForm extends CFormModel
             if ($this->repeat_password === '' || $this->password === '') {
                 $this->addError('repeat_password', null);
                 $this->addError('password', null);
-                $this->addError('', B::t('backend', 'profil_password_is_required'));
+                $this->addError('', Unitkit::t('backend', 'profil_password_is_required'));
             }
 
             $compare = new CCompareValidator();

@@ -6,10 +6,10 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MailTemplateController extends BAutoController
+class MailTemplateController extends UAutoController
 {
-    protected $_model = 'BMailTemplate';
-    protected $_modelI18n = 'BMailTemplateI18n';
+    protected $_model = 'UMailTemplate';
+    protected $_modelI18n = 'UMailTemplateI18n';
 
     /**
      * @see BBaseAutoController::advancedConbobox()
@@ -17,11 +17,11 @@ class MailTemplateController extends BAutoController
     protected function _advancedComboBox()
     {
         return array(
-            'BMailTemplateGroupI18n[name]' => array(
+            'UMailTemplateGroupI18n[name]' => array(
                 'search' => $_GET['search'],
-                'model' => 'BMailTemplateGroupI18n',
+                'model' => 'UMailTemplateGroupI18n',
                 'select' => array(
-                    'id' => 'b_mail_template_group_id',
+                    'id' => 'u_mail_template_group_id',
                     'text' => 'name'
                 ),
                 'criteria' => array(

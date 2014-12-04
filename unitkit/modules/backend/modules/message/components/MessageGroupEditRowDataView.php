@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MessageGroupEditRowDataView extends BEditRowItemDataView
+class MessageGroupEditRowDataView extends UEditRowItemDataView
 {
 
     /**
@@ -29,28 +29,28 @@ class MessageGroupEditRowDataView extends BEditRowItemDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BMessageGroupI18n'],
+            new UItemField(array(
+                'model' => $data['UMessageGroupI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BMessageGroupI18n']->getAttributeLabel('name')
+                    'placeholder' => $data['UMessageGroupI18n']->getAttributeLabel('name')
                 )
             ))
         // new BItemField(array(
-        // 'model' => $datas['BMessageGroup'],
+        // 'model' => $datas['UMessageGroup'],
         // 'attribute' => 'created_at',
         // 'value' => Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse(
-        // $datas['BMessageGroup']->created_at, 'yyyy-MM-dd hh:mm:ss'
+        // $datas['UMessageGroup']->created_at, 'yyyy-MM-dd hh:mm:ss'
         // ))
         // )),
         // new BItemField(array(
-        // 'model' => $datas['BMessageGroup'],
+        // 'model' => $datas['UMessageGroup'],
         // 'attribute' => 'updated_at',
         // 'value' => Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse(
-        // $datas['BMessageGroup']->updated_at, 'yyyy-MM-dd hh:mm:ss'
+        // $datas['UMessageGroup']->updated_at, 'yyyy-MM-dd hh:mm:ss'
         // ))
         // )),
                 );

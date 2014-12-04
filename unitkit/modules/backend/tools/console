@@ -50,12 +50,12 @@ if($argv[1] == 'install') {
 	CFileHelper::removeDirectory($publicDir.'/vendor');
 	copyPublicComponents(__DIR__.'/../modules', $publicDir.'/modules/');
 	CFileHelper::copyDirectory(__DIR__.'/../public', $publicDir.'/');
-	CFileHelper::copyDirectory(__DIR__.'/../../../public', $publicDir.'/b');
+	CFileHelper::copyDirectory(__DIR__.'/../../../public', $publicDir.'/unitkit');
 	copyPublicComponents(__DIR__.'/../vendor', $publicDir.'/vendor', false);
 } elseif($argv[1] == 'install:components') {
 	copyPublicComponents(__DIR__.'/../modules', $publicDir.'/modules/');
 	CFileHelper::copyDirectory(__DIR__.'/../public', $publicDir.'/');
-	CFileHelper::copyDirectory(__DIR__.'/../../../public', $publicDir.'/b');
+	CFileHelper::copyDirectory(__DIR__.'/../../../public', $publicDir.'/unitkit');
 	copyPublicComponents(__DIR__.'/../vendor', $publicDir.'/vendor', false);
 } elseif($argv[1] == 'clear:cache') {
 	CFileHelper::removeDirectory($publicDir.'/cache');

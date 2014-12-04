@@ -6,10 +6,10 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MessageController extends BAutoController
+class MessageController extends UAutoController
 {
-    protected $_model = 'BMessage';
-    protected $_modelI18n = 'BMessageI18n';
+    protected $_model = 'UMessage';
+    protected $_modelI18n = 'UMessageI18n';
 
     /**
      * @see BBaseAutoController::advancedConbobox()
@@ -17,11 +17,11 @@ class MessageController extends BAutoController
     protected function _advancedComboBox()
     {
         return array(
-            'BMessageGroupI18n[name]' => array(
+            'UMessageGroupI18n[name]' => array(
                 'search' => $_GET['search'],
-                'model' => 'BMessageGroupI18n',
+                'model' => 'UMessageGroupI18n',
                 'select' => array(
-                    'id' => 'b_message_group_id',
+                    'id' => 'u_message_group_id',
                     'text' => 'name'
                 ),
                 'criteria' => array(
@@ -46,7 +46,7 @@ class MessageController extends BAutoController
         $relatedData = array();
 
         // get list of i18n ID
-        $relatedData['i18nIds'] = BSiteI18n::model()->getI18nIds();
+        $relatedData['i18nIds'] = USiteI18n::model()->getI18nIds();
         // set the current language at first
         $tmp = array(
             'curI18nId' => array(
@@ -57,12 +57,12 @@ class MessageController extends BAutoController
         $relatedData['i18nIds'] = $tmp['curI18nId'] + $relatedData['i18nIds'];
         unset($tmp);
 
-        $model = new BMessage('search');
+        $model = new UMessage('search');
         $model->unsetAttributes();
 
         // set filter
-        if (isset($_GET['BMessageSearch'])) {
-            $model->attributes = $_GET['BMessageSearch'];
+        if (isset($_GET['UMessageSearch'])) {
+            $model->attributes = $_GET['UMessageSearch'];
         }
 
         // search
@@ -72,7 +72,7 @@ class MessageController extends BAutoController
         // set pagination parameters
         $pagination = $dataProvider->getPagination();
         $pagination->route = $this->id . '/list';
-        $pagination->pageSize = BInterfaceSetting::model()->getSettings($this->id . ':' . $this->module->id, Yii::app()->user->id)->page_size;
+        $pagination->pageSize = UInterfaceSetting::model()->getSettings($this->id . ':' . $this->module->id, Yii::app()->user->id)->page_size;
         $pagination->itemCount = $dataProvider->totalItemCount;
 
         // load models
@@ -80,19 +80,19 @@ class MessageController extends BAutoController
 
         // data to update
         $postData = array();
-        if (isset($_POST['bMessages'])) {
-            $postData['bMessages'] = $_POST['bMessages'];
+        if (isset($_POST['uMessages'])) {
+            $postData['uMessages'] = $_POST['uMessages'];
         }
-        if (isset($_POST['bMessageI18ns'])) {
-            $postData['bMessageI18ns'] = $_POST['bMessageI18ns'];
+        if (isset($_POST['uMessageI18ns'])) {
+            $postData['uMessageI18ns'] = $_POST['uMessageI18ns'];
         }
 
         // update models
         $isSaved = ! empty($_POST) ? $this->_saveTranslationModels($models, $postData) : false;
 
         // set related data
-        $relatedData['BMessageGroupI18n[name]'] = BHtml::listDatasCombobox('BMessageGroupI18n', array(
-            'b_message_group_id',
+        $relatedData['UMessageGroupI18n[name]'] = UHtml::listDatasCombobox('UMessageGroupI18n', array(
+            'u_message_group_id',
             'name'
         ), array(
             'condition' => 'i18n_id = :i18nId',
@@ -107,7 +107,7 @@ class MessageController extends BAutoController
             $view = 'list/_table';
         }
 
-        $this->pageTitle = B::t('backend', 'message_message_list_title');
+        $this->pageTitle = Unitkit::t('backend', 'message_message_list_title');
 
         $this->dynamicRender($view, array(
             'pagination' => $pagination,
@@ -128,22 +128,23 @@ class MessageController extends BAutoController
     protected function _loadTranslationModels($data, $i18nIds)
     {
         $models = array();
+
         foreach ($data as $d) {
-            $models[$d->id]['BMessage'] = $d;
-            $models[$d->id]['BMessage']->setScenario('update');
+            $models[$d->id]['UMessage'] = $d;
+            $models[$d->id]['UMessage']->setScenario('update');
 
             foreach ($i18nIds as $i18nId) {
-                foreach ($d->{'bMessageI18n_' . $i18nId} as $bMessageI18n)
-                    $models[$d->id]['bMessageI18ns'][$bMessageI18n->i18n_id] = $bMessageI18n;
+                foreach ($d->{'uMessageI18n_' . $i18nId} as $uMessageI18n)
+                    $models[$d->id]['uMessageI18ns'][$uMessageI18n->i18n_id] = $uMessageI18n;
             }
 
             foreach ($i18nIds as $i18nId) {
-                if (! isset($models[$d->id]['bMessageI18ns'][$i18nId])) {
-                    $models[$d->id]['bMessageI18ns'][$i18nId] = new BMessageI18n('insert');
-                    $models[$d->id]['bMessageI18ns'][$i18nId]->i18n_id = $i18nId;
-                    $models[$d->id]['bMessageI18ns'][$i18nId]->b_message_id = $d->id;
+                if (! isset($models[$d->id]['uMessageI18ns'][$i18nId])) {
+                    $models[$d->id]['uMessageI18ns'][$i18nId] = new UMessageI18n('insert');
+                    $models[$d->id]['uMessageI18ns'][$i18nId]->i18n_id = $i18nId;
+                    $models[$d->id]['uMessageI18ns'][$i18nId]->u_message_id = $d->id;
                 } else
-                    $models[$d->id]['bMessageI18ns'][$i18nId]->setScenario('translate');
+                    $models[$d->id]['uMessageI18ns'][$i18nId]->setScenario('translate');
             }
         }
         return $models;
@@ -167,7 +168,7 @@ class MessageController extends BAutoController
         $relatedData = array();
 
         // get list of i18n ID
-        $relatedData['i18nIds'] = BSiteI18n::model()->getI18nIds();
+        $relatedData['i18nIds'] = USiteI18n::model()->getI18nIds();
         // set the current language at first
         $tmp = array(
             'curI18nId' => array(
@@ -187,13 +188,13 @@ class MessageController extends BAutoController
         // save models
         $isSaved = Yii::app()->request->isPostRequest && ! empty($_POST) ? $this->_saveEditModels($models, $postData) : false;
 
-        $this->pageTitle = B::t('backend', 'message_message_create_title');
+        $this->pageTitle = Unitkit::t('backend', 'message_message_create_title');
 
         if (Yii::app()->request->isAjaxRequest) {
             if ($isSaved) {
                 // set primary key
                 $pk = array(
-                    'id' => $models['BMessage']->id
+                    'id' => $models['UMessage']->id
                 );
 
                 $html = $this->renderPartial('edit/edit', array(
@@ -239,7 +240,7 @@ class MessageController extends BAutoController
         $relatedData = array();
 
         // get list of i18n ID
-        $relatedData['i18nIds'] = BSiteI18n::model()->getI18nIds();
+        $relatedData['i18nIds'] = USiteI18n::model()->getI18nIds();
         // set the current language at first
         $tmp = array(
             'curI18nId' => array(
@@ -263,11 +264,11 @@ class MessageController extends BAutoController
         // save models
         $isSaved = Yii::app()->request->isPostRequest && ! empty($_POST) ? $this->_saveEditModels($models, $postData) : false;
 
-        $this->pageTitle = B::t('backend', 'message_message_update_title');
+        $this->pageTitle = Unitkit::t('backend', 'message_message_update_title');
 
         // update the primary key
         if ($isSaved) {
-            $pk['id'] = $models['BMessage']->id;
+            $pk['id'] = $models['UMessage']->id;
         }
 
         $this->dynamicRender(
@@ -295,14 +296,14 @@ class MessageController extends BAutoController
         // array of models
         $models = array();
 
-        $models['BMessage'] = ($pk !== null) ? BMessage::model()->findByPk(count($pk) == 1 ? reset($pk) : $pk) : null;
-        if ($models['BMessage'] === null) {
+        $models['UMessage'] = ($pk !== null) ? UMessage::model()->findByPk(count($pk) == 1 ? reset($pk) : $pk) : null;
+        if ($models['UMessage'] === null) {
             if ($pk !== null) {
                 throw new CHttpException(403);
             }
-            $models['BMessage'] = new BMessage('insert');
+            $models['UMessage'] = new UMessage('insert');
         } else {
-            $models['BMessage']->setScenario('update');
+            $models['UMessage']->setScenario('update');
         }
 
         $tmp = array();
@@ -310,23 +311,23 @@ class MessageController extends BAutoController
             $tmp[] = $i18nId;
 
         if ($pk !== null) {
-            foreach (BMessageI18n::model()->findAllByAttributes(array(
-                'b_message_id' => $pk['id'],
+            foreach (UMessageI18n::model()->findAllByAttributes(array(
+                'u_message_id' => $pk['id'],
                 'i18n_id' => $tmp
             )) as $modelI18n) {
-                $models['bMessageI18ns'][$modelI18n->i18n_id] = $modelI18n;
+                $models['uMessageI18ns'][$modelI18n->i18n_id] = $modelI18n;
             }
         }
 
         foreach ($i18nIds as $i18nId) {
-            if (! isset($models['bMessageI18ns'][$i18nId])) {
-                $models['bMessageI18ns'][$i18nId] = null;
+            if (! isset($models['uMessageI18ns'][$i18nId])) {
+                $models['uMessageI18ns'][$i18nId] = null;
             }
 
-            if ($models['bMessageI18ns'][$i18nId] === null) {
-                $models['bMessageI18ns'][$i18nId] = new BMessageI18n('preInsert');
+            if ($models['uMessageI18ns'][$i18nId] === null) {
+                $models['uMessageI18ns'][$i18nId] = new UMessageI18n('preInsert');
             } else {
-                $models['bMessageI18ns'][$i18nId]->setScenario('update');
+                $models['uMessageI18ns'][$i18nId]->setScenario('update');
             }
         }
 
@@ -346,15 +347,15 @@ class MessageController extends BAutoController
         $isSaved = false;
 
         // begin a transaction
-        $transaction = $models['BMessage']->dbConnection->beginTransaction();
+        $transaction = $models['UMessage']->dbConnection->beginTransaction();
         try {
             // set attributes
-            if (isset($postData['BMessage']))
-                $models['BMessage']->attributes = $postData['BMessage'];
-            if (isset($postData['bMessageI18ns'])) {
-                foreach ($models['bMessageI18ns'] as $i18nId => &$modelI18n) {
-                    if (isset($postData['bMessageI18ns'][$i18nId]['translation']) && $postData['bMessageI18ns'][$i18nId]['translation'] != '') {
-                        $modelI18n->attributes = $postData['bMessageI18ns'][$i18nId];
+            if (isset($postData['UMessage']))
+                $models['UMessage']->attributes = $postData['UMessage'];
+            if (isset($postData['uMessageI18ns'])) {
+                foreach ($models['uMessageI18ns'] as $i18nId => &$modelI18n) {
+                    if (isset($postData['uMessageI18ns'][$i18nId]['translation']) && $postData['uMessageI18ns'][$i18nId]['translation'] != '') {
+                        $modelI18n->attributes = $postData['uMessageI18ns'][$i18nId];
                         $modelI18n->i18n_id = $i18nId;
                         $modelI18n->validate();
                     }
@@ -362,13 +363,13 @@ class MessageController extends BAutoController
             }
 
             // validate attributes
-            $models['BMessage']->validate();
+            $models['UMessage']->validate();
 
             // save the model
-            if ($models['BMessage']->save()) {
-                foreach ($models['bMessageI18ns'] as $i18nId => &$modelI18n) {
+            if ($models['UMessage']->save()) {
+                foreach ($models['uMessageI18ns'] as $i18nId => &$modelI18n) {
                     $modelI18n->setScenario('insert');
-                    $modelI18n->b_message_id = $models['BMessage']->id;
+                    $modelI18n->u_message_id = $models['UMessage']->id;
                     if ($modelI18n->translation != '' && ! $modelI18n->save())
                         throw new Exception();
                 }
@@ -401,36 +402,36 @@ class MessageController extends BAutoController
         $isSaved = false;
 
         // begin a transaction
-        $transaction = BMessage::model()->dbConnection->beginTransaction();
+        $transaction = UMessage::model()->dbConnection->beginTransaction();
         try {
             // validate models
             foreach ($models as $id => &$model) {
-                if (isset($postData['bMessages'][$id])) {
-                    $model['BMessage']->attributes = $postData['bMessages'][$id];
-                    $model['BMessage']->validate();
+                if (isset($postData['uMessages'][$id])) {
+                    $model['UMessage']->attributes = $postData['uMessages'][$id];
+                    $model['UMessage']->validate();
                 }
 
-                foreach ($model['bMessageI18ns'] as $i18nId => &$BMessageI18n) {
-                    if (isset($postData['bMessageI18ns'][$id][$i18nId])) {
-                        $BMessageI18n->attributes = $postData['bMessageI18ns'][$id][$i18nId];
-                        $BMessageI18n->validate();
+                foreach ($model['uMessageI18ns'] as $i18nId => &$UMessageI18n) {
+                    if (isset($postData['uMessageI18ns'][$id][$i18nId])) {
+                        $UMessageI18n->attributes = $postData['uMessageI18ns'][$id][$i18nId];
+                        $UMessageI18n->validate();
                     }
                 }
             }
 
             // save models
             foreach ($models as $id => &$model) {
-                if ($model['BMessage']->save()) {
-                    foreach ($model['bMessageI18ns'] as $i18nId => &$BMessageI18n) {
-                        if ($BMessageI18n->translation != '') {
-                            if ($BMessageI18n->save())
+                if ($model['UMessage']->save()) {
+                    foreach ($model['uMessageI18ns'] as $i18nId => &$UMessageI18n) {
+                        if ($UMessageI18n->translation != '') {
+                            if ($UMessageI18n->save())
                                 $isSaved = true;
                             else {
                                 $isSaved = false;
                                 throw new Exception();
                             }
-                        } elseif ($BMessageI18n->scenario == 'translate') {
-                            $BMessageI18n->delete();
+                        } elseif ($UMessageI18n->scenario == 'translate') {
+                            $UMessageI18n->delete();
                         }
                     }
                 } else {

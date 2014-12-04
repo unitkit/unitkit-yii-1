@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class SocialSettingsDataView extends BSettingsDataView
+class SocialSettingsDataView extends USettingsDataView
 {
     /**
      * Constructor
@@ -18,7 +18,7 @@ class SocialSettingsDataView extends BSettingsDataView
     public function __construct($data, $relatedData, $isSaved)
     {
         // data view id
-        $this->id = 'bCmsSocialSocialSettings';
+        $this->id = 'uCmsSocialSocialSettings';
         parent::__construct($data, $relatedData, $isSaved);
     }
 }

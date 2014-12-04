@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class RoleListDataView extends BListDataView
+class RoleListDataView extends UListDataView
 {
 
     /**
@@ -21,10 +21,10 @@ class RoleListDataView extends BListDataView
     public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
-        $this->id = 'bRoleRoleMain';
+        $this->id = 'uRoleRoleMain';
 
         // component title
-        $this->title = B::t('backend', 'right_role_list_title');
+        $this->title = Unitkit::t('backend', 'right_role_list_title');
 
         // data
         $this->data = $data;
@@ -37,40 +37,40 @@ class RoleListDataView extends BListDataView
 
         // sort attributes
         $this->sortAttributes = array(
-            'bRoleI18ns.name',
-            'bRole.operation',
-            'bRole.business_rule'
+            'uRoleI18ns.name',
+            'uRole.operation',
+            'uRole.business_rule'
         );
 
         // search
         $this->gridSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_role_i18ns_name',
+                'attribute' => 'lk_u_role_i18ns_name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'operation',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'business_rule',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             ))
@@ -78,72 +78,72 @@ class RoleListDataView extends BListDataView
 
         // advanced search
         $this->advancedSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_role_i18ns_name',
+                'attribute' => 'lk_u_role_i18ns_name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'operation',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'business_rule',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BDateRangeItemField($model, 'created_at', new BItemField(array(
+            new UDateRangeItemField($model, 'created_at', new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_created_at_start',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bRoleVCreatedAtStartAdvSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uRoleVCreatedAtStartAdvSearch'
                 )
-            )), new BItemField(array(
+            )), new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_created_at_end',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bRoleVCreatedAtEndAdvSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uRoleVCreatedAtEndAdvSearch'
                 )
             ))),
-            new BDateRangeItemField($model, 'updated_at', new BItemField(array(
+            new UDateRangeItemField($model, 'updated_at', new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_updated_at_start',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bRoleVUpdatedAtStartAdvSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uRoleVUpdatedAtStartAdvSearch'
                 )
-            )), new BItemField(array(
+            )), new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_updated_at_end',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bRoleVUpdatedAtEndAdvSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uRoleVUpdatedAtEndAdvSearch'
                 )
             )))
         );

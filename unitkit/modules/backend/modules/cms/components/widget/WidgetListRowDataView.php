@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class WidgetListRowDataView extends BListRowItemDataView
+class WidgetListRowDataView extends UListRowItemDataView
 {
     /**
      * Constructor
@@ -19,7 +19,7 @@ class WidgetListRowDataView extends BListRowItemDataView
         $this->isTranslatable = true;
         $this->pk = $pk;
         $this->items = array(
-            isset($data->bCmsWidgetI18ns[0]) ? $data->bCmsWidgetI18ns[0]->name : '',
+            isset($data->uCmsWidgetI18ns[0]) ? $data->uCmsWidgetI18ns[0]->name : '',
             $data->path,
             $data->arg
         );

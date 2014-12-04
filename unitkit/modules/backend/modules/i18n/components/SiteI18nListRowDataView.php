@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class SiteI18nListRowDataView extends BListRowItemDataView
+class SiteI18nListRowDataView extends UListRowItemDataView
 {
 
     /**
@@ -19,8 +19,8 @@ class SiteI18nListRowDataView extends BListRowItemDataView
     {
         $this->pk = $pk;
         $this->items = array(
-            isset($data->bI18nI18ns[0]) ? $data->bI18nI18ns[0]->name : '',
-            BHtml::activeCheckBox($data, 'activated', array(
+            isset($data->uI18nI18ns[0]) ? $data->uI18nI18ns[0]->name : '',
+            UHtml::activeCheckBox($data, 'activated', array(
                 'class' => 'form-control input-sm',
                 'disabled' => 'disabled',
                 'id' => false

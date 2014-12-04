@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class LayoutListRowDataView extends BListRowItemDataView
+class LayoutListRowDataView extends UListRowItemDataView
 {
     /**
      * Constructor
@@ -19,7 +19,7 @@ class LayoutListRowDataView extends BListRowItemDataView
         $this->isTranslatable = true;
         $this->pk = $pk;
         $this->items = array(
-            isset($data->bCmsLayoutI18ns[0]) ? $data->bCmsLayoutI18ns[0]->name : '',
+            isset($data->uCmsLayoutI18ns[0]) ? $data->uCmsLayoutI18ns[0]->name : '',
             $data->max_container,
             $data->path,
             $data->view

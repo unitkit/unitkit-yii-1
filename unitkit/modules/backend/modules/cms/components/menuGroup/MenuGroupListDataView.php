@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MenuGroupListDataView extends BListDataView
+class MenuGroupListDataView extends UListDataView
 {
     /**
      * Constructor
@@ -20,10 +20,10 @@ class MenuGroupListDataView extends BListDataView
     public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
-        $this->id = 'bCmsMenuGroupMenuGroupMain';
+        $this->id = 'uCmsMenuGroupMenuGroupMain';
 
         // component title
-        $this->title = B::t('backend', 'cms_menu_group_list_title');
+        $this->title = Unitkit::t('backend', 'cms_menu_group_list_title');
 
         // data
         $this->data = $data;
@@ -36,18 +36,18 @@ class MenuGroupListDataView extends BListDataView
 
         // sort attributes
         $this->sortAttributes = array(
-            'bCmsMenuGroupI18ns.name',
+            'uCmsMenuGroupI18ns.name',
         );
 
         // search
         $this->gridSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_cms_menu_group_i18ns_name',
+                'attribute' => 'lk_u_cms_menu_group_i18ns_name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
@@ -55,61 +55,61 @@ class MenuGroupListDataView extends BListDataView
 
         // advanced search
         $this->advancedSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_cms_menu_group_i18ns_name',
+                'attribute' => 'lk_u_cms_menu_group_i18ns_name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-        	new BDateRangeItemField(
+        	new UDateRangeItemField(
                 $model,
                 'created_at',
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_created_at_start',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsMenuGroupVCreatedAtStartAdvSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsMenuGroupVCreatedAtStartAdvSearch'
                     )
                 )),
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_created_at_end',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsMenuGroupVCreatedAtEndAdvSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsMenuGroupVCreatedAtEndAdvSearch'
                     )
                 ))
             ),
-        	new BDateRangeItemField(
+        	new UDateRangeItemField(
                 $model,
                 'updated_at',
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_updated_at_start',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsMenuGroupVUpdatedAtStartAdvSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsMenuGroupVUpdatedAtStartAdvSearch'
                     )
                 )),
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_updated_at_end',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsMenuGroupVUpdatedAtEndAdvSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsMenuGroupVUpdatedAtEndAdvSearch'
                     )
                 ))
             ),

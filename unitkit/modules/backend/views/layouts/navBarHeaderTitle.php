@@ -1,6 +1,6 @@
 <?php Yii::app()->clientScript->registerDynamicCssFile('/css/backend.navBar.css'); ?>
 <?php $this->beginContent('//../modules/backend/views/layouts/base'); ?>
-    <?php $this->widget('application.modules.backend.widgets.navBar.BNavBar'); ?>
+    <?php $this->widget('application.modules.backend.widgets.navBar.UNavBar'); ?>
     <div id="wrap">
         <div id="content" class="container-fluid container-header-title">
             <?= $content; ?>

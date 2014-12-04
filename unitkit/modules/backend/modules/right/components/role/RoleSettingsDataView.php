@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class RoleSettingsDataView extends BSettingsDataView
+class RoleSettingsDataView extends USettingsDataView
 {
     /**
      * Constructor
@@ -17,7 +17,7 @@ class RoleSettingsDataView extends BSettingsDataView
      */
     public function __construct($data, $relatedData, $isSaved)
     {
-        $this->id = 'bRoleRoleSettings';
+        $this->id = 'uRoleRoleSettings';
         parent::__construct($data, $relatedData, $isSaved);
     }
 }

@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MenuGroupEditDataView extends BEditDataView
+class MenuGroupEditDataView extends UEditDataView
 {
     /**
      * Constructor
@@ -19,11 +19,11 @@ class MenuGroupEditDataView extends BEditDataView
     public function __construct($data, $relatedData, $pk, $isSaved)
     {
         // data view id
-        $this->id = 'bCmsMenuGroupMenuGroupEdit';
+        $this->id = 'uCmsMenuGroupMenuGroupEdit';
 
         // component title
-        $this->createTitle = B::t('backend', 'cms_menu_group_create_title');
-        $this->updateTitle = B::t('backend', 'cms_menu_group_update_title');
+        $this->createTitle = Unitkit::t('backend', 'cms_menu_group_create_title');
+        $this->updateTitle = Unitkit::t('backend', 'cms_menu_group_update_title');
 
         // primary key
         $this->pk = $pk;
@@ -45,40 +45,40 @@ class MenuGroupEditDataView extends BEditDataView
         }
 
         // new record status
-        $this->isNewRecord = $data['BCmsMenuGroup']->isNewRecord;
+        $this->isNewRecord = $data['UCmsMenuGroup']->isNewRecord;
 
         // page title
         $this->refreshPageTitle();
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BCmsMenuGroup'],
+            new UItemField(array(
+                'model' => $data['UCmsMenuGroup'],
                 'attribute' => 'id',
                 'type' => 'resolveValue'
             )),
-            new BItemField(array(
-                'model' => $data['BCmsMenuGroupI18n'],
+            new UItemField(array(
+                'model' => $data['UCmsMenuGroupI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsMenuGroupI18n']->getAttributeLabel('name'),
+                    'placeholder' => $data['UCmsMenuGroupI18n']->getAttributeLabel('name'),
                 )
             )),
         );
 
-        if (! $data['BCmsMenuGroup']->isNewRecord) {
-            $this->items[] = new BItemField(array(
-                'model' => $data['BCmsMenuGroup'],
+        if (! $data['UCmsMenuGroup']->isNewRecord) {
+            $this->items[] = new UItemField(array(
+                'model' => $data['UCmsMenuGroup'],
                 'attribute' => 'created_at',
-                'value' =>  $data['BCmsMenuGroup']->created_at
+                'value' =>  $data['UCmsMenuGroup']->created_at
             ));
-            $this->items[] = new BItemField(array(
-                'model' => $data['BCmsMenuGroup'],
+            $this->items[] = new UItemField(array(
+                'model' => $data['UCmsMenuGroup'],
                 'attribute' => 'updated_at',
-                'value' =>  $data['BCmsMenuGroup']->updated_at
+                'value' =>  $data['UCmsMenuGroup']->updated_at
             ));
         }
     }

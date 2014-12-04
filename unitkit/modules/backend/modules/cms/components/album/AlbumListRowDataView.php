@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class AlbumListRowDataView extends BListRowItemDataView
+class AlbumListRowDataView extends UListRowItemDataView
 {
     /**
      * Constructor
@@ -19,7 +19,7 @@ class AlbumListRowDataView extends BListRowItemDataView
         $this->isTranslatable = true;
         $this->pk = $pk;
         $this->items = array(
-            isset($data->bCmsAlbumI18ns[0]) ? $data->bCmsAlbumI18ns[0]->title : '',
+            isset($data->uCmsAlbumI18ns[0]) ? $data->uCmsAlbumI18ns[0]->title : '',
             Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse(
                 $data->created_at, 'yyyy-MM-dd hh:mm:ss'
             )),

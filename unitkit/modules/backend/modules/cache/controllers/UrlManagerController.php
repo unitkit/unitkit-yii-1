@@ -5,7 +5,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class UrlManagerController extends BController
+class UrlManagerController extends UController
 {
 
     /**
@@ -40,13 +40,13 @@ class UrlManagerController extends BController
      */
     public function actionFlush()
     {
-        $this->pageTitle = Yii::app()->name . ' - ' . B::t('backend', 'url_manager_refresh_title');
+        $this->pageTitle = Yii::app()->name . ' - ' . Unitkit::t('backend', 'url_manager_refresh_title');
 
         Yii::app()->urlManager->clearAllCache();
 
         $this->dynamicRender('/flush/main', array(
-            'title' => B::t('backend', 'url_manager_refresh_title'),
-            'content' => B::t('backend', 'url_is_refreshed')
+            'title' => Unitkit::t('backend', 'url_manager_refresh_title'),
+            'content' => Unitkit::t('backend', 'url_is_refreshed')
         ));
     }
 }

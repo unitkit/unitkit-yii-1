@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MailTemplateListRowDataView extends BListRowItemDataView
+class MailTemplateListRowDataView extends UListRowItemDataView
 {
 
     /**
@@ -20,14 +20,14 @@ class MailTemplateListRowDataView extends BListRowItemDataView
         $this->isTranslatable = true;
         $this->pk = $pk;
         $this->items = array(
-            isset($data->bMailTemplateGroupI18ns[0]) ? $data->bMailTemplateGroupI18ns[0]->name : '',
-            BHtml::activeCheckBox($data, 'html_mode', array(
+            isset($data->uMailTemplateGroupI18ns[0]) ? $data->uMailTemplateGroupI18ns[0]->name : '',
+            UHtml::activeCheckBox($data, 'html_mode', array(
                 'class' => 'form-control input-sm',
                 'disabled' => 'disabled',
                 'id' => false
             )),
-            isset($data->bMailTemplateI18ns[0]) ? $data->bMailTemplateI18ns[0]->object : '',
-            isset($data->bMailTemplateI18ns[0]) ? $data->bMailTemplateI18ns[0]->message : ''
+            isset($data->uMailTemplateI18ns[0]) ? $data->uMailTemplateI18ns[0]->object : '',
+            isset($data->uMailTemplateI18ns[0]) ? $data->uMailTemplateI18ns[0]->message : ''
         );
     }
 }

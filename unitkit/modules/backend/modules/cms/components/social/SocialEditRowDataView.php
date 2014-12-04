@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class SocialEditRowDataView extends BEditRowItemDataView
+class SocialEditRowDataView extends UEditRowItemDataView
 {
     /**
      * Constructor
@@ -28,19 +28,19 @@ class SocialEditRowDataView extends BEditRowItemDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BCmsSocial'],
+            new UItemField(array(
+                'model' => $data['UCmsSocial'],
                 'attribute' => 'name',
-                'value' => $data['BCmsSocial']->name,
+                'value' => $data['UCmsSocial']->name,
             )),
-            new BItemField(array(
-                'model' => $data['BCmsSocialI18n'],
+            new UItemField(array(
+                'model' => $data['UCmsSocialI18n'],
                 'attribute' => 'url',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsSocialI18n']->getAttributeLabel('url'),
+                    'placeholder' => $data['UCmsSocialI18n']->getAttributeLabel('url'),
                 )
             )),
         );

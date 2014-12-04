@@ -42,11 +42,11 @@ if($argv[1] == 'install') {
 	// install public components
 	CFileHelper::removeDirectory($publicDir.'/modules');
 	CFileHelper::removeDirectory($publicDir.'/vendor');
-    CFileHelper::copyDirectory(__DIR__.'/../../../public', $publicDir.'/b');
+    CFileHelper::copyDirectory(__DIR__.'/../../../public', $publicDir.'/unitkit');
 	copyPublicComponents(__DIR__.'/../modules', $publicDir.'/modules/');
 	CFileHelper::copyDirectory(__DIR__.'/../public', $publicDir.'/');
 } elseif($argv[1] == 'install:components') {
-    CFileHelper::copyDirectory(__DIR__.'/../../../public', $publicDir.'/b');
+    CFileHelper::copyDirectory(__DIR__.'/../../../public', $publicDir.'/unitkit');
 	copyPublicComponents(__DIR__.'/../modules', $publicDir.'/modules/');
 	CFileHelper::copyDirectory(__DIR__.'/../public', $publicDir.'/');
 } elseif($argv[1] == 'clear:cache') {

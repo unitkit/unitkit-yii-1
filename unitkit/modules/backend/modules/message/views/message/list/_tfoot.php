@@ -3,17 +3,17 @@
     <td colspan="<?= count($relatedData['i18nIds']) + 3 ?>">
         <a href="#" class="check-all">
             <span class="glyphicon glyphicon-check"></span>
-            <span><?= B::t('unitkit', 'btn_check_all'); ?></span>
+            <span><?= Unitkit::t('unitkit', 'btn_check_all'); ?></span>
         </a>
         <span>|</span>
         <a href="#" class="uncheck-all">
             <span class="glyphicon glyphicon-unchecked"></span>
-            <span><?= B::t('unitkit', 'btn_uncheck_all'); ?></span>
+            <span><?= Unitkit::t('unitkit', 'btn_uncheck_all'); ?></span>
         </a>
         <span class="glyphicon glyphicon-chevron-right"></span>
         <a href="<?=$this->createUrl($this->id.'/deleteRows', $_GET); ?>" class="btn-delete-all">
             <span class="glyphicon glyphicon-trash"></span>
-            <span><?= B::t('unitkit', 'btn_delete_selected'); ?></span>
+            <span><?= Unitkit::t('unitkit', 'btn_delete_selected'); ?></span>
         </a>
     </td>
 </tr>

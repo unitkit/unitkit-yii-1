@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MessageGroupSettingsDataView extends BSettingsDataView
+class MessageGroupSettingsDataView extends USettingsDataView
 {
 
     /**
@@ -18,7 +18,7 @@ class MessageGroupSettingsDataView extends BSettingsDataView
      */
     public function __construct($data, $relatedData, $isSaved)
     {
-        $this->id = 'bMessageGroupMessageGroupSettings';
+        $this->id = 'uMessageGroupMessageGroupSettings';
         parent::__construct($data, $relatedData, $isSaved);
     }
 }

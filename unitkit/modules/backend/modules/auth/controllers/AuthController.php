@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class AuthController extends BController
+class AuthController extends UController
 {
     /**
      * Default action
@@ -24,7 +24,7 @@ class AuthController extends BController
 
     public function init()
     {
-        $this->pageTitle = B::t('backend', 'login_title');
+        $this->pageTitle = Unitkit::t('backend', 'login_title');
         parent::init();
     }
 

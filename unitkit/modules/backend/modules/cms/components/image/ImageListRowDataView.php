@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class ImageListRowDataView extends BListRowItemDataView
+class ImageListRowDataView extends UListRowItemDataView
 {
     /**
      * Constructor
@@ -20,12 +20,12 @@ class ImageListRowDataView extends BListRowItemDataView
         $this->pk = array_merge($pk, $_GET);
         $this->data = $data;
         $this->items = array(
-            isset($data->bCmsImageI18ns[0]) ? $data->bCmsImageI18ns[0]->title : '',
-            $this->controller->getUploader('BCmsImage[file_path]')['uploader']->htmlOverview(
+            isset($data->uCmsImageI18ns[0]) ? $data->uCmsImageI18ns[0]->title : '',
+            $this->controller->getUploader('UCmsImage[file_path]')['uploader']->htmlOverview(
                 $data,
                 'file_path',
                 array(
-                    'type' => BUploader::OVERVIEW_IMAGE,
+                    'type' => UUploader::OVERVIEW_IMAGE,
                 )
             ),
         );

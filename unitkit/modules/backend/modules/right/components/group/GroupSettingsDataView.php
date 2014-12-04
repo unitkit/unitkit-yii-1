@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class GroupSettingsDataView extends BSettingsDataView
+class GroupSettingsDataView extends USettingsDataView
 {
 
     /**
@@ -18,7 +18,7 @@ class GroupSettingsDataView extends BSettingsDataView
      */
     public function __construct($data, $relatedData, $isSaved)
     {
-        $this->id = 'bGroupGroupSettings';
+        $this->id = 'uGroupGroupSettings';
         parent::__construct($data, $relatedData, $isSaved);
     }
 }

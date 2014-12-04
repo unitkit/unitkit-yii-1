@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class ImageListDataView extends BListDataView
+class ImageListDataView extends UListDataView
 {
     /**
      * Constructor
@@ -20,10 +20,10 @@ class ImageListDataView extends BListDataView
     public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
-        $this->id = 'bCmsImageImageMain';
+        $this->id = 'uCmsImageImageMain';
 
         // component title
-        $this->title = B::t('backend', 'cms_image_list_title');
+        $this->title = Unitkit::t('backend', 'cms_image_list_title');
 
         // data
         $this->data = $data;
@@ -36,29 +36,29 @@ class ImageListDataView extends BListDataView
 
         // sort attributes
         $this->sortAttributes = array(
-            'bCmsImageI18ns.title',
-            'bCmsImage.file_path',
+            'uCmsImageI18ns.title',
+            'uCmsImage.file_path',
         );
 
         // search
         $this->gridSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_cms_image_i18ns_title',
+                'attribute' => 'lk_u_cms_image_i18ns_title',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'file_path',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
@@ -66,71 +66,71 @@ class ImageListDataView extends BListDataView
 
         // advanced search
         $this->advancedSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'file_path',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_cms_image_i18ns_title',
+                'attribute' => 'lk_u_cms_image_i18ns_title',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-        	new BDateRangeItemField(
+        	new UDateRangeItemField(
                 $model,
                 'created_at',
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_created_at_start',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsImageVCreatedAtStartAdvSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsImageVCreatedAtStartAdvSearch'
                     )
                 )),
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_created_at_end',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsImageVCreatedAtEndAdvSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsImageVCreatedAtEndAdvSearch'
                     )
                 ))
             ),
-        	new BDateRangeItemField(
+        	new UDateRangeItemField(
                 $model,
                 'updated_at',
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_updated_at_start',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsImageVUpdatedAtStartAdvSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsImageVUpdatedAtStartAdvSearch'
                     )
                 )),
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_updated_at_end',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsImageVUpdatedAtEndAdvSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsImageVUpdatedAtEndAdvSearch'
                     )
                 ))
             ),

@@ -16,14 +16,14 @@
 		this.requestSaved = {url: window.location.href || '', data: undefined, type: undefined};
 		this.activeLocationUpdate = false;
 		this.swfUpload = [];
-		this.message = $.extend($.b.app.defaultMessage, this.args.message || {});
+		this.message = $.extend($.unitkit.app.defaultMessage, this.args.message || {});
 		this.filters = '';
 	};
 	
 	/**
-	 * Extend $.b.app.list
+	 * Extend $.unitkit.app.list
 	 */
-	$.backend.mail.mailSendingRole.List.prototype = Object.create($.b.app.List.prototype);
+	$.backend.mail.mailSendingRole.List.prototype = Object.create($.unitkit.app.List.prototype);
 	
 	
 	$.backend.mail.mailSendingRole.List.prototype.initGridEvents = function ()

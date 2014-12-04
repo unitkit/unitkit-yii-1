@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class LayoutEditRowDataView extends BEditRowItemDataView
+class LayoutEditRowDataView extends UEditRowItemDataView
 {
     /**
      * Constructor
@@ -28,44 +28,44 @@ class LayoutEditRowDataView extends BEditRowItemDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BCmsLayoutI18n'],
+            new UItemField(array(
+                'model' => $data['UCmsLayoutI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsLayoutI18n']->getAttributeLabel('name'),
+                    'placeholder' => $data['UCmsLayoutI18n']->getAttributeLabel('name'),
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BCmsLayout'],
+            new UItemField(array(
+                'model' => $data['UCmsLayout'],
                 'attribute' => 'max_container',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsLayout']->getAttributeLabel('max_container'),
+                    'placeholder' => $data['UCmsLayout']->getAttributeLabel('max_container'),
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BCmsLayout'],
+            new UItemField(array(
+                'model' => $data['UCmsLayout'],
                 'attribute' => 'path',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsLayout']->getAttributeLabel('path'),
+                    'placeholder' => $data['UCmsLayout']->getAttributeLabel('path'),
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BCmsLayout'],
+            new UItemField(array(
+                'model' => $data['UCmsLayout'],
                 'attribute' => 'view',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsLayout']->getAttributeLabel('view'),
+                    'placeholder' => $data['UCmsLayout']->getAttributeLabel('view'),
                 )
             )),
         );

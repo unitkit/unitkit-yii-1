@@ -1,16 +1,16 @@
 /**
- * Kevin Walter <walkev13@gmail.com>
+ * @version 1.0
  */
-#bCmsAlbumAlbumMain .thumbnail {
+#uCmsAlbumAlbumMain .thumbnail {
     height:130px;
     position:relative;
 }
 
-#bCmsAlbumAlbumMain .caption {
+#uCmsAlbumAlbumMain .caption {
     text-align:center;
 }
 
-#bCmsAlbumAlbumMain .option {
+#uCmsAlbumAlbumMain .option {
     background-color: #f7f7f9;
     border-top: 1px solid #e1e1e8;
     bottom: 0;
@@ -21,7 +21,7 @@
     width: 100%;
 }
 
-#bCmsAlbumAlbumMain .option-add {
+#uCmsAlbumAlbumMain .option-add {
     border: medium none;
     padding-top: 45px;
     top: 0;

@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MailSendingRoleEditRowDataView extends BEditRowItemDataView
+class MailSendingRoleEditRowDataView extends UEditRowItemDataView
 {
 
     /**
@@ -29,36 +29,36 @@ class MailSendingRoleEditRowDataView extends BEditRowItemDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BMailSendingRole'],
-                'attribute' => 'b_mail_send_role_id',
+            new UItemField(array(
+                'model' => $data['UMailSendingRole'],
+                'attribute' => 'u_mail_send_role_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm input-ajax-select',
                     'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
-                        'name' => 'BMailSendRoleI18n[name]',
+                        'name' => 'UMailSendRoleI18n[name]',
                         'language' => Yii::app()->language
                     )),
-                    'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($data['BMailSendingRole']->b_mail_send_role_id) ? BMailSendRoleI18n::model()->findByPk(array(
-                        'b_mail_send_role_id' => $data['BMailSendingRole']->b_mail_send_role_id,
+                    'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
+                    'data-text' => ! empty($data['UMailSendingRole']->u_mail_send_role_id) ? UMailSendRoleI18n::model()->findByPk(array(
+                        'u_mail_send_role_id' => $data['UMailSendingRole']->u_mail_send_role_id,
                         'i18n_id' => Yii::app()->language
                     ))->name : ''
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BMailSendingRole'],
-                'attribute' => 'b_person_id',
+            new UItemField(array(
+                'model' => $data['UMailSendingRole'],
+                'attribute' => 'u_person_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm input-ajax-select',
                     'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
-                        'name' => 'BPerson[fullName]'
+                        'name' => 'UPerson[fullName]'
                     )),
-                    'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($data['BMailSendingRole']->b_person_id) ? BPerson::model()->findByPk($data['BMailSendingRole']->b_person_id)->fullName : ''
+                    'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
+                    'data-text' => ! empty($data['UMailSendingRole']->u_person_id) ? UPerson::model()->findByPk($data['UMailSendingRole']->u_person_id)->fullName : ''
                 )
             ))
         );

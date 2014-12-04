@@ -6,13 +6,11 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class AutoLoginController extends BAutoController
+class AutoLoginController extends UAutoController
 {
-    protected $_model = 'BAutoLogin';
+    protected $_model = 'UAutoLogin';
 
     /**
-     * (non-PHPdoc)
-     *
      * @see BBaseController::setDefaultRoles()
      */
     public function setDefaultRoles()
@@ -25,9 +23,9 @@ class AutoLoginController extends BAutoController
     protected function _advancedComboBox()
     {
         return array(
-            'BPerson[fullname]' => array(
+            'UPerson[fullname]' => array(
                 'search' => $_GET['search'],
-                'model' => 'BPerson',
+                'model' => 'UPerson',
                 'select' => array(
                     'id' => 'id',
                     'text' => 'fullname'

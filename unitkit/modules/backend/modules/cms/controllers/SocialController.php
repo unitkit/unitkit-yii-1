@@ -6,10 +6,10 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class SocialController extends BAutoController
+class SocialController extends UAutoController
 {
-    protected $_model = 'BCmsSocial';
-    protected $_modelI18n = 'BCmsSocialI18n';
+    protected $_model = 'UCmsSocial';
+    protected $_modelI18n = 'UCmsSocialI18n';
 
     /**
      * @see BBaseController::setDefaultRoles()

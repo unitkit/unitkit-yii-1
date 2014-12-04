@@ -8,14 +8,14 @@
         <td class="<?=$dataView->data[$i18nId][$itemField->model]->hasErrors($itemField->attribute) ? ' has-error' : '' ?>">
             <div class="input">
     		<?php if( ! empty($itemField->type)) : ?>
-    			<?php $itemField->htmlOptions = array_merge($itemField->htmlOptions, array('name' => BHtml::modelName($dataView->data[$i18nId][$itemField->model]).'['.$i18nId.']['.$itemField->attribute.']')); ?>
-    			<?= call_user_func_array('BHtml::'.$itemField->type, array($dataView->data[$i18nId][$itemField->model], $itemField->attribute, $itemField->htmlOptions)); ?>
+    			<?php $itemField->htmlOptions = array_merge($itemField->htmlOptions, array('name' => UHtml::modelName($dataView->data[$i18nId][$itemField->model]).'['.$i18nId.']['.$itemField->attribute.']')); ?>
+    			<?= call_user_func_array('UHtml::'.$itemField->type, array($dataView->data[$i18nId][$itemField->model], $itemField->attribute, $itemField->htmlOptions)); ?>
     		<?php elseif( ! empty($itemField->value)) : ?>
     			<?= $itemField->value; ?>
     		<?php endif; ?>
     		</div>
     		<?php if($dataView->data[$i18nId][$itemField->model]->hasErrors($itemField->attribute)): ?>
-    		<div class="control-label"><?= BHtml::error($dataView->data[$i18nId][$itemField->model], $itemField->attribute); ?></div>
+    		<div class="control-label"><?= UHtml::error($dataView->data[$i18nId][$itemField->model], $itemField->attribute); ?></div>
     		<?php endif; ?>
     	</td>
     	<?php endforeach; ?>

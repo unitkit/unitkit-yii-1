@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MailTemplateEditDataView extends BEditDataView
+class MailTemplateEditDataView extends UEditDataView
 {
 
     /**
@@ -20,11 +20,11 @@ class MailTemplateEditDataView extends BEditDataView
      */
     public function __construct($data, $relatedData, $pk, $isSaved, &$controller)
     {
-        $this->id = 'bMailTemplateMailTemplateEdit';
+        $this->id = 'uMailTemplateMailTemplateEdit';
 
         // component title
-        $this->createTitle = B::t('backend', 'mail_mail_template_create_title');
-        $this->updateTitle = B::t('backend', 'mail_mail_template_update_title');
+        $this->createTitle = Unitkit::t('backend', 'mail_mail_template_create_title');
+        $this->updateTitle = Unitkit::t('backend', 'mail_mail_template_update_title');
 
         // primary key
         $this->pk = $pk;
@@ -46,98 +46,98 @@ class MailTemplateEditDataView extends BEditDataView
         }
 
         // new record status
-        $this->isNewRecord = $data['BMailTemplate']->isNewRecord;
+        $this->isNewRecord = $data['UMailTemplate']->isNewRecord;
 
         // page title
         $this->refreshPageTitle();
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BMailTemplate'],
+            new UItemField(array(
+                'model' => $data['UMailTemplate'],
                 'attribute' => 'id',
                 'type' => 'resolveValue'
             )),
-            new BItemField(array(
-                'model' => $data['BMailTemplate'],
-                'attribute' => 'b_mail_template_group_id',
+            new UItemField(array(
+                'model' => $data['UMailTemplate'],
+                'attribute' => 'u_mail_template_group_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm input-ajax-select',
                     'data-action' => $controller->createUrl($controller->id . '/advComboBox/', array(
-                        'name' => 'BMailTemplateGroupI18n[name]',
+                        'name' => 'UMailTemplateGroupI18n[name]',
                         'language' => Yii::app()->language
                     )),
-                    'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($data['BMailTemplate']->b_mail_template_group_id) ? BMailTemplateGroupI18n::model()->findByPk(array(
-                        'b_mail_template_group_id' => $data['BMailTemplate']->b_mail_template_group_id,
+                    'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
+                    'data-text' => ! empty($data['UMailTemplate']->u_mail_template_group_id) ? UMailTemplateGroupI18n::model()->findByPk(array(
+                        'u_mail_template_group_id' => $data['UMailTemplate']->u_mail_template_group_id,
                         'i18n_id' => Yii::app()->language
                     ))->name : ''
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BMailTemplate'],
+            new UItemField(array(
+                'model' => $data['UMailTemplate'],
                 'attribute' => 'html_mode',
                 'type' => 'activeCheckBox',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BMailTemplate']->getAttributeLabel('html_mode')
+                    'placeholder' => $data['UMailTemplate']->getAttributeLabel('html_mode')
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BMailTemplate'],
+            new UItemField(array(
+                'model' => $data['UMailTemplate'],
                 'attribute' => 'sql_request',
                 'type' => 'activeTextArea',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BMailTemplate']->getAttributeLabel('sql_request')
+                    'placeholder' => $data['UMailTemplate']->getAttributeLabel('sql_request')
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BMailTemplate'],
+            new UItemField(array(
+                'model' => $data['UMailTemplate'],
                 'attribute' => 'sql_param',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BMailTemplate']->getAttributeLabel('sql_param')
+                    'placeholder' => $data['UMailTemplate']->getAttributeLabel('sql_param')
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BMailTemplateI18n'],
+            new UItemField(array(
+                'model' => $data['UMailTemplateI18n'],
                 'attribute' => 'object',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BMailTemplateI18n']->getAttributeLabel('object')
+                    'placeholder' => $data['UMailTemplateI18n']->getAttributeLabel('object')
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BMailTemplateI18n'],
+            new UItemField(array(
+                'model' => $data['UMailTemplateI18n'],
                 'attribute' => 'message',
                 'type' => 'activeTextArea',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm advanced-textarea',
-                    'placeholder' => $data['BMailTemplateI18n']->getAttributeLabel('message')
+                    'placeholder' => $data['UMailTemplateI18n']->getAttributeLabel('message')
                 )
             ))
         );
 
-        if (! $data['BMailTemplate']->isNewRecord) {
-            $this->items[] = new BItemField(array(
-                'model' => $data['BMailTemplate'],
+        if (! $data['UMailTemplate']->isNewRecord) {
+            $this->items[] = new UItemField(array(
+                'model' => $data['UMailTemplate'],
                 'attribute' => 'created_at',
-                'value' => $data['BMailTemplate']->created_at
+                'value' => $data['UMailTemplate']->created_at
             ));
-            $this->items[] = new BItemField(array(
-                'model' => $data['BMailTemplate'],
+            $this->items[] = new UItemField(array(
+                'model' => $data['UMailTemplate'],
                 'attribute' => 'updated_at',
-                'value' => $data['BMailTemplate']->updated_at
+                'value' => $data['UMailTemplate']->updated_at
             ));
         }
     }

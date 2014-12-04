@@ -34,11 +34,11 @@ class ContactForm extends CFormModel
     public function attributeLabels()
     {
         return array(
-            'firstName' => B::t('frontend', 'contact_form:first_name'),
-            'lastName' => B::t('frontend', 'contact_form:last_name'),
-            'email' => B::t('frontend', 'contact_form:email'),
-            'message' => B::t('frontend', 'contact_form:message'),
-            'phone' => B::t('frontend', 'contact_form:phone'),
+            'firstName' => Unitkit::t('frontend', 'contact_form:first_name'),
+            'lastName' => Unitkit::t('frontend', 'contact_form:last_name'),
+            'email' => Unitkit::t('frontend', 'contact_form:email'),
+            'message' => Unitkit::t('frontend', 'contact_form:message'),
+            'phone' => Unitkit::t('frontend', 'contact_form:phone'),
         );
     }
 
@@ -52,7 +52,7 @@ class ContactForm extends CFormModel
     {
         $isSent = false;
         if (! $this->hasErrors()) {
-            $mail = new BMail();
+            $mail = new UMail();
             $mail->staticParams = array(
                 'firstName' => $this->firstName,
                 'lastName' => $this->lastName,
@@ -61,7 +61,7 @@ class ContactForm extends CFormModel
                 'message' => nl2br($this->message),
             );
             $mail->replyTo = array($this->email, $this->firstName.' '.$this->lastName);
-            if ($mail->sendMailTemplate(B::v('frontend', 'mail_template_id:contact'), Yii::app()->language)) {
+            if ($mail->sendMailTemplate(Unitkit::v('frontend', 'mail_template_id:contact'), Yii::app()->language)) {
                 $isSent = true;
                 $this->unsetAttributes(array('firstName', 'lastName', 'email', 'phone', 'message'));
             }

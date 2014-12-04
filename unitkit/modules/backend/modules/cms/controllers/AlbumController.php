@@ -6,10 +6,10 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class AlbumController extends BAutoController
+class AlbumController extends UAutoController
 {
-    protected $_model = 'BCmsAlbum';
-    protected $_modelI18n = 'BCmsAlbumI18n';
+    protected $_model = 'UCmsAlbum';
+    protected $_modelI18n = 'UCmsAlbumI18n';
 
     public function actionSettings()
     {
@@ -36,11 +36,11 @@ class AlbumController extends BAutoController
                 }
             }
             if (! empty($albumID)) {
-                $albums = BCmsAlbumPhoto::model()->findAllByAttributes(
-                    array('b_cms_album_id' => $albumID), array('select' => 'file_path')
+                $albums = UCmsAlbumPhoto::model()->findAllByAttributes(
+                    array('u_cms_album_id' => $albumID), array('select' => 'file_path')
                 );
                 foreach ($albums as $album) {
-                    @unlink(BCmsAlbumPhoto::$upload['file_path']['pathDest'] . '/' . $album->file_path);
+                    @unlink(UCmsAlbumPhoto::$upload['file_path']['pathDest'] . '/' . $album->file_path);
                 }
             }
 

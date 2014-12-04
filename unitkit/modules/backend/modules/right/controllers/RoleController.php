@@ -6,10 +6,10 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class RoleController extends BAutoController
+class RoleController extends UAutoController
 {
-    protected $_model = 'BRole';
-    protected $_modelI18n = 'BRoleI18n';
+    protected $_model = 'URole';
+    protected $_modelI18n = 'URoleI18n';
 
     /**
      * (non-PHPdoc)

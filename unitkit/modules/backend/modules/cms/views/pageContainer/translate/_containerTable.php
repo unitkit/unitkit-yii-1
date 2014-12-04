@@ -1,9 +1,9 @@
 <table class="table">
     <tbody>
-    <?php foreach ($dataView->data[$i18nId]['BCmsPageContentI18ns'] as $index => $cmsPageContentI18n): ?>
+    <?php foreach ($dataView->data[$i18nId]['UCmsPageContentI18ns'] as $index => $cmsPageContentI18n): ?>
         <tr>
             <td>
-                <div><?= B::t('backend', 'cms_page_container_index').' '.$index ?></div>
+                <div><?= Unitkit::t('backend', 'cms_page_container_index').' '.$index ?></div>
                 <?php foreach($dataView->items as $itemField): ?>
                     <?php
                         $this->bRenderPartial('translate/_containerRowCell', array(

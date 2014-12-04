@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MailTemplateSettingsDataView extends BSettingsDataView
+class MailTemplateSettingsDataView extends USettingsDataView
 {
 
     /**
@@ -18,7 +18,7 @@ class MailTemplateSettingsDataView extends BSettingsDataView
      */
     public function __construct($data, $relatedData, $isSaved)
     {
-        $this->id = 'bMailTemplateMailTemplateSettings';
+        $this->id = 'uMailTemplateMailTemplateSettings';
         parent::__construct($data, $relatedData, $isSaved);
     }
 }

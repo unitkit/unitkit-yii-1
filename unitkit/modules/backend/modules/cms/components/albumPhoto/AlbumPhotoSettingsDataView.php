@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class AlbumPhotoSettingsDataView extends BSettingsDataView
+class AlbumPhotoSettingsDataView extends USettingsDataView
 {
     /**
      * Constructor
@@ -18,7 +18,7 @@ class AlbumPhotoSettingsDataView extends BSettingsDataView
     public function __construct($data, $relatedData, $isSaved)
     {
         // data view id
-        $this->id = 'bCmsAlbumPhotoAlbumPhotoSettings';
+        $this->id = 'uCmsAlbumPhotoAlbumPhotoSettings';
         parent::__construct($data, $relatedData, $isSaved);
     }
 }

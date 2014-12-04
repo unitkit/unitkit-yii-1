@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class AutoLoginListDataView extends BListDataView
+class AutoLoginListDataView extends UListDataView
 {
 
     /**
@@ -21,10 +21,10 @@ class AutoLoginListDataView extends BListDataView
     public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
-        $this->id = 'bAutoLoginAutoLoginMain';
+        $this->id = 'uAutoLoginAutoLoginMain';
 
         // component title
-        $this->title = B::t('backend', 'auto_login_auto_login_list_title');
+        $this->title = Unitkit::t('backend', 'auto_login_auto_login_list_title');
 
         // data
         $this->data = $data;
@@ -37,141 +37,141 @@ class AutoLoginListDataView extends BListDataView
 
         // sort attributes
         $this->sortAttributes = array(
-            'bPerson.fullname',
-            'bAutoLogin.duration',
-            'bAutoLogin.expired_at',
-            'bAutoLogin.created_at'
+            'uPerson.fullname',
+            'uAutoLogin.duration',
+            'uAutoLogin.expired_at',
+            'uAutoLogin.created_at'
         );
 
         // search
         $this->gridSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'b_person_id',
+                'attribute' => 'u_person_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
-                    'id' => 'bPersonEmailGridSearch',
+                    'id' => 'uPersonEmailGridSearch',
                     'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
-                        'name' => 'BPerson[fullname]'
+                        'name' => 'UPerson[fullname]'
                     )),
-                    'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($model->b_person_id) ? BPerson::model()->findByPk($model->b_person_id)->fullname : ''
+                    'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
+                    'data-text' => ! empty($model->u_person_id) ? UPerson::model()->findByPk($model->u_person_id)->fullname : ''
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'duration',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BDateRangeItemField($model, 'expired_at', new BItemField(array(
+            new UDateRangeItemField($model, 'expired_at', new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_expired_at_start',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bAutoLoginVExpiredAtStartGridSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uAutoLoginVExpiredAtStartGridSearch'
                 )
-            )), new BItemField(array(
+            )), new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_expired_at_end',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bAutoLoginVExpiredAtEndGridSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uAutoLoginVExpiredAtEndGridSearch'
                 )
             ))),
-            new BDateRangeItemField($model, 'created_at', new BItemField(array(
+            new UDateRangeItemField($model, 'created_at', new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_created_at_start',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bAutoLoginVCreatedAtStartGridSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uAutoLoginVCreatedAtStartGridSearch'
                 )
-            )), new BItemField(array(
+            )), new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_created_at_end',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bAutoLoginVCreatedAtEndGridSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uAutoLoginVCreatedAtEndGridSearch'
                 )
             )))
         );
 
         // advanced search
         $this->advancedSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'b_person_id',
-                'displayAttribute' => BPerson::model()->getAttributeLabel('fullname'),
+                'attribute' => 'u_person_id',
+                'displayAttribute' => UPerson::model()->getAttributeLabel('fullname'),
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
-                    'id' => 'bPersonEmailAdvSearch',
+                    'id' => 'uPersonEmailAdvSearch',
                     'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
-                        'name' => 'BPerson[fullname]'
+                        'name' => 'UPerson[fullname]'
                     )),
-                    'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($model->b_person_id) ? BPerson::model()->findByPk($model->b_person_id)->fullname : ''
+                    'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
+                    'data-text' => ! empty($model->u_person_id) ? UPerson::model()->findByPk($model->u_person_id)->fullname : ''
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'duration',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BDateRangeItemField($model, 'expired_at', new BItemField(array(
+            new UDateRangeItemField($model, 'expired_at', new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_expired_at_start',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bAutoLoginVExpiredAtStartAdvSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uAutoLoginVExpiredAtStartAdvSearch'
                 )
-            )), new BItemField(array(
+            )), new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_expired_at_end',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bAutoLoginVExpiredAtEndAdvSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uAutoLoginVExpiredAtEndAdvSearch'
                 )
             ))),
-            new BDateRangeItemField($model, 'created_at', new BItemField(array(
+            new UDateRangeItemField($model, 'created_at', new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_created_at_start',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bAutoLoginVCreatedAtStartAdvSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uAutoLoginVCreatedAtStartAdvSearch'
                 )
-            )), new BItemField(array(
+            )), new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_created_at_end',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bAutoLoginVCreatedAtEndAdvSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uAutoLoginVCreatedAtEndAdvSearch'
                 )
             )))
         );

@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class SocialListRowDataView extends BListRowItemDataView
+class SocialListRowDataView extends UListRowItemDataView
 {
     /**
      * Constructor
@@ -20,7 +20,7 @@ class SocialListRowDataView extends BListRowItemDataView
         $this->pk = $pk;
         $this->items = array(
             $data->name,
-            isset($data->bCmsSocialI18ns[0]) ? $data->bCmsSocialI18ns[0]->url : '',
+            isset($data->uCmsSocialI18ns[0]) ? $data->uCmsSocialI18ns[0]->url : '',
         );
     }
 }

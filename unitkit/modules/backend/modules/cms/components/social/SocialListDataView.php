@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class SocialListDataView extends BListDataView
+class SocialListDataView extends UListDataView
 {
     /**
      * Constructor
@@ -20,10 +20,10 @@ class SocialListDataView extends BListDataView
     public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
-        $this->id = 'bCmsSocialSocialMain';
+        $this->id = 'uCmsSocialSocialMain';
 
         // component title
-        $this->title = B::t('backend', 'cms_social_list_title');
+        $this->title = Unitkit::t('backend', 'cms_social_list_title');
 
         // data
         $this->data = $data;
@@ -36,29 +36,29 @@ class SocialListDataView extends BListDataView
 
         // sort attributes
         $this->sortAttributes = array(
-            'bCmsSocial.name',
-            'bCmsSocialI18ns.url',
+            'uCmsSocial.name',
+            'uCmsSocialI18ns.url',
         );
 
         // search
         $this->gridSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_cms_social_i18ns_url',
+                'attribute' => 'lk_u_cms_social_i18ns_url',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
@@ -66,23 +66,23 @@ class SocialListDataView extends BListDataView
 
         // advanced search
         $this->advancedSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_cms_social_i18ns_url',
+                'attribute' => 'lk_u_cms_social_i18ns_url',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),

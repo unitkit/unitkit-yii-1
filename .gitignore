@@ -1,6 +1,7 @@
 public/backend
-public/frontent
+public/frontend
 unitkit/runtime/application.log
+unitkit/runtime/cache
 ./generator/results/
 *.iml
 *.ipr

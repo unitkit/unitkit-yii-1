@@ -6,10 +6,10 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class GroupController extends BAutoController
+class GroupController extends UAutoController
 {
-    protected $_model = 'BGroup';
-    protected $_modelI18n = 'BGroupI18n';
+    protected $_model = 'UGroup';
+    protected $_modelI18n = 'UGroupI18n';
 
     /**
      * @see BBaseAutoController::afterSaveEditModels()

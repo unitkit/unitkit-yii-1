@@ -5,24 +5,24 @@ Yii::app()
     ->registerDynamicScript(
         'backendMessageMessageMain',
         Yii::app()->clientScript->getAppCrudMessages() . "
-		var list = new $.backend.message.message.List({ main: '.list:first' });
-		list.addAppSettings(new $.b.app.Settings({
-			main: '#bMessageMessageMain .dynamic:first',
+		var list = new $.backend.message.message.List({ main: '#uMessageMessageMain     .list:first' });
+		list.addAppSettings(new $.unitkit.app.Settings({
+			main: '#uMessageMessageMain .dynamic:first',
 			list: list
 		}));
-		list.addAppEdit(new $.b.app.Edit({
-			main: '#bMessageMessageMain .dynamic:first',
+		list.addAppEdit(new $.unitkit.app.Edit({
+			main: '#uMessageMessageMain .dynamic:first',
 			list: list
 		}));
-		list.addAppTranslate(new $.b.app.Translate({
-			main: '#bMessageMessageMain .dynamic:first',
+		list.addAppTranslate(new $.unitkit.app.Translate({
+			main: '#uMessageMessageMain .dynamic:first',
 			list: list
 		}));
 		list.initEvents();
         "
     );
 ?>
-<div id="bMessageMessageMain">
+<div id="uMessageMessageMain">
     <div class="dynamic"></div>
     <div class="list">
         <?php

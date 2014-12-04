@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class DefaultController extends BController
+class DefaultController extends UController
 {
     /**
      * @see BController::init()
@@ -38,7 +38,7 @@ class DefaultController extends BController
                 'actions' => array(
                     'index',
                 ),
-                'roles' => array(B::v('backend', 'b_role_id:navigate'))
+                'roles' => array(Unitkit::v('backend', 'u_role_id:navigate'))
             ),
             array(
                 'deny'

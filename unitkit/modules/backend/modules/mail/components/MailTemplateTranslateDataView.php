@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MailTemplateTranslateDataView extends BTranslateDataView
+class MailTemplateTranslateDataView extends UTranslateDataView
 {
 
     /**
@@ -20,13 +20,13 @@ class MailTemplateTranslateDataView extends BTranslateDataView
      */
     public function __construct($data, $relatedData, $pk, $isSaved, &$controller)
     {
-        $this->id = 'bMailTemplateMailTemplateTranslate';
+        $this->id = 'uMailTemplateMailTemplateTranslate';
 
         // primary key
         $this->pk = $pk;
 
         // I18n model
-        $this->model = BMailTemplateI18n::model();
+        $this->model = UMailTemplateI18n::model();
 
         // data
         $this->data = $data;
@@ -39,7 +39,7 @@ class MailTemplateTranslateDataView extends BTranslateDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
+            new UItemField(array(
                 'attribute' => 'object',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
@@ -47,7 +47,7 @@ class MailTemplateTranslateDataView extends BTranslateDataView
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'attribute' => 'message',
                 'type' => 'activeTextArea',
                 'htmlOptions' => array(

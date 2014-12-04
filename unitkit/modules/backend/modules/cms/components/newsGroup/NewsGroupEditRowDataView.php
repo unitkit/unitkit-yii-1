@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class NewsGroupEditRowDataView extends BEditRowItemDataView
+class NewsGroupEditRowDataView extends UEditRowItemDataView
 {
     /**
      * Constructor
@@ -28,14 +28,14 @@ class NewsGroupEditRowDataView extends BEditRowItemDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BCmsNewsGroupI18n'],
+            new UItemField(array(
+                'model' => $data['UCmsNewsGroupI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsNewsGroupI18n']->getAttributeLabel('name'),
+                    'placeholder' => $data['UCmsNewsGroupI18n']->getAttributeLabel('name'),
                 )
             )),
         );

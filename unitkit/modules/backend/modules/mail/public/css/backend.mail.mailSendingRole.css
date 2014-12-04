@@ -2,13 +2,13 @@
  * Kevin Walter <walkev13@gmail.com>
  */
  
-#bMailTemplateMailTemplateMain td.container-sending-role .header-title {
+#uMailTemplateMailTemplateMain td.container-sending-role .header-title {
     position: static;
     background-image: none;
     padding: 0;
     height: auto;
 }
 
-#bMailTemplateMailTemplateMain td.container-sending-role .inner-container {
+#uMailTemplateMailTemplateMain td.container-sending-role .inner-container {
     margin: 10px 0;
 }

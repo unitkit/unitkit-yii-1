@@ -6,10 +6,10 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MenuGroupController extends BAutoController
+class MenuGroupController extends UAutoController
 {
-    protected $_model = 'BCmsMenuGroup';
-    protected $_modelI18n = 'BCmsMenuGroupI18n';
+    protected $_model = 'UCmsMenuGroup';
+    protected $_modelI18n = 'UCmsMenuGroupI18n';
 
     /**
      * Delete list of rows (Action)
@@ -24,7 +24,7 @@ class MenuGroupController extends BAutoController
                 parse_str($tmp, $pk);
                 $menuGroup = $model::model()->findByPk(count($pk) == 1 ? reset($pk) : $pk, array('select' => 'id'));
                 if($menuGroup !== null) {
-                    BCmsMenu::clearMenuCache($menuGroup->id);
+                    UCmsMenu::clearMenuCache($menuGroup->id);
                     $menuGroup->delete();
                 }
             }
@@ -41,7 +41,7 @@ class MenuGroupController extends BAutoController
      */
     protected function _afterSaveEditModels(&$models)
     {
-        BCmsMenu::clearMenuCache($models[$this->_model]->id);
+        UCmsMenu::clearMenuCache($models[$this->_model]->id);
     }
 
     /**
@@ -49,10 +49,10 @@ class MenuGroupController extends BAutoController
      */
     protected function _afterSaveTranslationModels(&$models)
     {
-        $cmsMenuGroup = BCmsMenuGroup::model()->findByPk(
+        $cmsMenuGroup = UCmsMenuGroup::model()->findByPk(
             $models[Yii::app()->language]->{$this->linkModels},
             array('select' => 'id')
         );
-        BCmsMenu::clearMenuCache($cmsMenuGroup->id);
+        UCmsMenu::clearMenuCache($cmsMenuGroup->id);
     }
 }

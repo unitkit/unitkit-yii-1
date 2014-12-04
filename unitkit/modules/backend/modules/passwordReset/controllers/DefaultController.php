@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class DefaultController extends BController
+class DefaultController extends UController
 {
     /**
      * Default action
@@ -21,7 +21,7 @@ class DefaultController extends BController
     public function init()
     {
         parent::init();
-        $this->pageTitle = B::t('backend', 'password_reset_title');
+        $this->pageTitle = Unitkit::t('backend', 'password_reset_title');
     }
 
     /**
@@ -53,11 +53,11 @@ class DefaultController extends BController
     public function actionValidate()
     {
         if (! empty($_GET['uuid']) && ! empty($_GET['code'])) {
-            $personToken = BPersonToken::model()->with('bPerson')->findByAttributes(array(
+            $personToken = UPersonToken::model()->with('uPerson')->findByAttributes(array(
                 'uuid' => $_GET['uuid']
             ));
 
-            if ($personToken !== null && CPasswordHelper::verifyPassword($_GET['code'], $personToken->password) && $personToken->action === B::v('backend', 'b_person_token_action:resetPassword') && $personToken->bPerson->active_reset == 1 && new DateTime($personToken->expired_at) >= new DateTime('now')) {
+            if ($personToken !== null && CPasswordHelper::verifyPassword($_GET['code'], $personToken->password) && $personToken->action === Unitkit::v('backend', 'u_person_token_action:resetPassword') && $personToken->uPerson->active_reset == 1 && new DateTime($personToken->expired_at) >= new DateTime('now')) {
                 // models
                 $models = array();
                 $models['NewPasswordForm'] = new NewPasswordForm();
@@ -65,7 +65,7 @@ class DefaultController extends BController
                 if (Yii::app()->request->isPostRequest && isset($_POST['NewPasswordForm'])) {
                     $models['NewPasswordForm']->attributes = $_POST['NewPasswordForm'];
                     if ($models['NewPasswordForm']->validate()) {
-                        $person = BPerson::model()->findByPk($personToken->b_person_id);
+                        $person = UPerson::model()->findByPk($personToken->u_person_id);
                         if ($person !== null) {
                             // begin a transaction
                             $transaction = $personToken->dbConnection->beginTransaction();
@@ -80,7 +80,7 @@ class DefaultController extends BController
                                     $transaction->commit();
 
                                     // login user
-                                    if (Yii::app()->user->login(new BUserIdentity($person->id)))
+                                    if (Yii::app()->user->login(new UUserIdentity($person->id)))
                                         $this->redirect(Yii::app()->user->returnUrl);
                                 }
                             } catch (Exception $e) {
@@ -98,8 +98,8 @@ class DefaultController extends BController
                 ));
             } else {
                 $this->dynamicRender('newPassword', array(
-                    'message' => B::t('backend', 'reset_password_invalid_token', array(
-                        '{link}' => BHtml::link(B::t('backend', 'password_reset_renew'), $this->createUrl($this->id . '/reset'), array(
+                    'message' => Unitkit::t('backend', 'reset_password_invalid_token', array(
+                        '{link}' => UHtml::link(Unitkit::t('backend', 'password_reset_renew'), $this->createUrl($this->id . '/reset'), array(
                             'class' => 'btn btn-sm btn-info'
                         ))
                     ))

@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class VariableGroupEditRowDataView extends BEditRowItemDataView
+class VariableGroupEditRowDataView extends UEditRowItemDataView
 {
 
     /**
@@ -29,24 +29,24 @@ class VariableGroupEditRowDataView extends BEditRowItemDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BVariableGroupI18n'],
+            new UItemField(array(
+                'model' => $data['UVariableGroupI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BVariableGroupI18n']->getAttributeLabel('name')
+                    'placeholder' => $data['UVariableGroupI18n']->getAttributeLabel('name')
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BVariableGroup'],
+            new UItemField(array(
+                'model' => $data['UVariableGroup'],
                 'attribute' => 'code',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BVariableGroup']->getAttributeLabel('code')
+                    'placeholder' => $data['UVariableGroup']->getAttributeLabel('code')
                 )
             ))
         );

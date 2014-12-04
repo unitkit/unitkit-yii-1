@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class VariableListDataView extends BListDataView
+class VariableListDataView extends UListDataView
 {
 
     /**
@@ -21,10 +21,10 @@ class VariableListDataView extends BListDataView
     public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
-        $this->id = 'bVariableVariableMain';
+        $this->id = 'uVariableVariableMain';
 
         // component title
-        $this->title = B::t('backend', 'variable_variable_list_title');
+        $this->title = Unitkit::t('backend', 'variable_variable_list_title');
 
         // data
         $this->data = $data;
@@ -37,59 +37,59 @@ class VariableListDataView extends BListDataView
 
         // sort attributes
         $this->sortAttributes = array(
-            'bVariableGroupI18ns.name',
-            'bVariable.param',
-            'bVariable.val',
-            'bVariableI18ns.description'
+            'uVariableGroupI18ns.name',
+            'uVariable.param',
+            'uVariable.val',
+            'uVariableI18ns.description'
         );
 
         // search
         $this->gridSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'b_variable_group_id',
+                'attribute' => 'u_variable_group_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
-                    'id' => 'bVariableGroupI18nNameGridSearch',
+                    'id' => 'uVariableGroupI18nNameGridSearch',
                     'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
-                        'name' => 'BVariableGroupI18n[name]',
+                        'name' => 'UVariableGroupI18n[name]',
                         'language' => Yii::app()->language
                     )),
-                    'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($model->b_variable_group_id) ? BVariableGroupI18n::model()->findByPk(array(
-                        'b_variable_group_id' => $model->b_variable_group_id,
+                    'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
+                    'data-text' => ! empty($model->u_variable_group_id) ? UVariableGroupI18n::model()->findByPk(array(
+                        'u_variable_group_id' => $model->u_variable_group_id,
                         'i18n_id' => Yii::app()->language
                     ))->name : ''
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'param',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'val',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_variable_i18ns_description',
+                'attribute' => 'lk_u_variable_i18ns_description',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             ))
@@ -97,90 +97,90 @@ class VariableListDataView extends BListDataView
 
         // advanced search
         $this->advancedSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'b_variable_group_id',
+                'attribute' => 'u_variable_group_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
-                    'id' => 'bVariableGroupI18nNameAdvSearch',
+                    'id' => 'uVariableGroupI18nNameAdvSearch',
                     'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
-                        'name' => 'BVariableGroupI18n[name]',
+                        'name' => 'UVariableGroupI18n[name]',
                         'language' => Yii::app()->language
                     )),
-                    'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($model->b_variable_group_id) ? BVariableGroupI18n::model()->findByPk(array(
-                        'b_variable_group_id' => $model->b_variable_group_id,
+                    'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
+                    'data-text' => ! empty($model->u_variable_group_id) ? UVariableGroupI18n::model()->findByPk(array(
+                        'u_variable_group_id' => $model->u_variable_group_id,
                         'i18n_id' => Yii::app()->language
                     ))->name : ''
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'param',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'val',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_variable_i18ns_description',
+                'attribute' => 'lk_u_variable_i18ns_description',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BDateRangeItemField($model, 'created_at', new BItemField(array(
+            new UDateRangeItemField($model, 'created_at', new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_created_at_start',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bVariableVCreatedAtStartAdvSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uVariableVCreatedAtStartAdvSearch'
                 )
-            )), new BItemField(array(
+            )), new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_created_at_end',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bVariableVCreatedAtEndAdvSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uVariableVCreatedAtEndAdvSearch'
                 )
             ))),
-            new BDateRangeItemField($model, 'updated_at', new BItemField(array(
+            new UDateRangeItemField($model, 'updated_at', new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_updated_at_start',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bVariableVUpdatedAtStartAdvSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uVariableVUpdatedAtStartAdvSearch'
                 )
-            )), new BItemField(array(
+            )), new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_updated_at_end',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bVariableVUpdatedAtEndAdvSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uVariableVUpdatedAtEndAdvSearch'
                 )
             )))
         );

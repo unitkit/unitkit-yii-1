@@ -6,9 +6,9 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class SiteI18nController extends BAutoController
+class SiteI18nController extends UAutoController
 {
-    protected $_model = 'BSiteI18n';
+    protected $_model = 'USiteI18n';
 
     /**
      * @see BBaseAutoController::advancedConbobox()
@@ -16,11 +16,11 @@ class SiteI18nController extends BAutoController
     protected function _advancedComboBox()
     {
         return array(
-            'BI18nI18n[name]' => array(
+            'UI18nI18n[name]' => array(
                 'search' => $_GET['search'],
-                'model' => 'BI18nI18n',
+                'model' => 'UI18nI18n',
                 'select' => array(
-                    'id' => 'b_i18n_id',
+                    'id' => 'u_i18n_id',
                     'text' => 'name'
                 ),
                 'criteria' => array(
@@ -42,7 +42,7 @@ class SiteI18nController extends BAutoController
     protected function _afterDeleteModels()
     {
         // refresh cache
-        $model = BSiteI18n::model();
+        $model = USiteI18n::model();
         $model->getI18nIds(true /* refresh */, true);
         $model->getI18nIds(true /* refresh */, false);
         $model->getI18nIds(true /* refresh */, null);
@@ -54,8 +54,8 @@ class SiteI18nController extends BAutoController
     protected function _afterSaveEditModels(&$models)
     {
         // refresh cache
-        $models['BSiteI18n']->getI18nIds(true /* refresh */, true);
-        $models['BSiteI18n']->getI18nIds(true /* refresh */, false);
-        $models['BSiteI18n']->getI18nIds(true /* refresh */, null);
+        $models['USiteI18n']->getI18nIds(true /* refresh */, true);
+        $models['USiteI18n']->getI18nIds(true /* refresh */, false);
+        $models['USiteI18n']->getI18nIds(true /* refresh */, null);
     }
 }

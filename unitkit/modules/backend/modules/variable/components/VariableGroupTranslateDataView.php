@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class VariableGroupTranslateDataView extends BTranslateDataView
+class VariableGroupTranslateDataView extends UTranslateDataView
 {
 
     /**
@@ -20,13 +20,13 @@ class VariableGroupTranslateDataView extends BTranslateDataView
     public function __construct($data, $relatedData, $pk, $isSaved)
     {
         // data view id
-        $this->id = 'bVariableGroupVariableGroupTranslate';
+        $this->id = 'uVariableGroupVariableGroupTranslate';
 
         // primary key
         $this->pk = $pk;
 
         // I18n model
-        $this->model = BVariableGroupI18n::model();
+        $this->model = UVariableGroupI18n::model();
 
         // data
         $this->data = $data;
@@ -39,7 +39,7 @@ class VariableGroupTranslateDataView extends BTranslateDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
+            new UItemField(array(
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(

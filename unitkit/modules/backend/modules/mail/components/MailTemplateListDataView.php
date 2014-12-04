@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MailTemplateListDataView extends BListDataView
+class MailTemplateListDataView extends UListDataView
 {
 
     /**
@@ -21,10 +21,10 @@ class MailTemplateListDataView extends BListDataView
     public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
-        $this->id = 'bMailTemplateMailTemplateMain';
+        $this->id = 'uMailTemplateMailTemplateMain';
 
         // component title
-        $this->title = B::t('backend', 'mail_mail_template_list_title');
+        $this->title = Unitkit::t('backend', 'mail_mail_template_list_title');
 
         // data
         $this->data = $data;
@@ -37,38 +37,38 @@ class MailTemplateListDataView extends BListDataView
 
         // sort attributes
         $this->sortAttributes = array(
-            'bMailTemplateGroupI18ns.name',
-            'bMailTemplate.html_mode',
-            'bMailTemplateI18ns.object',
-            'bMailTemplateI18ns.message'
+            'uMailTemplateGroupI18ns.name',
+            'uMailTemplate.html_mode',
+            'uMailTemplateI18ns.object',
+            'uMailTemplateI18ns.message'
         );
 
         // search
         $this->gridSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'b_mail_template_group_id',
+                'attribute' => 'u_mail_template_group_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
-                    'id' => 'bMailTemplateGroupI18nNameGridSearch',
+                    'id' => 'uMailTemplateGroupI18nNameGridSearch',
                     'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
-                        'name' => 'BMailTemplateGroupI18n[name]',
+                        'name' => 'UMailTemplateGroupI18n[name]',
                         'language' => Yii::app()->language
                     )),
-                    'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($model->b_mail_template_group_id) ? BMailTemplateGroupI18n::model()->findByPk(array(
-                        'b_mail_template_group_id' => $model->b_mail_template_group_id,
+                    'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
+                    'data-text' => ! empty($model->u_mail_template_group_id) ? UMailTemplateGroupI18n::model()->findByPk(array(
+                        'u_mail_template_group_id' => $model->u_mail_template_group_id,
                         'i18n_id' => Yii::app()->language
                     ))->name : ''
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'data' => array(
-                    '' => B::t('unitkit', 'input_drop_down_list_all'),
-                    '1' => B::t('unitkit', 'input_drop_down_list_checked'),
-                    '0' => B::t('unitkit', 'input_drop_down_list_unchecked')
+                    '' => Unitkit::t('unitkit', 'input_drop_down_list_all'),
+                    '1' => Unitkit::t('unitkit', 'input_drop_down_list_checked'),
+                    '0' => Unitkit::t('unitkit', 'input_drop_down_list_unchecked')
                 ),
                 'attribute' => 'html_mode',
                 'type' => 'activeDropDownList',
@@ -76,23 +76,23 @@ class MailTemplateListDataView extends BListDataView
                     'class' => 'form-control input-sm'
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_mail_template_i18ns_object',
+                'attribute' => 'lk_u_mail_template_i18ns_object',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_mail_template_i18ns_message',
+                'attribute' => 'lk_u_mail_template_i18ns_message',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             ))
@@ -100,30 +100,30 @@ class MailTemplateListDataView extends BListDataView
 
         // advanced search
         $this->advancedSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'b_mail_template_group_id',
+                'attribute' => 'u_mail_template_group_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
-                    'id' => 'bMailTemplateGroupI18nNameAdvSearch',
+                    'id' => 'uMailTemplateGroupI18nNameAdvSearch',
                     'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
-                        'name' => 'BMailTemplateGroupI18n[name]',
+                        'name' => 'UMailTemplateGroupI18n[name]',
                         'language' => Yii::app()->language
                     )),
-                    'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($model->b_mail_template_group_id) ? BMailTemplateGroupI18n::model()->findByPk(array(
-                        'b_mail_template_group_id' => $model->b_mail_template_group_id,
+                    'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
+                    'data-text' => ! empty($model->u_mail_template_group_id) ? UMailTemplateGroupI18n::model()->findByPk(array(
+                        'u_mail_template_group_id' => $model->u_mail_template_group_id,
                         'i18n_id' => Yii::app()->language
                     ))->name : ''
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'data' => array(
-                    '' => B::t('unitkit', 'input_drop_down_list_all'),
-                    '1' => B::t('unitkit', 'input_drop_down_list_checked'),
-                    '0' => B::t('unitkit', 'input_drop_down_list_unchecked')
+                    '' => Unitkit::t('unitkit', 'input_drop_down_list_all'),
+                    '1' => Unitkit::t('unitkit', 'input_drop_down_list_checked'),
+                    '0' => Unitkit::t('unitkit', 'input_drop_down_list_unchecked')
                 ),
                 'attribute' => 'html_mode',
                 'type' => 'activeDropDownList',
@@ -131,82 +131,82 @@ class MailTemplateListDataView extends BListDataView
                     'class' => 'form-control input-sm'
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'sql_request',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'sql_param',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_mail_template_i18ns_object',
+                'attribute' => 'lk_u_mail_template_i18ns_object',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_mail_template_i18ns_message',
+                'attribute' => 'lk_u_mail_template_i18ns_message',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BDateRangeItemField($model, 'created_at', new BItemField(array(
+            new UDateRangeItemField($model, 'created_at', new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_created_at_start',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bMailTemplateVCreatedAtStartAdvSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uMailTemplateVCreatedAtStartAdvSearch'
                 )
-            )), new BItemField(array(
+            )), new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_created_at_end',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bMailTemplateVCreatedAtEndAdvSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uMailTemplateVCreatedAtEndAdvSearch'
                 )
             ))),
-            new BDateRangeItemField($model, 'updated_at', new BItemField(array(
+            new UDateRangeItemField($model, 'updated_at', new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_updated_at_start',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bMailTemplateVUpdatedAtStartAdvSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uMailTemplateVUpdatedAtStartAdvSearch'
                 )
-            )), new BItemField(array(
+            )), new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_updated_at_end',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bMailTemplateVUpdatedAtEndAdvSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uMailTemplateVUpdatedAtEndAdvSearch'
                 )
             )))
         );

@@ -6,8 +6,8 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class LayoutController extends BAutoController
+class LayoutController extends UAutoController
 {
-    protected $_model = 'BCmsLayout';
-    protected $_modelI18n = 'BCmsLayoutI18n';
+    protected $_model = 'UCmsLayout';
+    protected $_modelI18n = 'UCmsLayoutI18n';
 }

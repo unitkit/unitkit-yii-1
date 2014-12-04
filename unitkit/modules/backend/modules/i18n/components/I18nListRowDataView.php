@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class I18nListRowDataView extends BListRowItemDataView
+class I18nListRowDataView extends UListRowItemDataView
 {
 
     /**
@@ -20,7 +20,7 @@ class I18nListRowDataView extends BListRowItemDataView
         $this->isTranslatable = true;
         $this->pk = $pk;
         $this->items = array(
-            isset($data->bI18nI18ns[0]) ? $data->bI18nI18ns[0]->name : '',
+            isset($data->uI18nI18ns[0]) ? $data->uI18nI18ns[0]->name : '',
             $data->id
         );
     }

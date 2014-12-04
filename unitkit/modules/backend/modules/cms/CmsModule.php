@@ -55,11 +55,11 @@ class CmsModule extends CWebModule
     protected function initUploader()
     {
         // cms image
-        BCmsImage::$upload['file_path']['pathDest'] = $this->imagePathDest;
-        BCmsImage::$upload['file_path']['urlDest'] = $this->imageUrlDest;
+        UCmsImage::$upload['file_path']['pathDest'] = $this->imagePathDest;
+        UCmsImage::$upload['file_path']['urlDest'] = $this->imageUrlDest;
 
         // cms album photo
-        BCmsAlbumPhoto::$upload['file_path']['pathDest'] = $this->albumPhotoPathDest;
-        BCmsAlbumPhoto::$upload['file_path']['urlDest'] = $this->albumPhotoUrlDest;
+        UCmsAlbumPhoto::$upload['file_path']['pathDest'] = $this->albumPhotoPathDest;
+        UCmsAlbumPhoto::$upload['file_path']['urlDest'] = $this->albumPhotoUrlDest;
     }
 }

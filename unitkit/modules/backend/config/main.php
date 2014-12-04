@@ -22,7 +22,7 @@ return array(
     'defaultController' => 'backend/auth/auth',
     'sourceLanguage' => '?',
     // default language
-    'language' => 'fr',
+    'language' => 'en',
     // list of activated modules
     'modules' => array(
         'backend' => array(
@@ -67,40 +67,40 @@ return array(
             'options' => array()
         ),
         'uploader' => array(
-            'class' => 'application.components.BUploader',
+            'class' => 'application.components.UUploader',
             'pathTmp' => Yii::getPathOfAlias('application').'/../datas/tmp',
         ),
         'variables' => array(
-            'class' => 'application.components.BDbVariable',
+            'class' => 'application.components.UDbVariable',
             'cacheID' => 'varCache'
         ),
         'rights' => array(
-            'class' => 'application.components.BDbRight',
+            'class' => 'application.components.UDbRight',
             'cacheID' => 'rightCache'
         ),
         'mail' => array(
-            'class' => 'application.modules.backend.components.BMail',
-            'classFunction' => 'BMailFunction'
+            'class' => 'application.modules.backend.components.UMail',
+            'classFunction' => 'UMailFunction'
         ),
         'clientScript' => array(
-            'class' => 'application.modules.backend.components.BClientScript'
+            'class' => 'application.modules.backend.components.UClientScript'
         ),
         'request' => array(
-            'class' => 'application.components.BHttpRequest',
+            'class' => 'application.components.UHttpRequest',
             'enableCsrfValidation' => true
         ),
         'session' => array(
-            'class' => 'application.components.BHttpSession'
+            'class' => 'application.components.UHttpSession'
         ),
         'user' => array(
-            'class' => 'application.modules.backend.components.BWebUser',
+            'class' => 'application.modules.backend.components.UWebUser',
             'allowAutoLogin' => true,
             'loginUrl' => array(
                 'auth/auth/login'
             )
         ),
         'messages' => array(
-            'class' => 'application.components.BDbMessageSource',
+            'class' => 'application.components.UDbMessageSource',
             'cacheID' => 'messCache'
         ),
         'mailer' => array(
@@ -112,7 +112,7 @@ return array(
             //'Host' => ''
         ),
         'urlManager' => array(
-            'class' => 'application.modules.backend.components.BUrlManager',
+            'class' => 'application.modules.backend.components.UUrlManager',
             'urlFormat' => 'path',
             'showScriptName' => false,
             'cacheID' => 'urlCache'

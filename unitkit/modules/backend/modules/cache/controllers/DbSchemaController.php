@@ -5,7 +5,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class DbSchemaController extends BController
+class DbSchemaController extends UController
 {
 
     /**
@@ -40,7 +40,7 @@ class DbSchemaController extends BController
      */
     public function actionFlush()
     {
-        $this->pageTitle = Yii::app()->name . ' - ' . B::t('backend', 'db_shema_refresh_title');
+        $this->pageTitle = Yii::app()->name . ' - ' . Unitkit::t('backend', 'db_shema_refresh_title');
 
         // Load all tables of the application in the schema
         Yii::app()->db->schema->getTables();
@@ -48,8 +48,8 @@ class DbSchemaController extends BController
         Yii::app()->db->schema->refresh();
 
         $this->dynamicRender('/flush/main', array(
-            'title' => B::t('backend', 'db_shema_refresh_title'),
-            'content' => B::t('backend', 'db_schema_is_refreshed')
+            'title' => Unitkit::t('backend', 'db_shema_refresh_title'),
+            'content' => Unitkit::t('backend', 'db_schema_is_refreshed')
         ));
     }
 }

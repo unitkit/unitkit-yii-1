@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MailSendingRoleEditDataView extends BEditDataView
+class MailSendingRoleEditDataView extends UEditDataView
 {
 
     /**
@@ -19,11 +19,11 @@ class MailSendingRoleEditDataView extends BEditDataView
      */
     public function __construct($data, $relatedData, $pk, $isSaved)
     {
-        $this->id = 'bMailSendingRoleMailSendingRoleEdit';
+        $this->id = 'uMailSendingRoleMailSendingRoleEdit';
 
         // component title
-        $this->createTitle = B::t('backend', 'mail_mail_sending_role_create_title');
-        $this->updateTitle = B::t('backend', 'mail_mail_sending_role_update_title');
+        $this->createTitle = Unitkit::t('backend', 'mail_mail_sending_role_create_title');
+        $this->updateTitle = Unitkit::t('backend', 'mail_mail_sending_role_update_title');
 
         // primary key
         $this->pk = $pk;
@@ -45,10 +45,10 @@ class MailSendingRoleEditDataView extends BEditDataView
         }
 
         // new record status
-        $this->isNewRecord = $data['BMailSendingRole']->isNewRecord;
+        $this->isNewRecord = $data['UMailSendingRole']->isNewRecord;
 
         $this->action = $this->controller->createUrl($this->controller->id . '/' . ($this->isNewRecord ? 'create' : 'update'), array_merge($this->pk, array(
-            'BMailSendingRole[b_mail_template_id]' => $data['BMailSendingRole']->b_mail_template_id
+            'UMailSendingRole[u_mail_template_id]' => $data['UMailSendingRole']->u_mail_template_id
         )));
 
         // refresh page title
@@ -56,36 +56,36 @@ class MailSendingRoleEditDataView extends BEditDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BMailSendingRole'],
-                'attribute' => 'b_mail_send_role_id',
+            new UItemField(array(
+                'model' => $data['UMailSendingRole'],
+                'attribute' => 'u_mail_send_role_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm input-ajax-select',
                     'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
-                        'name' => 'BMailSendRoleI18n[name]',
+                        'name' => 'UMailSendRoleI18n[name]',
                         'language' => Yii::app()->language
                     )),
-                    'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($data['BMailSendingRole']->b_mail_send_role_id) ? BMailSendRoleI18n::model()->findByPk(array(
-                        'b_mail_send_role_id' => $data['BMailSendingRole']->b_mail_send_role_id,
+                    'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
+                    'data-text' => ! empty($data['UMailSendingRole']->u_mail_send_role_id) ? UMailSendRoleI18n::model()->findByPk(array(
+                        'u_mail_send_role_id' => $data['UMailSendingRole']->u_mail_send_role_id,
                         'i18n_id' => Yii::app()->language
                     ))->name : ''
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BMailSendingRole'],
-                'attribute' => 'b_person_id',
+            new UItemField(array(
+                'model' => $data['UMailSendingRole'],
+                'attribute' => 'u_person_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm input-ajax-select',
                     'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
-                        'name' => 'BPerson[fullName]'
+                        'name' => 'UPerson[fullName]'
                     )),
-                    'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($data['BMailSendingRole']->b_person_id) ? BPerson::model()->findByPk($data['BMailSendingRole']->b_person_id)->fullName : '',
+                    'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
+                    'data-text' => ! empty($data['UMailSendingRole']->u_person_id) ? UPerson::model()->findByPk($data['UMailSendingRole']->u_person_id)->fullName : '',
                     'data-addAction' => $this->controller->createUrl('/bRight/person/create')
                 )
             ))

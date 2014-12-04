@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class PageContainerEditDataView extends BEditDataView
+class PageContainerEditDataView extends UEditDataView
 {
     /**
      * Constructor
@@ -19,11 +19,11 @@ class PageContainerEditDataView extends BEditDataView
     public function __construct($data, $relatedData, $pk, $isSaved)
     {
         // data view id
-        $this->id = 'bCmsPagePageContainerEdit';
+        $this->id = 'uCmsPagePageContainerEdit';
 
         // component title
-        $this->createTitle = B::t('backend', 'cms_page_container_create_title');
-        $this->updateTitle = B::t('backend', 'cms_page_container_update_title');
+        $this->createTitle = Unitkit::t('backend', 'cms_page_container_create_title');
+        $this->updateTitle = Unitkit::t('backend', 'cms_page_container_update_title');
 
         // primary key
         $this->pk = $pk;
@@ -53,42 +53,42 @@ class PageContainerEditDataView extends BEditDataView
         }
 
         // new record status
-        $this->isNewRecord = $data['BCmsPage']->isNewRecord;
+        $this->isNewRecord = $data['UCmsPage']->isNewRecord;
 
         // page title
         $this->refreshPageTitle();
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BCmsPage'],
+            new UItemField(array(
+                'model' => $data['UCmsPage'],
                 'attribute' => 'id',
                 'type' => 'resolveValue'
             )),
-            new BItemField(array(
-                'model' => $data['BCmsPageI18n'],
+            new UItemField(array(
+                'model' => $data['UCmsPageI18n'],
                 'attribute' => 'title',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm'.($this->isNewRecord ? ' active-slug' : ''),
-                    'placeholder' => $data['BCmsPageI18n']->getAttributeLabel('title'),
+                    'placeholder' => $data['UCmsPageI18n']->getAttributeLabel('title'),
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BCmsPage'],
-                'attribute' => 'b_cms_layout_id',
+            new UItemField(array(
+                'model' => $data['UCmsPage'],
+                'attribute' => 'u_cms_layout_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm input-ajax-select input-ajax-select-layout',
                     'data-action' => $this->controller->createUrl(
                         $this->controller->id.'/advComboBox/',
-                        array('name' => 'BCmsLayoutI18n[name]', 'language' => Yii::app()->language)
+                        array('name' => 'UCmsLayoutI18n[name]', 'language' => Yii::app()->language)
                     ),
-                    'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($data['BCmsPage']->b_cms_layout_id) ? BCmsLayoutI18n::model()->findByPk(array(
-                        'b_cms_layout_id' => $data['BCmsPage']->b_cms_layout_id,
+                    'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
+                    'data-text' => ! empty($data['UCmsPage']->u_cms_layout_id) ? UCmsLayoutI18n::model()->findByPk(array(
+                        'u_cms_layout_id' => $data['UCmsPage']->u_cms_layout_id,
                         'i18n_id' => Yii::app()->language
                     ))->name : '',
                     'data-pageId' => isset($this->pk['id']) ? $this->pk['id'] : null,
@@ -97,43 +97,43 @@ class PageContainerEditDataView extends BEditDataView
                     )
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BCmsPageI18n'],
+            new UItemField(array(
+                'model' => $data['UCmsPageI18n'],
                 'attribute' => 'slug',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsPageI18n']->getAttributeLabel('slug'),
+                    'placeholder' => $data['UCmsPageI18n']->getAttributeLabel('slug'),
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BCmsPage'],
+            new UItemField(array(
+                'model' => $data['UCmsPage'],
                 'attribute' => 'activated',
                 'type' => 'activeCheckBox',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsPage']->getAttributeLabel('activated'),
+                    'placeholder' => $data['UCmsPage']->getAttributeLabel('activated'),
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BCmsPage'],
+            new UItemField(array(
+                'model' => $data['UCmsPage'],
                 'attribute' => 'cache_duration',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsPageI18n']->getAttributeLabel('cache_duration'),
+                    'placeholder' => $data['UCmsPageI18n']->getAttributeLabel('cache_duration'),
                 )
             ))
         );
 
         if ( ! $this->isNewRecord) {
-            $this->items[] = new BItemField(array(
-                'label' => B::t('backend', $data['BCmsPage']->tableName().':cacheManagment'),
-                'value' => BHtml::link(
-                    B::t('backend', 'btn_refresh_cms_page'),
+            $this->items[] = new UItemField(array(
+                'label' => Unitkit::t('backend', $data['UCmsPage']->tableName().':cacheManagment'),
+                'value' => UHtml::link(
+                    Unitkit::t('backend', 'btn_refresh_cms_page'),
                     $this->controller->createUrl($this->controller->id.'/refreshPageCache'),
                     array(
                         'class' => 'btn btn-default btn-refresh-cms-page btn-quick-ajax',
@@ -144,38 +144,38 @@ class PageContainerEditDataView extends BEditDataView
         }
 
         $this->items = array_merge($this->items, array(
-            new BItemField(array(
-                'model' => $data['BCmsPageI18n'],
+            new UItemField(array(
+                'model' => $data['UCmsPageI18n'],
                 'attribute' => 'html_title',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsPageI18n']->getAttributeLabel('html_title'),
+                    'placeholder' => $data['UCmsPageI18n']->getAttributeLabel('html_title'),
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BCmsPageI18n'],
+            new UItemField(array(
+                'model' => $data['UCmsPageI18n'],
                 'attribute' => 'html_description',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsPageI18n']->getAttributeLabel('html_description'),
+                    'placeholder' => $data['UCmsPageI18n']->getAttributeLabel('html_description'),
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BCmsPageI18n'],
+            new UItemField(array(
+                'model' => $data['UCmsPageI18n'],
                 'attribute' => 'html_keywords',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsPageI18n']->getAttributeLabel('html_keywords'),
+                    'placeholder' => $data['UCmsPageI18n']->getAttributeLabel('html_keywords'),
                 )
             )),
-            new BItemField(array(
-                'label' => B::t('backend', $data['BCmsPage']->tableName().':pageContainers'),
+            new UItemField(array(
+                'label' => Unitkit::t('backend', $data['UCmsPage']->tableName().':pageContainers'),
                 'value' => $this->controller->bRenderPartial(
                     'edit/_container',
                     array('dataView' => new PageContainerEditContainersArrayDataView($data)),
@@ -184,16 +184,16 @@ class PageContainerEditDataView extends BEditDataView
             )),
         ));
 
-        if (! $data['BCmsPage']->isNewRecord) {
-            $this->items[] = new BItemField(array(
-                'model' => $data['BCmsPage'],
+        if (! $data['UCmsPage']->isNewRecord) {
+            $this->items[] = new UItemField(array(
+                'model' => $data['UCmsPage'],
                 'attribute' => 'created_at',
-                'value' =>  $data['BCmsPage']->created_at
+                'value' =>  $data['UCmsPage']->created_at
             ));
-            $this->items[] = new BItemField(array(
-                'model' => $data['BCmsPage'],
+            $this->items[] = new UItemField(array(
+                'model' => $data['UCmsPage'],
                 'attribute' => 'updated_at',
-                'value' =>  $data['BCmsPage']->updated_at
+                'value' =>  $data['UCmsPage']->updated_at
             ));
         }
     }

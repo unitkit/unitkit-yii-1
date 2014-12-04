@@ -1,12 +1,11 @@
 /**
- * Kevin Walter <walkev13@gmail.com>
+ * @version 1.0
  */
- 
-#bCmsImageImageMain .td-action {
+#uCmsImageImageMain .td-action {
     width:200px;
 }
 
-#bCmsImageImageMain .td-action .btn {
+#uCmsImageImageMain .td-action .btn {
     border-radius: 3px;
     font-size: 12px;
     line-height: 1.5;

@@ -5,11 +5,11 @@
         <div class="box">
             <div class="col-lg-12 text-center">
                 <h2>
-                    <?= $d->bCmsNewsI18n->title; ?>
+                    <?= $d->uCmsNewsI18n->title; ?>
                     -
                     <small><?=date("F j, Y", strtotime($d->created_at )) ?></small>
                 </h2>
-                <?= $d->bCmsNewsI18n->content; ?>
+                <?= $d->uCmsNewsI18n->content; ?>
             </div>
         </div>
     </div>

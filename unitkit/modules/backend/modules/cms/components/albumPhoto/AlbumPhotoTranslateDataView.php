@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class AlbumPhotoTranslateDataView extends BTranslateDataView
+class AlbumPhotoTranslateDataView extends UTranslateDataView
 {
     /**
      * Constructor
@@ -19,13 +19,13 @@ class AlbumPhotoTranslateDataView extends BTranslateDataView
     public function __construct($data, $relatedData, $pk, $isSaved)
     {
         // data view id
-        $this->id = 'bCmsAlbumPhotoAlbumPhotoTranslate';
+        $this->id = 'uCmsAlbumPhotoAlbumPhotoTranslate';
 
         // primary key
         $this->pk = $pk;
 
         // I18n model
-        $this->model = BCmsAlbumPhotoI18n::model();
+        $this->model = UCmsAlbumPhotoI18n::model();
 
         // data
         $this->data = $data;
@@ -48,7 +48,7 @@ class AlbumPhotoTranslateDataView extends BTranslateDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
+            new UItemField(array(
                 'attribute' => 'title',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(

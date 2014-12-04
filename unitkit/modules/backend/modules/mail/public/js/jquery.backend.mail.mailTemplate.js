@@ -9,8 +9,8 @@
 	$.backend.mail = $.mail || {};
 	$.backend.mail.mailTemplate = $.backend.mail.mailTemplate || {};
 	
-	$.b.tools.includeScriptFile('/modules/mail/js/jquery.backend.mail.mailSendingRole.js');
-	$.b.tools.includeCssFile('/modules/mail/css/backend.mail.mailSendingRole.css');
+	$.unitkit.tools.includeScriptFile('/modules/mail/js/jquery.backend.mail.mailSendingRole.js');
+	$.unitkit.tools.includeCssFile('/modules/mail/css/backend.mail.mailSendingRole.css');
 	
 	$.backend.mail.mailTemplate.List = function(args)
 	{
@@ -23,17 +23,17 @@
 			type: undefined
 		};
 		this.swfUpload = [];
-		this.message = $.extend($.b.app.defaultMessage, this.args.message || {});
+		this.message = $.extend($.unitkit.app.defaultMessage, this.args.message || {});
 		this.filters = '';
 	};
 	
 	/**
-	 * Extend $.b.app.list
+	 * Extend $.unitkit.app.list
 	 */
-	$.backend.mail.mailTemplate.List.prototype = Object.create($.b.app.List.prototype);
+	$.backend.mail.mailTemplate.List.prototype = Object.create($.unitkit.app.List.prototype);
 	
 	/**
-	 * Overread
+	 * Overload
 	 */
 	$.backend.mail.mailTemplate.List.prototype.initExtendRowEvents = function (row)
 	{
@@ -41,7 +41,7 @@
 	};
 	
 	/**
-	 * Overread
+	 * Overload
 	 */
 	$.backend.mail.mailTemplate.List.prototype.initExtendGridEvents = function (grid)
 	{
@@ -74,9 +74,9 @@
 				$this.grid.block(this.blockUI);
 				// ajax request
 				var ajaxRequest = function(async) {
-					$.b.app.ajax(button.attr('href'), function(json) {
+					$.unitkit.app.ajax(button.attr('href'), function(json) {
 						if (json.loginReload) {
-							if ($.b.app.loginReload(json)) {
+							if ($.unitkit.app.loginReload(json)) {
                                 ajaxRequest(true);
                             }
 						} else {
@@ -91,7 +91,7 @@
 								activeAutoScroll: false
 							});
 							list.saveRequest(button.attr('href'), 'grid=1', 'GET');
-							list.addAppEdit(new $.b.app.Edit({
+							list.addAppEdit(new $.unitkit.app.Edit({
 								main: container.find('.dynamic'),
 								list: list,
 								activeAutoScroll: false

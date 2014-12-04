@@ -6,10 +6,10 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class PageContainerController extends BAutoController
+class PageContainerController extends UAutoController
 {
-    protected $_model = 'BCmsPage';
-    protected $_modelI18n = 'BCmsPageI18n';
+    protected $_model = 'UCmsPage';
+    protected $_modelI18n = 'UCmsPageI18n';
 
     /**
      * @see CController::accessRules()
@@ -49,11 +49,11 @@ class PageContainerController extends BAutoController
     protected function _advancedComboBox()
     {
         return array(
-            'BCmsLayoutI18n[name]' => array(
+            'UCmsLayoutI18n[name]' => array(
                 'search' => $_GET['search'],
-                'model' => 'BCmsLayoutI18n',
+                'model' => 'UCmsLayoutI18n',
                 'select' => array(
-                    'id' => 'b_cms_layout_id',
+                    'id' => 'u_cms_layout_id',
                     'text' => 'name'
                 ),
                 'criteria' => array(
@@ -94,11 +94,11 @@ class PageContainerController extends BAutoController
                 ),
                 'cache' => isset($_GET['cache']) ? 10 : 0,
             ),
-            'BCmsWidget[name]' => array(
+            'UCmsWidget[name]' => array(
                 'search' => $_GET['search'],
-                'model' => 'BCmsWidgetI18n',
+                'model' => 'UCmsWidgetI18n',
                 'select' => array(
-                    'id' => 'b_cms_widget_id',
+                    'id' => 'u_cms_widget_id',
                     'text' => 'name'
                 ),
                 'criteria' => array(
@@ -115,7 +115,7 @@ class PageContainerController extends BAutoController
     public function actionListContainer()
     {
         if (isset($_GET['layout_id'])) {
-            $layout = BCmsLayout::model()->findByPk($_GET['layout_id'], array('select' => 'max_container'));
+            $layout = UCmsLayout::model()->findByPk($_GET['layout_id'], array('select' => 'max_container'));
 
             if($layout !== null) {
                 $pageId = null;
@@ -139,13 +139,13 @@ class PageContainerController extends BAutoController
     {
         $return = array(
             'success' => false,
-            'html' => '<div class="alert alert-danger" role="alert">'.B::t('backend', 'cache_refresh_error').'</div>'
+            'html' => '<div class="alert alert-danger" role="alert">'.Unitkit::t('backend', 'cache_refresh_error').'</div>'
         );
 
         if (Yii::app()->request->isPostRequest) {
-            BCmsPageFilter::removePrefix();
+            UCmsPageFilter::removePrefix();
             $return['success'] = true;
-            $return['html'] = '<div class="alert alert-success" role="alert">'.B::t('backend', 'cache_refresh_success').'</div>';
+            $return['html'] = '<div class="alert alert-success" role="alert">'.Unitkit::t('backend', 'cache_refresh_success').'</div>';
         }
 
         echo CJSON::encode($return);
@@ -156,13 +156,13 @@ class PageContainerController extends BAutoController
     {
         $return = array(
             'success' => false,
-            'html' => '<span class="label label-danger">'.B::t('backend', 'cache_refresh_error').'</span>'
+            'html' => '<span class="label label-danger">'.Unitkit::t('backend', 'cache_refresh_error').'</span>'
         );
 
         if (Yii::app()->request->isPostRequest && isset($_POST['page_slug'])) {
-            BCmsPageFilter::removePrefixPage($_POST['page_slug']);
+            UCmsPageFilter::removePrefixPage($_POST['page_slug']);
             $return['success'] = true;
-            $return['html'] = '<span class="label label-success">'.B::t('backend', 'cache_refresh_success').'</span>';
+            $return['html'] = '<span class="label label-success">'.Unitkit::t('backend', 'cache_refresh_success').'</span>';
         }
 
         echo CJSON::encode($return);
@@ -173,38 +173,38 @@ class PageContainerController extends BAutoController
     {
         $pageContents = array();
         if ($pageId !== null) {
-            $pageContents = BCmsPageContent::model()
-                    ->with('bCmsPageContentI18n')
-                    ->findAllByAttributes(array('b_cms_page_id' => $pageId));
+            $pageContents = UCmsPageContent::model()
+                    ->with('uCmsPageContentI18n')
+                    ->findAllByAttributes(array('u_cms_page_id' => $pageId));
         }
 
         $models = array();
-        $models['BCmsPageContents'] = array();
+        $models['UCmsPageContents'] = array();
         foreach($pageContents as $pageContent) {
-            $models['BCmsPageContents'][$pageContent->index] = $pageContent;
-            $models['BCmsPageContents'][$pageContent->index]->setScenario('update');
+            $models['UCmsPageContents'][$pageContent->index] = $pageContent;
+            $models['UCmsPageContents'][$pageContent->index]->setScenario('update');
         }
 
         for($i = 1; $i <= $maxContainer; ++$i) {
-            if( ! isset($models['BCmsPageContents'][$i])) {
-                $models['BCmsPageContents'][$i] = new BCmsPageContent('insert');
-                $models['BCmsPageContents'][$i]->b_cms_page_id = $pageId;
-                $models['BCmsPageContents'][$i]->index = $i;
+            if( ! isset($models['UCmsPageContents'][$i])) {
+                $models['UCmsPageContents'][$i] = new UCmsPageContent('insert');
+                $models['UCmsPageContents'][$i]->u_cms_page_id = $pageId;
+                $models['UCmsPageContents'][$i]->index = $i;
             }
-            if( empty($models['BCmsPageContents'][$i]->bCmsPageContentI18n)) {
-                $models['BCmsPageContents'][$i]->bCmsPageContentI18n = new bCmsPageContentI18n('preInsert');
-                $models['BCmsPageContents'][$i]->bCmsPageContentI18n->i18n_id = Yii::app()->language;
+            if( empty($models['UCmsPageContents'][$i]->uCmsPageContentI18n)) {
+                $models['UCmsPageContents'][$i]->uCmsPageContentI18n = new uCmsPageContentI18n('preInsert');
+                $models['UCmsPageContents'][$i]->uCmsPageContentI18n->i18n_id = Yii::app()->language;
             }
         }
 
-        foreach($models['BCmsPageContents'] as $i => &$BCmsPageContent) {
+        foreach($models['UCmsPageContents'] as $i => &$UCmsPageContent) {
             if($i < 1 || $i > $maxContainer) {
-                $models['BCmsPageContents'][$i]->delete();
-                unset($models['BCmsPageContents'][$i]);
+                $models['UCmsPageContents'][$i]->delete();
+                unset($models['UCmsPageContents'][$i]);
             }
         }
 
-        ksort($models['BCmsPageContents']);
+        ksort($models['UCmsPageContents']);
 
         return $models;
     }
@@ -225,14 +225,14 @@ class PageContainerController extends BAutoController
         // array of models
         $models = array();
 
-        $models[$this->_model] = ($pk !== null) ? $model::model()->with('bCmsLayout')->findByPk(count($pk) == 1 ? reset($pk) : $pk) : null;
+        $models[$this->_model] = ($pk !== null) ? $model::model()->with('uCmsLayout')->findByPk(count($pk) == 1 ? reset($pk) : $pk) : null;
         if ($models[$this->_model] === null) {
             if ($pk !== null) {
                 throw new CHttpException(403);
             }
             $models[$this->_model] = new $this->_model('insert');
         } else {
-            $models = array_merge($models, $this->_loadCmsPageContentModels($models[$this->_model]->id, $models[$this->_model]->bCmsLayout->max_container));
+            $models = array_merge($models, $this->_loadCmsPageContentModels($models[$this->_model]->id, $models[$this->_model]->uCmsLayout->max_container));
             $models[$this->_model]->setScenario('update');
         }
 
@@ -280,7 +280,7 @@ class PageContainerController extends BAutoController
                 }
             }
 
-            $cmsLayoutId = $models[$this->_model]->b_cms_layout_id;
+            $cmsLayoutId = $models[$this->_model]->u_cms_layout_id;
 
             // set attributes
             if (isset($postData[$this->_model])) {
@@ -291,10 +291,10 @@ class PageContainerController extends BAutoController
                 $models[$this->_modelI18n]->i18n_id = Yii::app()->language;
             }
 
-            if (isset($postData['BCmsPageContentsI18n'])) {
-                if ($cmsLayoutId != $models[$this->_model]->b_cms_layout_id) {
-                    $layout = BCmsLayout::model()->findByPk(
-                        $models[$this->_model]->b_cms_layout_id,
+            if (isset($postData['UCmsPageContentsI18n'])) {
+                if ($cmsLayoutId != $models[$this->_model]->u_cms_layout_id) {
+                    $layout = UCmsLayout::model()->findByPk(
+                        $models[$this->_model]->u_cms_layout_id,
                         array('select' => 'max_container')
                     );
                     if ($layout !== null) {
@@ -302,9 +302,9 @@ class PageContainerController extends BAutoController
                     }
                 }
 
-                foreach($models['BCmsPageContents'] as $i => &$BCmsPageContent) {
-                    if (isset($postData['BCmsPageContentsI18n'][$i])) {
-                        $BCmsPageContent->bCmsPageContentI18n->content = $postData['BCmsPageContentsI18n'][$i]['content'];
+                foreach($models['UCmsPageContents'] as $i => &$UCmsPageContent) {
+                    if (isset($postData['UCmsPageContentsI18n'][$i])) {
+                        $UCmsPageContent->uCmsPageContentI18n->content = $postData['UCmsPageContentsI18n'][$i]['content'];
                     }
                 }
             }
@@ -318,7 +318,7 @@ class PageContainerController extends BAutoController
 
             $validModel[$this->_modelI18n] = false;
             $validModel[$this->_model] = false;
-            $validModel['BCmsPageContents'] = null;
+            $validModel['UCmsPageContents'] = null;
 
             // validate attributes
             if ($this->_modelI18n !== null) {
@@ -327,18 +327,18 @@ class PageContainerController extends BAutoController
             $validModel[$this->_model] = $models[$this->_model]->validate();
 
 
-            if (isset($models['BCmsPageContents'])) {
-                foreach($models['BCmsPageContents'] as $i => &$BCmsPageContent) {
-                    if (! $BCmsPageContent->bCmsPageContentI18n->validate()) {
-                        $validModel['BCmsPageContents'] = false;
-                    } elseif($BCmsPageContent->bCmsPageContentI18n->scenario == 'preInsert') {
-                        $BCmsPageContent->bCmsPageContentI18n->scenario = 'insert';
+            if (isset($models['UCmsPageContents'])) {
+                foreach($models['UCmsPageContents'] as $i => &$UCmsPageContent) {
+                    if (! $UCmsPageContent->uCmsPageContentI18n->validate()) {
+                        $validModel['UCmsPageContents'] = false;
+                    } elseif($UCmsPageContent->uCmsPageContentI18n->scenario == 'preInsert') {
+                        $UCmsPageContent->uCmsPageContentI18n->scenario = 'insert';
                     }
                 }
             }
 
             // save the model
-            if ($validModel[$this->_model] && $models[$this->_model]->save(false) && (! isset($models['BCmsPageContents']) || $validModel['BCmsPageContents'] === null) &&
+            if ($validModel[$this->_model] && $models[$this->_model]->save(false) && (! isset($models['UCmsPageContents']) || $validModel['UCmsPageContents'] === null) &&
                 ($this->_modelI18n === null || $validModel[$this->_modelI18n])) {
 
                 if ($this->_modelI18n !== null) {
@@ -350,12 +350,12 @@ class PageContainerController extends BAutoController
                     }
                 }
 
-                if (isset($models['BCmsPageContents'])) {
-                    foreach($models['BCmsPageContents'] as $i => &$BCmsPageContent) {
-                        $BCmsPageContent->b_cms_page_id = $models[$this->_model]->id;
-                        if ($BCmsPageContent->save()) {
-                            $BCmsPageContent->bCmsPageContentI18n->b_cms_page_content_id = $BCmsPageContent->id;
-                            if (! $BCmsPageContent->bCmsPageContentI18n->save()) {
+                if (isset($models['UCmsPageContents'])) {
+                    foreach($models['UCmsPageContents'] as $i => &$UCmsPageContent) {
+                        $UCmsPageContent->u_cms_page_id = $models[$this->_model]->id;
+                        if ($UCmsPageContent->save()) {
+                            $UCmsPageContent->uCmsPageContentI18n->u_cms_page_content_id = $UCmsPageContent->id;
+                            if (! $UCmsPageContent->uCmsPageContentI18n->save()) {
                                 throw new CException();
                             }
                         } else {
@@ -405,7 +405,7 @@ class PageContainerController extends BAutoController
      */
     protected function _afterSaveEditModels(&$models)
     {
-        BCmsPageFilter::removePrefixPage($models[$this->_modelI18n]->slug);
+        UCmsPageFilter::removePrefixPage($models[$this->_modelI18n]->slug);
         Yii::app()->urlManager->clearAllCache();
     }
 
@@ -415,7 +415,7 @@ class PageContainerController extends BAutoController
     protected function _afterSaveTranslationModels(&$models)
     {
         foreach($models as $model) {
-            BCmsPageFilter::removePrefixPage($model[$this->_modelI18n]->slug);
+            UCmsPageFilter::removePrefixPage($model[$this->_modelI18n]->slug);
         }
         Yii::app()->urlManager->clearAllCache();
     }
@@ -444,10 +444,10 @@ class PageContainerController extends BAutoController
                 }
                 $models[$i18nId][$this->_modelI18n]->validate();
 
-                if (isset($postData['BCmsPageContentI18n'][$i18nId])) {
-                    foreach($postData['BCmsPageContentI18n'][$i18nId] as $index => $attributes) {
-                        $models[$i18nId]['BCmsPageContentI18ns'][$index]->attributes = $attributes;
-                        $models[$i18nId]['BCmsPageContentI18ns'][$index]->validate();
+                if (isset($postData['UCmsPageContentI18n'][$i18nId])) {
+                    foreach($postData['UCmsPageContentI18n'][$i18nId] as $index => $attributes) {
+                        $models[$i18nId]['UCmsPageContentI18ns'][$index]->attributes = $attributes;
+                        $models[$i18nId]['UCmsPageContentI18ns'][$index]->validate();
                     }
                 }
             }
@@ -460,9 +460,9 @@ class PageContainerController extends BAutoController
                     $isSaved = false;
                     throw new CException();
                 }
-                if (isset($models[$i18nId]['BCmsPageContentI18ns'])) {
-                    foreach($models[$i18nId]['BCmsPageContentI18ns'] as $bCmsPageContentI18n) {
-                        if($bCmsPageContentI18n->save()) {
+                if (isset($models[$i18nId]['UCmsPageContentI18ns'])) {
+                    foreach($models[$i18nId]['UCmsPageContentI18ns'] as $uCmsPageContentI18n) {
+                        if($uCmsPageContentI18n->save()) {
                             $isSaved = true;
                         } else {
                             $isSaved = false;
@@ -513,15 +513,15 @@ class PageContainerController extends BAutoController
             $models[$d->i18n_id][$this->_modelI18n] = $d;
         }
 
-        $bCmsPageContents = array();
-        foreach (BCmsPageContent::model()
-            ->with('bCmsPageContentI18ns')
+        $uCmsPageContents = array();
+        foreach (UCmsPageContent::model()
+            ->with('uCmsPageContentI18ns')
             ->findAllByAttributes(array(
-                'b_cms_page_id' => $pk['id']
+                'u_cms_page_id' => $pk['id']
         )) as $d) {
-            $bCmsPageContents[$d->id] = $d->index;
-            foreach($d->bCmsPageContentI18ns as $bCmsPageContentI18n) {
-                $models[$bCmsPageContentI18n->i18n_id]['BCmsPageContentI18ns'][$d->index] = $bCmsPageContentI18n;
+            $uCmsPageContents[$d->id] = $d->index;
+            foreach($d->uCmsPageContentI18ns as $uCmsPageContentI18n) {
+                $models[$uCmsPageContentI18n->i18n_id]['UCmsPageContentI18ns'][$d->index] = $uCmsPageContentI18n;
             }
         }
 
@@ -535,17 +535,17 @@ class PageContainerController extends BAutoController
                 $models[$i18nId][$this->_modelI18n]->setScenario('update');
             }
 
-            if (isset($models[$i18nId]['BCmsPageContentI18ns'])) {
-                foreach ($models[$i18nId]['BCmsPageContentI18ns'] as &$BCmsPageContentI18n) {
-                    $BCmsPageContentI18n->setScenario('update');
+            if (isset($models[$i18nId]['UCmsPageContentI18ns'])) {
+                foreach ($models[$i18nId]['UCmsPageContentI18ns'] as &$UCmsPageContentI18n) {
+                    $UCmsPageContentI18n->setScenario('update');
                 }
             }
 
-            foreach ($bCmsPageContents as $bCmsPageContentId => $index) {
-                if ( ! isset($models[$i18nId]['BCmsPageContentI18ns'][$index])) {
-                    $models[$i18nId]['BCmsPageContentI18ns'][$index] = new BCmsPageContentI18n('preInsert');
-                    $models[$i18nId]['BCmsPageContentI18ns'][$index]->b_cms_page_content_id = $bCmsPageContentId;
-                    $models[$i18nId]['BCmsPageContentI18ns'][$index]->i18n_id = $i18nId;
+            foreach ($uCmsPageContents as $uCmsPageContentId => $index) {
+                if ( ! isset($models[$i18nId]['UCmsPageContentI18ns'][$index])) {
+                    $models[$i18nId]['UCmsPageContentI18ns'][$index] = new UCmsPageContentI18n('preInsert');
+                    $models[$i18nId]['UCmsPageContentI18ns'][$index]->u_cms_page_content_id = $uCmsPageContentId;
+                    $models[$i18nId]['UCmsPageContentI18ns'][$index]->i18n_id = $i18nId;
                 }
             }
         }

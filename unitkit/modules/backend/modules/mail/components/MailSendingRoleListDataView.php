@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MailSendingRoleListDataView extends BListDataView
+class MailSendingRoleListDataView extends UListDataView
 {
 
     /**
@@ -21,10 +21,10 @@ class MailSendingRoleListDataView extends BListDataView
     public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
-        $this->id = 'bMailSendingRoleMailSendingRoleMain';
+        $this->id = 'uMailSendingRoleMailSendingRoleMain';
 
         // title
-        $this->title = B::t('backend', 'mail_mail_sending_role_list_title');
+        $this->title = Unitkit::t('backend', 'mail_mail_sending_role_list_title');
 
         // data
         $this->data = $data;
@@ -37,36 +37,36 @@ class MailSendingRoleListDataView extends BListDataView
 
         // search
         $this->gridSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'b_mail_send_role_id',
+                'attribute' => 'u_mail_send_role_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
-                    'id' => 'bMailSendRoleI18nNameGridSearch',
+                    'id' => 'uMailSendRoleI18nNameGridSearch',
                     'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
-                        'name' => 'BMailSendRoleI18n[name]',
+                        'name' => 'UMailSendRoleI18n[name]',
                         'language' => Yii::app()->language
                     )),
-                    'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($model->b_mail_send_role_id) ? BMailSendRoleI18n::model()->findByPk(array(
-                        'b_mail_send_role_id' => $model->b_mail_send_role_id,
+                    'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
+                    'data-text' => ! empty($model->u_mail_send_role_id) ? UMailSendRoleI18n::model()->findByPk(array(
+                        'u_mail_send_role_id' => $model->u_mail_send_role_id,
                         'i18n_id' => Yii::app()->language
                     ))->name : ''
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'b_person_id',
+                'attribute' => 'u_person_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
-                    'id' => 'bPersonFirstNameGridSearch',
+                    'id' => 'uPersonFirstNameGridSearch',
                     'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
-                        'name' => 'BPerson[first_name]'
+                        'name' => 'UPerson[first_name]'
                     )),
-                    'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($model->b_person_id) ? BPerson::model()->findByPk($model->b_person_id)->first_name : ''
+                    'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
+                    'data-text' => ! empty($model->u_person_id) ? UPerson::model()->findByPk($model->u_person_id)->first_name : ''
                 )
             ))
         );
@@ -74,9 +74,9 @@ class MailSendingRoleListDataView extends BListDataView
         // rows
         foreach ($data as $d) {
             $this->rows[] = new MailSendingRoleListRowDataView($d, array(
-                'b_person_id' => $d->b_person_id,
-                'b_mail_template_id' => $d->b_mail_template_id,
-                'b_mail_send_role_id' => $d->b_mail_send_role_id
+                'u_person_id' => $d->u_person_id,
+                'u_mail_template_id' => $d->u_mail_template_id,
+                'u_mail_send_role_id' => $d->u_mail_send_role_id
             ));
         }
 

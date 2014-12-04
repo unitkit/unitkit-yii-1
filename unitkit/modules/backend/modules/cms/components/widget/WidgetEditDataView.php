@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class WidgetEditDataView extends BEditDataView
+class WidgetEditDataView extends UEditDataView
 {
     /**
      * Constructor
@@ -19,11 +19,11 @@ class WidgetEditDataView extends BEditDataView
     public function __construct($data, $relatedData, $pk, $isSaved)
     {
         // data view id
-        $this->id = 'bCmsWidgetWidgetEdit';
+        $this->id = 'uCmsWidgetWidgetEdit';
 
         // component title
-        $this->createTitle = B::t('backend', 'cms_widget_create_title');
-        $this->updateTitle = B::t('backend', 'cms_widget_update_title');
+        $this->createTitle = Unitkit::t('backend', 'cms_widget_create_title');
+        $this->updateTitle = Unitkit::t('backend', 'cms_widget_update_title');
 
         // primary key
         $this->pk = $pk;
@@ -45,60 +45,60 @@ class WidgetEditDataView extends BEditDataView
         }
 
         // new record status
-        $this->isNewRecord = $data['BCmsWidget']->isNewRecord;
+        $this->isNewRecord = $data['UCmsWidget']->isNewRecord;
 
         // page title
         $this->refreshPageTitle();
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BCmsWidget'],
+            new UItemField(array(
+                'model' => $data['UCmsWidget'],
                 'attribute' => 'id',
                 'type' => 'resolveValue'
             )),
-            new BItemField(array(
-                'model' => $data['BCmsWidgetI18n'],
+            new UItemField(array(
+                'model' => $data['UCmsWidgetI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsWidgetI18n']->getAttributeLabel('name'),
+                    'placeholder' => $data['UCmsWidgetI18n']->getAttributeLabel('name'),
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BCmsWidget'],
+            new UItemField(array(
+                'model' => $data['UCmsWidget'],
                 'attribute' => 'path',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsWidget']->getAttributeLabel('path'),
+                    'placeholder' => $data['UCmsWidget']->getAttributeLabel('path'),
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BCmsWidget'],
+            new UItemField(array(
+                'model' => $data['UCmsWidget'],
                 'attribute' => 'arg',
                 'type' => 'activeTextArea',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsWidget']->getAttributeLabel('arg'),
+                    'placeholder' => $data['UCmsWidget']->getAttributeLabel('arg'),
                 )
             )),
         );
 
-        if (! $data['BCmsWidget']->isNewRecord) {
-            $this->items[] = new BItemField(array(
-                'model' => $data['BCmsWidget'],
+        if (! $data['UCmsWidget']->isNewRecord) {
+            $this->items[] = new UItemField(array(
+                'model' => $data['UCmsWidget'],
                 'attribute' => 'created_at',
-                'value' =>  $data['BCmsWidget']->created_at
+                'value' =>  $data['UCmsWidget']->created_at
             ));
-            $this->items[] = new BItemField(array(
-                'model' => $data['BCmsWidget'],
+            $this->items[] = new UItemField(array(
+                'model' => $data['UCmsWidget'],
                 'attribute' => 'updated_at',
-                'value' =>  $data['BCmsWidget']->updated_at
+                'value' =>  $data['UCmsWidget']->updated_at
             ));
         }
     }

@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MessageGroupListRowDataView extends BListRowItemDataView
+class MessageGroupListRowDataView extends UListRowItemDataView
 {
 
     /**
@@ -20,7 +20,7 @@ class MessageGroupListRowDataView extends BListRowItemDataView
         $this->isTranslatable = true;
         $this->pk = $pk;
         $this->items = array(
-            isset($data->bMessageGroupI18ns[0]) ? $data->bMessageGroupI18ns[0]->name : ''
+            isset($data->uMessageGroupI18ns[0]) ? $data->uMessageGroupI18ns[0]->name : ''
         );
     }
 }

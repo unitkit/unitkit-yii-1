@@ -11,31 +11,31 @@ class MailFunctionPasswordReset
     /**
      * Create password reset link
      *
-     * @param int $id BPerson ID
+     * @param int $id UPerson ID
      * @return string
      */
     public static function createPasswordResetLink($id)
     {
-        $token = new BPersonToken();
+        $token = new UPersonToken();
         $token->deleteAll(array(
-            'condition' => 'b_person_id = :b_person_id AND action = :action',
+            'condition' => 'u_person_id = :u_person_id AND action = :action',
             'params' => array(
-                ':b_person_id' => $id,
-                ':action' => B::v('backend', 'b_person_token_action:resetPassword')
+                ':u_person_id' => $id,
+                ':action' => Unitkit::v('backend', 'u_person_token_action:resetPassword')
             )
         ));
 
         // generate password and normalize
-        $code = BTools::sha512(uniqid(mt_rand(), true) . ':' . BTools::password(500));
+        $code = UTools::sha512(uniqid(mt_rand(), true) . ':' . UTools::password(500));
         // generate uuid
-        $uuid = BTools::sha256(uniqid(mt_rand(), true) . ':' . BTools::password(500));
+        $uuid = UTools::sha256(uniqid(mt_rand(), true) . ':' . UTools::password(500));
         // expired at
-        $expiredAt = date('Y-m-d H:i:s', time() + (B::v('backend', 'b_person_token_expired_at:resetPassword') * 3600));
+        $expiredAt = date('Y-m-d H:i:s', time() + (Unitkit::v('backend', 'u_person_token_expired_at:resetPassword') * 3600));
 
         $token->uuid = $uuid;
-        $token->b_person_id = (int) $id;
+        $token->u_person_id = (int) $id;
         $token->password = CPasswordHelper::hashPassword($code); // hash password
-        $token->action = B::v('backend', 'b_person_token_action:resetPassword');
+        $token->action = Unitkit::v('backend', 'u_person_token_action:resetPassword');
         $token->expired_at = $expiredAt;
         $token->save();
 
@@ -44,6 +44,6 @@ class MailFunctionPasswordReset
             'code' => $code
         ));
 
-        return BHtml::link($url, $url);
+        return UHtml::link($url, $url);
     }
 }

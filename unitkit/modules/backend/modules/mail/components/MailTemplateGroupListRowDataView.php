@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MailTemplateGroupListRowDataView extends BListRowItemDataView
+class MailTemplateGroupListRowDataView extends UListRowItemDataView
 {
 
     /**
@@ -20,7 +20,7 @@ class MailTemplateGroupListRowDataView extends BListRowItemDataView
         $this->isTranslatable = true;
         $this->pk = $pk;
         $this->items = array(
-            isset($data->bMailTemplateGroupI18ns[0]) ? $data->bMailTemplateGroupI18ns[0]->name : ''
+            isset($data->uMailTemplateGroupI18ns[0]) ? $data->uMailTemplateGroupI18ns[0]->name : ''
         );
     }
 }

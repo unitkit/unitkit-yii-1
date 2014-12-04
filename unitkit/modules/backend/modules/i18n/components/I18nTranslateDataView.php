@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class I18nTranslateDataView extends BTranslateDataView
+class I18nTranslateDataView extends UTranslateDataView
 {
 
     /**
@@ -20,13 +20,13 @@ class I18nTranslateDataView extends BTranslateDataView
      */
     public function __construct($data, $relatedData, $pk, $isSaved, &$controller)
     {
-        $this->id = 'bI18nI18nTranslate';
+        $this->id = 'uI18nI18nTranslate';
 
         // primary key
         $this->pk = $pk;
 
         // I18n model
-        $this->model = BI18nI18n::model();
+        $this->model = UI18nI18n::model();
 
         // data
         $this->data = $data;
@@ -39,7 +39,7 @@ class I18nTranslateDataView extends BTranslateDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
+            new UItemField(array(
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(

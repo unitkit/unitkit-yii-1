@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MenuGroupEditRowDataView extends BEditRowItemDataView
+class MenuGroupEditRowDataView extends UEditRowItemDataView
 {
     /**
      * Constructor
@@ -28,14 +28,14 @@ class MenuGroupEditRowDataView extends BEditRowItemDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BCmsMenuGroupI18n'],
+            new UItemField(array(
+                'model' => $data['UCmsMenuGroupI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsMenuGroupI18n']->getAttributeLabel('name'),
+                    'placeholder' => $data['UCmsMenuGroupI18n']->getAttributeLabel('name'),
                 )
             )),
         );

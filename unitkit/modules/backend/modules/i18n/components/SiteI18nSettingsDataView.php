@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class SiteI18nSettingsDataView extends BSettingsDataView
+class SiteI18nSettingsDataView extends USettingsDataView
 {
 
     /**
@@ -18,7 +18,7 @@ class SiteI18nSettingsDataView extends BSettingsDataView
      */
     public function __construct($data, $relatedData, $isSaved)
     {
-        $this->id = 'bSiteI18nSiteI18nSettings';
+        $this->id = 'uSiteI18nSiteI18nSettings';
         parent::__construct($data, $relatedData, $isSaved);
     }
 }

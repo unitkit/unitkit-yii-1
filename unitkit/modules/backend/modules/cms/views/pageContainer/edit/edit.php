@@ -2,7 +2,7 @@
 Yii::app()->clientScript
     ->registerScriptFile('/modules/cms/js/jquery.backend.cms.pageContainer.js')
     ->registerScript(
-        'bCoreScript',
+        'uCoreScript',
         Yii::app()->clientScript->getAppCrudMessages() . "
         new $.backend.cms.pageContainer.Edit({
         	main:'#" . $dataView->id . "'

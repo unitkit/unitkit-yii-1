@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class PersonSettingsDataView extends BSettingsDataView
+class PersonSettingsDataView extends USettingsDataView
 {
 
     /**
@@ -18,7 +18,7 @@ class PersonSettingsDataView extends BSettingsDataView
      */
     public function __construct($data, $relatedData, $isSaved)
     {
-        $this->id = 'bPersonPersonSettings';
+        $this->id = 'uPersonPersonSettings';
         parent::__construct($data, $relatedData, $isSaved);
     }
 }

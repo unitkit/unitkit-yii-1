@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class PageContainerEditRowDataView extends BEditRowItemDataView
+class PageContainerEditRowDataView extends UEditRowItemDataView
 {
     /**
      * Constructor
@@ -31,62 +31,62 @@ class PageContainerEditRowDataView extends BEditRowItemDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BCmsPageI18n'],
-                'attribute' => 'slug',
-                'type' => 'activeTextField',
-                'htmlOptions' => array(
-                    'id' => false,
-                    'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsPageI18n']->getAttributeLabel('slug'),
-                )
-            )),
-            new BItemField(array(
-                'model' => $data['BCmsPage'],
-                'attribute' => 'activated',
-                'type' => 'activeCheckBox',
-                'htmlOptions' => array(
-                    'id' => false,
-                    'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsPage']->getAttributeLabel('activated'),
-                )
-            )),
-            new BItemField(array(
-                'model' => $data['BCmsPage'],
-                'attribute' => 'cache_duration',
-                'type' => 'activeTextField',
-                'htmlOptions' => array(
-                    'id' => false,
-                    'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsPageI18n']->getAttributeLabel('cache_duration'),
-                )
-            )),
-            new BItemField(array(
-                'model' => $data['BCmsPageI18n'],
+            new UItemField(array(
+                'model' => $data['UCmsPageI18n'],
                 'attribute' => 'title',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsPageI18n']->getAttributeLabel('title'),
+                    'placeholder' => $data['UCmsPageI18n']->getAttributeLabel('title'),
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BCmsPage'],
-                'attribute' => 'b_cms_layout_id',
+            new UItemField(array(
+                'model' => $data['UCmsPage'],
+                'attribute' => 'u_cms_layout_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm input-ajax-select',
                     'data-action' => $controller->createUrl(
                         $controller->id.'/advComboBox/',
-                        array('name' => 'BCmsLayoutI18n[name]', 'language' => Yii::app()->language)
+                        array('name' => 'UCmsLayoutI18n[name]', 'language' => Yii::app()->language)
                     ),
-                    'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($data['BCmsPage']->b_cms_layout_id) ? BCmsLayoutI18n::model()->findByPk(array(
-                                    'b_cms_layout_id' => $data['BCmsPage']->b_cms_layout_id,
-                                    'i18n_id' => Yii::app()->language
-                                ))->name : '',
+                    'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
+                    'data-text' => ! empty($data['UCmsPage']->u_cms_layout_id) ? UCmsLayoutI18n::model()->findByPk(array(
+                        'u_cms_layout_id' => $data['UCmsPage']->u_cms_layout_id,
+                        'i18n_id' => Yii::app()->language
+                    ))->name : '',
+                )
+            )),
+            new UItemField(array(
+                'model' => $data['UCmsPageI18n'],
+                'attribute' => 'slug',
+                'type' => 'activeTextField',
+                'htmlOptions' => array(
+                    'id' => false,
+                    'class' => 'form-control input-sm',
+                    'placeholder' => $data['UCmsPageI18n']->getAttributeLabel('slug'),
+                )
+            )),
+            new UItemField(array(
+                'model' => $data['UCmsPage'],
+                'attribute' => 'activated',
+                'type' => 'activeCheckBox',
+                'htmlOptions' => array(
+                    'id' => false,
+                    'class' => 'form-control input-sm',
+                    'placeholder' => $data['UCmsPage']->getAttributeLabel('activated'),
+                )
+            )),
+            new UItemField(array(
+                'model' => $data['UCmsPage'],
+                'attribute' => 'cache_duration',
+                'type' => 'activeTextField',
+                'htmlOptions' => array(
+                    'id' => false,
+                    'class' => 'form-control input-sm',
+                    'placeholder' => $data['UCmsPageI18n']->getAttributeLabel('cache_duration'),
                 )
             )),
         );

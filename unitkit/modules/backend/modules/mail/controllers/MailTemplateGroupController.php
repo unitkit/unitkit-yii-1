@@ -6,8 +6,8 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MailTemplateGroupController extends BAutoController
+class MailTemplateGroupController extends UAutoController
 {
-    protected $_model = 'BMailTemplateGroup';
-    protected $_modelI18n = 'BMailTemplateGroupI18n';
+    protected $_model = 'UMailTemplateGroup';
+    protected $_modelI18n = 'UMailTemplateGroupI18n';
 }

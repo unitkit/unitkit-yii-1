@@ -6,10 +6,10 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class VariableController extends BAutoController
+class VariableController extends UAutoController
 {
-    protected $_model = 'BVariable';
-    protected $_modelI18n = 'BVariableI18n';
+    protected $_model = 'UVariable';
+    protected $_modelI18n = 'UVariableI18n';
 
     /**
      * @see BBaseAutoController::advancedConbobox()
@@ -17,11 +17,11 @@ class VariableController extends BAutoController
     protected function _advancedComboBox()
     {
         return array(
-            'BVariableGroupI18n[name]' => array(
+            'UVariableGroupI18n[name]' => array(
                 'search' => $_GET['search'],
-                'model' => 'BVariableGroupI18n',
+                'model' => 'UVariableGroupI18n',
                 'select' => array(
-                    'id' => 'b_variable_group_id',
+                    'id' => 'u_variable_group_id',
                     'text' => 'name'
                 ),
                 'criteria' => array(

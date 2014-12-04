@@ -6,10 +6,10 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class VariableGroupController extends BAutoController
+class VariableGroupController extends UAutoController
 {
-    protected $_model = 'BVariableGroup';
-    protected $_modelI18n = 'BVariableGroupI18n';
+    protected $_model = 'UVariableGroup';
+    protected $_modelI18n = 'UVariableGroupI18n';
 
     /**
      * @see BBaseAutoController::afterDeleteModels()

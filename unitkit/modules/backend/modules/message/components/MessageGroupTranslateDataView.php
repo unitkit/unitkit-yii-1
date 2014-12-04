@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MessageGroupTranslateDataView extends BTranslateDataView
+class MessageGroupTranslateDataView extends UTranslateDataView
 {
 
     /**
@@ -20,13 +20,13 @@ class MessageGroupTranslateDataView extends BTranslateDataView
     public function __construct($data, $relatedData, $pk, $isSaved)
     {
         // id
-        $this->id = 'bMessageGroupMessageGroupTranslate';
+        $this->id = 'uMessageGroupMessageGroupTranslate';
 
         // primary key
         $this->pk = $pk;
 
         // I18n model
-        $this->model = BMessageGroupI18n::model();
+        $this->model = UMessageGroupI18n::model();
 
         // data
         $this->data = $data;
@@ -39,7 +39,7 @@ class MessageGroupTranslateDataView extends BTranslateDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
+            new UItemField(array(
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(

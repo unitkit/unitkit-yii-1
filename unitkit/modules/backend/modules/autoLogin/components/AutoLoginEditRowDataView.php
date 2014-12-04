@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class AutoLoginEditRowDataView extends BEditRowItemDataView
+class AutoLoginEditRowDataView extends UEditRowItemDataView
 {
 
     /**
@@ -29,44 +29,44 @@ class AutoLoginEditRowDataView extends BEditRowItemDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BAutoLogin'],
-                'attribute' => 'b_person_id',
+            new UItemField(array(
+                'model' => $data['UAutoLogin'],
+                'attribute' => 'u_person_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm input-ajax-select',
                     'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
-                        'name' => 'BPerson[email]'
+                        'name' => 'UPerson[email]'
                     )),
-                    'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($data['BAutoLogin']->b_person_id) ? BPerson::model()->findByPk($data['BAutoLogin']->b_person_id)->email : ''
+                    'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
+                    'data-text' => ! empty($data['UAutoLogin']->u_person_id) ? UPerson::model()->findByPk($data['UAutoLogin']->u_person_id)->email : ''
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BAutoLogin'],
+            new UItemField(array(
+                'model' => $data['UAutoLogin'],
                 'attribute' => 'duration',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BAutoLogin']->getAttributeLabel('duration')
+                    'placeholder' => $data['UAutoLogin']->getAttributeLabel('duration')
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BAutoLogin'],
+            new UItemField(array(
+                'model' => $data['UAutoLogin'],
                 'attribute' => 'expired_at',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
-                    'id' => 'bAutoLoginExpiredAtEdit',
+                    'id' => 'uAutoLoginExpiredAtEdit',
                     'class' => 'form-control input-sm date-picker',
-                    'placeholder' => $data['BAutoLogin']->getAttributeLabel('expired_at')
+                    'placeholder' => $data['UAutoLogin']->getAttributeLabel('expired_at')
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BAutoLogin'],
+            new UItemField(array(
+                'model' => $data['UAutoLogin'],
                 'attribute' => 'created_at',
-                'value' => Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse($data['BAutoLogin']->created_at, 'yyyy-MM-dd hh:mm:ss'))
+                'value' => Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse($data['UAutoLogin']->created_at, 'yyyy-MM-dd hh:mm:ss'))
             ))
         );
     }

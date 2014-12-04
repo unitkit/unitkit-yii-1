@@ -2,9 +2,9 @@
 Yii::app()
     ->clientScript
     ->registerScript(
-        'bAppInit',
-        "$.b.application = new $.b.app.Frontend();
-         $.b.application.initEvents();",
+        'uAppInit',
+        "$.unitkit.application = new $.unitkit.app.Frontend();
+         $.unitkit.application.initEvents();",
         CClientScript::POS_READY
     );
 ?>
@@ -12,7 +12,7 @@ Yii::app()
 <html lang="en">
 <head>
 
-    <title><?= CHtml::encode($this->pageTitle); ?></title>
+    <title><?= UHtml::encode($this->pageTitle); ?></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Custom CSS -->
@@ -29,7 +29,7 @@ Yii::app()
     <meta name="<?= Yii::app()->request->csrfTokenName ?>" content="<?= Yii::app()->request->getCsrfToken(); ?>" />
 </head>
 <body>
-    <?php $this->widget('application.modules.frontend.widgets.menu.BWidgetCmsMenu', array('id' => B::v('frontend', 'b_cms_menu_group_id:main'))); ?>
+    <?php $this->widget('application.modules.frontend.widgets.menu.UWidgetCmsMenu', array('id' => Unitkit::v('frontend', 'u_cms_menu_group_id:main'))); ?>
     <div class="container">
     <?= $content; ?>
     </div>
@@ -39,7 +39,7 @@ Yii::app()
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <p><?= B::v('frontend', 'website_name') ?> &copy; <?= date('Y'); ?> - Powered by UNITKIT</p>
+                    <p><?= Unitkit::v('frontend', 'website_name') ?> &copy; <?= date('Y'); ?> - Powered by UNITKIT</p>
                 </div>
             </div>
         </div>

@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class PageContainerSettingsDataView extends BSettingsDataView
+class PageContainerSettingsDataView extends USettingsDataView
 {
     /**
      * Constructor
@@ -18,7 +18,7 @@ class PageContainerSettingsDataView extends BSettingsDataView
     public function __construct($data, $relatedData, $isSaved)
     {
         // data view id
-        $this->id = 'bCmsPagePageContainerSettings';
+        $this->id = 'uCmsPagePageContainerSettings';
         parent::__construct($data, $relatedData, $isSaved);
     }
 }

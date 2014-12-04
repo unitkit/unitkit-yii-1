@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class NewsListRowDataView extends BListRowItemDataView
+class NewsListRowDataView extends UListRowItemDataView
 {
     /**
      * Constructor
@@ -19,9 +19,9 @@ class NewsListRowDataView extends BListRowItemDataView
         $this->isTranslatable = true;
         $this->pk = $pk;
         $this->items = array(
-            isset($data->bCmsNewsGroupI18ns[0]) ? $data->bCmsNewsGroupI18ns[0]->name : '',
-            isset($data->bCmsNewsI18ns[0]) ? $data->bCmsNewsI18ns[0]->title : '',
-            BHtml::activeCheckBox($data, 'activated', array(
+            isset($data->uCmsNewsGroupI18ns[0]) ? $data->uCmsNewsGroupI18ns[0]->name : '',
+            isset($data->uCmsNewsI18ns[0]) ? $data->uCmsNewsI18ns[0]->title : '',
+            UHtml::activeCheckBox($data, 'activated', array(
                 'class' => 'form-control input-sm',
                 'disabled' => 'disabled',
                 'id' => false

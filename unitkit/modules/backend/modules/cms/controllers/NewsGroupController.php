@@ -6,8 +6,8 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class NewsGroupController extends BAutoController
+class NewsGroupController extends UAutoController
 {
-    protected $_model = 'BCmsNewsGroup';
-    protected $_modelI18n = 'BCmsNewsGroupI18n';
+    protected $_model = 'UCmsNewsGroup';
+    protected $_modelI18n = 'UCmsNewsGroupI18n';
 }

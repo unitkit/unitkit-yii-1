@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class SiteController extends BController
+class SiteController extends UController
 {
     /**
      * This is the action to handle external exceptions.

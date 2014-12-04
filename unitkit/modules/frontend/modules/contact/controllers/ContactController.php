@@ -3,7 +3,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class ContactController extends BController
+class ContactController extends UController
 {
     /**
      * @see CController::filters()

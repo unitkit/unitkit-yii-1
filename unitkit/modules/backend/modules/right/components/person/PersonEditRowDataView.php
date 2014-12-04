@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class PersonEditRowDataView extends BEditRowItemDataView
+class PersonEditRowDataView extends UEditRowItemDataView
 {
 
     /**
@@ -29,78 +29,78 @@ class PersonEditRowDataView extends BEditRowItemDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BPerson'],
+            new UItemField(array(
+                'model' => $data['UPerson'],
                 'attribute' => 'email',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BPerson']->getAttributeLabel('email')
+                    'placeholder' => $data['UPerson']->getAttributeLabel('email')
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BPerson'],
+            new UItemField(array(
+                'model' => $data['UPerson'],
                 'attribute' => 'first_name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BPerson']->getAttributeLabel('first_name')
+                    'placeholder' => $data['UPerson']->getAttributeLabel('first_name')
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BPerson'],
+            new UItemField(array(
+                'model' => $data['UPerson'],
                 'attribute' => 'last_name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BPerson']->getAttributeLabel('last_name')
+                    'placeholder' => $data['UPerson']->getAttributeLabel('last_name')
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BPerson'],
+            new UItemField(array(
+                'model' => $data['UPerson'],
                 'attribute' => 'activated',
                 'type' => 'activeCheckBox',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BPerson']->getAttributeLabel('activated')
+                    'placeholder' => $data['UPerson']->getAttributeLabel('activated')
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BPerson'],
+            new UItemField(array(
+                'model' => $data['UPerson'],
                 'attribute' => 'validated',
                 'type' => 'activeCheckBox',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BPerson']->getAttributeLabel('validated')
+                    'placeholder' => $data['UPerson']->getAttributeLabel('validated')
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BPerson'],
+            new UItemField(array(
+                'model' => $data['UPerson'],
                 'attribute' => 'default_language',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm input-ajax-select',
                     'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
-                        'name' => 'BI18nI18n[name]',
+                        'name' => 'UI18nI18n[name]',
                         'language' => Yii::app()->language
                     )),
-                    'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($data['BPerson']->default_language) ? BI18nI18n::model()->findByPk(array(
-                        'b_i18n_id' => $data['BPerson']->default_language,
+                    'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
+                    'data-text' => ! empty($data['UPerson']->default_language) ? UI18nI18n::model()->findByPk(array(
+                        'u_i18n_id' => $data['UPerson']->default_language,
                         'i18n_id' => Yii::app()->language
                     ))->name : ''
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BPerson'],
+            new UItemField(array(
+                'model' => $data['UPerson'],
                 'attribute' => 'created_at',
-                'value' => Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse($data['BPerson']->created_at, 'yyyy-MM-dd hh:mm:ss'))
+                'value' => Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse($data['UPerson']->created_at, 'yyyy-MM-dd hh:mm:ss'))
             ))
         );
     }

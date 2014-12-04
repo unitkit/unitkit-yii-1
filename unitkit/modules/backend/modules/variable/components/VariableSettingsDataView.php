@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class VariableSettingsDataView extends BSettingsDataView
+class VariableSettingsDataView extends USettingsDataView
 {
 
     /**
@@ -18,7 +18,7 @@ class VariableSettingsDataView extends BSettingsDataView
      */
     public function __construct($data, $relatedData, $isSaved)
     {
-        $this->id = 'bVariableVariableSettings';
+        $this->id = 'uVariableVariableSettings';
         parent::__construct($data, $relatedData, $isSaved);
     }
 }

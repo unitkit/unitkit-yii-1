@@ -186,6 +186,11 @@ footer p {
         table-layout: fixed;
         font-size: 1.25em;
     }
+
+    .carousel {
+        margin: auto;
+        max-width: 800px;
+    }
 }
 
 @media screen and (min-width:1200px) {

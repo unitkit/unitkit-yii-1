@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MenuGroupSettingsDataView extends BSettingsDataView
+class MenuGroupSettingsDataView extends USettingsDataView
 {
     /**
      * Constructor
@@ -18,7 +18,7 @@ class MenuGroupSettingsDataView extends BSettingsDataView
     public function __construct($data, $relatedData, $isSaved)
     {
         // data view id
-        $this->id = 'bCmsMenuGroupMenuGroupSettings';
+        $this->id = 'uCmsMenuGroupMenuGroupSettings';
         parent::__construct($data, $relatedData, $isSaved);
     }
 }

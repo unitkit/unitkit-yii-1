@@ -19,14 +19,14 @@
         this.activeLocationUpdate = (this.args.activeLocationUpdate != undefined) ? this.args.activeLocationUpdate : true;
         this.requestSaved = {url: window.location.href || '', data: undefined, type: undefined};
         this.swfUpload = [];
-        this.message = $.extend($.b.app.defaultMessage, this.args.message || {});
+        this.message = $.extend($.unitkit.app.defaultMessage, this.args.message || {});
         this.filters = '';
     };
     
     /**
-     * Extend $.b.app.List
+     * Extend $.unitkit.app.List
      */
-    $.backend.cms.image.List.prototype = Object.create($.b.app.List.prototype);
+    $.backend.cms.image.List.prototype = Object.create($.unitkit.app.List.prototype);
     
     $.backend.cms.image.List.prototype.initAdvancedTextarea = function()
     {
@@ -44,14 +44,14 @@
         this.appList = this.args.list || {};
         this.swfUpload = [];
         this.message = {};
-        this.message = $.extend($.b.app.defaultMessage, this.args.message || {});
+        this.message = $.extend($.unitkit.app.defaultMessage, this.args.message || {});
         this.activeAutoScroll = (this.args.activeAutoScroll != undefined) ? this.args.activeAutoScroll : true;
 	};
 	
 	/**
-	 * Extend $.b.app.Edit
+	 * Extend $.unitkit.app.Edit
 	 */
-	$.backend.cms.image.Edit.prototype = Object.create($.b.app.Edit.prototype);
+	$.backend.cms.image.Edit.prototype = Object.create($.unitkit.app.Edit.prototype);
 
 	
 })(jQuery);

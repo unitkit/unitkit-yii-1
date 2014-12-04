@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class NewsListDataView extends BListDataView
+class NewsListDataView extends UListDataView
 {
     /**
      * Constructor
@@ -20,10 +20,10 @@ class NewsListDataView extends BListDataView
     public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
-        $this->id = 'bCmsNewsNewsMain';
+        $this->id = 'uCmsNewsNewsMain';
 
         // component title
-        $this->title = B::t('backend', 'cms_news_list_title');
+        $this->title = Unitkit::t('backend', 'cms_news_list_title');
 
         // data
         $this->data = $data;
@@ -36,10 +36,10 @@ class NewsListDataView extends BListDataView
 
         // sort attributes
         $this->sortAttributes = array(
-            'bCmsNewsGroupI18ns.name',
-            'bCmsNewsI18ns.title',
-            'bCmsNews.activated',
-            'bCmsNews.published_at',
+            'uCmsNewsGroupI18ns.name',
+            'uCmsNewsI18ns.title',
+            'uCmsNews.activated',
+            'uCmsNews.published_at',
         );
 
         // controller
@@ -47,76 +47,76 @@ class NewsListDataView extends BListDataView
 
         // search
         $this->gridSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'b_cms_news_group_id',
+                'attribute' => 'u_cms_news_group_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                 	'class' => 'input-ajax-select allow-clear',
-                	'id' => 'bCmsNewsGroupI18nNameGridSearch',
+                	'id' => 'uCmsNewsGroupI18nNameGridSearch',
                 	'data-action' => $controller->createUrl(
                         $controller->id.'/advComboBox/',
                         array(
-                            'name' => 'BCmsNewsGroupI18n[name]',
+                            'name' => 'UCmsNewsGroupI18n[name]',
             				'language' => Yii::app()->language
                         )
                 	),
-                	'data-placeholder' => B::t('unitkit', 'input_select'),
+                	'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
                 	'data-text' =>
-                        ! empty($model->b_cms_news_group_id)
+                        ! empty($model->u_cms_news_group_id)
                         ?
-                        	BCmsNewsGroupI18n::model()->findByPk(array(
-                                'b_cms_news_group_id' => $model->b_cms_news_group_id,
+                        	UCmsNewsGroupI18n::model()->findByPk(array(
+                                'u_cms_news_group_id' => $model->u_cms_news_group_id,
                                 'i18n_id' => Yii::app()->language
                             ))->name
                         :
                         	''
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_cms_news_i18ns_title',
+                'attribute' => 'lk_u_cms_news_i18ns_title',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'activated',
                 'type' => 'activeDropDownList',
                 'data' => array(
-                    '' => B::t('unitkit', 'input_drop_down_list_all'),
-                    '1' => B::t('unitkit', 'input_drop_down_list_checked'),
-                    '0' => B::t('unitkit', 'input_drop_down_list_unchecked')
+                    '' => Unitkit::t('unitkit', 'input_drop_down_list_all'),
+                    '1' => Unitkit::t('unitkit', 'input_drop_down_list_checked'),
+                    '0' => Unitkit::t('unitkit', 'input_drop_down_list_unchecked')
                 ),
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm'
                 )
             )),
-            new BDateRangeItemField(
+            new UDateRangeItemField(
                 $model,
                 'published_at',
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_published_at_start',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsNewsVPublishedAtStartGridSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsNewsVPublishedAtStartGridSearch'
                     )
                 )),
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_published_at_end',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsNewsVPublishedAtEndGridSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsNewsVPublishedAtEndGridSearch'
                     )
                 ))
             ),
@@ -124,134 +124,134 @@ class NewsListDataView extends BListDataView
 
         // advanced search
         $this->advancedSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'b_cms_news_group_id',
+                'attribute' => 'u_cms_news_group_id',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
-                    'id' => 'bCmsNewsGroupI18nNameAdvSearch',
+                    'id' => 'uCmsNewsGroupI18nNameAdvSearch',
                     'data-action' => $controller->createUrl(
                         $controller->id.'/advComboBox/',
                         array(
-                            'name' => 'BCmsNewsGroupI18n[name]',
+                            'name' => 'UCmsNewsGroupI18n[name]',
             				'language' => Yii::app()->language
                         )
                     ),
-                    'data-placeholder' => B::t('unitkit', 'input_select'),
+                    'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
                     'data-text' =>
-                        ! empty($model->b_cms_news_group_id)
+                        ! empty($model->u_cms_news_group_id)
                         ?
-                            BCmsNewsGroupI18n::model()->findByPk(array(
-                				'b_cms_news_group_id' => $model->b_cms_news_group_id,
+                            UCmsNewsGroupI18n::model()->findByPk(array(
+                				'u_cms_news_group_id' => $model->u_cms_news_group_id,
                 				'i18n_id' => Yii::app()->language
                 			))->name
                         :
                             ''
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_cms_news_i18ns_title',
+                'attribute' => 'lk_u_cms_news_i18ns_title',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
-                'attribute' => 'lk_b_cms_news_i18ns_content',
+                'attribute' => 'lk_u_cms_news_i18ns_content',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'activated',
                 'type' => 'activeDropDownList',
                 'data' => array(
-                    '' => B::t('unitkit', 'input_drop_down_list_all'),
-                    '1' => B::t('unitkit', 'input_drop_down_list_checked'),
-                    '0' => B::t('unitkit', 'input_drop_down_list_unchecked')
+                    '' => Unitkit::t('unitkit', 'input_drop_down_list_all'),
+                    '1' => Unitkit::t('unitkit', 'input_drop_down_list_checked'),
+                    '0' => Unitkit::t('unitkit', 'input_drop_down_list_unchecked')
                 ),
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm'
                 )
             )),
-            new BDateRangeItemField(
+            new UDateRangeItemField(
                 $model,
                 'published_at',
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_published_at_start',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsNewsVPublishedAtStartAdvSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsNewsVPublishedAtStartAdvSearch'
                     )
                 )),
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_published_at_end',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsNewsVPublishedAtEndAdvSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsNewsVPublishedAtEndAdvSearch'
                     )
                 ))
             ),
-        	new BDateRangeItemField(
+        	new UDateRangeItemField(
                 $model,
                 'created_at',
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_created_at_start',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsNewsVCreatedAtStartAdvSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsNewsVCreatedAtStartAdvSearch'
                     )
                 )),
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_created_at_end',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsNewsVCreatedAtEndAdvSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsNewsVCreatedAtEndAdvSearch'
                     )
                 ))
             ),
-        	new BDateRangeItemField(
+        	new UDateRangeItemField(
                 $model,
                 'updated_at',
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_updated_at_start',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsNewsVUpdatedAtStartAdvSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsNewsVUpdatedAtStartAdvSearch'
                     )
                 )),
-                new BItemField(array(
+                new UItemField(array(
                     'model' => $model,
                     'attribute' => 'v_updated_at_end',
                     'type' => 'activeTextField',
                     'htmlOptions' => array(
                         'class' => 'form-control input-sm date-picker date-range',
-                        'placeholder' => B::t('unitkit', 'input_search'),
-                        'id' => 'bCmsNewsVUpdatedAtEndAdvSearch'
+                        'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                        'id' => 'uCmsNewsVUpdatedAtEndAdvSearch'
                     )
                 ))
             ),

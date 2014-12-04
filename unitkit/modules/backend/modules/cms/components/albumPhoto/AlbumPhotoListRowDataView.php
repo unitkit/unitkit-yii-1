@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class AlbumPhotoListRowDataView extends BListRowItemDataView
+class AlbumPhotoListRowDataView extends UListRowItemDataView
 {
     /**
      * Constructor
@@ -19,12 +19,12 @@ class AlbumPhotoListRowDataView extends BListRowItemDataView
         $this->isTranslatable = true;
         $this->pk = $pk;
         $this->items = array(
-            isset($data->bCmsAlbumPhotoI18ns[0]) ? $data->bCmsAlbumPhotoI18ns[0]->title : '',
-            Yii::app()->controller->getUploader('BCmsAlbumPhoto[file_path]')['uploader']->htmlOverview(
+            isset($data->uCmsAlbumPhotoI18ns[0]) ? $data->uCmsAlbumPhotoI18ns[0]->title : '',
+            Yii::app()->controller->getUploader('UCmsAlbumPhoto[file_path]')['uploader']->htmlOverview(
                 $data,
                 'file_path',
                 array(
-                    'type' => BUploader::OVERVIEW_IMAGE,
+                    'type' => UUploader::OVERVIEW_IMAGE,
                     'html_options' => array('style' => 'max-width:350px; max-height:100px;')
                 )
             ),

@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class PersonListDataView extends BListDataView
+class PersonListDataView extends UListDataView
 {
 
     /**
@@ -21,10 +21,10 @@ class PersonListDataView extends BListDataView
     public function __construct(&$data, &$relatedData, &$model, &$sort, &$pagination)
     {
         // id
-        $this->id = 'bPersonPersonMain';
+        $this->id = 'uPersonPersonMain';
 
         // title
-        $this->title = B::t('backend', 'right_person_list_title');
+        $this->title = Unitkit::t('backend', 'right_person_list_title');
 
         // data
         $this->data = $data;
@@ -37,218 +37,224 @@ class PersonListDataView extends BListDataView
 
         // sort attributes
         $this->sortAttributes = array(
-            'bPerson.email',
-            'bPerson.first_name',
-            'bPerson.last_name',
-            'bPerson.activated',
-            'bPerson.validated',
-            'bI18nI18ns.name',
-            'bPerson.created_at'
+            'uPerson.email',
+            'uPerson.first_name',
+            'uPerson.last_name',
+            'uPerson.activated',
+            'uPerson.validated',
+            'uI18nI18ns.name',
+            'uPerson.created_at'
         );
 
         // search
         $this->gridSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'email',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'first_name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'last_name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'activated',
                 'type' => 'activeDropDownList',
-                'datas' => array(
-                    '' => B::t('unitkit', 'input_drop_down_list_all'),
-                    '1' => B::t('unitkit', 'input_drop_down_list_checked'),
-                    '0' => B::t('unitkit', 'input_drop_down_list_unchecked')
+                'data' => array(
+                    '' => Unitkit::t('unitkit', 'input_drop_down_list_all'),
+                    '1' => Unitkit::t('unitkit', 'input_drop_down_list_checked'),
+                    '0' => Unitkit::t('unitkit', 'input_drop_down_list_unchecked')
                 ),
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm'
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'validated',
                 'type' => 'activeDropDownList',
-                'datas' => array(
-                    '' => B::t('unitkit', 'input_drop_down_list_all'),
-                    '1' => B::t('unitkit', 'input_drop_down_list_checked'),
-                    '0' => B::t('unitkit', 'input_drop_down_list_unchecked')
+                'data' => array(
+                    '' => Unitkit::t('unitkit', 'input_drop_down_list_all'),
+                    '1' => Unitkit::t('unitkit', 'input_drop_down_list_checked'),
+                    '0' => Unitkit::t('unitkit', 'input_drop_down_list_unchecked')
                 ),
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm'
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'default_language',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
-                    'id' => 'bI18nI18nNameGridSearch',
+                    'id' => 'uI18nI18nNameGridSearch',
                     'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
-                        'name' => 'BI18nI18n[name]',
+                        'name' => 'UI18nI18n[name]',
                         'language' => Yii::app()->language
                     )),
-                    'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($model->default_language) ? BI18nI18n::model()->findByPk(array(
-                        'b_i18n_id' => $model->default_language,
+                    'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
+                    'data-text' => ! empty($model->default_language) ? UI18nI18n::model()->findByPk(array(
+                        'u_i18n_id' => $model->default_language,
                         'i18n_id' => Yii::app()->language
                     ))->name : ''
                 )
             )),
-            new BDateRangeItemField($model, 'created_at', new BItemField(array(
+            new UDateRangeItemField($model, 'created_at', new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_created_at_start',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bPersonVCreatedAtStartGridSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uPersonVCreatedAtStartGridSearch'
                 )
-            )), new BItemField(array(
+            )), new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_created_at_end',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bPersonVCreatedAtEndGridSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uPersonVCreatedAtEndGridSearch'
                 )
             )))
         );
 
         // advanced search
         $this->advancedSearch = array(
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'email',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'first_name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'last_name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => B::t('unitkit', 'input_search'),
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
                     'id' => false
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'activated',
                 'type' => 'activeDropDownList',
+                'data' => array(
+                    '' => Unitkit::t('unitkit', 'input_drop_down_list_all'),
+                    '1' => Unitkit::t('unitkit', 'input_drop_down_list_checked'),
+                    '0' => Unitkit::t('unitkit', 'input_drop_down_list_unchecked')
+                ),
                 'htmlOptions' => array(
-                    '' => B::t('unitkit', 'input_drop_down_list_all'),
-                    '1' => B::t('unitkit', 'input_drop_down_list_checked'),
-                    '0' => B::t('unitkit', 'input_drop_down_list_unchecked')
+                    'class' => 'form-control input-sm'
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'validated',
                 'type' => 'activeDropDownList',
+                'data' => array(
+                    '' => Unitkit::t('unitkit', 'input_drop_down_list_all'),
+                    '1' => Unitkit::t('unitkit', 'input_drop_down_list_checked'),
+                    '0' => Unitkit::t('unitkit', 'input_drop_down_list_unchecked')
+                ),
                 'htmlOptions' => array(
-                    '' => B::t('unitkit', 'input_drop_down_list_all'),
-                    '1' => B::t('unitkit', 'input_drop_down_list_checked'),
-                    '0' => B::t('unitkit', 'input_drop_down_list_unchecked')
+                    'class' => 'form-control input-sm'
                 )
             )),
-            new BItemField(array(
+            new UItemField(array(
                 'model' => $model,
                 'attribute' => 'default_language',
                 'type' => 'activeHiddenField',
                 'htmlOptions' => array(
                     'class' => 'input-ajax-select allow-clear',
-                    'id' => 'bI18nI18nNameAdvSearch',
+                    'id' => 'uI18nI18nNameAdvSearch',
                     'data-action' => $this->controller->createUrl($this->controller->id . '/advComboBox/', array(
-                        'name' => 'BI18nI18n[name]',
+                        'name' => 'UI18nI18n[name]',
                         'language' => Yii::app()->language
                     )),
-                    'data-placeholder' => B::t('unitkit', 'input_select'),
-                    'data-text' => ! empty($model->default_language) ? BI18nI18n::model()->findByPk(array(
-                        'b_i18n_id' => $model->default_language,
+                    'data-placeholder' => Unitkit::t('unitkit', 'input_select'),
+                    'data-text' => ! empty($model->default_language) ? UI18nI18n::model()->findByPk(array(
+                        'u_i18n_id' => $model->default_language,
                         'i18n_id' => Yii::app()->language
                     ))->name : ''
                 )
             )),
-            new BDateRangeItemField($model, 'created_at', new BItemField(array(
+            new UDateRangeItemField($model, 'created_at', new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_created_at_start',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bPersonVCreatedAtStartAdvSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uPersonVCreatedAtStartAdvSearch'
                 )
-            )), new BItemField(array(
+            )), new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_created_at_end',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bPersonVCreatedAtEndAdvSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uPersonVCreatedAtEndAdvSearch'
                 )
             ))),
-            new BDateRangeItemField($model, 'updated_at', new BItemField(array(
+            new UDateRangeItemField($model, 'updated_at', new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_updated_at_start',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bPersonVUpdatedAtStartAdvSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uPersonVUpdatedAtStartAdvSearch'
                 )
-            )), new BItemField(array(
+            )), new UItemField(array(
                 'model' => $model,
                 'attribute' => 'v_updated_at_end',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm date-picker date-range',
-                    'placeholder' => B::t('unitkit', 'input_search'),
-                    'id' => 'bPersonVUpdatedAtEndAdvSearch'
+                    'placeholder' => Unitkit::t('unitkit', 'input_search'),
+                    'id' => 'uPersonVUpdatedAtEndAdvSearch'
                 )
             )))
         );

@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MenuGroupListRowDataView extends BListRowItemDataView
+class MenuGroupListRowDataView extends UListRowItemDataView
 {
     /**
      * Constructor
@@ -19,7 +19,7 @@ class MenuGroupListRowDataView extends BListRowItemDataView
         $this->isTranslatable = true;
         $this->pk = $pk;
         $this->items = array(
-            isset($data->bCmsMenuGroupI18ns[0]) ? $data->bCmsMenuGroupI18ns[0]->name : '',
+            isset($data->uCmsMenuGroupI18ns[0]) ? $data->uCmsMenuGroupI18ns[0]->name : '',
         );
     }
 }

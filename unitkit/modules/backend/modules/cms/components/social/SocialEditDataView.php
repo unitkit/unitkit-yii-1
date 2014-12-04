@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class SocialEditDataView extends BEditDataView
+class SocialEditDataView extends UEditDataView
 {
     /**
      * Constructor
@@ -19,10 +19,10 @@ class SocialEditDataView extends BEditDataView
     public function __construct($data, $relatedData, $pk, $isSaved)
     {
         // data view id
-        $this->id = 'bCmsSocialSocialEdit';
+        $this->id = 'uCmsSocialSocialEdit';
 
         // component title
-        $this->updateTitle = B::t('backend', 'cms_social_update_title');
+        $this->updateTitle = Unitkit::t('backend', 'cms_social_update_title');
 
         // primary key
         $this->pk = $pk;
@@ -44,26 +44,26 @@ class SocialEditDataView extends BEditDataView
         }
 
         // new record status
-        $this->isNewRecord = $data['BCmsSocial']->isNewRecord;
+        $this->isNewRecord = $data['UCmsSocial']->isNewRecord;
 
         // page title
         $this->refreshPageTitle();
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BCmsSocial'],
+            new UItemField(array(
+                'model' => $data['UCmsSocial'],
                 'attribute' => 'name',
-                'value' => $data['BCmsSocial']->name,
+                'value' => $data['UCmsSocial']->name,
             )),
-            new BItemField(array(
-                'model' => $data['BCmsSocialI18n'],
+            new UItemField(array(
+                'model' => $data['UCmsSocialI18n'],
                 'attribute' => 'url',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsSocialI18n']->getAttributeLabel('url'),
+                    'placeholder' => $data['UCmsSocialI18n']->getAttributeLabel('url'),
                 )
             )),
         );

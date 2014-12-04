@@ -6,10 +6,10 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MenuController extends BAutoController
+class MenuController extends UAutoController
 {
-    protected $_model = 'BCmsMenu';
-    protected $_modelI18n = 'BCmsMenuI18n';
+    protected $_model = 'UCmsMenu';
+    protected $_modelI18n = 'UCmsMenuI18n';
 
     /**
      * @see BBaseAutoController::advancedConbobox()
@@ -17,11 +17,11 @@ class MenuController extends BAutoController
     protected function _advancedComboBox()
     {
         return array(
-            'BCmsMenuGroupI18n[name]' => array(
+            'UCmsMenuGroupI18n[name]' => array(
                 'search' => $_GET['search'],
-                'model' => 'BCmsMenuGroupI18n',
+                'model' => 'UCmsMenuGroupI18n',
                 'select' => array(
-                    'id' => 'b_cms_menu_group_id',
+                    'id' => 'u_cms_menu_group_id',
                     'text' => 'name'
                 ),
                 'criteria' => array(
@@ -46,9 +46,9 @@ class MenuController extends BAutoController
             $model = $this->_model;
             foreach ($_POST['rows'] as $tmp) {
                 parse_str($tmp, $pk);
-                $menu = $model::model()->findByPk(count($pk) == 1 ? reset($pk) : $pk, array('select' => 'id, b_cms_menu_group_id'));
+                $menu = $model::model()->findByPk(count($pk) == 1 ? reset($pk) : $pk, array('select' => 'id, u_cms_menu_group_id'));
                 if ($menu !== null) {
-                    BCmsMenu::clearMenuCache($menu->b_cms_menu_group_id);
+                    UCmsMenu::clearMenuCache($menu->u_cms_menu_group_id);
                     $menu->delete();
                 }
             }
@@ -65,11 +65,11 @@ class MenuController extends BAutoController
      */
     protected function _afterSaveTranslationModels(&$models)
     {
-        $cmsMenu = BCmsMenu::model()->findByPk(
+        $cmsMenu = UCmsMenu::model()->findByPk(
             $models[Yii::app()->language]->{$this->linkModels},
-            array('select' => 'b_cms_menu_group_id')
+            array('select' => 'u_cms_menu_group_id')
         );
-        BCmsMenu::clearMenuCache($cmsMenu->b_cms_menu_group_id);
+        UCmsMenu::clearMenuCache($cmsMenu->u_cms_menu_group_id);
     }
 
     /**
@@ -77,6 +77,6 @@ class MenuController extends BAutoController
      */
     protected function _afterSaveEditModels(&$models)
     {
-        BCmsMenu::clearMenuCache($models[$this->_model]->b_cms_menu_group_id);
+        UCmsMenu::clearMenuCache($models[$this->_model]->u_cms_menu_group_id);
     }
 }

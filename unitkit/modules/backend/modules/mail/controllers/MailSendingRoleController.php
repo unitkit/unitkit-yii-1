@@ -6,9 +6,9 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MailSendingRoleController extends BAutoController
+class MailSendingRoleController extends UAutoController
 {
-    protected $_model = 'BMailSendingRole';
+    protected $_model = 'UMailSendingRole';
 
     /**
      * @see BBaseAutoController::advancedConbobox()
@@ -16,9 +16,9 @@ class MailSendingRoleController extends BAutoController
     protected function _advancedComboBox()
     {
         return array(
-            'BPerson[fullName]' => array(
+            'UPerson[fullName]' => array(
                 'search' => $_GET['search'],
-                'model' => 'BPerson',
+                'model' => 'UPerson',
                 'select' => array(
                     'id' => 'id',
                     'text' => 'fullName',
@@ -35,11 +35,11 @@ class MailSendingRoleController extends BAutoController
                 ),
                 'cache' => isset($_GET['cache']) ? 10 : 0
             ),
-            'BMailSendRoleI18n[name]' => array(
+            'UMailSendRoleI18n[name]' => array(
                 'search' => $_GET['search'],
-                'model' => 'BMailSendRoleI18n',
+                'model' => 'UMailSendRoleI18n',
                 'select' => array(
-                    'id' => 'b_mail_send_role_id',
+                    'id' => 'u_mail_send_role_id',
                     'text' => 'name'
                 ),
                 'criteria' => array(
@@ -62,15 +62,15 @@ class MailSendingRoleController extends BAutoController
     {
         // data to update
         $postData = array();
-        if (isset($_POST['BMailSendingRole'])) {
-            $postData['BMailSendingRole'] = $_POST['BMailSendingRole'];
+        if (isset($_POST['UMailSendingRole'])) {
+            $postData['UMailSendingRole'] = $_POST['UMailSendingRole'];
         }
 
         // data
         $data = $this->_loadEditModels();
 
-        if (isset($_GET['BMailSendingRole']['b_mail_template_id'])) {
-            $data['BMailSendingRole']->b_mail_template_id = $_GET['BMailSendingRole']['b_mail_template_id'];
+        if (isset($_GET['UMailSendingRole']['u_mail_template_id'])) {
+            $data['UMailSendingRole']->u_mail_template_id = $_GET['UMailSendingRole']['u_mail_template_id'];
         }
 
         // related data
@@ -83,9 +83,9 @@ class MailSendingRoleController extends BAutoController
         if ($isSaved) {
             // set primary key
             $pk = array(
-                'b_person_id' => $data['BMailSendingRole']->b_person_id,
-                'b_mail_template_id' => $data['BMailSendingRole']->b_mail_template_id,
-                'b_mail_send_role_id' => $data['BMailSendingRole']->b_mail_send_role_id
+                'u_person_id' => $data['UMailSendingRole']->u_person_id,
+                'u_mail_template_id' => $data['UMailSendingRole']->u_mail_template_id,
+                'u_mail_send_role_id' => $data['UMailSendingRole']->u_mail_send_role_id
             );
         }
 
@@ -104,24 +104,24 @@ class MailSendingRoleController extends BAutoController
     {
         // data to update
         $postData = array();
-        if (isset($_POST['BMailSendingRole'])) {
-            $postData['BMailSendingRole'] = $_POST['BMailSendingRole'];
+        if (isset($_POST['UMailSendingRole'])) {
+            $postData['UMailSendingRole'] = $_POST['UMailSendingRole'];
         }
 
         // primary key
         $pk = array();
-        $pk['b_person_id'] = $_GET['b_person_id'];
-        $pk['b_mail_template_id'] = $_GET['b_mail_template_id'];
-        $pk['b_mail_send_role_id'] = $_GET['b_mail_send_role_id'];
+        $pk['u_person_id'] = $_GET['u_person_id'];
+        $pk['u_mail_template_id'] = $_GET['u_mail_template_id'];
+        $pk['u_mail_send_role_id'] = $_GET['u_mail_send_role_id'];
 
         // data
         $data = $this->_loadEditModels($pk);
 
         // related data
         $relatedData = array();
-        $relatedData['BMailTemplate[id]'] = array(
-            '' => B::t('unitkit', 'input_select')
-        ) + BHtml::listDatasCombobox('BMailTemplate', array(
+        $relatedData['UMailTemplate[id]'] = array(
+            '' => Unitkit::t('unitkit', 'input_select')
+        ) + UHtml::listDatasCombobox('UMailTemplate', array(
             'id',
             'id'
         ));
@@ -131,9 +131,9 @@ class MailSendingRoleController extends BAutoController
 
         // update the primary key
         if ($isSaved) {
-            $pk['b_person_id'] = $data['BMailSendingRole']->b_person_id;
-            $pk['b_mail_template_id'] = $data['BMailSendingRole']->b_mail_template_id;
-            $pk['b_mail_send_role_id'] = $data['BMailSendingRole']->b_mail_send_role_id;
+            $pk['u_person_id'] = $data['UMailSendingRole']->u_person_id;
+            $pk['u_mail_template_id'] = $data['UMailSendingRole']->u_mail_template_id;
+            $pk['u_mail_send_role_id'] = $data['UMailSendingRole']->u_mail_send_role_id;
         }
 
         $this->dynamicRender(
@@ -151,23 +151,23 @@ class MailSendingRoleController extends BAutoController
     {
         // data to update
         $postData = array();
-        if (isset($_POST['BMailSendingRole'])) {
-            $postData['BMailSendingRole'] = $_POST['BMailSendingRole'];
+        if (isset($_POST['UMailSendingRole'])) {
+            $postData['UMailSendingRole'] = $_POST['UMailSendingRole'];
         }
 
         // primary key
-        $pk['b_person_id'] = $_GET['b_person_id'];
-        $pk['b_mail_template_id'] = $_GET['b_mail_template_id'];
-        $pk['b_mail_send_role_id'] = $_GET['b_mail_send_role_id'];
+        $pk['u_person_id'] = $_GET['u_person_id'];
+        $pk['u_mail_template_id'] = $_GET['u_mail_template_id'];
+        $pk['u_mail_send_role_id'] = $_GET['u_mail_send_role_id'];
 
         // data
         $data = $this->_loadEditModels($pk);
 
         // related data
         $relatedData = array();
-        $relatedData['BMailTemplate[id]'] = array(
-            '' => B::t('unitkit', 'input_select')
-        ) + BHtml::listDatasCombobox('BMailTemplate', array(
+        $relatedData['UMailTemplate[id]'] = array(
+            '' => Unitkit::t('unitkit', 'input_select')
+        ) + UHtml::listDatasCombobox('UMailTemplate', array(
             'id',
             'id'
         ));
@@ -182,9 +182,9 @@ class MailSendingRoleController extends BAutoController
             ), true);
         } else {
             // update the primary key
-            $pk['b_person_id'] = $data['BMailSendingRole']->b_person_id;
-            $pk['b_mail_template_id'] = $data['BMailSendingRole']->b_mail_template_id;
-            $pk['b_mail_send_role_id'] = $data['BMailSendingRole']->b_mail_send_role_id;
+            $pk['u_person_id'] = $data['UMailSendingRole']->u_person_id;
+            $pk['u_mail_template_id'] = $data['UMailSendingRole']->u_mail_template_id;
+            $pk['u_mail_send_role_id'] = $data['UMailSendingRole']->u_mail_send_role_id;
 
             // refresh the row
             $html = $this->_refreshRow($pk);

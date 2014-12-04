@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class WidgetEditRowDataView extends BEditRowItemDataView
+class WidgetEditRowDataView extends UEditRowItemDataView
 {
     /**
      * Constructor
@@ -28,34 +28,34 @@ class WidgetEditRowDataView extends BEditRowItemDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BCmsWidgetI18n'],
+            new UItemField(array(
+                'model' => $data['UCmsWidgetI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsWidgetI18n']->getAttributeLabel('name'),
+                    'placeholder' => $data['UCmsWidgetI18n']->getAttributeLabel('name'),
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BCmsWidget'],
+            new UItemField(array(
+                'model' => $data['UCmsWidget'],
                 'attribute' => 'path',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsWidget']->getAttributeLabel('path'),
+                    'placeholder' => $data['UCmsWidget']->getAttributeLabel('path'),
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BCmsWidget'],
+            new UItemField(array(
+                'model' => $data['UCmsWidget'],
                 'attribute' => 'arg',
                 'type' => 'activeTextArea',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsWidget']->getAttributeLabel('arg'),
+                    'placeholder' => $data['UCmsWidget']->getAttributeLabel('arg'),
                 )
             )),
         );

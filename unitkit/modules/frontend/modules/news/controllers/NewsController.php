@@ -4,7 +4,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class NewsController extends BController
+class NewsController extends UController
 {
     /**
      * @see CController::filters()
@@ -19,14 +19,14 @@ class NewsController extends BController
     public function actionIndex()
     {
         // get model
-        $model = new BCmsNews('search');
+        $model = new UCmsNews('search');
         $model->unsetAttributes();
 
         // set filter
-        if (isset($_GET['BCmsNews'])) {
-            $model->attributes = $_GET['BCmsNews'];
+        if (isset($_GET['UCmsNews'])) {
+            $model->attributes = $_GET['UCmsNews'];
         }
-        $model->b_cms_news_group_id = B::v('frontend', 'b_cms_news_group_id:main');
+        $model->u_cms_news_group_id = Unitkit::v('frontend', 'u_cms_news_group_id:main');
 
         // search
         $dataProvider = $model->search(Yii::app()->language);

@@ -2,14 +2,14 @@
 Yii::app()
     ->clientScript
     ->registerScript(
-        'bMessageMessageEdit',
+        'uMessageMessageEdit',
         Yii::app()->clientScript->getAppCrudMessages()."
     	new $.b.app.Edit({
-    		main: '#bMessageMessageEdit'
+    		main: '#uMessageMessageEdit'
     	}).initEvents();"
     );
 ?>
-<div class="edit" id="bMessageMessageEdit">
+<div class="edit" id="uMessageMessageEdit">
 <?php
     $this->renderPartial('edit/' . $tpl, array(
         'models' => $models,

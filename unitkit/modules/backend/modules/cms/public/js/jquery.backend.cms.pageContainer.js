@@ -51,9 +51,9 @@
     };
 	
     /**
-     * Extend $.b.app.Translate
+     * Extend $.unitkit.app.Translate
      */
-    $.backend.cms.pageContainer.Translate.prototype = Object.create($.b.app.Translate.prototype);
+    $.backend.cms.pageContainer.Translate.prototype = Object.create($.unitkit.app.Translate.prototype);
     
     $.backend.cms.pageContainer.Translate.prototype.initExtendEvents = function(row)
     {
@@ -75,20 +75,20 @@
         this.activeLocationUpdate = (this.args.activeLocationUpdate != undefined) ? this.args.activeLocationUpdate : true;
         this.requestSaved = {url: window.location.href || '', data: undefined, type: undefined};
         this.swfUpload = [];
-        this.message = $.extend($.b.app.defaultMessage, this.args.message || {});
+        this.message = $.extend($.unitkit.app.defaultMessage, this.args.message || {});
         this.filters = '';
     };
     
     /**
-     * Extend $.b.app.List
+     * Extend $.unitkit.app.List
      */
-    $.backend.cms.pageContainer.List.prototype = Object.create($.b.app.List.prototype);
+    $.backend.cms.pageContainer.List.prototype = Object.create($.unitkit.app.List.prototype);
     
     $.backend.cms.pageContainer.List.prototype.initExtendEditingRowEvents = function(row)
     {
-        row.find('input[name="BCmsPageI18n[slug]"]').on('keyup', function(e) {
+        row.find('input[name="UCmsPageI18n[slug]"]').on('keyup', function(e) {
             if($.inArray(e.which, [37, 38, 39, 40, 46, 8]) === -1) {
-                $('input[name="BCmsPageI18n[slug]"]').val($.backend.cms.pageContainer.strToSlug($(this).val()));
+                $('input[name="UCmsPageI18n[slug]"]').val($.backend.cms.pageContainer.strToSlug($(this).val()));
             }
         });
     };
@@ -102,14 +102,14 @@
         this.appList = this.args.list || {};
         this.swfUpload = [];
         this.message = {};
-        this.message = $.extend($.b.app.defaultMessage, this.args.message || {});
+        this.message = $.extend($.unitkit.app.defaultMessage, this.args.message || {});
         this.activeAutoScroll = (this.args.activeAutoScroll != undefined) ? this.args.activeAutoScroll : true;
 	};
 	
 	/**
-	 * Extend $.b.app.Edit
+	 * Extend $.unitkit.app.Edit
 	 */
-	$.backend.cms.pageContainer.Edit.prototype = Object.create($.b.app.Edit.prototype);
+	$.backend.cms.pageContainer.Edit.prototype = Object.create($.unitkit.app.Edit.prototype);
 
     /**
      * Init extend events
@@ -118,9 +118,9 @@
 	{
 	    var $this = this;
 	    
-	    this.main.find('input[name="BCmsPageI18n[slug]"], input[name="BCmsPageI18n[title]"].active-slug').on('keyup', function(e) {
+	    this.main.find('input[name="UCmsPageI18n[slug]"], input[name="UCmsPageI18n[title]"].active-slug').on('keyup', function(e) {
 	        if($.inArray(e.which, [37, 38, 39, 40, 46, 8]) === -1) {
-	            $('input[name="BCmsPageI18n[slug]"]').val($.backend.cms.pageContainer.strToSlug($(this).val()));
+	            $('input[name="UCmsPageI18n[slug]"]').val($.backend.cms.pageContainer.strToSlug($(this).val()));
 	        }
 	    });
 
@@ -129,11 +129,11 @@
             $this.main.block($this.blockUI);
 
 	        var ajaxRequest = function(async) {
-                $.b.app.ajax(
+                $.unitkit.app.ajax(
                     self.attr('href'),
                     function(json){
                         if(json.loginReload) {
-                            if($.b.app.loginReload(json)) {
+                            if($.unitkit.app.loginReload(json)) {
                                 ajaxRequest(false);
                             }
                         } else {
@@ -141,7 +141,7 @@
                             $(self.attr('data-targetContainer')).html(json.html);
                         }
                     }, 
-                    'page_slug=' + $this.main.find('input[name="BCmsPageI18n[slug]"]').val(),
+                    'page_slug=' + $this.main.find('input[name="UCmsPageI18n[slug]"]').val(),
                     'POST', 
                     'JSON', 
                     async
@@ -159,16 +159,16 @@
 
 	        pageContainer.block($this.blockUI);
 	        var ajaxRequest = function(async){
-                $.b.app.ajax(
+                $.unitkit.app.ajax(
                     self.attr('data-actionLoadContent'),
                     function(json){
                         if(json.loginReload) {
-                            if($.b.app.loginReload(json)) {
+                            if($.unitkit.app.loginReload(json)) {
                                 ajaxRequest(false);
                             }
                         } else {                   
                             pageContainer.unblock();
-                            $.b.app.destroyCKEDITOR();
+                            $.unitkit.app.destroyCKEDITOR();
                             pageContainer.html($.parseHTML(json.html));
                             pageContainer.find('.advanced-textarea').each(function() {
                                 var textarea = $(this);

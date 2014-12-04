@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class AlbumPhotoEditRowDataView extends BEditRowItemDataView
+class AlbumPhotoEditRowDataView extends UEditRowItemDataView
 {
     /**
      * Constructor
@@ -28,25 +28,25 @@ class AlbumPhotoEditRowDataView extends BEditRowItemDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BCmsAlbumPhotoI18n'],
+            new UItemField(array(
+                'model' => $data['UCmsAlbumPhotoI18n'],
                 'attribute' => 'title',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BCmsAlbumPhotoI18n']->getAttributeLabel('title'),
+                    'placeholder' => $data['UCmsAlbumPhotoI18n']->getAttributeLabel('title'),
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BCmsAlbumPhoto'],
+            new UItemField(array(
+                'model' => $data['UCmsAlbumPhoto'],
                 'attribute' => 'file_path',
-                'value' => $this->controller->getUploader('BCmsAlbumPhoto[file_path]')['uploader']->htmlUploader(
-                    $data['BCmsAlbumPhoto'],
+                'value' => $this->controller->getUploader('UCmsAlbumPhoto[file_path]')['uploader']->htmlUploader(
+                    $data['UCmsAlbumPhoto'],
                     'file_path',
                     $this->controller->createUrl($this->controller->id.'/upload'),
                     array(
-                        'type' => BUploader::OVERVIEW_IMAGE,
+                        'type' => UUploader::OVERVIEW_IMAGE,
                         'route' => $this->controller->id.'/upload',
                         'html_options' => array('style' => 'max-width:350px'),
                     )

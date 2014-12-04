@@ -15,8 +15,8 @@ class PageContainerEditContainersArrayDataView
 
     public function __construct($data)
     {
-        if (isset($data['BCmsPageContents'])) {
-            foreach($data['BCmsPageContents'] as $id => $bCmsPageContent) {
+        if (isset($data['UCmsPageContents'])) {
+            foreach($data['UCmsPageContents'] as $id => $uCmsPageContent) {
                 $this->rows[] = new PageContainerEditContainersArrayRowDataView($id, $data);
             }
         }

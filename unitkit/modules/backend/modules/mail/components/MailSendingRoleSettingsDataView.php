@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class MailSendingRoleSettingsDataView extends BSettingsDataView
+class MailSendingRoleSettingsDataView extends USettingsDataView
 {
 
     /**
@@ -18,7 +18,7 @@ class MailSendingRoleSettingsDataView extends BSettingsDataView
      */
     public function __construct($data, $relatedData, $isSaved)
     {
-        $this->id = 'bMailSendingRoleMailSendingRoleSettings';
+        $this->id = 'uMailSendingRoleMailSendingRoleSettings';
         parent::__construct($data, $relatedData, $isSaved);
     }
 }

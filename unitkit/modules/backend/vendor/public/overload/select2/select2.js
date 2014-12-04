@@ -790,10 +790,10 @@ Update by Kévin Walter <walkev13@gmail.com>
                         var select = this;
                         var modalClass = 'auto' + (new Date().getTime()) + 'modal';
                         
-                        var modal = new $.b.app.Modal(modalClass);
+                        var modal = new $.unitkit.app.Modal(modalClass);
                         modal.component.find('.modal-dialog').addClass('modal-lg');
                         
-                        $.b.app.ajax(
+                        $.unitkit.app.ajax(
                             this.opts.updateItem.url, 
                             function(data){
                                 // close select
@@ -805,8 +805,8 @@ Update by Kévin Walter <walkev13@gmail.com>
                                 modal.open();
                                 
                                 // init events
-                                var edit = new $.b.app.Edit({
-                                    main: '.' + modalClass + ' .modal-body',
+                                var edit = new $.unitkit.app.Edit({
+                                    main: '.' + modalClass + ' .modal-body'
                                 });
                                 edit.initCloseActionEvent = function()
                                 {
@@ -1969,7 +1969,7 @@ Update by Kévin Walter <walkev13@gmail.com>
                 "   </div>",
                 // unitkit
                 "	<div class='select2-add'>",
-                "		<a href='#'><span class='glyphicon glyphicon-plus-sign'></span> <span>" + $.b.app.defaultMessage.selectInputAdd + "</span></a>",
+                "		<a href='#'><span class='glyphicon glyphicon-plus-sign'></span> <span>" + $.unitkit.app.defaultMessage.selectInputAdd + "</span></a>",
                 "	</div>",
                 "   <ul class='select2-results'>",
                 "   </ul>",
@@ -2087,10 +2087,10 @@ Update by Kévin Walter <walkev13@gmail.com>
         	this.addItem.on('click', function(){
         		var modalClass = 'auto' + (new Date().getTime()) + 'modal';
         		
-        		var modal = new $.b.app.Modal(modalClass);
+        		var modal = new $.unitkit.app.Modal(modalClass);
         		modal.component.find('.modal-dialog').addClass('modal-lg');
         		
-        		$.b.app.ajax(
+        		$.unitkit.app.ajax(
         			select.opts.addItem.url, 
         			function(data){
         				// close select
@@ -2102,8 +2102,8 @@ Update by Kévin Walter <walkev13@gmail.com>
         				modal.open();
         				
         				// init events
-        				var edit = new $.b.app.Edit({
-        					main: '.' + modalClass + ' .modal-body',
+        				var edit = new $.unitkit.app.Edit({
+        					main: '.' + modalClass + ' .modal-body'
         				});
         				edit.initCloseActionEvent = function()
         				{

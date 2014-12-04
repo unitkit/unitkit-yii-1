@@ -18,16 +18,16 @@ class PageContainerEditContainersArrayRowDataView
         $controller = Yii::app()->controller;
 
         $this->items = array(
-            new BItemField(array(
-            	'value' => B::t('backend', 'cms_page_container_index').' '.$index
+            new UItemField(array(
+            	'value' => Unitkit::t('backend', 'cms_page_container_index').' '.$index
             )),
-            new BItemField(array(
-                'model' => $data['BCmsPageContents'][$index]->bCmsPageContentI18n,
+            new UItemField(array(
+                'model' => $data['UCmsPageContents'][$index]->uCmsPageContentI18n,
                 'attribute' => 'content',
                 'type' => 'activeTextArea',
                 'htmlOptions' => array(
                     'id' => false,
-                    'name' => 'BCmsPageContentsI18n['.$index.'][content]',
+                    'name' => 'UCmsPageContentsI18n['.$index.'][content]',
                     'class' => 'form-control input-sm advanced-textarea',
                     'data-ckeditorFilebrowserBrowseUrl' => Yii::app()->controller->createUrl('/cms/image'),
                     'data-ckeditorLanguage' => Yii::app()->language

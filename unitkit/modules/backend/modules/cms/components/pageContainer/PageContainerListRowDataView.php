@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class PageContainerListRowDataView extends BListRowItemDataView
+class PageContainerListRowDataView extends UListRowItemDataView
 {
     /**
      * Constructor
@@ -19,15 +19,15 @@ class PageContainerListRowDataView extends BListRowItemDataView
         $this->isTranslatable = true;
         $this->pk = $pk;
         $this->items = array(
-            isset($data->bCmsPageI18ns[0]) ? $data->bCmsPageI18ns[0]->slug : '',
-            BHtml::activeCheckBox($data, 'activated', array(
+            isset($data->uCmsPageI18ns[0]) ? $data->uCmsPageI18ns[0]->title : '',
+            isset($data->uCmsLayoutI18ns[0]) ? $data->uCmsLayoutI18ns[0]->name : '',
+            isset($data->uCmsPageI18ns[0]) ? $data->uCmsPageI18ns[0]->slug : '',
+            UHtml::activeCheckBox($data, 'activated', array(
                 'class' => 'form-control input-sm',
                 'disabled' => 'disabled',
                 'id' => false
             )),
             $data->cache_duration,
-            isset($data->bCmsPageI18ns[0]) ? $data->bCmsPageI18ns[0]->title : '',
-            isset($data->bCmsLayoutI18ns[0]) ? $data->bCmsLayoutI18ns[0]->name : '',
         );
     }
 }

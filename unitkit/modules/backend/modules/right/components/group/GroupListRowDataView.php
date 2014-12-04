@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class GroupListRowDataView extends BListRowItemDataView
+class GroupListRowDataView extends UListRowItemDataView
 {
 
     /**
@@ -20,7 +20,7 @@ class GroupListRowDataView extends BListRowItemDataView
         $this->isTranslatable = true;
         $this->pk = $pk;
         $this->items = array(
-            isset($data->bGroupI18ns[0]) ? $data->bGroupI18ns[0]->name : ''
+            isset($data->uGroupI18ns[0]) ? $data->uGroupI18ns[0]->name : ''
         );
     }
 }

@@ -6,7 +6,7 @@
     	<?php endforeach; ?>
 	<?php else : ?>
     	<tr>
-            <td class="text-center"><em><?= B::t('unitkit', 'no_results'); ?></em></td>
+            <td class="text-center"><em><?= Unitkit::t('unitkit', 'no_results'); ?></em></td>
         </tr>
 	<?php endif; ?>
     </tbody>

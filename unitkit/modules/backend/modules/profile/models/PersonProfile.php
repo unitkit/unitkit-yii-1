@@ -41,11 +41,11 @@ class PersonProfile extends CActiveRecord
      */
     public function tableName()
     {
-        return 'b_person';
+        return 'u_person';
     }
 
     /**
-     * @see BPerson::rules()
+     * @see UPerson::rules()
      */
     public function rules()
     {
@@ -145,14 +145,14 @@ class PersonProfile extends CActiveRecord
             array(
                 'created_at',
                 'default',
-                'value' => BTools::now(),
+                'value' => UTools::now(),
                 'setOnEmpty' => false,
                 'on' => 'insert'
             ),
             array(
                 'updated_at',
                 'default',
-                'value' => BTools::now(),
+                'value' => UTools::now(),
                 'setOnEmpty' => false,
                 'on' => array(
                     'update',
@@ -190,22 +190,22 @@ class PersonProfile extends CActiveRecord
     public function attributeLabels()
     {
         return array(
-            'id' => B::t('unitkit', 'model:id'),
-            'email' => B::t('unitkit', 'b_person:email'),
-            'first_name' => B::t('unitkit', 'b_person:first_name'),
-            'last_name' => B::t('unitkit', 'b_person:last_name'),
-            'activated' => B::t('unitkit', 'b_person:activated'),
-            'validated' => B::t('unitkit', 'b_person:validated'),
-            'default_language' => B::t('unitkit', 'b_person:default_language'),
-            'created_at' => B::t('unitkit', 'model:created_at'),
-            'updated_at' => B::t('unitkit', 'model:updated_at'),
+            'id' => Unitkit::t('unitkit', 'model:id'),
+            'email' => Unitkit::t('unitkit', 'u_person:email'),
+            'first_name' => Unitkit::t('unitkit', 'u_person:first_name'),
+            'last_name' => Unitkit::t('unitkit', 'u_person:last_name'),
+            'activated' => Unitkit::t('unitkit', 'u_person:activated'),
+            'validated' => Unitkit::t('unitkit', 'u_person:validated'),
+            'default_language' => Unitkit::t('unitkit', 'u_person:default_language'),
+            'created_at' => Unitkit::t('unitkit', 'model:created_at'),
+            'updated_at' => Unitkit::t('unitkit', 'model:updated_at'),
 
-            'password' => B::t('backend', 'person_profile:password'),
-            'repeat_password' => B::t('backend', 'person_profile:repeat_password'),
-            'old_password' => B::t('backend', 'person_profile:old_password'),
+            'password' => Unitkit::t('backend', 'person_profile:password'),
+            'repeat_password' => Unitkit::t('backend', 'person_profile:repeat_password'),
+            'old_password' => Unitkit::t('backend', 'person_profile:old_password'),
 
             // related attributes
-            'lk_b_i18n_i18ns_name' => BI18nI18n::model()->getAttributeLabel('name')
+            'lk_u_i18n_i18ns_name' => UI18nI18n::model()->getAttributeLabel('name')
         );
     }
 
@@ -227,12 +227,12 @@ class PersonProfile extends CActiveRecord
         ));
 
         if ($model !== null) {
-            $this->addError('email', B::t('backend', 'b_person_email_exist'));
+            $this->addError('email', Unitkit::t('backend', 'u_person_email_exist'));
         }
     }
 
     /**
-     * @see BPerson::beforeSave()
+     * @see UPerson::beforeSave()
      */
     public function beforeSave()
     {
@@ -261,7 +261,7 @@ class PersonProfile extends CActiveRecord
                 $this->addError('repeat_password', null);
                 $this->addError('password', null);
                 $this->addError('old_password', null);
-                $this->addError('', B::t('backend', 'profile_password_is_required'));
+                $this->addError('', Unitkit::t('backend', 'profile_password_is_required'));
             }
 
             $compare = new CCompareValidator();
@@ -285,7 +285,7 @@ class PersonProfile extends CActiveRecord
             if ($model === null) {
                 throw new Exception();
             } elseif (! CPasswordHelper::verifyPassword($this->old_password, $model->password)) {
-                $this->addError('old_password', B::t('backend', 'profile_old_password_not_valid'));
+                $this->addError('old_password', Unitkit::t('backend', 'profile_old_password_not_valid'));
             }
         }
     }

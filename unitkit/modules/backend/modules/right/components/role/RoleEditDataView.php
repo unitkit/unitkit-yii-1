@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class RoleEditDataView extends BEditDataView
+class RoleEditDataView extends UEditDataView
 {
 
     /**
@@ -19,11 +19,11 @@ class RoleEditDataView extends BEditDataView
      */
     public function __construct($data, $relatedData, $pk, $isSaved)
     {
-        $this->id = 'bRoleRoleEdit';
+        $this->id = 'uRoleRoleEdit';
 
         // component title
-        $this->createTitle = B::t('backend', 'right_role_create_title');
-        $this->updateTitle = B::t('backend', 'right_role_update_title');
+        $this->createTitle = Unitkit::t('backend', 'right_role_create_title');
+        $this->updateTitle = Unitkit::t('backend', 'right_role_update_title');
 
         // primary key
         $this->pk = $pk;
@@ -45,55 +45,55 @@ class RoleEditDataView extends BEditDataView
         }
 
         // new record status
-        $this->isNewRecord = $data['BRole']->isNewRecord;
+        $this->isNewRecord = $data['URole']->isNewRecord;
 
         // page title
         $this->refreshPageTitle();
 
         // items
         $this->items = array(
-            new BItemField(array(
-                'model' => $data['BRoleI18n'],
+            new UItemField(array(
+                'model' => $data['URoleI18n'],
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BRoleI18n']->getAttributeLabel('name')
+                    'placeholder' => $data['URoleI18n']->getAttributeLabel('name')
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BRole'],
+            new UItemField(array(
+                'model' => $data['URole'],
                 'attribute' => 'operation',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BRole']->getAttributeLabel('operation')
+                    'placeholder' => $data['URole']->getAttributeLabel('operation')
                 )
             )),
-            new BItemField(array(
-                'model' => $data['BRole'],
+            new UItemField(array(
+                'model' => $data['URole'],
                 'attribute' => 'business_rule',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BRole']->getAttributeLabel('business_rule')
+                    'placeholder' => $data['URole']->getAttributeLabel('business_rule')
                 )
             ))
         );
 
-        if (! $data['BRole']->isNewRecord) {
-            $this->items[] = new BItemField(array(
-                'model' => $data['BRole'],
+        if (! $data['URole']->isNewRecord) {
+            $this->items[] = new UItemField(array(
+                'model' => $data['URole'],
                 'attribute' => 'created_at',
-                'value' => $data['BRole']->created_at
+                'value' => $data['URole']->created_at
             ));
-            $this->items[] = new BItemField(array(
-                'model' => $data['BRole'],
+            $this->items[] = new UItemField(array(
+                'model' => $data['URole'],
                 'attribute' => 'updated_at',
-                'value' => $data['BRole']->updated_at
+                'value' => $data['URole']->updated_at
             ));
         }
     }

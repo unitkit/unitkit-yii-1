@@ -1,9 +1,9 @@
 /**
- * Kevin Walter <walkev13@gmail.com>
+ * @version 1.0
  */
-#bAuthAuthMain {
+#uAuthAuthMain {
     margin-top:40px;
 }
-#bAuthAuthMain .reset-password {
+#uAuthAuthMain .reset-password {
     margin: 10px 0;
 }

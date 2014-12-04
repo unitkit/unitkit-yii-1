@@ -6,7 +6,7 @@
  * @author Kévin Walter <walkev13@gmail.com>
  * @version 1.0
  */
-class NewsGroupTranslateDataView extends BTranslateDataView
+class NewsGroupTranslateDataView extends UTranslateDataView
 {
     /**
      * Constructor
@@ -19,13 +19,13 @@ class NewsGroupTranslateDataView extends BTranslateDataView
     public function __construct($data, $relatedData, $pk, $isSaved)
     {
         // data view id
-        $this->id = 'bCmsNewsGroupNewsGroupTranslate';
+        $this->id = 'uCmsNewsGroupNewsGroupTranslate';
 
         // primary key
         $this->pk = $pk;
 
         // I18n model
-        $this->model = BCmsNewsGroupI18n::model();
+        $this->model = UCmsNewsGroupI18n::model();
 
         // data
         $this->data = $data;
@@ -38,7 +38,7 @@ class NewsGroupTranslateDataView extends BTranslateDataView
 
         // items
         $this->items = array(
-            new BItemField(array(
+            new UItemField(array(
                 'attribute' => 'name',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(

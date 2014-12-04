@@ -1,7 +1,7 @@
 UNITKIT
 ========
 
-UNITKIT CMS is a CMS application.
+UNITKIT is a CMS application.
 Easy to configure and very fast.
 You can mange user/groups/roles for each module, translations, languages, mail templates, pages, menu.
 You can generate new module using the unitkit generator
@@ -42,7 +42,7 @@ Required Yii Framework 1.1.15
 	```
 	- Install dependencies :
 	```bash
-	$ cd public/frontned
+	$ cd public/frontend
 	$ bower install
 	```
 	- Create a new vhost pointing "public/frontend" directory (default : frontend.unitkit.local)

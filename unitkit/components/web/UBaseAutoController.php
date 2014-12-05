@@ -920,20 +920,21 @@ abstract class UBaseAutoController extends UBaseController
         // initialize the status
         $isSaved = false;
 
-        $transaction = $models['BInterfaceSetting']->dbConnection->beginTransaction();
+        $transaction = $models['UInterfaceSetting']->dbConnection->beginTransaction();
         try {
             // set attributes
-            if (isset($postData['BInterfaceSetting']))
-                $models['BInterfaceSetting']->attributes = $postData['BInterfaceSetting'];
+            if (isset($postData['UInterfaceSetting'])) {
+                $models['UInterfaceSetting']->attributes = $postData['UInterfaceSetting'];
+            }
 
-                // validate models
-            $models['BInterfaceSetting']->validate();
+            // validate models
+            $models['UInterfaceSetting']->validate();
 
-            if ($models['BInterfaceSetting']->save()) {
+            if ($models['UInterfaceSetting']->save()) {
                 // commit changes
                 $transaction->commit();
                 // refresh cache
-                $models['BInterfaceSetting']->refreshSettings($models['BInterfaceSetting']->interface_id, $models['BInterfaceSetting']->u_person_id);
+                $models['UInterfaceSetting']->refreshSettings($models['UInterfaceSetting']->interface_id, $models['UInterfaceSetting']->u_person_id);
                 // update status
                 $isSaved = true;
                 $this->_afterSaveSettingsModels();
@@ -965,13 +966,13 @@ abstract class UBaseAutoController extends UBaseController
      */
     protected function _loadSettingsModels()
     {
-        $models['BInterfaceSetting'] = UInterfaceSetting::model()->getSettings($this->id . ':' . $this->module->id, Yii::app()->user->id);
-        if ($models['BInterfaceSetting']->interface_id === null && $models['BInterfaceSetting']->u_person_id === null) {
-            $models['BInterfaceSetting']->setScenario('insert');
-            $models['BInterfaceSetting']->interface_id = $this->id . ':' . $this->module->id;
-            $models['BInterfaceSetting']->u_person_id = Yii::app()->user->id;
+        $models['UInterfaceSetting'] = UInterfaceSetting::model()->getSettings($this->id . ':' . $this->module->id, Yii::app()->user->id);
+        if ($models['UInterfaceSetting']->interface_id === null && $models['UInterfaceSetting']->u_person_id === null) {
+            $models['UInterfaceSetting']->setScenario('insert');
+            $models['UInterfaceSetting']->interface_id = $this->id . ':' . $this->module->id;
+            $models['UInterfaceSetting']->u_person_id = Yii::app()->user->id;
         } else
-            $models['BInterfaceSetting']->setScenario('update');
+            $models['UInterfaceSetting']->setScenario('update');
 
         return $models;
     }

@@ -121,7 +121,7 @@ class MailSendingRoleController extends UAutoController
         $relatedData = array();
         $relatedData['UMailTemplate[id]'] = array(
             '' => Unitkit::t('unitkit', 'input_select')
-        ) + UHtml::listDatasCombobox('UMailTemplate', array(
+        ) + UHtml::listDataComboBox('UMailTemplate', array(
             'id',
             'id'
         ));
@@ -167,7 +167,7 @@ class MailSendingRoleController extends UAutoController
         $relatedData = array();
         $relatedData['UMailTemplate[id]'] = array(
             '' => Unitkit::t('unitkit', 'input_select')
-        ) + UHtml::listDatasCombobox('UMailTemplate', array(
+        ) + UHtml::listDataComboBox('UMailTemplate', array(
             'id',
             'id'
         ));

@@ -6,7 +6,7 @@ $html = '<?php
  *
  * @version 1.0
  */
-class ' . $datas['controller'] . 'SettingsDataView extends BSettingsDataView
+class ' . $datas['controller'] . 'SettingsDataView extends USettingsDataView
 {
     /**
      * Constructor

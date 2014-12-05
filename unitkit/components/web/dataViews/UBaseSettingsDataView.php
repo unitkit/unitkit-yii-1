@@ -93,15 +93,15 @@ class UBaseSettingsDataView extends CComponent
             }
         }
 
-            // items
+        // items
         $this->items = array(
             new UItemField(array(
-                'model' => $data['BInterfaceSetting'],
+                'model' => $data['UInterfaceSetting'],
                 'attribute' => 'page_size',
                 'type' => 'activeTextField',
                 'htmlOptions' => array(
                     'class' => 'form-control input-sm',
-                    'placeholder' => $data['BInterfaceSetting']->getAttributeLabel('page_size'),
+                    'placeholder' => $data['UInterfaceSetting']->getAttributeLabel('page_size'),
                     'id' => false
                 )
             ))

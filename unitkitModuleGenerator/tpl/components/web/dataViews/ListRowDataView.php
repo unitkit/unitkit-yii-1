@@ -6,7 +6,7 @@ $html = '<?php
  *
  * @version 1.0
  */
-class ' . $datas['controller'] . 'ListRowDataView extends BListRowItemDataView
+class ' . $datas['controller'] . 'ListRowDataView extends UListRowItemDataView
 {
     /**
      * Constructor
@@ -47,7 +47,7 @@ foreach ($datas['allColumns'] as $k => $v) {
             )),';
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_CHECK_INPUT) {
             $html .= '
-            BHtml::activeCheckBox($data, \'' . $v['COLUMN_NAME'] . '\', array(
+            UHtml::activeCheckBox($data, \'' . $v['COLUMN_NAME'] . '\', array(
                 \'class\' => \'form-control input-sm\',
                 \'disabled\' => \'disabled\',
                 \'id\' => false

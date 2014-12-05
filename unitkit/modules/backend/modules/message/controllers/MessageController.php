@@ -91,7 +91,7 @@ class MessageController extends UAutoController
         $isSaved = ! empty($_POST) ? $this->_saveTranslationModels($models, $postData) : false;
 
         // set related data
-        $relatedData['UMessageGroupI18n[name]'] = UHtml::listDatasCombobox('UMessageGroupI18n', array(
+        $relatedData['UMessageGroupI18n[name]'] = UHtml::listDataComboBox('UMessageGroupI18n', array(
             'u_message_group_id',
             'name'
         ), array(

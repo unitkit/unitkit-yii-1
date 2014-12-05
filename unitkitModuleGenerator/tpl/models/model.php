@@ -88,10 +88,7 @@ $html .= '
     }
 
     /**
-     * Returns the static model of the specified AR class.
-     *
-     * @param string $className active record class name.
-     * @return Post the static model class
+     * @see CActiveRecord::model()
      */
     public static function model($className = __CLASS__)
     {
@@ -146,9 +143,9 @@ foreach ($datas['columns'] as $c) {
     if (isset($c['BB_TYPE'])) {
         if ($c['BB_TYPE'] == unitkitGenerator::TYPE_DATE_AUTO) {
             if ($c['COLUMN_NAME'] == 'updated_at')
-                $html .= '            array(\'' . $c['COLUMN_NAME'] . '\', \'default\', \'value\' => BTools::now(), \'setOnEmpty\' => false, \'on\' => array(\'update\', \'insert\')),' . "\n";
+                $html .= '            array(\'' . $c['COLUMN_NAME'] . '\', \'default\', \'value\' => UTools::now(), \'setOnEmpty\' => false, \'on\' => array(\'update\', \'insert\')),' . "\n";
             if ($c['COLUMN_NAME'] == 'created_at')
-                $html .= '            array(\'' . $c['COLUMN_NAME'] . '\', \'default\', \'value\' => BTools::now(), \'setOnEmpty\' => false, \'on\' => \'insert\'),' . "\n";
+                $html .= '            array(\'' . $c['COLUMN_NAME'] . '\', \'default\', \'value\' => UTools::now(), \'setOnEmpty\' => false, \'on\' => \'insert\'),' . "\n";
         }
         if ($c['BB_TYPE'] == unitkitGenerator::TYPE_CHECK_INPUT) {
             $html .= '            array(\'' . $c['COLUMN_NAME'] . '\', \'boolean\', \'on\' => array(\'insert\', \'update\')),' . "\n";
@@ -231,9 +228,9 @@ foreach ($datas['columns'] as $c) {
     $groupName = isset($c['BB_TYPE']) && ($c['BB_TYPE'] == unitkitGenerator::TYPE_DATE_AUTO || $c['BB_TYPE'] == unitkitGenerator::TYPE_CHECK_INPUT || $c['COLUMN_NAME'] == 'id') ? 'unitkit' : $datas['translate_const_model'];
 
     if (isset($c['BB_TYPE']) && $c['BB_TYPE'] == unitkitGenerator::TYPE_DATE_AUTO || in_array($c['COLUMN_NAME'], array('id', 'activated', 'validated'))) {
-        $html .= '            \'' . $c['COLUMN_NAME'] . '\' => B::t(\'' . $groupName . '\', \'model:' . $c['COLUMN_NAME'] . '\'),' . "\n";
+        $html .= '            \'' . $c['COLUMN_NAME'] . '\' => Unitkit::t(\'' . $groupName . '\', \'model:' . $c['COLUMN_NAME'] . '\'),' . "\n";
     } else {
-        $html .= '            \'' . $c['COLUMN_NAME'] . '\' => B::t(\'' . $groupName . '\', $this->tableName().\':' . $c['COLUMN_NAME'] . '\'),' . "\n";
+        $html .= '            \'' . $c['COLUMN_NAME'] . '\' => Unitkit::t(\'' . $groupName . '\', $this->tableName().\':' . $c['COLUMN_NAME'] . '\'),' . "\n";
     }
 }
 

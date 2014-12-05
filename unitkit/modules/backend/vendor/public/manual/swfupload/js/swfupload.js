@@ -1,5 +1,5 @@
 /**
- * SWFUpload-2.2.0-byblock: http://www.swfupload.org, http://swfupload.googlecode.com
+ * SWFUpload-2.2.0-Unitkit: http://www.swfupload.org, http://swfupload.googlecode.com
  *
  * mmSWFUpload 1.0: Flash upload dialog - http://profandesign.se/swfupload/,  http://www.vinterwebb.se/
  *

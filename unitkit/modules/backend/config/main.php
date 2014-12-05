@@ -12,11 +12,22 @@ return array(
     ),
     // autoloading model and component classes
     'import' => array(
-        'application.components.*',
-        'application.components.dataView.*',
+        // common
         'application.models.*',
+        'application.components.*',
+        'application.components.web.dataViews.*',
+        'application.components.web.auth.*',
+        'application.components.web.helpers.*',
+        'application.components.web.*',
+        'application.components.i18n.*',
+        // backend
         'application.modules.backend.models.*',
         'application.modules.backend.components.*',
+        'application.modules.backend.components.web.*',
+        'application.modules.backend.components.web.dataViews.*',
+        'application.modules.backend.components.web.auth.*',
+        'application.modules.backend.components.web.helpers.*',
+        'application.modules.backend.components.i18n.*',
         'application.modules.backend.vendor.EScriptBoost.*'
     ),
     'defaultController' => 'backend/auth/auth',
@@ -27,6 +38,7 @@ return array(
     'modules' => array(
         'backend' => array(
             'modules' => array(
+                'test',
                 'site',
                 'auth',
                 'autoLogin',
@@ -71,36 +83,36 @@ return array(
             'pathTmp' => Yii::getPathOfAlias('application').'/../datas/tmp',
         ),
         'variables' => array(
-            'class' => 'application.components.UDbVariable',
+            'class' => 'application.components.web.UDbVariable',
             'cacheID' => 'varCache'
         ),
         'rights' => array(
-            'class' => 'application.components.UDbRight',
+            'class' => 'application.components.web.auth.UDbRight',
             'cacheID' => 'rightCache'
         ),
         'mail' => array(
-            'class' => 'application.modules.backend.components.UMail',
+            'class' => 'application.modules.backend.components.web.UMail',
             'classFunction' => 'UMailFunction'
         ),
         'clientScript' => array(
-            'class' => 'application.modules.backend.components.UClientScript'
+            'class' => 'application.modules.backend.components.web.UClientScript'
         ),
         'request' => array(
-            'class' => 'application.components.UHttpRequest',
+            'class' => 'application.components.web.UHttpRequest',
             'enableCsrfValidation' => true
         ),
         'session' => array(
-            'class' => 'application.components.UHttpSession'
+            'class' => 'application.components.web.UHttpSession'
         ),
         'user' => array(
-            'class' => 'application.modules.backend.components.UWebUser',
+            'class' => 'application.modules.backend.components.web.auth.UWebUser',
             'allowAutoLogin' => true,
             'loginUrl' => array(
                 'auth/auth/login'
             )
         ),
         'messages' => array(
-            'class' => 'application.components.UDbMessageSource',
+            'class' => 'application.components.i18n.UDbMessageSource',
             'cacheID' => 'messCache'
         ),
         'mailer' => array(
@@ -112,7 +124,7 @@ return array(
             //'Host' => ''
         ),
         'urlManager' => array(
-            'class' => 'application.modules.backend.components.UUrlManager',
+            'class' => 'application.modules.backend.components.web.UUrlManager',
             'urlFormat' => 'path',
             'showScriptName' => false,
             'cacheID' => 'urlCache'

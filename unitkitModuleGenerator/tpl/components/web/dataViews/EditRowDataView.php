@@ -6,7 +6,7 @@ $html = '<?php
  *
  * @version 1.0
  */
-class ' . $datas['controller'] . 'EditRowDataView extends BEditRowItemDataView
+class ' . $datas['controller'] . 'EditRowDataView extends UEditRowItemDataView
 {
     /**
      * Constructor
@@ -37,7 +37,7 @@ foreach ($datas['allColumns'] as $k => $v) {
 
         if ($v['BB_TYPE'] == unitkitGenerator::TYPE_TEXT_INPUT) {
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'type\' => \'activeTextField\',
@@ -49,7 +49,7 @@ foreach ($datas['allColumns'] as $k => $v) {
             )),';
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_ADV_INPUT_FILE) {
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'value\' => $this->controller->getUploader(\'' . $class . '[' . $v['COLUMN_NAME'] . ']\')[\'uploader\']->htmlUploader(
@@ -65,7 +65,7 @@ foreach ($datas['allColumns'] as $k => $v) {
             )),';
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_DATE_INPUT) {
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'type\' => \'activeTextField\',
@@ -77,7 +77,7 @@ foreach ($datas['allColumns'] as $k => $v) {
             )),';
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_CHECK_INPUT) {
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'type\' => \'activeCheckBox\',
@@ -89,7 +89,7 @@ foreach ($datas['allColumns'] as $k => $v) {
             )),';
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_TEXTAREA || $v['BB_TYPE'] == unitkitGenerator::TYPE_ADV_TEXTAREA) {
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'type\' => \'activeTextArea\',
@@ -104,7 +104,7 @@ foreach ($datas['allColumns'] as $k => $v) {
             $isI18nTable = unitkitGenerator::underscoredToLowerCamelcase($datas['relations'][$k]['REFERENCED_TABLE_NAME']) != $info[0];
             $classR = unitkitGenerator::underscoredToUpperCamelcase(($info[0][strlen($info[0]) - 1] == 's') ? substr($info[0], 0, - 1) : $info[0]);
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'type\' => \'activeDropDownList\',
@@ -115,7 +115,7 @@ foreach ($datas['allColumns'] as $k => $v) {
                 )
             )),';
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_ADV_SELECT && isset($datas['relations'][$k]['BB_REF'])) {
-            $info = explode('.', $data['relations'][$k]['BB_REF']);
+            $info = explode('.', $datas['relations'][$k]['BB_REF']);
             $isI18nTable = unitkitGenerator::underscoredToLowerCamelcase($datas['relations'][$k]['REFERENCED_TABLE_NAME']) != $info[0];
             $classR = unitkitGenerator::underscoredToUpperCamelcase(($info[0][strlen($info[0]) - 1] == 's') ? substr($info[0], 0, - 1) : $info[0]);
 
@@ -125,7 +125,7 @@ foreach ($datas['allColumns'] as $k => $v) {
                                 )' : '$data[\'' . $class . '\']->' . $v['COLUMN_NAME'] . '') . ')->' . $info[1];
 
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'type\' => \'activeHiddenField\',
@@ -133,10 +133,10 @@ foreach ($datas['allColumns'] as $k => $v) {
                     \'id\' => false,
                     \'class\' => \'form-control input-sm input-ajax-select' . ($v['IS_NULLABLE'] == 'YES' ? ' allow-clear' : '') . '\',
                     \'data-action\' => $this->controller->createUrl(
-                        $this->controller->id.\'/advCombobox/\',
+                        $this->controller->id.\'/advComboBox/\',
                         array(\'name\' => \'' . $classR . '[' . $info[1] . ']\'' . ($isI18nTable ? ', \'language\' => Yii::app()->language' : '') . ')
                     ),
-                    \'data-placeholder\' => B::t(\'unitkit\', \'input_select\'),
+                    \'data-placeholder\' => Unitkit::t(\'unitkit\', \'input_select\'),
                     \'data-text\' => ! empty($data[\'' . $class . '\']->' . $v['COLUMN_NAME'] . ') ? ' . $dataText . ' : \'\',
                 )
             )),';
@@ -149,7 +149,7 @@ foreach ($datas['allColumns'] as $k => $v) {
         $class = unitkitGenerator::underscoredToUpperCamelcase($v['TABLE_NAME']);
 
         $htmlDateAuto .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'value\' => Yii::app()->dateFormatter->formatDateTime(CDateTimeParser::parse(

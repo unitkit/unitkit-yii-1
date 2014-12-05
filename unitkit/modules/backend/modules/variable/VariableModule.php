@@ -12,7 +12,8 @@ class VariableModule extends CWebModule
     {
         $this->setImport(array(
             'variable.models.*',
-            'variable.components.*'
+            'variable.components.*',
+            'variable.components.web.dataViews.*',
         ));
     }
 

@@ -15,7 +15,8 @@ class MessageModule extends CWebModule
         // import the module-level models and components
         $this->setImport(array(
             'message.models.*',
-            'message.components.*'
+            'message.components.*',
+            'message.components.web.dataViews.*',
         ));
     }
 

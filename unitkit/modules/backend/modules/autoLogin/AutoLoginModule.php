@@ -15,7 +15,8 @@ class AutoLoginModule extends CWebModule
         // import the module-level models and components
         $this->setImport(array(
             'autoLogin.models.*',
-            'autoLogin.components.*'
+            'autoLogin.components.*',
+            'autoLogin.components.web.dataViews.*'
         ));
     }
 

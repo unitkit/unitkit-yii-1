@@ -14,6 +14,7 @@ class ' . unitkitGenerator::underscoredToUpperCamelcase($datas['module']) . 'Mod
         $this->setImport(array(
             \'' . $datas['module'] . '.models.*\',
             \'' . $datas['module'] . '.components.*\',
+            \'' . $datas['module'] . '.components.web.dataViews.*\',
         ));
     }
 

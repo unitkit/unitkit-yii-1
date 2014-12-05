@@ -13,9 +13,10 @@ class RightModule extends CWebModule
         $this->setImport(array(
             'right.models.*',
             'right.components.*',
-            'right.components.group.*',
-            'right.components.person.*',
-            'right.components.role.*'
+            'right.components.web.dataViews.*',
+            'right.components.web.dataViews.group.*',
+            'right.components.web.dataViews.person.*',
+            'right.components.web.dataViews.role.*'
         ));
     }
 

@@ -189,39 +189,39 @@ class unitkitGenerator
         @mkdir(self::$pathResult . '/' . $datas['module'] . '/public/js', 0777, true);
         @mkdir(self::$pathResult . '/' . $datas['module'] . '/public/images', 0777, true);
         @mkdir(self::$pathResult . '/' . $datas['module'] . '/controllers', 0777);
-        @mkdir(self::$pathResult . '/' . $datas['module'] . '/components', 0777);
+        @mkdir(self::$pathResult . '/' . $datas['module'] . '/components/web/dataViews', 0777, true);
         @mkdir(self::$pathResult . '/' . $datas['module'] . '/models', 0777);
     }
 
     public function createEditComponent($datas)
     {
-        file_put_contents(self::$pathResult . '/' . $datas['module'] . '/components/' . $datas['controller'] . 'EditDataView.php', include self::$pathTpl . '/components/EditDataView.php');
+        file_put_contents(self::$pathResult . '/' . $datas['module'] . '/components/web/dataViews/' . $datas['controller'] . 'EditDataView.php', include self::$pathTpl . '/components/web/dataViews/EditDataView.php');
     }
 
     public function createSettingComponent($datas)
     {
-        file_put_contents(self::$pathResult . '/' . $datas['module'] . '/components/' . $datas['controller'] . 'SettingsDataView.php', include self::$pathTpl . '/components/SettingsDataView.php');
+        file_put_contents(self::$pathResult . '/' . $datas['module'] . '/components/web/dataViews/' . $datas['controller'] . 'SettingsDataView.php', include self::$pathTpl . '/components/web/dataViews/SettingsDataView.php');
     }
 
     public function createTranslateComponent($datas)
     {
         $controller = lcfirst($datas['controller']);
-        file_put_contents(self::$pathResult . '/' . $datas['module'] . '/components/' . $datas['controller'] . 'TranslateDataView.php', include self::$pathTpl . '/components/TranslateDataView.php');
+        file_put_contents(self::$pathResult . '/' . $datas['module'] . '/components/web/dataViews/' . $datas['controller'] . 'TranslateDataView.php', include self::$pathTpl . '/components/web/dataViews/TranslateDataView.php');
     }
 
     public function createListRowComponent($datas)
     {
-        file_put_contents(self::$pathResult . '/' . $datas['module'] . '/components/' . $datas['controller'] . 'ListRowDataView.php', include self::$pathTpl . '/components/ListRowDataView.php');
+        file_put_contents(self::$pathResult . '/' . $datas['module'] . '/components/web/dataViews/' . $datas['controller'] . 'ListRowDataView.php', include self::$pathTpl . '/components/web/dataViews/ListRowDataView.php');
     }
 
     public function createEditRowComponent($datas)
     {
-        file_put_contents(self::$pathResult . '/' . $datas['module'] . '/components/' . $datas['controller'] . 'EditRowDataView.php', include self::$pathTpl . '/components/EditRowDataView.php');
+        file_put_contents(self::$pathResult . '/' . $datas['module'] . '/components/web/dataViews/' . $datas['controller'] . 'EditRowDataView.php', include self::$pathTpl . '/components/web/dataViews/EditRowDataView.php');
     }
 
     public function createListComponent($datas)
     {
-        file_put_contents(self::$pathResult . '/' . $datas['module'] . '/components/' . $datas['controller'] . 'ListDataView.php', include self::$pathTpl . '/components/ListDataView.php');
+        file_put_contents(self::$pathResult . '/' . $datas['module'] . '/components/web/dataViews/' . $datas['controller'] . 'ListDataView.php', include self::$pathTpl . '/components/web/dataViews/ListDataView.php');
     }
 
     public function createModel($datas, $addSearchMethod = true)

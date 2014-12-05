@@ -13,11 +13,18 @@ return array(
     ),
     // autoloading model and component classes
     'import' => array(
-        'application.components.*',
-        'application.components.dataView.*',
+        // common
         'application.models.*',
+        'application.components.*',
+        'application.components.web.dataViews.*',
+        'application.components.web.auth.*',
+        'application.components.web.helpers.*',
+        'application.components.web.*',
+        'application.components.i18n.*',
+        // frontend
         'application.modules.frontend.models.*',
         'application.modules.frontend.components.*',
+        'application.modules.frontend.components.web.*',
         'application.modules.frontend.vendor.EScriptBoost.*'
     ),
     // default language
@@ -39,29 +46,29 @@ return array(
     // application components
     'components' => array(
         'variables' => array(
-            'class' => 'application.components.UDbVariable',
+            'class' => 'application.components.web.UDbVariable',
             'cacheID' => 'varCache'
         ),
         'rights' => array(
-            'class' => 'application.components.UDbRight',
+            'class' => 'application.components.web.auth.UDbRight',
             'cacheID' => 'rightCache'
         ),
         'mail' => array(
-            'class' => 'application.modules.frontend.components.UMail',
+            'class' => 'application.modules.frontend.components.web.UMail',
             'classFunction' => 'UMailFunction'
         ),
         'clientScript' => array(
-            'class' => 'application.modules.frontend.components.UClientScript'
+            'class' => 'application.modules.frontend.components.web.UClientScript'
         ),
         'request' => array(
-            'class' => 'application.components.UHttpRequest',
+            'class' => 'application.components.web.UHttpRequest',
             'enableCsrfValidation' => true
         ),
         'session' => array(
-            'class' => 'application.components.UHttpSession'
+            'class' => 'application.components.web.UHttpSession'
         ),
         'messages' => array(
-            'class' => 'application.components.UDbMessageSource',
+            'class' => 'application.components.i18n.UDbMessageSource',
             'cacheID' => 'messCache'
         ),
         'mailer' => array(
@@ -73,7 +80,7 @@ return array(
             //'Host' => ''
         ),
         'urlManager' => array(
-            'class' => 'application.modules.frontend.components.UUrlManager',
+            'class' => 'application.modules.frontend.components.web.UUrlManager',
             'urlFormat' => 'path',
             'showScriptName' => false,
             'cacheID' => 'urlCache'

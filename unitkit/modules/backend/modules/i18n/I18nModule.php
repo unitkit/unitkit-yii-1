@@ -16,7 +16,8 @@ class I18nModule extends CWebModule
         // import the module-level models and components
         $this->setImport(array(
             'i18n.models.*',
-            'i18n.components.*'
+            'i18n.components.*',
+            'i18n.components.web.dataViews.*'
         ));
     }
 

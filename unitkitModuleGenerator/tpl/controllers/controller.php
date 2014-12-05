@@ -6,7 +6,7 @@ $html = '<?php
  *
  * @version 1.0
  */
-class ' . $datas['controller'] . 'Controller extends BAutoController
+class ' . $datas['controller'] . 'Controller extends UAutoController
 {
     protected $_model = \'' . $datas['class'] . '\';';
 
@@ -18,7 +18,7 @@ if (! empty($datas['i18nColumns'])) {
 
 $html .= '
     /**
-     * @see BBaseAutoController::uploader()
+     * @see UBaseAutoController::uploader()
      */
     protected function _uploader()
     {
@@ -39,7 +39,7 @@ $html .= '
     }
 
     /**
-     * @see BBaseAutoController::_advancedComboBox()
+     * @see UBaseAutoController::_advancedComboBox()
      */
     protected function _advancedComboBox()
     {
@@ -81,8 +81,8 @@ foreach($datas['columns'] as $k => $c)
         $relation = $datas['relations'][$k]['BB_REF'];
         $info = explode('.', $relation);
         $model = unitkitGenerator::underscoredToUpperCamelcase( ($info[0][strlen($info[0])-1] == 's') ? substr($info[0], 0, -1) : $info[0]);
-        $htmlRelated .= '        $relatedDatas[\''.$model.'['.$info[1].']\'] = array(\'\' => B::t(\'unitkit\', \'input_select\')) +
-            BHtml::listDatasCombobox(\''.$model.'\', array(\''.(unitkitGenerator::underscoredToLowerCamelcase($datas['relations'][$k]['REFERENCED_TABLE_NAME']) == $info[0] ? $datas['relations'][$k]['REFERENCED_COLUMN_NAME'] : $datas['relations'][$k]['REFERENCED_TABLE_NAME'].'_'.$datas['relations'][$k]['REFERENCED_COLUMN_NAME']).'\', \''.$info[1].'\')';
+        $htmlRelated .= '        $relatedDatas[\''.$model.'['.$info[1].']\'] = array(\'\' => Unitkit::t(\'unitkit\', \'input_select\')) +
+            UHtml::listDatasCombobox(\''.$model.'\', array(\''.(unitkitGenerator::underscoredToLowerCamelcase($datas['relations'][$k]['REFERENCED_TABLE_NAME']) == $info[0] ? $datas['relations'][$k]['REFERENCED_COLUMN_NAME'] : $datas['relations'][$k]['REFERENCED_TABLE_NAME'].'_'.$datas['relations'][$k]['REFERENCED_COLUMN_NAME']).'\', \''.$info[1].'\')';
         if( unitkitGenerator::underscoredToLowerCamelcase($datas['relations'][$k]['REFERENCED_TABLE_NAME']) != $info[0] )
         {
             $htmlRelated .= ', array(

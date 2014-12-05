@@ -11,7 +11,8 @@ class MailModule extends CWebModule
         $this->setImport(array(
             'mail.models.*',
             'mail.controllers.*',
-            'mail.components.*'
+            'mail.components.*',
+            'mail.components.web.dataViews.*',
         ));
     }
 

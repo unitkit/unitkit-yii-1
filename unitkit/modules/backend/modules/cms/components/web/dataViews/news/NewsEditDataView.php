@@ -97,7 +97,7 @@ class NewsEditDataView extends UEditDataView
             new UItemField(array(
                 'model' => $data['UCmsNews'],
                 'attribute' => 'activated',
-                'type' => 'activeTextField',
+                'type' => 'activeCheckBox',
                 'htmlOptions' => array(
                     'id' => false,
                     'class' => 'form-control input-sm',

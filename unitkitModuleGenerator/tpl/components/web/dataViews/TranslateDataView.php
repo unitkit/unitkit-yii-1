@@ -6,7 +6,7 @@ $html = '<?php
  *
  * @version 1.0
  */
-class ' . $datas['controller'] . 'TranslateDataView extends BTranslateDataView
+class ' . $datas['controller'] . 'TranslateDataView extends UTranslateDataView
 {
     /**
      * Constructor
@@ -41,7 +41,7 @@ class ' . $datas['controller'] . 'TranslateDataView extends BTranslateDataView
 foreach ($datas['i18nColumns'] as $k => $v) {
     if ($v['BB_TYPE'] == unitkitGenerator::TYPE_TEXT_INPUT) {
         $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'type\' => \'activeTextField\',
                 \'htmlOptions\' => array(
@@ -51,7 +51,7 @@ foreach ($datas['i18nColumns'] as $k => $v) {
             )),';
     } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_TEXTAREA || $v['BB_TYPE'] == unitkitGenerator::TYPE_ADV_TEXTAREA) {
         $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'type\' => \'activeTextArea\',
                 \'htmlOptions\' => array(

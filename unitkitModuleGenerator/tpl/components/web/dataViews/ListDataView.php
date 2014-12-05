@@ -6,7 +6,7 @@ $html = '<?php
  *
  * @version 1.0
  */
-class ' . $datas['controller'] . 'ListDataView extends BListDataView
+class ' . $datas['controller'] . 'ListDataView extends UListDataView
 {
     /**
      * Constructor
@@ -23,7 +23,7 @@ class ' . $datas['controller'] . 'ListDataView extends BListDataView
         $this->id = \'' . lcfirst($datas['class']) . $datas['controller'] . 'Main\';
 
         // component title
-        $this->title = B::t(\'unitkit\', \'list_title\');
+        $this->title = Unitkit::t(\'unitkit\', \'list_title\');
 
         // data
         $this->data = $data;
@@ -96,24 +96,24 @@ foreach ($datas['allColumns'] as $k => $v) {
 
         if ($v['BB_TYPE'] == unitkitGenerator::TYPE_TEXT_INPUT) {
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $model,
                 \'attribute\' => \'' . $columnName . '\',
                 \'type\' => \'activeTextField\',
                 \'htmlOptions\' => array(
                     \'class\' => \'form-control input-sm\',
-                    \'placeholder\' => B::t(\'unitkit\', \'input_search\'),
+                    \'placeholder\' => Unitkit::t(\'unitkit\', \'input_search\'),
                     \'id\' => false
                 )
             )),';
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_CHECK_INPUT) {
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $model,
                 \'data\' => array(
-                    \'\' => B::t(\'unitkit\', \'input_drop_down_list_all\'),
-                    \'1\' => B::t(\'unitkit\', \'input_drop_down_list_checked\'),
-                    \'0\' => B::t(\'unitkit\', \'input_drop_down_list_unchecked\'),
+                    \'\' => Unitkit::t(\'unitkit\', \'input_drop_down_list_all\'),
+                    \'1\' => Unitkit::t(\'unitkit\', \'input_drop_down_list_checked\'),
+                    \'0\' => Unitkit::t(\'unitkit\', \'input_drop_down_list_unchecked\'),
                 ),
                 \'attribute\' => \'' . $columnName . '\',
                 \'type\' => \'activeDropDownList\',
@@ -123,51 +123,51 @@ foreach ($datas['allColumns'] as $k => $v) {
             )),';
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_ADV_INPUT_FILE) {
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $model,
                 \'attribute\' => \'' . $columnName . '\',
                 \'type\' => \'activeTextField\',
                 \'htmlOptions\' => array(
                     \'class\' => \'form-control input-sm\',
-                    \'placeholder\' => B::t(\'unitkit\', \'input_search\'),
+                    \'placeholder\' => Unitkit::t(\'unitkit\', \'input_search\'),
                     \'id\' => false
                 )
             )),';
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_DATE_INPUT) {
             $html .= '
-            new BDateRangeItemField(
+            new UDateRangeItemField(
                 $model,
                 \'' . $columnName . '\',
-                new BItemField(array(
+                new UItemField(array(
                     \'model\' => $model,
                     \'attribute\' => \'v_' . $columnName . '_start\',
                     \'type\' => \'activeTextField\',
                     \'htmlOptions\' => array(
                         \'class\' => \'form-control input-sm date-picker date-range\',
-                        \'placeholder\' => B::t(\'unitkit\', \'input_search\'),
+                        \'placeholder\' => Unitkit::t(\'unitkit\', \'input_search\'),
                         \'id\' => \'' . unitkitGenerator::underscoredToLowerCamelcase($class . '_v_' . $columnName . '_start_gridSearch') . '\'
                     )
                 )),
-                new BItemField(array(
+                new UItemField(array(
                     \'model\' => $model,
                     \'attribute\' => \'v_' . $columnName . '_end\',
                     \'type\' => \'activeTextField\',
                     \'htmlOptions\' => array(
                         \'class\' => \'form-control input-sm date-picker date-range\',
-                        \'placeholder\' => B::t(\'unitkit\', \'input_search\'),
+                        \'placeholder\' => Unitkit::t(\'unitkit\', \'input_search\'),
                         \'id\' => \'' . unitkitGenerator::underscoredToLowerCamelcase($class . '_v_' . $columnName . '_end_gridSearch') . '\'
                     )
                 ))
             ),';
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_TEXTAREA || $v['BB_TYPE'] == unitkitGenerator::TYPE_ADV_TEXTAREA) {
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $model,
                 \'attribute\' => \'' . $columnName . '\',
                 \'type\' => \'activeTextField\',
                 \'htmlOptions\' => array(
                     \'class\' => \'form-control input-sm\',
-                    \'placeholder\' => B::t(\'unitkit\', \'input_search\'),
+                    \'placeholder\' => Unitkit::t(\'unitkit\', \'input_search\'),
                     \'id\' => false
                 )
             )),';
@@ -177,7 +177,7 @@ foreach ($datas['allColumns'] as $k => $v) {
             $classR = unitkitGenerator::underscoredToUpperCamelcase(($info[0][strlen($info[0]) - 1] == 's') ? substr($info[0], 0, - 1) : $info[0]);
 
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $model,
                 \'data\' => $relatedData[\'' . $classR . '[' . $info[1] . ']\'],
                 \'attribute\' => \'' . $columnName . '\',
@@ -198,7 +198,7 @@ foreach ($datas['allColumns'] as $k => $v) {
                             )' : '$model->' . $columnName . '') . ')->' . $info[1];
 
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $model,
                 \'attribute\' => \'' . $columnName . '\',
                 \'type\' => \'activeHiddenField\',
@@ -206,12 +206,12 @@ foreach ($datas['allColumns'] as $k => $v) {
                 	\'class\' => \'input-ajax-select allow-clear\',
                 	\'id\' => \'' . unitkitGenerator::underscoredToLowerCamelcase($classR . '_' . $info[1] . '_gridSearch') . '\',
                 	\'data-action\' => $controller->createUrl(
-                        $controller->id.\'/advCombobox/\',
+                        $controller->id.\'/advComboBox/\',
                         array(
                             \'name\' => \'' . $classR . '[' . $info[1] . ']\',' . ($isI18nTable ? "\n" . '            				\'language\' => Yii::app()->language' : '') . '
                         )
                 	),
-                	\'data-placeholder\' => B::t(\'unitkit\', \'input_select\'),
+                	\'data-placeholder\' => Unitkit::t(\'unitkit\', \'input_select\'),
                 	\'data-text\' =>
                         ! empty($model->' . $columnName . ')
                         ?
@@ -231,26 +231,26 @@ foreach ($datas['allColumns'] as $k => $v) {
         $columnName = $v['COLUMN_NAME'];
 
         $htmlDateAuto .= '
-            new BDateRangeItemField(
+            new UDateRangeItemField(
                 $model,
                 \'' . $columnName . '\',
-                new BItemField(array(
+                new UItemField(array(
                     \'model\' => $model,
                     \'attribute\' => \'v_' . $columnName . '_start\',
                     \'type\' => \'activeTextField\',
                     \'htmlOptions\' => array(
                         \'class\' => \'form-control input-sm date-picker date-range\',
-                        \'placeholder\' => B::t(\'unitkit\', \'input_search\'),
+                        \'placeholder\' => Unitkit::t(\'unitkit\', \'input_search\'),
                         \'id\' => \'' . unitkitGenerator::underscoredToLowerCamelcase($class . '_v_' . $columnName . '_start_gridSearch') . '\'
                     )
                 )),
-                new BItemField(array(
+                new UItemField(array(
                     \'model\' => $model,
                     \'attribute\' => \'v_' . $columnName . '_end\',
                     \'type\' => \'activeTextField\',
                     \'htmlOptions\' => array(
                         \'class\' => \'form-control input-sm date-picker date-range\',
-                        \'placeholder\' => B::t(\'unitkit\', \'input_search\'),
+                        \'placeholder\' => Unitkit::t(\'unitkit\', \'input_search\'),
                         \'id\' => \'' . unitkitGenerator::underscoredToLowerCamelcase($class . '_v_' . $columnName . '_end_gridSearch') . '\'
                     )
                 ))
@@ -281,24 +281,24 @@ foreach ($datas['allColumns'] as $k => $v) {
 
         if ($v['BB_TYPE'] == unitkitGenerator::TYPE_TEXT_INPUT) {
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $model,
                 \'attribute\' => \'' . $columnName . '\',
                 \'type\' => \'activeTextField\',
                 \'htmlOptions\' => array(
                     \'class\' => \'form-control input-sm\',
-                    \'placeholder\' => B::t(\'unitkit\', \'input_search\'),
+                    \'placeholder\' => Unitkit::t(\'unitkit\', \'input_search\'),
                     \'id\' => false
                 )
             )),';
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_CHECK_INPUT) {
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $model,
                 \'data\' => array(
-                    \'\' => B::t(\'unitkit\', \'input_drop_down_list_all\'),
-                    \'1\' => B::t(\'unitkit\', \'input_drop_down_list_checked\'),
-                    \'0\' => B::t(\'unitkit\', \'input_drop_down_list_unchecked\'),
+                    \'\' => Unitkit::t(\'unitkit\', \'input_drop_down_list_all\'),
+                    \'1\' => Unitkit::t(\'unitkit\', \'input_drop_down_list_checked\'),
+                    \'0\' => Unitkit::t(\'unitkit\', \'input_drop_down_list_unchecked\'),
                 ),
                 \'attribute\' => \'' . $columnName . '\',
                 \'type\' => \'activeDropDownList\',
@@ -308,51 +308,51 @@ foreach ($datas['allColumns'] as $k => $v) {
             )),';
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_ADV_INPUT_FILE) {
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $model,
                 \'attribute\' => \'' . $columnName . '\',
                 \'type\' => \'activeTextField\',
                 \'htmlOptions\' => array(
                     \'class\' => \'form-control input-sm\',
-                    \'placeholder\' => B::t(\'unitkit\', \'input_search\'),
+                    \'placeholder\' => Unitkit::t(\'unitkit\', \'input_search\'),
                     \'id\' => false
                 )
             )),';
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_DATE_INPUT) {
             $html .= '
-        	new BDateRangeItemField(
+        	new UDateRangeItemField(
                 $model,
                 \'' . $columnName . '\',
-                new BItemField(array(
+                new UItemField(array(
                     \'model\' => $model,
                     \'attribute\' => \'v_' . $columnName . '_start\',
                     \'type\' => \'activeTextField\',
                     \'htmlOptions\' => array(
                         \'class\' => \'form-control input-sm date-picker date-range\',
-                        \'placeholder\' => B::t(\'unitkit\', \'input_search\'),
+                        \'placeholder\' => Unitkit::t(\'unitkit\', \'input_search\'),
                         \'id\' => \'' . unitkitGenerator::underscoredToLowerCamelcase($class . '_v_' . $columnName . '_start_advSearch') . '\'
                     )
                 )),
-                new BItemField(array(
+                new UItemField(array(
                     \'model\' => $model,
                     \'attribute\' => \'v_' . $columnName . '_end\',
                     \'type\' => \'activeTextField\',
                     \'htmlOptions\' => array(
                         \'class\' => \'form-control input-sm date-picker date-range\',
-                        \'placeholder\' => B::t(\'unitkit\', \'input_search\'),
+                        \'placeholder\' => Unitkit::t(\'unitkit\', \'input_search\'),
                         \'id\' => \'' . unitkitGenerator::underscoredToLowerCamelcase($class . '_v_' . $columnName . '_end_advSearch') . '\'
                     )
                 ))
 			),';
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_TEXTAREA || $v['BB_TYPE'] == unitkitGenerator::TYPE_ADV_TEXTAREA) {
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $model,
                 \'attribute\' => \'' . $columnName . '\',
                 \'type\' => \'activeTextField\',
                 \'htmlOptions\' => array(
                     \'class\' => \'form-control input-sm\',
-                    \'placeholder\' => B::t(\'unitkit\', \'input_search\'),
+                    \'placeholder\' => Unitkit::t(\'unitkit\', \'input_search\'),
                     \'id\' => false
                 )
             )),';
@@ -362,7 +362,7 @@ foreach ($datas['allColumns'] as $k => $v) {
             $classR = unitkitGenerator::underscoredToUpperCamelcase(($info[0][strlen($info[0]) - 1] == 's') ? substr($info[0], 0, - 1) : $info[0]);
 
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $model,
                 \'data\' => $relatedData[\'' . $classR . '[' . $info[1] . ']\'],
                 \'attribute\' => \'' . $columnName . '\',
@@ -383,7 +383,7 @@ foreach ($datas['allColumns'] as $k => $v) {
                 			)' : '$model->' . $columnName . '') . ')->' . $info[1];
 
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $model,
                 \'attribute\' => \'' . $columnName . '\',
                 \'type\' => \'activeHiddenField\',
@@ -391,12 +391,12 @@ foreach ($datas['allColumns'] as $k => $v) {
                     \'class\' => \'input-ajax-select allow-clear\',
                     \'id\' => \'' . unitkitGenerator::underscoredToLowerCamelcase($classR . '_' . $info[1] . '_advSearch') . '\',
                     \'data-action\' => $controller->createUrl(
-                        $controller->id.\'/advCombobox/\',
+                        $controller->id.\'/advComboBox/\',
                         array(
                             \'name\' => \'' . $classR . '[' . $info[1] . ']\',' . ($isI18nTable ? "\n" . '            				\'language\' => Yii::app()->language' : '') . '
                         )
                     ),
-                    \'data-placeholder\' => B::t(\'unitkit\', \'input_select\'),
+                    \'data-placeholder\' => Unitkit::t(\'unitkit\', \'input_select\'),
                     \'data-text\' =>
                         ! empty($model->' . $columnName . ')
                         ?
@@ -415,26 +415,26 @@ foreach ($datas['allColumns'] as $k => $v) {
         $columnName = $v['COLUMN_NAME'];
 
         $html .= '
-        	new BDateRangeItemField(
+        	new UDateRangeItemField(
                 $model,
                 \'' . $columnName . '\',
-                new BItemField(array(
+                new UItemField(array(
                     \'model\' => $model,
                     \'attribute\' => \'v_' . $columnName . '_start\',
                     \'type\' => \'activeTextField\',
                     \'htmlOptions\' => array(
                         \'class\' => \'form-control input-sm date-picker date-range\',
-                        \'placeholder\' => B::t(\'unitkit\', \'input_search\'),
+                        \'placeholder\' => Unitkit::t(\'unitkit\', \'input_search\'),
                         \'id\' => \'' . unitkitGenerator::underscoredToLowerCamelcase($class . '_v_' . $columnName . '_start_advSearch') . '\'
                     )
                 )),
-                new BItemField(array(
+                new UItemField(array(
                     \'model\' => $model,
                     \'attribute\' => \'v_' . $columnName . '_end\',
                     \'type\' => \'activeTextField\',
                     \'htmlOptions\' => array(
                         \'class\' => \'form-control input-sm date-picker date-range\',
-                        \'placeholder\' => B::t(\'unitkit\', \'input_search\'),
+                        \'placeholder\' => Unitkit::t(\'unitkit\', \'input_search\'),
                         \'id\' => \'' . unitkitGenerator::underscoredToLowerCamelcase($class . '_v_' . $columnName . '_end_advSearch') . '\'
                     )
                 ))
@@ -446,14 +446,15 @@ $html .= '
 
 $sLinkArrayPK = 'array(';
 foreach ($datas['pk'] as $pk)
-    $sLinkArrayPK .= '\'' . $pk . '\' => $data->' . $pk . ',';
+    $sLinkArrayPK .= '\'' . $pk . '\' => $d->' . $pk . ',';
 $sLinkArrayPK .= ')';
 
 $html .= '
 
         // rows
-        foreach($data as $d)
+        foreach($data as $d) {
             $this->rows[] = new ' . $datas['controller'] . 'ListRowDataView($d, ' . $sLinkArrayPK . ');
+        }
 
         // pagination
         $this->pagination = $pagination;

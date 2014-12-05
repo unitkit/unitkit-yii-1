@@ -169,11 +169,11 @@ abstract class UBaseMail extends CComponent
             foreach ($resQuery as $attrName => $attrVal) {
                 $mailObject = str_replace('{' . $attrName . '}', $attrVal, $mailObject);
                 $mailBody = str_replace('{' . $attrName . '}', $attrVal, $mailBody);
-                if ($attrName === 'b_mt_email_to' && $attrVal != '') {
+                if ($attrName === Unitkit::v('unitkit', 'mail_template_sql_alias_mailto') && $attrVal != '') {
                     $this->mailer->AddAddress($attrVal);
-                } elseif ($attrName === 'b_mt_email_from' && $attrVal != '') {
+                } elseif ($attrName === Unitkit::v('unitkit', 'mail_template_sql_alias_mailfrom') && $attrVal != '') {
                     $this->mailer->SetFrom($attrVal);
-                } elseif ($attrName === 'b_mt_email_sender' && $attrVal != '') {
+                } elseif ($attrName === Unitkit::v('unitkit', 'mail_template_sql_alias_sender') && $attrVal != '') {
                     $this->mailer->Sender = $attrVal;
                 }
             }

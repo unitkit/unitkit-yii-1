@@ -1,12 +1,5 @@
 set foreign_key_checks = 0;
--- phpMyAdmin SQL Dump
--- version 4.2.3
--- http://www.phpmyadmin.net
---
--- Client :  localhost
--- Généré le :  Jeu 04 Décembre 2014 à 13:45
--- Version du serveur :  5.6.19
--- Version de PHP :  5.5.14
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -738,23 +731,6 @@ CREATE TABLE IF NOT EXISTS `u_interface_setting` (
   `page_size` int(10) unsigned NOT NULL DEFAULT '10'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
---
--- Contenu de la table `u_interface_setting`
---
-
-INSERT INTO `u_interface_setting` (`interface_id`, `u_person_id`, `page_size`) VALUES
-('album:backend/cms', 1, 10),
-('autoLogin:backend/autoLogin', 1, 10),
-('group:backend/right', 1, 10),
-('image:backend/cms', 1, 10),
-('message:backend/message', 1, 10),
-('messageGroup:backend/message', 1, 10),
-('pageContainer:backend/cms', 1, 10),
-('person:backend/right', 1, 10),
-('siteI18n:backend/i18n', 1, 10),
-('variable:backend/variable', 1, 10),
-('variableGroup:backend/variable', 1, 10);
-
 -- --------------------------------------------------------
 
 --
@@ -925,7 +901,7 @@ CREATE TABLE IF NOT EXISTS `u_message` (
   `source` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=529 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=532 ;
 
 --
 -- Contenu de la table `u_message`
@@ -1228,14 +1204,16 @@ INSERT INTO `u_message` (`id`, `u_message_group_id`, `source`, `created_at`, `up
 (517, 2, 'url_manager_schema_flush', '2014-11-24 18:30:01', '2014-11-26 15:17:03'),
 (518, 2, 'url_is_refreshed', '2014-11-24 18:31:50', '2014-12-04 10:57:07'),
 (519, 3, 'contact_form:first_name', '2014-11-25 15:30:08', '2014-12-04 10:57:07'),
-(520, 3, 'contact_form:last_name', '2014-11-25 15:30:27', '2014-12-04 10:57:07'),
-(521, 3, 'contact_form:email', '2014-11-25 15:30:40', '2014-12-04 10:57:07'),
-(522, 3, 'contact_form:phone', '2014-11-25 15:31:03', '2014-12-04 10:57:07'),
-(523, 3, 'contact_form:message', '2014-11-25 15:32:47', '2014-12-04 10:57:07'),
-(524, 3, 'email_is_sent', '2014-11-25 16:03:35', '2014-12-04 10:57:07'),
-(525, 1, 'u_site_i18n:activated', '2014-11-26 13:56:28', '2014-12-04 10:57:07'),
-(526, 1, 'u_i18n_es', '2014-11-26 15:16:01', '2014-12-04 10:57:07'),
-(528, 1, 'u_cms_news:published_at', '2014-11-27 19:51:38', '2014-12-04 10:57:07');
+(520, 3, 'contact_form:last_name', '2014-11-25 15:30:27', '2014-12-05 08:41:31'),
+(521, 3, 'contact_form:email', '2014-11-25 15:30:40', '2014-12-05 08:41:31'),
+(522, 3, 'contact_form:phone', '2014-11-25 15:31:03', '2014-12-05 08:41:31'),
+(523, 3, 'contact_form:message', '2014-11-25 15:32:47', '2014-12-05 08:41:31'),
+(524, 3, 'email_is_sent', '2014-11-25 16:03:35', '2014-12-05 08:41:31'),
+(525, 1, 'u_site_i18n:activated', '2014-11-26 13:56:28', '2014-12-05 08:41:31'),
+(526, 1, 'u_i18n_es', '2014-11-26 15:16:01', '2014-12-05 08:41:31'),
+(528, 1, 'u_cms_news:published_at', '2014-11-27 19:51:38', '2014-12-05 08:41:31'),
+(529, 1, 'mail_template_not_exist', '2014-12-05 08:39:44', '2014-12-05 08:41:31'),
+(530, 1, 'mail_template_not_translated', '2014-12-05 08:41:20', '2014-12-05 08:41:31');
 
 -- --------------------------------------------------------
 
@@ -1908,7 +1886,11 @@ INSERT INTO `u_message_i18n` (`u_message_id`, `i18n_id`, `translation`) VALUES
 (526, 'en', 'Spanish'),
 (526, 'fr', 'Espagnol'),
 (528, 'en', 'Published at'),
-(528, 'fr', 'Publié le');
+(528, 'fr', 'Publié le'),
+(529, 'en', 'The mail template doesn''t exists'),
+(529, 'fr', 'Le modèle de mail n''existe pas'),
+(530, 'en', 'The mail template translation doesn''t exists'),
+(530, 'fr', 'La traduction du modèle de mail n''a pas été trouvé');
 
 -- --------------------------------------------------------
 
@@ -1928,14 +1910,14 @@ CREATE TABLE IF NOT EXISTS `u_person` (
   `default_language` varchar(16) COLLATE utf8_bin NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `u_person`
 --
 
 INSERT INTO `u_person` (`id`, `email`, `password`, `first_name`, `last_name`, `activated`, `validated`, `active_reset`, `default_language`, `created_at`, `updated_at`) VALUES
-(1, 'admin@unitkit.com', '$2a$13$wX7Nnt9jkr2MB9ZaLKtOgu9ZoppWTFl7hwIKV2LayqLwoghhlYiKm', 'Super', 'Admin', 1, 1, 0, 'en', '2012-12-20 12:40:50', '2014-12-04 11:13:12'),
+(1, 'admin@unitkit.com', '$2a$13$wX7Nnt9jkr2MB9ZaLKtOgu9ZoppWTFl7hwIKV2LayqLwoghhlYiKm', 'Super', 'Admin', 1, 1, 0, 'en', '2012-12-20 12:40:50', '2014-12-04 13:48:32'),
 (2, 'noreply@unitkit.com', '', 'Sender', '', 0, 0, 0, 'en', '2013-04-25 10:07:58', '2014-12-04 12:42:46');
 
 -- --------------------------------------------------------
@@ -2351,7 +2333,7 @@ CREATE TABLE IF NOT EXISTS `u_variable` (
   `val` text COLLATE utf8_bin NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=28 ;
 
 --
 -- Contenu de la table `u_variable`
@@ -2375,7 +2357,10 @@ INSERT INTO `u_variable` (`id`, `u_variable_group_id`, `param`, `val`, `created_
 (21, 3, 'u_cms_page_id:contact', '39', '2014-11-24 17:32:18', '2014-11-24 17:33:21'),
 (22, 3, 'mail_template_id:contact', ' 3', '2014-11-25 15:46:17', '2014-11-29 11:19:49'),
 (23, 3, 'u_cms_page_id:news', '41', '2014-11-29 11:19:14', '2014-11-29 11:19:57'),
-(24, 3, 'u_cms_news_group_id:main', '15', '2014-11-29 12:47:04', '2014-11-29 12:47:04');
+(24, 3, 'u_cms_news_group_id:main', '15', '2014-11-29 12:47:04', '2014-11-29 12:47:04'),
+(25, 1, 'mail_template_sql_alias_mailto', 'b_mt_email_to', '2014-12-05 12:48:51', '2014-12-05 12:50:59'),
+(26, 1, 'mail_template_sql_alias_mailfrom', 'b_mt_email_from', '2014-12-05 12:49:22', '2014-12-05 12:50:58'),
+(27, 1, 'mail_template_sql_alias_sender', 'b_mt_email_sender', '2014-12-05 12:49:59', '2014-12-05 12:51:31');
 
 -- --------------------------------------------------------
 
@@ -2475,7 +2460,13 @@ INSERT INTO `u_variable_i18n` (`u_variable_id`, `i18n_id`, `description`) VALUES
 (23, 'en', 'ID of cms page news'),
 (23, 'fr', 'Identifiant de la page news'),
 (24, 'en', 'ID of main news group'),
-(24, 'fr', 'Identifiant du groupe de news principale');
+(24, 'fr', 'Identifiant du groupe de news principale'),
+(25, 'en', 'Sql alias in mail template for mail recipient'),
+(25, 'fr', 'Alias SQL utilisé dans les mail template pour désigner le receveur'),
+(26, 'en', 'Sql alias in mail template for mail sender'),
+(26, 'fr', 'Alias SQL utilisé dans les mail template pour désigner l''envoyeur'),
+(27, 'en', 'Sql alias in mail template for sender name'),
+(27, 'fr', 'Alias SQL utilisé dans les mail template pour désigner le nom de l''envoyeur');
 
 --
 -- Index pour les tables exportées
@@ -2886,7 +2877,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT pour la table `u_message`
 --
 ALTER TABLE `u_message`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=529;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=532;
 --
 -- AUTO_INCREMENT pour la table `u_message_group`
 --
@@ -2896,7 +2887,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT pour la table `u_person`
 --
 ALTER TABLE `u_person`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `u_role`
 --
@@ -2906,7 +2897,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=107;
 -- AUTO_INCREMENT pour la table `u_variable`
 --
 ALTER TABLE `u_variable`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT pour la table `u_variable_group`
 --

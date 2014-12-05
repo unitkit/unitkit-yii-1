@@ -994,7 +994,7 @@ Update by Kévin Walter <walkev13@gmail.com>
                                 labelOption.attr("id", "select2-update-" + nextUid());
                                 labelOption.attr("role", "option");
                                 labelOption.attr('style', 'display:inline-block; margin-left:5px;');
-                                labelOption.html('<a href="#" style="color:white; font-style:italic;"><span class="glyphicon glyphicon-edit"></span> <span>'+ $.b.app.defaultMessage.selectInputUpdate +'</span></a>');
+                                labelOption.html('<a href="#" style="color:white; font-style:italic;"><span class="glyphicon glyphicon-edit"></span> <span>'+ $.unitkit.app.defaultMessage.selectInputUpdate +'</span></a>');
                                 node.append(labelOption);
                             }
                             if (compound) {

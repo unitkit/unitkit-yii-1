@@ -98,7 +98,7 @@ class UBaseHtml extends CHtml
     }
 
     /**
-     * List data of combobox
+     * List data of comboBox
      *
      * @param string $modelName name of model
      * @param mixed $select array(0 => id, 1 => text)
@@ -106,18 +106,19 @@ class UBaseHtml extends CHtml
      * @param int $cache cache duration (in seconds)
      * @return array
      */
-    public static function listDatasCombobox($modelName, $select, $criteria = array(), $cache = 0)
+    public static function listDataComboBox($modelName, $select, $criteria = array(), $cache = 0)
     {
         // init model
         $model = new $modelName();
-        // get all datas
-        $datas = $model->cache($cache/* cache duration */)->findAll(array_merge(array(
+        // get all data
+        $data = $model->cache($cache/* cache duration */)->findAll(array_merge(array(
             'select' => implode(',', $select)
         ), $criteria));
 
         $result = array();
-        foreach (CHtml::listData($datas, $select[0], $select[1]) as $k => $v)
+        foreach (CHtml::listData($data, $select[0], $select[1]) as $k => $v) {
             $result[$k] = $v;
+        }
 
         return $result;
     }

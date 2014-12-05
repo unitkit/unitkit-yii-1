@@ -6,7 +6,7 @@ $html = '<?php
  *
  * @version 1.0
  */
-class ' . $datas['controller'] . 'EditDataView extends BEditDataView
+class ' . $datas['controller'] . 'EditDataView extends UEditDataView
 {
     /**
      * Constructor
@@ -18,11 +18,11 @@ class ' . $datas['controller'] . 'EditDataView extends BEditDataView
     public function __construct($data, $relatedData, $pk, $isSaved)
     {
         // data view id
-        $this->id = \'' . lcfirst($data['class']) . $datas['controller'] . 'Edit\';
+        $this->id = \'' . lcfirst($datas['class']) . $datas['controller'] . 'Edit\';
 
         // component title
-        $this->createTitle = B::t(\'unitkit\', \'create_title\');
-        $this->updateTitle = B::t(\'unitkit\', \'update_title\');
+        $this->createTitle = Unitkit::t(\'unitkit\', \'create_title\');
+        $this->updateTitle = Unitkit::t(\'unitkit\', \'update_title\');
 
         // primary key
         $this->pk = $pk;
@@ -60,7 +60,7 @@ foreach ($datas['allColumns'] as $k => $v) {
 
         if ($v['BB_TYPE'] == unitkitGenerator::TYPE_TEXT_INPUT) {
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'type\' => \'activeTextField\',
@@ -72,7 +72,7 @@ foreach ($datas['allColumns'] as $k => $v) {
             )),';
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_ADV_INPUT_FILE) {
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'value\' => Yii::app()->uploader->htmlUploader(
@@ -80,7 +80,7 @@ foreach ($datas['allColumns'] as $k => $v) {
                     \'' . $v['COLUMN_NAME'] . '\',
                     $this->controller->getUploader(\'' . $class . '[' . $v['COLUMN_NAME'] . ']\')[\'uploader\']->createUrl($this->controller->id.\'/upload\'),
                     array(
-                        \'type\' => BUploader::OVERVIEW_IMAGE,
+                        \'type\' => UUploader::OVERVIEW_IMAGE,
                         \'route\' => $this->controller->id.\'/upload\',
                         \'html_options\' => array(\'style\' => \'max-width:350px\'),
                     )
@@ -88,7 +88,7 @@ foreach ($datas['allColumns'] as $k => $v) {
             )),';
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_DATE_INPUT) {
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'type\' => \'activeTextField\',
@@ -100,7 +100,7 @@ foreach ($datas['allColumns'] as $k => $v) {
             )),';
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_CHECK_INPUT) {
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'type\' => \'activeCheckBox\',
@@ -112,7 +112,7 @@ foreach ($datas['allColumns'] as $k => $v) {
             )),';
         } elseif ($v['BB_TYPE'] == unitkitGenerator::TYPE_TEXTAREA || $v['BB_TYPE'] == unitkitGenerator::TYPE_ADV_TEXTAREA) {
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'type\' => \'activeTextArea\',
@@ -127,7 +127,7 @@ foreach ($datas['allColumns'] as $k => $v) {
             $isI18nTable = unitkitGenerator::underscoredToLowerCamelcase($datas['relations'][$k]['REFERENCED_TABLE_NAME']) != $info[0];
             $classR = unitkitGenerator::underscoredToUpperCamelcase(($info[0][strlen($info[0]) - 1] == 's') ? substr($info[0], 0, - 1) : $info[0]);
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'type\' => \'activeDropDownList\',
@@ -148,7 +148,7 @@ foreach ($datas['allColumns'] as $k => $v) {
                                 )' : '$data[\'' . $class . '\']->' . $v['COLUMN_NAME'] . '') . ')->' . $info[1];
 
             $html .= '
-            new BItemField(array(
+            new UItemField(array(
                 \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'type\' => \'activeHiddenField\',
@@ -156,10 +156,10 @@ foreach ($datas['allColumns'] as $k => $v) {
                     \'id\' => false,
                     \'class\' => \'form-control input-sm input-ajax-select' . ($v['IS_NULLABLE'] == 'YES' ? ' allow-clear' : '') . '\',
                     \'data-action\' => $this->controller->createUrl(
-                        $this->controller->id.\'/advCombobox/\',
+                        $this->controller->id.\'/advComboBox/\',
                         array(\'name\' => \'' . $classR . '[' . $info[1] . ']\'' . ($isI18nTable ? ', \'language\' => Yii::app()->language' : '') . ')
                     ),
-                    \'data-placeholder\' => B::t(\'unitkit\', \'input_select\'),
+                    \'data-placeholder\' => Unitkit::t(\'unitkit\', \'input_select\'),
                     \'data-text\' => ! empty($data[\'' . $class . '\']->' . $v['COLUMN_NAME'] . ') ? ' . $dataText . ' : \'\',
                 )
             )),';
@@ -175,7 +175,7 @@ foreach ($datas['allColumns'] as $k => $v) {
         $class = unitkitGenerator::underscoredToUpperCamelcase($v['TABLE_NAME']);
 
         $htmlDateAuto .= '
-            $this->items[] = new BItemField(array(
+            $this->items[] = new UItemField(array(
                 \'model\' => $data[\'' . $class . '\'],
                 \'attribute\' => \'' . $v['COLUMN_NAME'] . '\',
                 \'value\' =>  $data[\'' . $class . '\']->' . $v['COLUMN_NAME'] . '

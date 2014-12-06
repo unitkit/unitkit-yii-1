@@ -58,6 +58,7 @@
 	
 	/**
 	 * Remove empty string serialized
+     *
 	 * @param string to transform
 	 * @return string
 	 */

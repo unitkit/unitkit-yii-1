@@ -24,7 +24,8 @@
 	$.unitkit.app.Translate.prototype.blockUIOptions = $.extend($.unitkit.app.defaultBlockUI, {});
 	
 	/**
-	 * Sumbit form
+	 * Submit form
+     *
 	 * @param url
 	 * @param data
 	 * @param type

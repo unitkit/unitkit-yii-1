@@ -14,12 +14,11 @@
     $.unitkit.app.List = function (args)
     {
         this.args = args;
+        this.swfUpload = [];
+        this.message = $.extend($.unitkit.app.defaultMessage, this.args.message || {});
         this.activeAutoScroll = (this.args.activeAutoScroll != undefined) ? this.args.activeAutoScroll : true;
         this.activeLocationUpdate = (this.args.activeLocationUpdate != undefined) ? this.args.activeLocationUpdate : true;
         this.requestSaved = {url: window.location.href || '', data: undefined, type: undefined};
-        this.swfUpload = [];
-        this.message = $.extend($.unitkit.app.defaultMessage, this.args.message || {});
-        this.filters = '';
     };
     
     /**

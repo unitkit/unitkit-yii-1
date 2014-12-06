@@ -14,9 +14,8 @@
 	$.unitkit.app.Edit = function(args)
 	{
 		this.args = args;
-		this.appList = this.args.list || {};
 		this.swfUpload = [];
-		this.message = {};
+        this.appList = this.args.list || {};
 		this.message = $.extend($.unitkit.app.defaultMessage, this.args.message || {});
 		this.activeAutoScroll = (this.args.activeAutoScroll != undefined) ? this.args.activeAutoScroll : true;
 	};
@@ -37,7 +36,7 @@
 	};
 	
 	/**
-	 * Sumbit form
+	 * Submit form
 	 * 
 	 * @param url
 	 * @param data

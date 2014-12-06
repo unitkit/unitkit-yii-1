@@ -22,9 +22,19 @@
 		this.component = this.create(createOption);
 		this.component.addClass(cssClass);
 	};
-	
+
+    /**
+     * Current Modal - Static variable
+     *
+     * @type {$.unitkit.app.Modal}
+     */
 	$.unitkit.app.Modal.currentModal = null;
-	
+
+    /**
+     * Previous modal
+     *
+     * @type {$.unitkit.app.Modal}
+     */
 	$.unitkit.app.Modal.prototype.prevModal = null;
 	
 	/**

@@ -39,7 +39,7 @@ Yii::app()
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <p><?= Unitkit::v('frontend', 'website_name') ?> &copy; <?= date('Y'); ?> - Powered by UNITKIT</p>
+                    <p><?= Unitkit::v('frontend', 'website_name') ?> &copy; <?= date('Y'); ?> - Powered by - Powered by <a href="http://www.unitkit.com" target="_blank">UNITKIT</a></p>
                 </div>
             </div>
         </div>

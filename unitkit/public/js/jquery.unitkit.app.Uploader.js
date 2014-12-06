@@ -31,7 +31,7 @@
 			'sess_key': this.button.attr('data-sessKey'),
 			'upload': this.button.attr('data-model'),
 			'overview': this.button.attr('data-overview'),
-			'b_csrf_token': $('meta[name=b_csrf_token]').attr('content')
+			'u_csrf_token': $('meta[name=u_csrf_token]').attr('content')
 		};
 
 		localSettings.button_placeholder = upload.children('.upload-file-flash-btn');
@@ -66,29 +66,29 @@
 	 */
 	$.unitkit.app.Uploader.prototype.initDeleteActionEvent = function ()
 	{
-		$this = this;
+		var self = this;
 
 		// delete action
-		this.upload.find('.remove').on('click', function (){
+        self.upload.find('.remove').on('click', function (){
 			var progress = $(this).parents('.upload-file-progress');
 			var input = progress.find('.upload-file-input');
 			var dataId = input.attr('data-id');
 
 			if (dataId != undefined) {
-                $this.swfUpload.cancelUpload(dataId);
+                self.swfUpload.cancelUpload(dataId);
             }
 
-			$this.swfUpload.customSettings.countFiles--;
+            self.swfUpload.customSettings.countFiles--;
 			
 			// style
-			if ($this.swfUpload.customSettings.maxFiles > 1) {
-				$this.button.removeClass('disabled');
+			if (self.swfUpload.customSettings.maxFiles > 1) {
+                self.button.removeClass('disabled');
 				$('#' + $this.swfUpload.movieName).css('left','0');
 			}
 
 			if ( progress.hasClass('insert')) {
-				if ($this.swfUpload.customSettings.maxFiles == 1) {
-					var tmp = $this.swfUpload.customSettings.upload.find('.upload-file-progress.original');
+				if (self.swfUpload.customSettings.maxFiles == 1) {
+					var tmp = self.swfUpload.customSettings.upload.find('.upload-file-progress.original');
 					if ( tmp.length > 0 ) {
 						tmp.find('.upload-file-input').attr('disabled', false);
 						if ( ! tmp.hasClass('delete')) {
@@ -133,8 +133,7 @@
 			upload:{}
 		};
 	   	
-	   	this.file_queued_handler = function (file) 
-		{
+	   	this.file_queued_handler = function (file) {
 			if (this.customSettings.maxFiles == 1)
 			{
 				this.customSettings.countFiles++;
@@ -149,8 +148,9 @@
 				var progress = new $.unitkit.app.UploaderFileProgress(file, this);
 				progress.addFileQueue();
 			}
-			else
-				this.cancelUpload(file.id);
+			else {
+                this.cancelUpload(file.id);
+            }
 		};
 		
 		this.file_queue_error_handler = function (file, errorCode, message) {};
@@ -193,6 +193,7 @@
 	
 	/**
 	 * Upload file progress
+     *
 	 * @param file
 	 * @param swfUpload
 	 */
@@ -202,7 +203,7 @@
 		this.id = file.id;
 		this.progress = $('#' + this.id);
 		
-		if (this.progress.length == 0) {
+		if (this.progress.length === 0) {
 			this.progress = this.getTemplate();
 			this.swfUpload.customSettings.progressTarget.append(this.progress);
 			this.fileNameContainer = this.progress.find('.upload-file-progress-details-file');
@@ -286,7 +287,7 @@
 	 */
 	$.unitkit.app.UploaderFileProgress.prototype.setComplete = function (json)
 	{
-		// get datas
+		// get data
 		var data = jQuery.parseJSON(json);
 
 		// update input

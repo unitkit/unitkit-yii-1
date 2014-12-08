@@ -58,9 +58,9 @@ Required Yii Framework 1.1.15
 UNITKIT SUR OVH MUTUALISE
 =========================
 
-- Installer UNITKIT selon la procédure précédente dans votre environnement de travail afin de récupérer les dépendances du module frontend et backend dans le répertoire public
+- Installer UNITKIT selon la procédure précédente dans votre environnement de travail afin de récupérer les dépendances des modules frontend et backend dans le répertoire public
 - Installer la base de données sur phpmyadmin d'ovh
 - Modifier les fichiers de configuration sur backend et frontend
 - Copier les sources à la racine du ftp d'ovh
-- Créer des sous domaines pour frontend (par exemple wwww), backend et static
-- Modifier les urls de static dans le fichier de configuration
+- Créer des sous domaines pour frontend (par exemple www), backend et static afin d'obtenir 3 urls (www.votredomaine.com, backend.votredomaine.com et static.votredomaine.com)
+- Modifier les urls du domaine static dans le fichier de configuration ainsi que dans les pages depuis le backoffice

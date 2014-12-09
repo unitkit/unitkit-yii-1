@@ -1,6 +1,5 @@
 set foreign_key_checks = 0;
 
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -1600,7 +1599,7 @@ INSERT INTO `u_message_i18n` (`u_message_id`, `i18n_id`, `translation`) VALUES
 (348, 'en', 'Page title'),
 (348, 'fr', 'Titre de page'),
 (349, 'en', 'HTML title'),
-(349, 'fr', 'HTML html'),
+(349, 'fr', 'Titre HTML'),
 (350, 'en', 'HTML description'),
 (350, 'fr', 'Description HTML'),
 (351, 'en', 'HTML keywords'),

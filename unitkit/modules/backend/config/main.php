@@ -60,11 +60,11 @@ return array(
                     'albumPhotoUrlDest' => '//static.unitkit.local/cms/albums',
                     'components' => array(
                         'albumPhotoUploader' => array(
-                        	'class' => 'application.modules.backend.modules.cms.components.albumPhoto.AlbumPhotoUploader',
+                        	'class' => 'application.modules.backend.modules.cms.components.web.dataViews.albumPhoto.AlbumPhotoUploader',
                             'pathTmp' => Yii::getPathOfAlias('application').'/../datas/tmp',
                         ),
                         'imageUploader' => array(
-                            'class' => 'application.modules.backend.modules.cms.components.image.ImageUploader',
+                            'class' => 'application.modules.backend.modules.cms.components.web.dataViews.image.ImageUploader',
                             'pathTmp' => Yii::getPathOfAlias('application').'/../datas/tmp',
                         )
                     )

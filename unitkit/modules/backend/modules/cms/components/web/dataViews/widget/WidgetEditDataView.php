@@ -39,7 +39,7 @@ class WidgetEditDataView extends UEditDataView
 
         // error status
         foreach($data as $d) {
-            if ($this->hasErrors = $data->hasErrors()) {
+            if ($this->hasErrors = $d->hasErrors()) {
                 break;
             }
         }

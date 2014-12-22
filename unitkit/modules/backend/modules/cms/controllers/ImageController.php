@@ -29,7 +29,7 @@ class ImageController extends UAutoController
             'UCmsImage[file_path]' => array(
                 'model' => 'UCmsImage',
                 'field' => 'file_path',
-                'uploader' => Yii::app()->getModule('backend')->getModule('cms')->albumPhotoUploader
+                'uploader' => Yii::app()->getModule('backend')->getModule('cms')->imagePhotoUploader
             ),
         );
     }

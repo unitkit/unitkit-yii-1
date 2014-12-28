@@ -79,7 +79,7 @@ return array(
             'options' => array()
         ),
         'uploader' => array(
-            'class' => 'application.components.UUploader',
+            'class' => 'application.components.web.UUploader',
             'pathTmp' => Yii::getPathOfAlias('application').'/../datas/tmp',
         ),
         'variables' => array(
